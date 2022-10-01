@@ -1,0 +1,54 @@
+{% extends 'partials/body.html' %}
+
+
+{% block contenido %}
+
+<div class="container p-5 text-center">
+    <form class="w-form-login mx-auto">
+
+        <div class="mb-3">
+            <select class="form-select border border-dark"
+                aria-label="Default select example">
+                <option class="text-center " selected disabled>--
+                    TIPO DE
+                    USUARIO --</option>
+                <option value="1">FUNCIONARIO</option>
+                <option value="2">CONDUCTOR</option>
+                <option value="3">ADMINISTRADOR</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="ususarioInicio" class="form-label">USUARIO</label>
+            <input type="text" class="form-control border
+                border-dark" id="ususarioInicio"
+                aria-describedby="emailHelp">
+            <div id="usuarioMensaje" class="form-text
+                text-start">Ingrese
+                correctamente su usuario y evite compartirlo.</div>
+        </div>
+
+        <div class="mb-3">
+            <label for="contraseñaInicio"
+                class="form-label">CONTRASEÑA</label>
+            <input type="password" class="form-control border
+                border-dark" id="contraseñaInicio">
+        </div>
+
+        <div class="mb-3">
+            <a href="#" class="link-primary">Recuperar
+                contraseña</a>
+        </div>
+
+        <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input
+                border border-dark" id="verificarInicio">
+            <label class="form-check-label ms-negativo"
+                for="verificarInicio">Verificar</label>
+        </div>
+
+        <button type="submit" class="btn btn-primary"><a style="color: white; text-decoration: none;" href="{% url 'control-activos' %}">ACEPTAR</a></button>
+    </form>
+</div>
+
+{% endblock contenido %}
