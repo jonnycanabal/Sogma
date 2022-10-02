@@ -1,0 +1,61 @@
+{% load static %}
+<!-- INICIO BOTON DE AYUDA -->
+<div class="bg-light d-flex justify-content-between pt-3 pe-4">
+
+    <div class="ms-3">
+        <a>
+            <img src="{% static 'img/interrogation.png' %}" alt="boton-ayuda"
+                width="25"
+                height="25">
+        </a>
+    </div>
+
+    <a href="#" class=" link-dark text-decoration-none"
+        id="dropdownUser2"
+        data-bs-toggle="dropdown" aria-expanded="false">
+        <img src="{% static 'img/disabled_1.png' %}" alt="imagen-ayuda" width="35"
+            height="35">
+    </a>
+
+    <ul class="dropdown-menu text-small shadow"
+        aria-labelledby="dropdownUser2">
+
+        <div class="d-flex align-items-center ms-2 me-0">
+            <img src="{% static 'img/zoom-out.png' %}" alt="zoom-out" width="20"
+                height="20"><li><a class="dropdown-item" href="#">Disminuir
+                    Tamaño de
+                    Letra</a></li>
+        </div>
+
+        <div class="d-flex align-items-center ms-2 me-0">
+            <img src="{% static 'img/zoom-in.png' %}" alt="zoom-in" width="20"
+                height="20"><li><a class="dropdown-item" href="#">Aumentar
+                    Tamaño de
+                    Letra</a></li>
+        </div>
+        <div class="d-flex align-items-center ms-2 me-0">
+            <img src="{% static 'img/refresh.png' %}" alt="refresh-zoom" width="20"
+                height="20"><li><a class="dropdown-item" href="#">Restablecer
+                    Tamaño
+                    Letra</a></li>
+        </div>
+        <div class="d-flex align-items-center ms-2 me-0">
+            <img src="{% static 'img/sun.png' %}" alt="sun" width="20"
+                height="20"><li><a class="dropdown-item" href="#">Contraste
+                    Brillante</a></li>
+        </div>
+        <div class="d-flex align-items-center ms-2 me-0">
+            <img src="{% static 'img/moon.png' %}" alt="moon" width="20"
+                height="20"><li><a class="dropdown-item" href="#">Contraste
+                    Oscuro</a></li>
+        </div>
+        <div class="d-flex align-items-center ms-2 me-0">
+            <img src="{% static 'img/refresh.png' %}" alt="refresh-sun-moon"
+                width="20"
+                height="20"><li><a class="dropdown-item" href="#">Restablecer
+                    Contraste</a></li>
+        </div>
+        <li><hr class="dropdown-divider"></li>
+    </ul>
+</div>
+<!-- FIN BOTON DE AYUDA-->

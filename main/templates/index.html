@@ -1,4 +1,5 @@
 {% extends 'partials/body.html' %}
+{% load static %}
 
 
 {% block contenido %}
@@ -47,7 +48,7 @@
                 for="verificarInicio">Verificar</label>
         </div>
 
-        <button type="submit" class="btn btn-primary"><a style="color: white; text-decoration: none;" href="{% url 'control-activos' %}">ACEPTAR</a></button>
+        <button type="submit" class="btn btn-primary"><a style="color: white; text-decoration: none;" href="{% url 'Control-Activos' %}">ACEPTAR</a></button>
     </form>
 </div>
 

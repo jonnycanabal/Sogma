@@ -1,0 +1,145 @@
+{% extends 'partials/body.html' %}
+{% load static %}
+
+
+{% block menu %}
+    {% include 'partials/nav.html' %}
+{% endblock menu %}
+
+{% block contenido %}
+
+<div id="div-caja3" class="container p-3 my-4 pb-4 d-flex
+    justify-content-center pe-4 pt-0 mt-0">
+
+    <form id="div-cajas" class="container p-3 my-4 border-bottom
+        mt-0
+        border-dark pb-4">
+
+        <div class="w-100 text-center p-2 border-bottom
+            border-dark">
+            <h2>Generar Alarma</h2>
+        </div>
+        <br>
+
+        <div class="d-inline-block width-20 ms-1 me-5">
+            <label for="basic-url" class="form-label w-75 ps-2">TIPO
+                DE
+                ACTIVO</label>
+            <div class="input-group mb-3 w-100">
+                <select class="form-select"
+                    aria-label="tipo-activo">
+                    <option selected>Seleccione el Activo</option>
+                    <option value="1">Vehículo</option>
+                    <option value="2">Extintor</option>
+                    <option value="3">Equipo Oficina</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="d-inline-block width-20 ms-1 me-5">
+            <label for="basic-url" class="form-label w-75 ps-2">ID
+                ACTIVO</label>
+            <div class="input-group mb-3 w-100">
+                <input type="text" class="form-control"
+                    id="basic-url"
+                    aria-describedby="basic-addon3"
+                    placeholder="ID ACTIVO">
+            </div>
+        </div>
+
+        <div class="d-inline-block width-20 ms-1 me-5">
+            <label for="basic-url" class="form-label w-75 ps-2">LUGAR</label>
+            <div class="input-group mb-3 w-100">
+                <input type="text" class="form-control"
+                    id="basic-url"
+                    aria-describedby="basic-addon3"
+                    placeholder="LUGAR">
+            </div>
+        </div>
+
+        <div class="d-inline-block width-20 ms-1 me-5">
+            <label for="basic-url" class="form-label w-75 ps-2">FECHA
+                DE MANTENIMIENTO</label>
+            <div class="input-group mb-3 w-100">
+                <input type="text" class="form-control"
+                    id="basic-url"
+                    aria-describedby="basic-addon3"
+                    placeholder="FECHA DE MANTENIMIENTO">
+            </div>
+        </div>
+
+        <br>
+        <br>
+
+        <label class="ms-3 mb-2">DESCRIPCIÓN</label>
+        <div class="form-floating ms-1 textarea-alarma"> <!-- VOY EN ESTE PUNTO TRAB AJANDO EN EL PROYECTO-->
+            <textarea class="form-control textarea-alarma"
+                style="resize: none; height:
+                150px;" placeholder="Leave a comment here"
+                id="floatingTextarea2" style="height: 100px"></textarea>
+        </div>
+
+        <br>
+        <br>
+
+
+        <!-- USO DE MODAL CON BOOTSTRAP 5 PARA EL BOTON GERAR-->
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-success fs-5 m-2"
+            data-bs-toggle="modal"
+            data-bs-target="#modal-generar">
+            GENERAR
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="modal-generar"
+            data-bs-backdrop="static" data-bs-keyboard="false"
+            tabindex="-1" aria-labelledby="staticBackdropLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title"
+                            id="staticBackdropLabel">VERIFICAR</h5>
+                        <button type="button" class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body text-start">
+                        Esta seguro que desea generar la alarma
+                        con los datos registrados anteriormente.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn
+                            btn-secondary"
+                            data-bs-dismiss="modal">CANCELAR</button>
+                        <button type="button"
+                            data-bs-toggle="modal"
+                            data-bs-target="#modal-genera2"
+                            data-bs-dismiss="modal" class="btn
+                            btn-primary">ACEPTAR </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- MODAL INTERNO AL OPRIMIR ACEPTAR EN EL MODAL ANTERIOR DE GUARDAR-->
+        <div class="modal" id="modal-genera2">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header alert
+                        alert-success">
+                        <h5 class="modal-tittle">Alarma generada</h5>
+                        <button class="btn-close" type="buttom"
+                            data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body text-start">
+                        Se ha generado la alarma de forma
+                        exitosa.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+{% endblock contenido %}

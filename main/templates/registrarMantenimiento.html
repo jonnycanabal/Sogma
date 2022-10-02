@@ -1,0 +1,817 @@
+{% extends 'partials/body.html' %}}
+{% load static %}
+
+
+{% block menu %}
+    {% include 'partials/nav.html' %}
+{% endblock menu %}
+
+{% block contenido %}
+
+<div id="div-caja3" class="container p-3 pb-4 d-flex
+    justify-content-center pe-4">
+
+    <form id="div-cajas" class="container p-3 my-4 mt-0 pb-0
+        border-start border-end border-dark">
+        <div class="text-center p-2 w-100">
+            <h2>Seleccione el TIpo de Activo</h2>
+        </div>
+
+        <br>
+
+        <!-- BOTONES DE SELECCIONE DE ACTIVO-->
+        <div class="text-center w-100">
+            <div class="d-inline-block width-20 ms-1 me-5">
+                <div class="input-group mb-3 w-100">
+                    <button type="button" class="btn
+                        form-control
+                        width-20 m-2 border border-dark
+                        bg-white
+                        text-dark" style="cursor: pointer;">VEHÍCULO</button>
+                </div>
+            </div>
+
+
+            <div class="d-inline-block width-20 ms-1 me-5">
+                <div class="input-group mb-3 w-100">
+                    <button type="button" class="btn
+                        form-control
+                        width-20 m-2 border border-dark
+                        bg-white
+                        text-dark" style="cursor: pointer;">EXTINTOR</button>
+                </div>
+            </div>
+
+
+            <div class="d-inline-block width-20 ms-1 me-5">
+                <div class="input-group mb-3 w-100">
+                    <button type="button" class="btn
+                        form-control
+                        width-20 m-2 border border-dark
+                        bg-white
+                        text-dark" style="cursor: pointer;">EQUIPO
+                        OFICINA</button>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="d-flex justify-content-center
+            border-bottom border-dark pb-4 mb-4 m-2 w-100"> <!-- TABLA DE LA INFORMACION DE ACIVOS -->
+            <!-- Inicio del segundo contenedor de la página-->
+            <!-- Inicio de la Tabla usando (DataTable) -->
+            <!-- NO SIRVE DE NADA ESE ID (tabla-control-activos)  ///// IMPORTANTE//////-->
+            <div id="tabla-control-activos"
+                class="overflow-auto shadow-lg p-4
+                height-config-tabla1 m-2 w-100"
+                style="height: 300px;">
+                <table id="example" class="table-striped
+                    display
+                    nowrap">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Id Activo</th>
+                            <th>Tipo Activo</th>
+                            <th>Fecha De Ingreso</th>
+                            <th>Marca</th>
+                            <th>Modelo</th>
+                            <th>Placa</th>
+                            <th>Color</th>
+                            <th>Fecha de Fabricación</th>
+                            <th>Serial</th>
+                            <th>Tipo Combustible</th>
+                            <th>Kilometraje Actual</th>
+                            <th>Capacidad</th>
+                            <th>Fecha De Recarga</th>
+                            <th>Ubicación</th>
+                            <th>Persona A Cargo</th>
+                            <th>Ultimo Mantenimiento</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td><button class="border-0
+                                    rounded-circle"
+                                    style="background-color:
+                                    rgba(240, 248,
+                                    255, 0);"><img
+                                        src="{% static 'img/eye.png' %}"
+                                        alt="iconoOjoSelector"
+                                        width="20"
+                                        height="20"></td></button>
+                            <td class="text-center">001</td>
+                            <td>vehículo</td>
+                            <td>15/01/2022</td>
+                            <td>Toyota</td>
+                            <td>2022</td>
+                            <td>XFD-581</td>
+                            <td>Blanco</td>
+                            <td>15/12/2021</td>
+                            <td>asdffgh157hfjg-14</td>
+                            <td>Diesel</td>
+                            <td>10000</td>
+                            <td>5</td>
+                            <td>15/01/2023</td>
+                            <td>Garaje</td>
+                            <td>Nicolas</td>
+                            <td>01/08/2022</td>
+                        </tr>
+
+                        <tr>
+                            <td><button class="border-0
+                                    rounded-circle"
+                                    style="background-color:
+                                    rgba(240, 248,
+                                    255, 0);"><img
+                                        src="{% static 'img/eye.png' %}"
+                                        alt="iconoOjoSelector"
+                                        width="20"
+                                        height="20"></td></button>
+                            <td class="text-center">002</td>
+                            <td>vehículo</td>
+                            <td>15/01/2022</td>
+                            <td>Toyota</td>
+                            <td>2022</td>
+                            <td>XFD-581</td>
+                            <td>Blanco</td>
+                            <td>15/12/2021</td>
+                            <td>asdffgh157hfjg-14</td>
+                            <td>Diesel</td>
+                            <td>10000</td>
+                            <td>5</td>
+                            <td>15/01/2023</td>
+                            <td>Garaje</td>
+                            <td>Jonny Canabal</td>
+                            <td>01/08/2022</td>
+                        </tr>
+
+                        <tr>
+                            <td><button class="border-0
+                                    rounded-circle"
+                                    style="background-color:
+                                    rgba(240, 248,
+                                    255, 0);"><img
+                                        src="{% static 'img/eye.png' %}"
+                                        alt="iconoOjoSelector"
+                                        width="20"
+                                        height="20"></td></button>
+                            <td class="text-center">003</td>
+                            <td>vehículo</td>
+                            <td>15/01/2022</td>
+                            <td>Toyota</td>
+                            <td>2022</td>
+                            <td>XFD-581</td>
+                            <td>Blanco</td>
+                            <td>15/12/2021</td>
+                            <td>asdffgh157hfjg-14</td>
+                            <td>Diesel</td>
+                            <td>10000</td>
+                            <td>5</td>
+                            <td>15/01/2023</td>
+                            <td>Garaje</td>
+                            <td>Jonny Canabal</td>
+                            <td>01/08/2022</td>
+                        </tr>
+
+                        <tr>
+                            <td><button class="border-0
+                                    rounded-circle"
+                                    style="background-color:
+                                    rgba(240, 248,
+                                    255, 0);"><img
+                                        src="{% static 'img/eye.png' %}"
+                                        alt="iconoOjoSelector"
+                                        width="20"
+                                        height="20"></td></button>
+                            <td class="text-center">004</td>
+                            <td>vehículo</td>
+                            <td>15/01/2022</td>
+                            <td>Toyota</td>
+                            <td>2022</td>
+                            <td>XFD-581</td>
+                            <td>Blanco</td>
+                            <td>15/12/2021</td>
+                            <td>asdffgh157hfjg-14</td>
+                            <td>Diesel</td>
+                            <td>10000</td>
+                            <td>5</td>
+                            <td>15/01/2023</td>
+                            <td>Garaje</td>
+                            <td>Jonny Canabal</td>
+                            <td>01/08/2022</td>
+                        </tr>
+
+                        <tr>
+                            <td><button class="border-0
+                                    rounded-circle"
+                                    style="background-color:
+                                    rgba(240, 248,
+                                    255, 0);"><img
+                                        src="{% static 'img/eye.png' %}"
+                                        alt="iconoOjoSelector"
+                                        width="20"
+                                        height="20"></td></button>
+                            <td class="text-center">005</td>
+                            <td>vehículo</td>
+                            <td>15/01/2022</td>
+                            <td>Toyota</td>
+                            <td>2022</td>
+                            <td>XFD-581</td>
+                            <td>Blanco</td>
+                            <td>15/12/2021</td>
+                            <td>asdffgh157hfjg-14</td>
+                            <td>Diesel</td>
+                            <td>10000</td>
+                            <td>5</td>
+                            <td>15/01/2023</td>
+                            <td>Garaje</td>
+                            <td>Jonny Canabal</td>
+                            <td>01/08/2022</td>
+                        </tr>
+
+                        <tr>
+                            <td><button class="border-0
+                                    rounded-circle"
+                                    style="background-color:
+                                    rgba(240, 248,
+                                    255, 0);"><img
+                                        src="{% static 'img/eye.png' %}"
+                                        alt="iconoOjoSelector"
+                                        width="20"
+                                        height="20"></td></button>
+                            <td class="text-center">006</td>
+                            <td>vehículo</td>
+                            <td>15/01/2022</td>
+                            <td>Toyota</td>
+                            <td>2022</td>
+                            <td>XFD-581</td>
+                            <td>Blanco</td>
+                            <td>15/12/2021</td>
+                            <td>asdffgh157hfjg-14</td>
+                            <td>Diesel</td>
+                            <td>10000</td>
+                            <td>5</td>
+                            <td>15/01/2023</td>
+                            <td>Garaje</td>
+                            <td>Jonny Canabal</td>
+                            <td>01/08/2022</td>
+                        </tr>
+
+                    </tbody>
+
+                    <tfoot>
+                        <tr>
+                            <th></th>
+                            <th>Id Activo</th>
+                            <th>Tipo Activo</th>
+                            <th>Fecha De Ingreso</th>
+                            <th>Marca</th>
+                            <th>Modelo</th>
+                            <th>Placa</th>
+                            <th>Color</th>
+                            <th>Fecha de Fabricación</th>
+                            <th>Serial</th>
+                            <th>Tipo Combustible</th>
+                            <th>Kilometraje Actual</th>
+                            <th>Capacidad</th>
+                            <th>Fecha De Recarga</th>
+                            <th>Ubicación</th>
+                            <th>Persona A Cargo</th>
+                            <th>Ultimo Mantenimiento</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+
+        </div>
+
+        <div class="border-bottom border-dark mb-4 pb-4 w-100">
+            <!-- DATOS BASICOS DEL ACTIVO PARA CONFIRMAR QUE SELECCIONO BIEN -->
+            <div class="d-flex justify-content-center p-2
+                mb-4 w-100">
+                <h2>Activo Seleccionado</h2>
+            </div>
+
+            <div class="w-100">
+                <div class="d-inline-block width-20 ms-1
+                    me-5 d">
+                    <label for="basic-url" class="form-label
+                        w-75 ps-2">ID ACTIVO</label>
+                    <div class="input-group mb-3 w-100">
+                        <input type="text"
+                            class="form-control"
+                            id="basic-url"
+                            aria-describedby="basic-addon3"
+                            placeholder="001">
+                    </div>
+                </div>
+
+                <div class="d-inline-block width-20 ms-1
+                    me-5">
+                    <label for="basic-url" class="form-label
+                        w-75 ps-2">TIPO ACTIVO</label>
+                    <div class="input-group mb-3 w-100">
+                        <input type="text"
+                            class="form-control"
+                            id="basic-url"
+                            aria-describedby="basic-addon3"
+                            placeholder="vehículo">
+                    </div>
+                </div>
+
+                <div class="d-inline-block width-20 ms-1
+                    me-5">
+                    <label for="basic-url" class="form-label
+                        w-75 ps-2">PLACA</label>
+                    <div class="input-group mb-3 w-100">
+                        <input type="text"
+                            class="form-control"
+                            id="basic-url"
+                            aria-describedby="basic-addon3"
+                            placeholder="XFD-581">
+                    </div>
+                </div>
+
+                <div class="d-inline-block width-20 ms-1
+                    me-5">
+                    <label for="basic-url" class="form-label
+                        w-75 ps-2">MARCA</label>
+                    <div class="input-group mb-3 w-100">
+                        <input type="text"
+                            class="form-control"
+                            id="basic-url"
+                            aria-describedby="basic-addon3"
+                            placeholder="Toyota">
+                    </div>
+                </div>
+
+                <div class="d-inline-block width-20 ms-1
+                    me-5">
+                    <label for="basic-url" class="form-label
+                        w-75 ps-2">MODELO</label>
+                    <div class="input-group mb-3 w-100">
+                        <input type="text"
+                            class="form-control"
+                            id="basic-url"
+                            aria-describedby="basic-addon3"
+                            placeholder="2022">
+                    </div>
+                </div>
+
+                <div class="d-inline-block width-20 ms-1
+                    me-5">
+                    <label for="basic-url" class="form-label
+                        w-75 ps-2">KILOMETRAJE ACTUAL</label>
+                    <div class="input-group mb-3 w-100">
+                        <input type="text"
+                            class="form-control"
+                            id="basic-url"
+                            aria-describedby="basic-addon3"
+                            placeholder="10000">
+                    </div>
+                </div>
+
+                <div class="d-inline-block width-20 ms-1
+                    me-5">
+                    <label for="basic-url" class="form-label
+                        w-75 ps-2">RESPONSABLE</label>
+                    <div class="input-group mb-3 w-100">
+                        <input type="text"
+                            class="form-control"
+                            id="basic-url"
+                            aria-describedby="basic-addon3"
+                            placeholder="Jonny Canabal">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- REGISTRAR MANTENIMIENTO -->
+        <div class="w-100">
+
+            <div class="text-center w-100">
+                <h2>Registrar Mantenimiento</h2>
+            </div>
+            <br>
+            <div class="d-flex flex-wrap w-100"> <!-- switch -->
+                <div class="form-check form-check-inline
+                    form-switch ms-3 mb-3">
+                    <input class="form-check-input"
+                        type="checkbox"
+                        id="inlineCheckbox1"
+                        value="option1">
+                    <label class="form-check-label"
+                        for="inlineCheckbox1">Lavado y
+                        Limpieza del vehículo</label>
+                </div>
+
+                <div class="form-check form-check-inline
+                    form-switch ms-3 mb-3">
+                    <input class="form-check-input"
+                        type="checkbox"
+                        id="inlineCheckbox1"
+                        value="option1">
+                    <label class="form-check-label"
+                        for="inlineCheckbox1">Cambio de
+                        Aceite</label>
+                </div>
+
+                <div class="form-check form-check-inline
+                    form-switch ms-3 mb-3">
+                    <input class="form-check-input"
+                        type="checkbox"
+                        id="inlineCheckbox1"
+                        value="option1">
+                    <label class="form-check-label"
+                        for="inlineCheckbox1">Cambio
+                        Filtro de Aceite</label>
+                </div>
+
+                <div class="form-check form-check-inline
+                    form-switch ms-3 mb-3">
+                    <input class="form-check-input"
+                        type="checkbox"
+                        id="inlineCheckbox1"
+                        value="option1">
+                    <label class="form-check-label"
+                        for="inlineCheckbox1">Cambio
+                        Filtro de Aire</label>
+                </div>
+
+                <div class="form-check form-check-inline
+                    form-switch ms-3 mb-3">
+                    <input class="form-check-input"
+                        type="checkbox"
+                        id="inlineCheckbox1"
+                        value="option1">
+                    <label class="form-check-label"
+                        for="inlineCheckbox1">Cambio
+                        Filtro de Combustible</label>
+                </div>
+
+                <div class="form-check form-check-inline
+                    form-switch ms-3 mb-3">
+                    <input class="form-check-input"
+                        type="checkbox"
+                        id="inlineCheckbox1"
+                        value="option1">
+                    <label class="form-check-label"
+                        for="inlineCheckbox1">Cambio
+                        Líquido de Frenos</label>
+                </div>
+
+                <div class="form-check form-check-inline
+                    form-switch ms-3 mb-3">
+                    <input class="form-check-input"
+                        type="checkbox"
+                        id="inlineCheckbox1"
+                        value="option1">
+                    <label class="form-check-label"
+                        for="inlineCheckbox1">Cambio de
+                        Refrigerante</label>
+                </div>
+
+                <div class="form-check form-check-inline
+                    form-switch ms-3 mb-3">
+                    <input class="form-check-input"
+                        type="checkbox"
+                        id="inlineCheckbox1"
+                        value="option1">
+                    <label class="form-check-label"
+                        for="inlineCheckbox1">Cambio de
+                        Bujías</label>
+                </div>
+
+                <div class="form-check form-check-inline
+                    form-switch ms-3 mb-3">
+                    <input class="form-check-input"
+                        type="checkbox"
+                        id="inlineCheckbox1"
+                        value="option1">
+                    <label class="form-check-label"
+                        for="inlineCheckbox1">Cambio de
+                        Pastillas Delanteras</label>
+                </div>
+
+                <div class="form-check form-check-inline
+                    form-switch ms-3 mb-3">
+                    <input class="form-check-input"
+                        type="checkbox"
+                        id="inlineCheckbox1"
+                        value="option1">
+                    <label class="form-check-label"
+                        for="inlineCheckbox1">Cambio de
+                        Pastillas Traseras</label>
+                </div>
+
+                <div class="form-check form-check-inline
+                    form-switch ms-3 mb-3">
+                    <input class="form-check-input"
+                        type="checkbox"
+                        id="inlineCheckbox1"
+                        value="option1">
+                    <label class="form-check-label"
+                        for="inlineCheckbox1">Cambio de
+                        Llanta Delantera Izquierda</label>
+                </div>
+
+                <div class="form-check form-check-inline
+                    form-switch ms-3 mb-3">
+                    <input class="form-check-input"
+                        type="checkbox"
+                        id="inlineCheckbox1"
+                        value="option1">
+                    <label class="form-check-label"
+                        for="inlineCheckbox1">Cambio de
+                        Llanta Delantera Derecha</label>
+                </div>
+
+                <div class="form-check form-check-inline
+                    form-switch ms-3 mb-3">
+                    <input class="form-check-input"
+                        type="checkbox"
+                        id="inlineCheckbox1"
+                        value="option1">
+                    <label class="form-check-label"
+                        for="inlineCheckbox1">Cambio de
+                        Llanta Trasera Izquierda</label>
+                </div>
+
+                <div class="form-check form-check-inline
+                    form-switch ms-3 mb-3">
+                    <input class="form-check-input"
+                        type="checkbox"
+                        id="inlineCheckbox1"
+                        value="option1">
+                    <label class="form-check-label"
+                        for="inlineCheckbox1">Cambio de
+                        Llanta Trasera Derecha</label>
+                </div>
+
+                <div class="form-check form-check-inline
+                    form-switch ms-3 mb-3">
+                    <input class="form-check-input"
+                        type="checkbox"
+                        id="inlineCheckbox1"
+                        value="option1">
+                    <label class="form-check-label"
+                        for="inlineCheckbox1">Rotación
+                        de Llantas</label>
+                </div>
+
+                <div class="form-check form-check-inline
+                    form-switch ms-3 mb-3">
+                    <input class="form-check-input"
+                        type="checkbox"
+                        id="inlineCheckbox1"
+                        value="option1">
+                    <label class="form-check-label"
+                        for="inlineCheckbox1">Balanceo
+                        de Llantas</label>
+                </div>
+
+                <div class="form-check form-check-inline
+                    form-switch ms-3 mb-3">
+                    <input class="form-check-input"
+                        type="checkbox"
+                        id="inlineCheckbox1"
+                        value="option1">
+                    <label class="form-check-label"
+                        for="inlineCheckbox1">Cambio
+                        Correa de Distribución</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-4 border-top border-dark pt-4 w-100">
+            <div class="d-inline-block width-20 ms-1
+                me-5">
+                <label for="basic-url" class="form-label
+                    w-75 ps-2">N° Mantenimiento</label>
+                <div class="input-group mb-3 w-100">
+                    <input type="text"
+                        class="form-control"
+                        id="basic-url"
+                        aria-describedby="basic-addon3"
+                        placeholder="001">
+                </div>
+            </div>
+
+            <div class="d-inline-block width-20 ms-1
+                me-5">
+                <label for="basic-url" class="form-label
+                    w-75 ps-2">Fecha del Mantenimiento</label>
+                <div class="input-group mb-3 w-100">
+                    <input type="text"
+                        class="form-control"
+                        id="basic-url"
+                        aria-describedby="basic-addon3"
+                        placeholder="30/08/2022">
+                </div>
+            </div>
+
+            <div class="d-inline-block width-20 ms-1
+                me-5">
+                <label for="basic-url" class="form-label
+                    w-75 ps-2">Nombre Del Taller</label>
+                <div class="input-group mb-3 w-100">
+                    <input type="text"
+                        class="form-control"
+                        id="basic-url"
+                        aria-describedby="basic-addon3"
+                        placeholder="Autolag">
+                </div>
+            </div>
+
+            <div class="d-inline-block width-20 ms-1
+                me-5">
+                <label for="basic-url" class="form-label
+                    w-75 ps-2">MARCA</label>
+                <div class="input-group mb-3 w-100">
+                    <input type="text"
+                        class="form-control"
+                        id="basic-url"
+                        aria-describedby="basic-addon3"
+                        placeholder="Toyota">
+                </div>
+            </div>
+
+            <div class="d-inline-block width-20 ms-1
+                me-5">
+                <label for="basic-url" class="form-label
+                    w-75 ps-2">Ubicación</label>
+                <div class="input-group mb-3 w-100">
+                    <input type="text"
+                        class="form-control"
+                        id="basic-url"
+                        aria-describedby="basic-addon3"
+                        placeholder="Avenida Carrera 30 #
+                        64-40">
+                </div>
+            </div>
+
+            <div class="d-inline-block width-20 ms-1
+                me-5">
+                <label for="basic-url" class="form-label
+                    w-75 ps-2">Ciudad</label>
+                <div class="input-group mb-3 w-100">
+                    <input type="text"
+                        class="form-control"
+                        id="basic-url"
+                        aria-describedby="basic-addon3"
+                        placeholder="Bogota D.C.">
+                </div>
+            </div>
+
+            <div class="d-inline-block width-20 ms-1
+                me-5">
+                <label for="basic-url" class="form-label
+                    w-75 ps-2">Kilometraje</label>
+                <div class="input-group mb-3 w-100">
+                    <input type="text"
+                        class="form-control"
+                        id="basic-url"
+                        aria-describedby="basic-addon3"
+                        placeholder="10000">
+                </div>
+            </div>
+
+            <div class="d-inline-block width-20 ms-1
+                me-5">
+                <label for="basic-url" class="form-label
+                    w-75 ps-2">N° Factura</label>
+                <div class="input-group mb-3 w-100">
+                    <input type="text"
+                        class="form-control"
+                        id="basic-url"
+                        aria-describedby="basic-addon3"
+                        placeholder="0012345">
+                </div>
+            </div>
+
+            <div class="d-inline-block width-20 ms-1
+                me-5">
+                <label for="basic-url" class="form-label
+                    w-75 ps-2">Valor Total</label>
+                <div class="input-group mb-3 w-100">
+                    <input type="text"
+                        class="form-control"
+                        id="basic-url"
+                        aria-describedby="basic-addon3"
+                        placeholder="25000">
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-5 pt-4 border-top border-dark w-100
+            pe-3">
+            <!-- OBSERVACIONES-->
+            <div class="d-inline-block ms-1 me-5 w-100">
+                <label for="basic-url" class="form-label
+                    ps-2 fs-4 w-100">DESCRIPCIÓN DEL
+                    MANTENIMIENTO</label>
+                <div class="mb-3 w-100">
+                    <textarea class="form-control border
+                        border-dark w-100" style="height:
+                        200px; resize: none;"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <br>
+
+        <!-- ADJUNTAR ARCHIVO-->
+        <div class="w-100">
+            <label for="formFileLg"
+                class="form-label ps-2 w-100">Adjuntar
+                Archivo del Mantenimiento Realizado</label>
+            <input class="form-control w-75
+                form-control-lg" style="font-size: 14px;"
+                id="formFileLg"
+                type="file">
+        </div>
+
+        <br>
+        <br>
+
+        <div class="text-center w-100"> <!-- BOTON DE ACCIÓN-->
+            <!-- USO DE MODAL CON BOOTSTRAP 5 PARA EL BOTON GENERAR RUTA-->
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-success
+                fs-5 btn-registrar-mantenimiento"
+                data-bs-toggle="modal"
+                data-bs-target="#modal-registrar-mantenimiento">
+                REGISTRAR
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade"
+                id="modal-registrar-mantenimiento"
+                data-bs-backdrop="static"
+                data-bs-keyboard="false"
+                tabindex="-1"
+                aria-labelledby="staticBackdropLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title"
+                                id="staticBackdropLabel">REGISTRAR
+                                MANTENIMIENTO</h5>
+                            <button type="button"
+                                class="btn-close"
+                                data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body
+                            text-start">
+                            El mantenimiento se
+                            registrara con los datos
+                            Ingresados con Anterioridad.
+                            ¿Esta seguro de hacer el
+                            registro?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button"
+                                class="btn
+                                btn-secondary"
+                                data-bs-dismiss="modal">CANCELAR</button>
+                            <button type="button"
+                                data-bs-toggle="modal"
+                                data-bs-target="#modal-registrar-mantenimiento2"
+                                data-bs-dismiss="modal"
+                                class="btn
+                                btn-primary">ACEPTAR
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- MODAL INTERNO AL OPRIMIR ACEPTAR EN EL MODAL ANTERIOR DE GUARDAR-->
+            <div class="modal"
+                id="modal-registrar-mantenimiento2">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header alert
+                            alert-success">
+                            <h5 class="modal-tittle">MANTENIMIENTO
+                                REGISTRADO</h5>
+                            <button class="btn-close"
+                                type="buttom"
+                                data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body
+                            text-start">
+                            Se registro el mantenimiento
+                            de forma exitosa.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+{% endblock contenido %}

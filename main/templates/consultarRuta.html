@@ -1,0 +1,501 @@
+{% extends 'partials/body.html' %}
+{% load static %}
+
+
+{% block menu %}
+    {% include 'partials/nav.html' %}
+{% endblock menu %}
+
+
+
+{% block contenido %}
+
+<div id="div-caja3" class="container p-3 my-4 pb-4 d-flex
+    justify-content-center pe-4 pt-0 mt-0">
+
+    <form id="div-cajas" class="container p-3 my-4 mt-0 pb-4">
+        <div class="w-100 text-center p-2 border-bottom
+            border-dark">
+            <h2>CONSULTAR RUTA </h2>
+        </div>
+
+        <br>
+
+        <div class="d-inline-block width-20 ms-1 me-5">
+            <label for="basic-url" class="form-label w-75
+                ps-2">ID
+                ACTIVO</label>
+            <div class="input-group mb-3 w-100">
+                <input type="text" class="form-control"
+                    id="basic-url"
+                    aria-describedby="basic-addon3"
+                    placeholder="ID ACTIVO">
+            </div>
+        </div>
+
+        <div class="d-inline-block width-20 ms-1 me-5">
+            <label for="basic-url" class="form-label w-75
+                ps-2">MARCA</label>
+            <div class="input-group mb-3 w-100">
+                <input type="text" class="form-control"
+                    id="basic-url"
+                    aria-describedby="basic-addon3"
+                    placeholder="MARCA">
+            </div>
+        </div>
+
+        <div class="d-inline-block width-20 ms-1 me-5">
+            <label for="basic-url" class="form-label w-75
+                ps-2">PLACA</label>
+            <div class="input-group mb-3 w-100">
+                <input type="text" class="form-control"
+                    id="basic-url"
+                    aria-describedby="basic-addon3"
+                    placeholder="PLACA">
+            </div>
+        </div>
+
+        <div class="d-inline-block width-20 ms-1 me-5">
+            <label for="basic-url" class="form-label w-75
+                ps-2">PERSONA
+                A CARGO</label>
+            <div class="input-group mb-3 w-100">
+                <input type="text" class="form-control"
+                    id="basic-url"
+                    aria-describedby="basic-addon3"
+                    placeholder="PERSONA A CARGO">
+            </div>
+        </div>
+
+        <div class="d-inline-block width-20 ms-1 me-5">
+            <label for="basic-url" class="form-label w-75
+                ps-2">FECHA
+                DE INGRESO</label>
+            <div class="input-group mb-3 w-100">
+                <input type="text" class="form-control"
+                    id="basic-url"
+                    aria-describedby="basic-addon3"
+                    placeholder="FECHA DE INGRESO">
+            </div>
+        </div>
+
+        <br>
+        <br>
+
+        <button type="button" class="btn btn-secondary m-2">CONSULTAR</button>
+        <button type="reset" class="btn btn-secondary m-2">LIMPIAR
+            CAMPOS</button>
+
+        <br>
+        <br>
+        <br>
+
+        <!-- Inicio del segundo contenedor de la página-->
+        <!-- Inicio de la Tabla usando (DataTable) -->
+        <div class="border-top border-dark w-100 pt-4">
+            <div class="overflow-auto
+                height-config-tabla1 m-2 pt-4 w-100">
+                <table id="example" class="table-striped display
+                    nowrap">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Id Activo</th>
+                            <th>Tipo Activo</th>
+                            <th>Fecha De Ingreso</th>
+                            <th>Marca</th>
+                            <th>Modelo</th>
+                            <th>Placa</th>
+                            <th>Color</th>
+                            <th>Fecha de Fabricación</th>
+                            <th>Serial</th>
+                            <th>Tipo Combustible</th>
+                            <th>Kilometraje Actual</th>
+                            <th>Capacidad</th>
+                            <th>Fecha De Recarga</th>
+                            <th>Ubicación</th>
+                            <th>Persona A Cargo</th>
+                            <th>Ultimo Mantenimiento</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td><button class="border-0
+                                    rounded-circle"
+                                    style="background-color:
+                                    rgba(240, 248,
+                                    255, 0);"><img
+                                        src="{% static 'img/eye.png' %}"
+                                        alt="iconoOjoSelector"
+                                        width="20"
+                                        height="20"></td></button>
+                            <td class="text-center">001</td>
+                            <td>vehículo</td>
+                            <td>15/01/2022</td>
+                            <td>Toyota</td>
+                            <td>2022</td>
+                            <td>XFD-581</td>
+                            <td>Blanco</td>
+                            <td>15/12/2021</td>
+                            <td>asdffgh157hfjg-14</td>
+                            <td>Diesel</td>
+                            <td>10000</td>
+                            <td>5</td>
+                            <td>15/01/2023</td>
+                            <td>Garaje</td>
+                            <td>Nicolas</td>
+                            <td>01/08/2022</td>
+                        </tr>
+
+                        <tr>
+                            <td><button class="border-0
+                                    rounded-circle"
+                                    style="background-color:
+                                    rgba(240, 248,
+                                    255, 0);"><img
+                                        src="{% static 'img/eye.png' %}"
+                                        alt="iconoOjoSelector"
+                                        width="20"
+                                        height="20"></td></button>
+                            <td class="text-center">002</td>
+                            <td>vehículo</td>
+                            <td>15/01/2022</td>
+                            <td>Toyota</td>
+                            <td>2022</td>
+                            <td>XFD-581</td>
+                            <td>Blanco</td>
+                            <td>15/12/2021</td>
+                            <td>asdffgh157hfjg-14</td>
+                            <td>Diesel</td>
+                            <td>10000</td>
+                            <td>5</td>
+                            <td>15/01/2023</td>
+                            <td>Garaje</td>
+                            <td>Jonny Canabal</td>
+                            <td>01/08/2022</td>
+                        </tr>
+
+                        <tr>
+                            <td><button class="border-0
+                                    rounded-circle"
+                                    style="background-color:
+                                    rgba(240, 248,
+                                    255, 0);"><img
+                                        src="{% static 'img/eye.png' %}"
+                                        alt="iconoOjoSelector"
+                                        width="20"
+                                        height="20"></td></button>
+                            <td class="text-center">003</td>
+                            <td>vehículo</td>
+                            <td>15/01/2022</td>
+                            <td>Toyota</td>
+                            <td>2022</td>
+                            <td>XFD-581</td>
+                            <td>Blanco</td>
+                            <td>15/12/2021</td>
+                            <td>asdffgh157hfjg-14</td>
+                            <td>Diesel</td>
+                            <td>10000</td>
+                            <td>5</td>
+                            <td>15/01/2023</td>
+                            <td>Garaje</td>
+                            <td>Jonny Canabal</td>
+                            <td>01/08/2022</td>
+                        </tr>
+
+                        <tr>
+                            <td><button class="border-0
+                                    rounded-circle"
+                                    style="background-color:
+                                    rgba(240, 248,
+                                    255, 0);"><img
+                                        src="{% static 'img/eye.png' %}"
+                                        alt="iconoOjoSelector"
+                                        width="20"
+                                        height="20"></td></button>
+                            <td class="text-center">004</td>
+                            <td>vehículo</td>
+                            <td>15/01/2022</td>
+                            <td>Toyota</td>
+                            <td>2022</td>
+                            <td>XFD-581</td>
+                            <td>Blanco</td>
+                            <td>15/12/2021</td>
+                            <td>asdffgh157hfjg-14</td>
+                            <td>Diesel</td>
+                            <td>10000</td>
+                            <td>5</td>
+                            <td>15/01/2023</td>
+                            <td>Garaje</td>
+                            <td>Jonny Canabal</td>
+                            <td>01/08/2022</td>
+                        </tr>
+
+                        <tr>
+                            <td><button class="border-0
+                                    rounded-circle"
+                                    style="background-color:
+                                    rgba(240, 248,
+                                    255, 0);"><img
+                                        src="{% static 'img/eye.png' %}"
+                                        alt="iconoOjoSelector"
+                                        width="20"
+                                        height="20"></td></button>
+                            <td class="text-center">005</td>
+                            <td>vehículo</td>
+                            <td>15/01/2022</td>
+                            <td>Toyota</td>
+                            <td>2022</td>
+                            <td>XFD-581</td>
+                            <td>Blanco</td>
+                            <td>15/12/2021</td>
+                            <td>asdffgh157hfjg-14</td>
+                            <td>Diesel</td>
+                            <td>10000</td>
+                            <td>5</td>
+                            <td>15/01/2023</td>
+                            <td>Garaje</td>
+                            <td>Jonny Canabal</td>
+                            <td>01/08/2022</td>
+                        </tr>
+
+                        <tr>
+                            <td><button class="border-0
+                                    rounded-circle"
+                                    style="background-color:
+                                    rgba(240, 248,
+                                    255, 0);"><img
+                                        src="{% static 'img/eye.png' %}"
+                                        alt="iconoOjoSelector"
+                                        width="20"
+                                        height="20"></td></button>
+                            <td class="text-center">006</td>
+                            <td>vehículo</td>
+                            <td>15/01/2022</td>
+                            <td>Toyota</td>
+                            <td>2022</td>
+                            <td>XFD-581</td>
+                            <td>Blanco</td>
+                            <td>15/12/2021</td>
+                            <td>asdffgh157hfjg-14</td>
+                            <td>Diesel</td>
+                            <td>10000</td>
+                            <td>5</td>
+                            <td>15/01/2023</td>
+                            <td>Garaje</td>
+                            <td>Jonny Canabal</td>
+                            <td>01/08/2022</td>
+                        </tr>
+
+                    </tbody>
+
+                    <tfoot>
+                        <tr>
+                            <th></th>
+                            <th>Id Activo</th>
+                            <th>Tipo Activo</th>
+                            <th>Fecha De Ingreso</th>
+                            <th>Marca</th>
+                            <th>Modelo</th>
+                            <th>Placa</th>
+                            <th>Color</th>
+                            <th>Fecha de Fabricación</th>
+                            <th>Serial</th>
+                            <th>Tipo Combustible</th>
+                            <th>Kilometraje Actual</th>
+                            <th>Capacidad</th>
+                            <th>Fecha De Recarga</th>
+                            <th>Ubicación</th>
+                            <th>Persona A Cargo</th>
+                            <th>Ultimo Mantenimiento</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+        <!-- Fin de la Tabla usando (DataTable) -->
+
+        <div class="w-100">
+            <div class="w-100 text-center p-2 pt-2 border-bottom
+                border-dark mt-5 ">
+                <h2>HISTORIAL</h2>
+            </div>
+
+            <br>
+
+            <div class="w-100">
+                <div class="text-center w-100">
+
+                    <div class="d-inline-block width-20 ms-1
+                        me-5 ">
+                        <label for="basic-url" class="form-label
+                            w-75
+                            ps-2">ID VEHÍCULO</label>
+                        <div class="input-group mb-3 w-100">
+                            <input type="text"
+                                class="form-control text-center"
+                                id="basic-url"
+                                aria-describedby="basic-addon3"
+                                placeholder="001">
+                        </div>
+                    </div>
+
+                    <div class="d-inline-block width-20 ms-1
+                        me-5">
+                        <label for="basic-url" class="form-label
+                            w-75
+                            ps-2">PLACA</label>
+                        <div class="input-group mb-3 w-100">
+                            <input type="text"
+                                class="form-control text-center"
+                                id="basic-url"
+                                aria-describedby="basic-addon3"
+                                placeholder="XFD-581">
+                        </div>
+                    </div>
+
+                    <div class="d-inline-block width-20 ms-1
+                        me-5">
+                        <label for="basic-url" class="form-label
+                            w-75
+                            ps-2">MARCA</label>
+                        <div class="input-group mb-3 w-100">
+                            <input type="text"
+                                class="form-control text-center"
+                                id="basic-url"
+                                aria-describedby="basic-addon3"
+                                placeholder="Toyota">
+                        </div>
+                    </div>
+                </div>
+
+                <br>
+
+                <!-- Fin de la Tabla usando (DataTable) -->
+                <div class="mt-2 w-100 d-flex
+                    justify-content-center">
+                    <div class="shadow-lg w-75 p-3
+                        overflow-auto" style="height:
+                        300px;">
+                        <!-- Inicio del tercer contenedor de la página-->
+                        <!-- Inicio de la Tabla usando (DataTable) -->
+                        <table id="example2" class="table
+                            table-striped">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">ID
+                                        RUTA</th>
+                                    <th>FECHA</th>
+                                    <th>CONDUCTOR</th>
+                                    <th class="text-center">CONSULTAR</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="text-center">001</td>
+                                    <td>15/01/2022</td>
+                                    <td>Jonny Canabal</td>
+                                    <td class="text-center"><button
+                                            class="border-0"
+                                            style="background-color:
+                                            rgba(240, 248,
+                                            255, 0);"><img
+                                                src="{% static 'img/search.png'%}"
+                                                alt="iconoOjoSelector"
+                                                width="20"
+                                                height="20"></td></button>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">002</td>
+                                    <td>18/01/2022</td>
+                                    <td>Jonny Canabal</td>
+                                    <td class="text-center"><button
+                                            class="border-0"
+                                            style="background-color:
+                                            rgba(240, 248,
+                                            255, 0);"><img
+                                                src="{% static 'img/search.png'%}"
+                                                alt="iconoOjoSelector"
+                                                width="20"
+                                                height="20"></td></button>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">003</td>
+                                    <td>21/01/2022</td>
+                                    <td>Nicolas Molina</td>
+                                    <td class="text-center"><button
+                                            class="border-0"
+                                            style="background-color:
+                                            rgba(240, 248,
+                                            255, 0);"><img
+                                                src="{% static 'img/search.png'%}"
+                                                alt="iconoOjoSelector"
+                                                width="20"
+                                                height="20"></td></button>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">004</td>
+                                    <td>24/01/2022</td>
+                                    <td>Nicolas Molina</td>
+                                    <td class="text-center"><button
+                                            class="border-0"
+                                            style="background-color:
+                                            rgba(240, 248,
+                                            255, 0);"><img
+                                                src="{% static 'img/search.png'%}"
+                                                alt="iconoOjoSelector"
+                                                width="20"
+                                                height="20"></td></button>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">005</td>
+                                    <td>27/01/2022</td>
+                                    <td>Silverio Pedroza</td>
+                                    <td class="text-center"><button
+                                            class="border-0"
+                                            style="background-color:
+                                            rgba(240, 248,
+                                            255, 0);"><img
+                                                src="{% static 'img/search.png'%}"
+                                                alt="iconoOjoSelector"
+                                                width="20"
+                                                height="20"></td></button>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">006</td>
+                                    <td>30/01/2022</td>
+                                    <td>Silverio Pedroza</td>
+                                    <td class="text-center"><button
+                                            class="border-0"
+                                            style="background-color:
+                                            rgba(240, 248,
+                                            255, 0);"><img
+                                                src="{% static 'img/search.png'%}"
+                                                alt="iconoOjoSelector"
+                                                width="20"
+                                                height="20"></td></button>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th class="text-center">ID
+                                        RUTA</th>
+                                    <th>FECHA</th>
+                                    <th>CONDUCTOR</th>
+                                    <th class="text-center">CONSULTAR</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </form>
+</div>
+
+{% endblock contenido %}

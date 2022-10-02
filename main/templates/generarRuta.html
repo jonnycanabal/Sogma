@@ -1,0 +1,524 @@
+{% extends 'partials/body.html' %}
+{% load static %}
+
+
+{% block menu %}
+    {% include 'partials/nav.html' %}
+{% endblock menu %}
+
+{% block contenido %}
+
+<div id="div-caja3" class="container p-3 my-4 pb-4 d-flex
+    justify-content-center pe-4 pt-0 mt-0">
+
+    <form id="div-cajas" class="container p-3 my-4 border-bottom
+        mt-0
+        border-dark pb-4">
+
+        <div class="w-100 text-center pb-3 border-bottom
+            border-dark">
+            <h2>Generar Ruta</h2>
+        </div>
+        <br>
+
+        <div class="d-inline-block width-20 ms-1 me-5">
+            <label for="basic-url" class="form-label w-75 ps-2">PLACA
+                VEHÍCULO</label>
+            <div class="input-group mb-3 w-100">
+                <input type="text" class="form-control"
+                    id="basic-url"
+                    aria-describedby="basic-addon3"
+                    placeholder="XFD-581">
+            </div>
+        </div>
+
+        <div class="d-inline-block width-20 ms-1 me-5">
+            <label for="basic-url" class="form-label w-75 ps-2">ID
+                ACTIVO</label>
+            <div class="input-group mb-3 w-100">
+                <input type="text" class="form-control"
+                    id="basic-url"
+                    aria-describedby="basic-addon3"
+                    placeholder="001">
+            </div>
+        </div>
+
+        <div class="d-inline-block width-20 ms-1 me-5">
+            <label for="basic-url" class="form-label w-75 ps-2">MARCA
+                VEHÍCULO</label>
+            <div class="input-group mb-3 w-100">
+                <input type="text" class="form-control"
+                    id="basic-url"
+                    aria-describedby="basic-addon3"
+                    placeholder="Toyota">
+            </div>
+        </div>
+
+        <div class="d-inline-block width-20 ms-1 me-5">
+            <label for="basic-url" class="form-label w-75 ps-2">CANTIDAD
+                PASAJEROS</label>
+            <div class="input-group mb-3 w-100">
+                <input type="text" class="form-control"
+                    id="basic-url"
+                    aria-describedby="basic-addon3"
+                    placeholder="5">
+            </div>
+        </div>
+
+        <div class="d-inline-block width-20 ms-1 me-5">
+            <label for="basic-url" class="form-label w-75 ps-2">IDENTIFICACION
+                CONDUCTOR</label>
+            <div class="input-group mb-3 w-100">
+                <input type="text" class="form-control"
+                    id="basic-url"
+                    aria-describedby="basic-addon3"
+                    placeholder="1115025879">
+            </div>
+        </div>
+
+        <div class="d-inline-block width-20 ms-1 me-5">
+            <label for="basic-url" class="form-label w-75 ps-2">CONDUCTOR
+                A CARGO</label>
+            <div class="input-group mb-3 w-100">
+                <input type="text" class="form-control"
+                    id="basic-url"
+                    aria-describedby="basic-addon3"
+                    placeholder="Jonny Canabal">
+            </div>
+        </div>
+
+        <div class="d-inline-block width-20 ms-1 me-5">
+            <label for="basic-url" class="form-label w-75 ps-2">TELEFONO
+                CONDUCTOR</label>
+            <div class="input-group mb-3 w-100">
+                <input type="text" class="form-control"
+                    id="basic-url"
+                    aria-describedby="basic-addon3"
+                    placeholder="3183856974">
+            </div>
+        </div>
+
+        <div class="d-inline-block width-20 ms-1 me-5">
+            <label for="basic-url" class="form-label w-75 ps-2">KILOMETRAJE
+                ACTUAL</label>
+            <div class="input-group mb-3 w-100">
+                <input type="text" class="form-control"
+                    id="basic-url"
+                    aria-describedby="basic-addon3"
+                    placeholder="10000">
+            </div>
+        </div>
+
+        <div class="d-inline-block width-20 ms-1 me-5">
+            <label for="basic-url" class="form-label w-75 ps-2">KILOMETRAJE
+                FINAL</label>
+            <div class="input-group mb-3 w-100">
+                <input type="text" class="form-control"
+                    id="basic-url"
+                    aria-describedby="basic-addon3"
+                    placeholder="Pendiente">
+            </div>
+        </div>
+
+        <div class="d-inline-block width-20 ms-1 me-5">
+            <label for="basic-url" class="form-label w-75 ps-2">FECHA
+                DE SALIDA</label>
+            <div class="input-group mb-3 w-100">
+                <input type="text" class="form-control"
+                    id="basic-url"
+                    aria-describedby="basic-addon3"
+                    placeholder="01/09/2022">
+            </div>
+        </div>
+
+        <div class="d-inline-block width-20 ms-1 me-5">
+            <label for="basic-url" class="form-label w-75 ps-2">HORA
+                DE SALIDA</label>
+            <div class="input-group mb-3 w-100">
+                <input type="text" class="form-control"
+                    id="basic-url"
+                    aria-describedby="basic-addon3"
+                    placeholder="13:00">
+            </div>
+        </div>
+
+        <div class="d-inline-block width-20 ms-1 me-5">
+            <label for="basic-url" class="form-label w-75 ps-2">LUGAR
+                DE SALIDA</label>
+            <div class="input-group mb-3 w-100">
+                <input type="text" class="form-control"
+                    id="basic-url"
+                    aria-describedby="basic-addon3"
+                    placeholder="Contraloria Del Tolima">
+            </div>
+        </div>
+
+        <div class="d-inline-block width-20 ms-1 me-5">
+            <label for="basic-url" class="form-label w-75 ps-2">LUGAR
+                DE DESTINO</label>
+            <div class="input-group mb-3 w-100">
+                <input type="text" class="form-control"
+                    id="basic-url"
+                    aria-describedby="basic-addon3"
+                    placeholder="Ibagué">
+            </div>
+        </div>
+
+        <div class="d-inline-block width-20 ms-1 me-5">
+            <label for="basic-url" class="form-label w-75 ps-2">FECHA
+                DE REGRESO</label>
+            <div class="input-group mb-3 w-100">
+                <input type="text" class="form-control"
+                    id="basic-url"
+                    aria-describedby="basic-addon3"
+                    placeholder="02/09/2022">
+            </div>
+        </div>
+
+        <div class="d-inline-block width-20 ms-1 me-5">
+            <label for="basic-url" class="form-label w-75 ps-2">HORA
+                LLEGADO</label>
+            <div class="input-group mb-3 w-100">
+                <input type="text" class="form-control"
+                    id="basic-url"
+                    aria-describedby="basic-addon3"
+                    placeholder="20:00">
+            </div>
+        </div>
+
+        <br>
+        <br>
+
+        <div class="w-100">
+            <div class="w-100 border-bottom border-dark">
+                <h3 class="text-center border-top border-dark
+                    mt-5">SELECCIONAR FUNCIONARIOS</h3>
+            </div>
+
+            <div class="border-top w-100">
+
+                <div class="w-100 text-center border-bottom
+                    border-dark pb-4">
+
+                    <div class="d-inline-block width-20 ms-1
+                        me-5 mt-4">
+                        <label for="basic-url" class="form-label
+                            w-75 ps-2">NOMBRE FUNCIONARIO</label>
+                        <div class="input-group mb-3 w-100">
+                            <input type="text"
+                                class="form-control text-center"
+                                id="basic-url"
+                                aria-describedby="basic-addon3"
+                                placeholder="Jonny Canabal">
+                        </div>
+                    </div>
+
+                    <div class="d-inline-block width-20 ms-1
+                        me-5 mt-4">
+                        <label for="basic-url" class="form-label
+                            w-75 ps-2">UBICACIÓN</label>
+                        <div class="input-group mb-3 w-100">
+                            <input type="text"
+                                class="form-control text-center"
+                                id="basic-url"
+                                aria-describedby="basic-addon3"
+                                placeholder="Calle 53 bis # 80 - 53 sur">
+                        </div>
+                    </div>
+
+                    <div class="d-inline-block width-20 ms-1
+                        me-5 mt-4">
+                        <label for="basic-url" class="form-label
+                            w-75 ps-2">TELEFONO</label>
+                        <div class="input-group mb-3 w-100">
+                            <input type="text"
+                                class="form-control text-center"
+                                id="basic-url"
+                                aria-describedby="basic-addon3"
+                                placeholder="3183865874">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-end w-100">
+                    <button type="button" id="btn-editar"
+                        class="btn
+                        btn-success
+                        fs-5 m-2">AGREGAR</button>
+                </div>
+            </div>
+        </div>
+
+        <br>
+        <br>
+
+        <!-- SEGUNDA FORMA SI SE FACILITA INFORMACION DE LA BASE DE DATOS DE LA CONTRALORIA-->
+        <!--
+            <div class="form-check m-3
+                form-switch ms-3">
+                <input class="form-check-input"
+                    type="checkbox" id="inlineCheckbox1"
+                    value="option1">
+                <label class="form-check-label"
+                    for="inlineCheckbox1">Jonny Mauricio
+                    Canabal Ospina</label>
+            </div>
+
+            <div class="form-check m-3
+                form-switch ms-3">
+                <input class="form-check-input"
+                    type="checkbox" id="inlineCheckbox1"
+                    value="option1">
+                <label class="form-check-label"
+                    for="inlineCheckbox1">Nicolas Molina</label>
+            </div>
+
+            <div class="form-check m-3
+                form-switch ms-3">
+                <input class="form-check-input"
+                    type="checkbox" id="inlineCheckbox1"
+                    value="option1">
+                <label class="form-check-label"
+                    for="inlineCheckbox1">Silverio Pedroza</label>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-end w-100">
+            <button type="button" id="btn-editar" class="btn
+                btn-success
+                fs-5 m-2">AGREGAR</button>
+        </div>
+    </div>
+    -->
+        <div class="w-100">
+            <div class="w-100">
+                <h3 class="text-center border-top
+                    border-dark
+                    mt-5">FUNCIONARIOS SELECCIONADOS</h3>
+            </div>
+
+            <div class="border-top border-bottom
+                border-dark
+                w-100 pe-3">
+                <div class="form-check m-3 ms-3">
+                    <input class="form-check-input"
+                        type="checkbox"
+                        id="inlineCheckbox1"
+                        value="option1">
+                    <label class="form-check-label"
+                        for="inlineCheckbox1">Jonny
+                        Canabal / Calle 53 bis # 80 - 53
+                        sur / 3183865874</label>
+                </div>
+
+                <div class="form-check m-3 ms-3">
+                    <input class="form-check-input"
+                        type="checkbox"
+                        id="inlineCheckbox1"
+                        value="option1">
+                    <label class="form-check-label"
+                        for="inlineCheckbox1">Nicolas
+                        Molina</label>
+                </div>
+
+                <div class="form-check m-3 ms-3">
+                    <input class="form-check-input"
+                        type="checkbox"
+                        id="inlineCheckbox1"
+                        value="option1">
+                    <label class="form-check-label"
+                        for="inlineCheckbox1">Silverio
+                        Pedroza</label>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-end
+                w-100">
+                <div class="w-50 d-flex
+                    justify-content-end">
+                    <button type="button"
+                        id="btn-editar"
+                        class="btn
+                        btn-danger
+                        fs-5 m-2">QUITAR</button>
+                </div>
+            </div>
+        </div>
+
+        <br>
+
+        <div class="d-inline-block ms-1 me-5
+            textarea-alarma">
+            <label for="basic-url" class="form-label
+                w-75 ps-2">DESCRIPCIÓN</label>
+            <div class="form-floating mb-3 w-100
+                height-textarea">
+                <textarea class="form-control border
+                    border-dark" style="height:
+                    150px; resize: none;"
+                    placeholder="Leave a comment here "
+                    id="floatingTextarea"></textarea>
+            </div>
+        </div>
+
+        <div class="d-inline-block ms-1 me-5
+            textarea-alarma">
+            <label for="basic-url" class="form-label
+                w-75 ps-2">OBSERVACIONES</label>
+            <div class="form-floating mb-3 w-100
+                height-textarea">
+                <textarea class="form-control border
+                    border-dark" style="height:
+                    150px; resize: none;"
+                    placeholder="Leave a comment here "
+                    id="floatingTextarea"></textarea>
+            </div>
+        </div>
+
+        <br>
+
+        <!-- USO DE MODAL CON BOOTSTRAP 5 PARA EL BOTON GENERAR RUTA-->
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary
+            fs-5 m-2"
+            data-bs-toggle="modal"
+            data-bs-target="#modal-generar-ruta">
+            GENERAR RUTA
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="modal-generar-ruta"
+            data-bs-backdrop="static"
+            data-bs-keyboard="false"
+            tabindex="-1"
+            aria-labelledby="staticBackdropLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title"
+                            id="staticBackdropLabel">RUTA</h5>
+                        <button type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body text-start">
+                        ¿Esta seguro que desea generar
+                        la ruta
+                        con los datos registrados?.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn
+                            btn-secondary"
+                            data-bs-dismiss="modal">CANCELAR</button>
+                        <button type="button"
+                            data-bs-toggle="modal"
+                            data-bs-target="#modal-generar-ruta2"
+                            data-bs-dismiss="modal"
+                            class="btn
+                            btn-primary">ACEPTAR
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- MODAL INTERNO AL OPRIMIR ACEPTAR EN EL MODAL ANTERIOR DE GUARDAR-->
+        <div class="modal" id="modal-generar-ruta2">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header alert
+                        alert-success">
+                        <h5 class="modal-tittle">Ruta
+                            Generada</h5>
+                        <button class="btn-close"
+                            type="buttom"
+                            data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body text-start">
+                        Se ha generado la ruta de forma
+                        exitosa.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button type="button" id="btn-editar" class="btn
+            btn-secondary
+            fs-5 m-2">EDITAR</button>
+
+        <!-- USO DE MODAL CON BOOTSTRAP 5 PARA EL BOTON GERAR-->
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-success
+            fs-5 m-2"
+            data-bs-toggle="modal"
+            data-bs-target="#modal-guardar-ruta">
+            GUARDAR
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="modal-guardar-ruta"
+            data-bs-backdrop="static"
+            data-bs-keyboard="false"
+            tabindex="-1"
+            aria-labelledby="staticBackdropLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title"
+                            id="staticBackdropLabel">VERIFICAR</h5>
+                        <button type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body text-start">
+                        ¿Esta seguro que desea guardar
+                        los
+                        cambios realizados a la ruta?.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn
+                            btn-secondary"
+                            data-bs-dismiss="modal">CANCELAR</button>
+                        <button type="button"
+                            data-bs-toggle="modal"
+                            data-bs-target="#modal-guardar-ruta2"
+                            data-bs-dismiss="modal"
+                            class="btn
+                            btn-primary">ACEPTAR
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- MODAL INTERNO AL OPRIMIR ACEPTAR EN EL MODAL ANTERIOR DE GUARDAR-->
+        <div class="modal" id="modal-guardar-ruta2">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header alert
+                        alert-success">
+                        <h5 class="modal-tittle">Cambios
+                            Realiazdos</h5>
+                        <button class="btn-close"
+                            type="buttom"
+                            data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body text-start">
+                        Los cambios se generaron de
+                        forma
+                        exitosa.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button type="button" id="btn-editar" class="btn
+            btn-secondary
+            fs-5 m-2">IMPRIMIR</button>
+
+    </form>
+</div>
+
+{% endblock contenido %}

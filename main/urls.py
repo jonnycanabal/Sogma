@@ -16,9 +16,16 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from main.views import inicio
+# Importar la funcion de cada path creado.
+from main.views import consultar_ruta, control_activos, generar_alarma, generar_ruta, inicio, nuevo_usuario, registrar_mantenimiento
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', inicio, name='inicio')
+    path('', inicio, name='inicio'), # Inicio de sesión
+    path('controlActivos/', control_activos, name='Control-Activos'), # Control de activos - página principal.
+    path('generar/alarma/', generar_alarma, name='Generar-Alarma'), # generar alarma de recordatorio de mantenimiento.
+    path('generar/ruta/',generar_ruta , name='Generar-Ruta'), # generar ruta realizada por un conductor y vehículo.
+    path('consultarRuta/',consultar_ruta , name='Consultar-Ruta'), # consultar ruta realizada por el conductor y vehículo.
+    path('nuevoUsuario/',nuevo_usuario , name='Nuevo-Usuario'), # creación de nuevo usuario con sus respectiva informacion y permisos.
+    path('registrarMantenimiento',registrar_mantenimiento , name='Registrar-Mantenimiento') # registrar mantenimientos de los activos.
 ]

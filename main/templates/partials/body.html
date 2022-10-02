@@ -4,10 +4,11 @@
 <!-- Cargar la carpeta static-->
 {% load static %}
 
-
+<!--cargar el css y javascript-->
 {% bootstrap_css %}
 {% bootstrap_javascript%}
 
+<!--cargar mensajes modals, etc-->
 {% bootstrap_messages%}
 
 <!DOCTYPE html>
@@ -17,15 +18,30 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <title>Sogma</title>
+    <title>{{titulo}}</title>
 </head>
-<body>
+
+<body class="color-bg p-4">
+
+<section class="container sombra-caja p-0 ">
+    <main class="bg-light">
+
     {% include 'partials/header.html' %}
 
     
-    {% block contenido %}
+    {% block menu %}
+    {% endblock menu %}
 
+
+    {% include 'partials/ayuda.html' %}
+
+    
+    {% block contenido %}
     {% endblock contenido %}
 
+    {% include 'partials/footer.html' %}
+
+</main>
+</section>
 </body>
 </html>
