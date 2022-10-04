@@ -1,25 +1,33 @@
+<!-- ConsultarActivos se extiende de body.html siendo este la clase hija. -->
 {% extends 'partials/body.html' %}}
+
+<!-- Cargar la carpeta static -->
 {% load static %}
 
-
+<!-- Bloque que incluira el nav.html para que lo muestre en la página -->
 {% block menu %}
     {% include 'partials/nav.html' %}
 {% endblock menu %}
 
+<!-- Bloque de contenido el cual estara declarado en el body.html y sera lo que se vera dependiente de la página  -->
 {% block contenido %}
 
+<!-- Inicio del contenedor para la página registrar mantenimiento -->
 <div id="div-caja3" class="container p-3 pb-4 d-flex
     justify-content-center pe-4">
 
     <form id="div-cajas" class="container p-3 my-4 mt-0 pb-0
         border-start border-end border-dark">
+
+        <!-- Título Seleccione el tipo de activo-->
         <div class="text-center p-2 w-100">
             <h2>Seleccione el TIpo de Activo</h2>
         </div>
 
+        <!-- Salto de línea -->
         <br>
 
-        <!-- BOTONES DE SELECCIONE DE ACTIVO-->
+        <!-- Botones para seleccionar el tipo de activo-->
         <div class="text-center w-100">
             <div class="d-inline-block width-20 ms-1 me-5">
                 <div class="input-group mb-3 w-100">
@@ -31,7 +39,6 @@
                 </div>
             </div>
 
-
             <div class="d-inline-block width-20 ms-1 me-5">
                 <div class="input-group mb-3 w-100">
                     <button type="button" class="btn
@@ -41,7 +48,6 @@
                         text-dark" style="cursor: pointer;">EXTINTOR</button>
                 </div>
             </div>
-
 
             <div class="d-inline-block width-20 ms-1 me-5">
                 <div class="input-group mb-3 w-100">
@@ -56,11 +62,13 @@
 
         </div>
 
+        <!-- Inicio de la Tabla usando (DataTable) -->
+        <!-- Tabla donde se mostrara la información del activo segun el tipo seleccionado -->
         <div class="d-flex justify-content-center
-            border-bottom border-dark pb-4 mb-4 m-2 w-100"> <!-- TABLA DE LA INFORMACION DE ACIVOS -->
-            <!-- Inicio del segundo contenedor de la página-->
+            border-bottom border-dark pb-4 mb-4 m-2 w-100">
+
             <!-- Inicio de la Tabla usando (DataTable) -->
-            <!-- NO SIRVE DE NADA ESE ID (tabla-control-activos)  ///// IMPORTANTE//////-->
+            <!-- NO SIRVE DE NADA ESE ID (tabla-control-activos)  ///// IMPORTANTE////// - AUN NO SE REVISA ESTA PARTE, BUSCANDO EL ERROR--> 
             <div id="tabla-control-activos"
                 class="overflow-auto shadow-lg p-4
                 height-config-tabla1 m-2 w-100"
@@ -68,6 +76,8 @@
                 <table id="example" class="table-striped
                     display
                     nowrap">
+
+                    <!-- Cabecera de la tabla (Donde estaran los enunciados principales)-->
                     <thead>
                         <tr>
                             <th></th>
@@ -92,6 +102,8 @@
 
                     <tbody>
                         <tr>
+                            <!-- Imagen de un ojo con el cual seleccionara el activo y mostrara en la parte de abajo alguna informacion
+                            relevante del activo y asi poder identificar que tiene el activo correctamente seleccionado -->
                             <td><button class="border-0
                                     rounded-circle"
                                     style="background-color:
@@ -120,6 +132,8 @@
                         </tr>
 
                         <tr>
+                            <!-- Imagen de un ojo con el cual seleccionara el activo y mostrara en la parte de abajo alguna informacion
+                            relevante del activo y asi poder identificar que tiene el activo correctamente seleccionado -->
                             <td><button class="border-0
                                     rounded-circle"
                                     style="background-color:
@@ -148,6 +162,8 @@
                         </tr>
 
                         <tr>
+                            <!-- Imagen de un ojo con el cual seleccionara el activo y mostrara en la parte de abajo alguna informacion
+                            relevante del activo y asi poder identificar que tiene el activo correctamente seleccionado -->
                             <td><button class="border-0
                                     rounded-circle"
                                     style="background-color:
@@ -176,6 +192,8 @@
                         </tr>
 
                         <tr>
+                            <!-- Imagen de un ojo con el cual seleccionara el activo y mostrara en la parte de abajo alguna informacion
+                            relevante del activo y asi poder identificar que tiene el activo correctamente seleccionado -->
                             <td><button class="border-0
                                     rounded-circle"
                                     style="background-color:
@@ -204,7 +222,8 @@
                         </tr>
 
                         <tr>
-                            <td><button class="border-0
+                            <!-- Imagen de un ojo con el cual seleccionara el activo y mostrara en la parte de abajo alguna informacion
+                            relevante del activo y asi poder identificar que tiene el activo correctamente seleccionado -->                            <td><button class="border-0
                                     rounded-circle"
                                     style="background-color:
                                     rgba(240, 248,
@@ -232,6 +251,8 @@
                         </tr>
 
                         <tr>
+                            <!-- Imagen de un ojo con el cual seleccionara el activo y mostrara en la parte de abajo alguna informacion
+                            relevante del activo y asi poder identificar que tiene el activo correctamente seleccionado -->
                             <td><button class="border-0
                                     rounded-circle"
                                     style="background-color:
@@ -261,6 +282,7 @@
 
                     </tbody>
 
+                    <!-- Footer de la tabla (Donde estaran los enunciados principales pero en la parte inferior) -->
                     <tfoot>
                         <tr>
                             <th></th>
@@ -287,13 +309,16 @@
 
         </div>
 
+        <!-- Contenedor donde apareceran los datos básicos del activo para confirmar que selecciono bien. -->
         <div class="border-bottom border-dark mb-4 pb-4 w-100">
-            <!-- DATOS BASICOS DEL ACTIVO PARA CONFIRMAR QUE SELECCIONO BIEN -->
+
+            <!-- Titulo Activo Seleccionado -->
             <div class="d-flex justify-content-center p-2
                 mb-4 w-100">
                 <h2>Activo Seleccionado</h2>
             </div>
 
+            <!-- Input o cuadros donde mostrara la informacion del activo seleccionado en la tabla. -->
             <div class="w-100">
                 <div class="d-inline-block width-20 ms-1
                     me-5 d">
@@ -302,7 +327,7 @@
                     <div class="input-group mb-3 w-100">
                         <input type="text"
                             class="form-control"
-                            id="basic-url"
+                            id="id-activo-registrar-mantenimiento"
                             aria-describedby="basic-addon3"
                             placeholder="001">
                     </div>
@@ -315,7 +340,7 @@
                     <div class="input-group mb-3 w-100">
                         <input type="text"
                             class="form-control"
-                            id="basic-url"
+                            id="tipo-activo-registrar-mantenimiento"
                             aria-describedby="basic-addon3"
                             placeholder="vehículo">
                     </div>
@@ -328,7 +353,7 @@
                     <div class="input-group mb-3 w-100">
                         <input type="text"
                             class="form-control"
-                            id="basic-url"
+                            id="placa-vehiculo-registrar-mantenimiento"
                             aria-describedby="basic-addon3"
                             placeholder="XFD-581">
                     </div>
@@ -341,7 +366,7 @@
                     <div class="input-group mb-3 w-100">
                         <input type="text"
                             class="form-control"
-                            id="basic-url"
+                            id="marca-registrar-mantenimiento"
                             aria-describedby="basic-addon3"
                             placeholder="Toyota">
                     </div>
@@ -354,7 +379,7 @@
                     <div class="input-group mb-3 w-100">
                         <input type="text"
                             class="form-control"
-                            id="basic-url"
+                            id="modelo-registrar-mantenimiento"
                             aria-describedby="basic-addon3"
                             placeholder="2022">
                     </div>
@@ -367,7 +392,7 @@
                     <div class="input-group mb-3 w-100">
                         <input type="text"
                             class="form-control"
-                            id="basic-url"
+                            id="kilometraje-actual-registrar-mantenimiento"
                             aria-describedby="basic-addon3"
                             placeholder="10000">
                     </div>
@@ -380,7 +405,7 @@
                     <div class="input-group mb-3 w-100">
                         <input type="text"
                             class="form-control"
-                            id="basic-url"
+                            id="responsable-activo-registrar-mantenimiento"
                             aria-describedby="basic-addon3"
                             placeholder="Jonny Canabal">
                     </div>
@@ -388,14 +413,17 @@
             </div>
         </div>
 
-        <!-- REGISTRAR MANTENIMIENTO -->
+        <!-- Contenedor de checkbox tipo switch para seleccionar algunas opciones del mantenimiento del activo -->
         <div class="w-100">
 
+            <!-- Título Registrar Mantenimiento -->
             <div class="text-center w-100">
                 <h2>Registrar Mantenimiento</h2>
             </div>
             <br>
-            <div class="d-flex flex-wrap w-100"> <!-- switch -->
+
+            <!-- Inicio del cuadro para seleccionar con el checkbox tipo switch -->
+            <div class="d-flex flex-wrap w-100">
                 <div class="form-check form-check-inline
                     form-switch ms-3 mb-3">
                     <input class="form-check-input"
@@ -585,6 +613,7 @@
             </div>
         </div>
 
+        <!-- Cuadro donde se continuara con el registro del mantenimiento con informacion mas puntual -->
         <div class="mt-4 border-top border-dark pt-4 w-100">
             <div class="d-inline-block width-20 ms-1
                 me-5">
@@ -593,7 +622,7 @@
                 <div class="input-group mb-3 w-100">
                     <input type="text"
                         class="form-control"
-                        id="basic-url"
+                        id="numero-mantenimiento-registrar-mantenimiento"
                         aria-describedby="basic-addon3"
                         placeholder="001">
                 </div>
@@ -606,7 +635,7 @@
                 <div class="input-group mb-3 w-100">
                     <input type="text"
                         class="form-control"
-                        id="basic-url"
+                        id="fecha-mantenimiento-registrar-mantenimiento"
                         aria-describedby="basic-addon3"
                         placeholder="30/08/2022">
                 </div>
@@ -619,7 +648,7 @@
                 <div class="input-group mb-3 w-100">
                     <input type="text"
                         class="form-control"
-                        id="basic-url"
+                        id="nombre-taller-registrar-mantenimiento"
                         aria-describedby="basic-addon3"
                         placeholder="Autolag">
                 </div>
@@ -632,7 +661,7 @@
                 <div class="input-group mb-3 w-100">
                     <input type="text"
                         class="form-control"
-                        id="basic-url"
+                        id="marca-vehiculo-registrar-mantenimiento"
                         aria-describedby="basic-addon3"
                         placeholder="Toyota">
                 </div>
@@ -645,7 +674,7 @@
                 <div class="input-group mb-3 w-100">
                     <input type="text"
                         class="form-control"
-                        id="basic-url"
+                        id="ubicacion-registrar-mantenimiento"
                         aria-describedby="basic-addon3"
                         placeholder="Avenida Carrera 30 #
                         64-40">
@@ -659,7 +688,7 @@
                 <div class="input-group mb-3 w-100">
                     <input type="text"
                         class="form-control"
-                        id="basic-url"
+                        id="ciudad-registrar-mantenimiento"
                         aria-describedby="basic-addon3"
                         placeholder="Bogota D.C.">
                 </div>
@@ -672,7 +701,7 @@
                 <div class="input-group mb-3 w-100">
                     <input type="text"
                         class="form-control"
-                        id="basic-url"
+                        id="kilometraje-registrar-mantenimiento"
                         aria-describedby="basic-addon3"
                         placeholder="10000">
                 </div>
@@ -685,7 +714,7 @@
                 <div class="input-group mb-3 w-100">
                     <input type="text"
                         class="form-control"
-                        id="basic-url"
+                        id="numero-factura-registrar-mantenimiento"
                         aria-describedby="basic-addon3"
                         placeholder="0012345">
                 </div>
@@ -698,13 +727,14 @@
                 <div class="input-group mb-3 w-100">
                     <input type="text"
                         class="form-control"
-                        id="basic-url"
+                        id="valor-mantenimiento-registrar-mantenimiento"
                         aria-describedby="basic-addon3"
                         placeholder="25000">
                 </div>
             </div>
         </div>
-
+        
+        <!-- Cuadro de observaciones donde se diligenciara que mas se le hizo en el mantenimeinto al activo. -->
         <div class="mt-5 pt-4 border-top border-dark w-100
             pe-3">
             <!-- OBSERVACIONES-->
@@ -722,6 +752,7 @@
 
         <br>
 
+        <!-- Cuadro donde se adjuntara un archivo preferiblemente en pdf e la factura del mantenimiento. -->
         <!-- ADJUNTAR ARCHIVO-->
         <div class="w-100">
             <label for="formFileLg"
@@ -729,13 +760,15 @@
                 Archivo del Mantenimiento Realizado</label>
             <input class="form-control w-75
                 form-control-lg" style="font-size: 14px;"
-                id="formFileLg"
+                id="adjuntar-archivo-registrar-mantenimiento"
                 type="file">
         </div>
 
+        <!-- Salto de línea -->
         <br>
         <br>
 
+        <!-- Botón de registrar el mantenimiento junto con su modal para validad el registro. -->
         <div class="text-center w-100"> <!-- BOTON DE ACCIÓN-->
             <!-- USO DE MODAL CON BOOTSTRAP 5 PARA EL BOTON GENERAR RUTA-->
             <!-- Button trigger modal -->

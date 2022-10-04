@@ -11,37 +11,94 @@
 <!--cargar mensajes modals, etc-->
 {% bootstrap_messages%}
 
+<!-- Estructura HTML5 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- link o referencia a mi archivo css en la carpeta static -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <title>{{titulo}}</title>
+
+        <!-- Inicio links o referencias para DataTables -->
+    <link rel="stylesheet"
+        href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet"
+        href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
+    <!-- IMPORTANTE-->
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
+    <!-- Fin Data Tables -->
+
+    <!-- Titulo de la pestaña en el navegador -->
+    <title>{{titulo}}</title> 
 </head>
 
+<!-- Inicio del body -->
 <body class="color-bg p-4">
 
-<section class="container sombra-caja p-0 ">
-    <main class="bg-light">
+    <!-- Estructura del diseño de la pagina web -->
+    <section class="container sombra-caja p-0 ">
+        <main class="bg-light">
 
-    {% include 'partials/header.html' %}
+        {% include 'partials/header.html' %}
 
-    
-    {% block menu %}
-    {% endblock menu %}
+        
+        {% block menu %}
+        {% endblock menu %}
 
 
-    {% include 'partials/ayuda.html' %}
+        {% include 'partials/ayuda.html' %}
 
-    
-    {% block contenido %}
-    {% endblock contenido %}
+        
+        {% block contenido %}
+        {% endblock contenido %}
 
-    {% include 'partials/footer.html' %}
+        {% include 'partials/footer.html' %}
 
-</main>
+    </main>
 </section>
+
+    <!-- Inicio Scripts DataTable-->
+    <!-- Link o referencias sacadas de la pagina https://datatables.net/ dependiente el estilo seleccionado -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script
+        src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script
+        src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+
+    <!-- ¡IMPORTANTE! -  este script para el funcionamiento de la datatables-->
+    <script type="text/javascript" charset="utf8"
+        src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+
+    <!-- Script para iniciar o arrancar las DataTable-->
+    <script>
+        // TABLA - 1 (Consultar Activos)
+        $(document).ready( function () {
+            $('#example').DataTable();
+        });
+        /*Script para cambiar de idioma dentro del script de arranque. al cambiar idioma español colombia cambian varias cosas*/
+        $('#example').DataTable({
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.12.1/i18n/es-MX.json",
+            }
+        })
+
+        // TABLA - 2 (Historial de Rutas)
+        $(document).ready( function () {
+            $('#example2').DataTable();
+        });
+        /*Script para cambiar de idioma dentro del script de arranque. al cambiar idioma español colombia cambian varias cosas*/
+        $('#example2').DataTable({
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/1.12.1/i18n/es-MX.json",
+        }
+        })
+    </script>
+    <!-- Fin Scripts DataTable-->
 </body>
+<!-- Fin del body -->
 </html>

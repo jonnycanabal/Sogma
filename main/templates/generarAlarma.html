@@ -1,13 +1,18 @@
+<!-- ConsultarActivos se extiende de body.html siendo este la clase hija. -->
 {% extends 'partials/body.html' %}
+
+<!-- Cargar la carpeta static -->
 {% load static %}
 
-
+<!-- Bloque que incluira el nav.html para que lo muestre en la página -->
 {% block menu %}
     {% include 'partials/nav.html' %}
 {% endblock menu %}
 
+<!-- Bloque de contenido el cual estara declarado en el body.html y sera lo que se vera dependiente de la página  -->
 {% block contenido %}
 
+<!-- Inicio del contenedor para la página generar alarma -->
 <div id="div-caja3" class="container p-3 my-4 pb-4 d-flex
     justify-content-center pe-4 pt-0 mt-0">
 
@@ -15,6 +20,7 @@
         mt-0
         border-dark pb-4">
 
+        <!-- Botones para seleccionar o digiligenciar información -->
         <div class="w-100 text-center p-2 border-bottom
             border-dark">
             <h2>Generar Alarma</h2>
@@ -41,7 +47,7 @@
                 ACTIVO</label>
             <div class="input-group mb-3 w-100">
                 <input type="text" class="form-control"
-                    id="basic-url"
+                    id="id-activo-generar-alarma"
                     aria-describedby="basic-addon3"
                     placeholder="ID ACTIVO">
             </div>
@@ -51,7 +57,7 @@
             <label for="basic-url" class="form-label w-75 ps-2">LUGAR</label>
             <div class="input-group mb-3 w-100">
                 <input type="text" class="form-control"
-                    id="basic-url"
+                    id="lugar-generar-alarma"
                     aria-describedby="basic-addon3"
                     placeholder="LUGAR">
             </div>
@@ -62,23 +68,26 @@
                 DE MANTENIMIENTO</label>
             <div class="input-group mb-3 w-100">
                 <input type="text" class="form-control"
-                    id="basic-url"
+                    id="fecha-mantenimiento-generar-alarma"
                     aria-describedby="basic-addon3"
                     placeholder="FECHA DE MANTENIMIENTO">
             </div>
         </div>
 
+        <!-- Salto de línea -->
         <br>
         <br>
 
+        <!-- Text Area descripción -->
         <label class="ms-3 mb-2">DESCRIPCIÓN</label>
-        <div class="form-floating ms-1 textarea-alarma"> <!-- VOY EN ESTE PUNTO TRAB AJANDO EN EL PROYECTO-->
+        <div class="form-floating ms-1 textarea-alarma">
             <textarea class="form-control textarea-alarma"
                 style="resize: none; height:
                 150px;" placeholder="Leave a comment here"
-                id="floatingTextarea2" style="height: 100px"></textarea>
+                id="descripcion-generar-alarma" style="height: 100px"></textarea>
         </div>
 
+        <!-- Salto de línea -->
         <br>
         <br>
 

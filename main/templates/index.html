@@ -1,12 +1,17 @@
+<!-- ConsultarActivos se extiende de body.html siendo este la clase hija. -->
 {% extends 'partials/body.html' %}
+
+<!-- Cargar la carpeta static -->
 {% load static %}
 
-
+<!-- Bloque de contenido el cual estara declarado en el body.html y sera lo que se vera dependiente de la página  -->
 {% block contenido %}
 
+<!-- Inicio del contenedor para la página de inicio de sesión (Index) -->
 <div class="container p-5 text-center">
     <form class="w-form-login mx-auto">
 
+        <!-- Botones para seleccionar o digiligenciar información -->
         <div class="mb-3">
             <select class="form-select border border-dark"
                 aria-label="Default select example">
@@ -22,7 +27,7 @@
         <div class="mb-3">
             <label for="ususarioInicio" class="form-label">USUARIO</label>
             <input type="text" class="form-control border
-                border-dark" id="ususarioInicio"
+                border-dark" id="usuario-inicio-index"
                 aria-describedby="emailHelp">
             <div id="usuarioMensaje" class="form-text
                 text-start">Ingrese
@@ -33,7 +38,7 @@
             <label for="contraseñaInicio"
                 class="form-label">CONTRASEÑA</label>
             <input type="password" class="form-control border
-                border-dark" id="contraseñaInicio">
+                border-dark" id="contraseña-inicio-index">
         </div>
 
         <div class="mb-3">
@@ -43,11 +48,12 @@
 
         <div class="mb-3 form-check">
             <input type="checkbox" class="form-check-input
-                border border-dark" id="verificarInicio">
+                border border-dark" id="verificar-inicio-index">
             <label class="form-check-label ms-negativo"
-                for="verificarInicio">Verificar</label>
+                for="verificar-inicio">Verificar</label>
         </div>
 
+        <!-- Botón de aceptar para validar la información ingresada y si es correcta le da acceso a la página principal del programa -->
         <button type="submit" class="btn btn-primary"><a style="color: white; text-decoration: none;" href="{% url 'Control-Activos' %}">ACEPTAR</a></button>
     </form>
 </div>

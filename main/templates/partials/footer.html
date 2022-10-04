@@ -1,13 +1,27 @@
+{% load static %}
 <!-- Aqui empieza el footer-->
+<!-- Configuración del footer -->
 
-<!-- Footer-->
-<section class="container p-0 ">
-    <main class="bg-light">
-        <div class="d-flex flex-column flex-sm-row
-            justify-content-between pt-1 border-top fs-footer ps-2
-            h-footer">
-            <p>© Contraloría Departamental del Tolima, 2022</p>
-        </div>
-    </main>
-</section>
+<div class="d-flex flex-column flex-sm-row
+    justify-content-between pt-1 border-top fs-footer ps-2
+    h-footer">
+    <p>© Contraloría Departamental del Tolima, 2022</p>
+
+    <!-- Icono para la copia de ¡SEGURIDAD! -->
+    <a href="#" class=" link-dark text-decoration-none me-3"
+        id="dropdownUser2"
+        data-bs-toggle="dropdown" aria-expanded="false">
+        <img src="{% static 'img/copy-alt.png' %}" alt="imagenCopiaSeguridad"
+            width="23"
+            height="23">
+    </a>
+
+    <ul class="dropdown-menu text-small shadow"
+        aria-labelledby="dropdownUser2">
+        <li><a class="dropdown-item"
+            href="#">Copia de Seguridad</a></li>
+        <li><hr class="dropdown-divider"></li>
+    </ul>
+</div>
+
 <!-- Aqui termina el footer-->

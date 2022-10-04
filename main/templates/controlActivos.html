@@ -1,11 +1,15 @@
+<!-- ConsultarActivos se extiende de body.html siendo este la clase hija. -->
 {% extends 'partials/body.html' %}
+
+<!-- Cargar la carpeta static -->
 {% load static %}
 
-
+<!-- Bloque que incluira el nav.html para que lo muestre en la página -->
 {% block menu %}
     {% include 'partials/nav.html' %}
 {% endblock menu %}
 
+<!-- Bloque de contenido el cual estara declarado en el body.html y sera lo que se vera dependiente de la página  -->
 {% block contenido %}
 
 <!-- INICIO DEL MAIN-->
@@ -15,6 +19,7 @@
     <div id="div-cajas" class="container p-3 my-4 border-bottom
         border-dark pb-4 pt-0">
 
+        <!-- Botones para seleccionar o digiligenciar información -->
         <div class="d-inline-block width-20 ms-1 me-5">
             <label for="basic-url" class="form-label w-75 ps-2">TIPO
                 DE
@@ -35,7 +40,7 @@
                 ACTIVO</label>
             <div class="input-group mb-3 w-100">
                 <input type="text" class="form-control"
-                    id="basic-url" aria-describedby="basic-addon3"
+                    id="id-activo-control-activo" aria-describedby="basic-addon3"
                     placeholder="ID ACTIVO">
             </div>
         </div>
@@ -44,7 +49,7 @@
             <label for="basic-url" class="form-label w-75 ps-2">MARCA</label>
             <div class="input-group mb-3 w-100">
                 <input type="text" class="form-control"
-                    id="basic-url" aria-describedby="basic-addon3"
+                    id="marca-control-activo" aria-describedby="basic-addon3"
                     placeholder="MARCA">
             </div>
         </div>
@@ -55,14 +60,16 @@
                 CARGO</label>
             <div class="input-group mb-3 w-100">
                 <input type="text" class="form-control"
-                    id="basic-url" aria-describedby="basic-addon3"
+                    id="persona-encargada-control-activo" aria-describedby="basic-addon3"
                     placeholder="PERSONA A CARGO">
             </div>
         </div>
 
+        <!-- Saltos de línea -->
         <br>
         <br>
 
+        <!-- Botones de acción consultar y limpiar campos -->
         <button type="button" class="btn btn-secondary m-2">CONSULTAR</button>
         <button type="reset" class="btn btn-secondary m-2">LIMPIAR
             CAMPOS</button>
@@ -73,6 +80,8 @@
     <div id="tabla-control-activos" class="overflow-auto
         height-config-tabla1 m-4">
         <table id="example" class="table-striped display nowrap">
+
+            <!-- Cabecera de la tabla (Donde estaran los enunciados principales)-->
             <thead>
                 <tr>
                     <th></th>
@@ -95,8 +104,11 @@
                 </tr>
             </thead>
 
+            <!-- Cuerpo de la tabla (donde estara la informacion que se mostrara de los activos) -->
             <tbody>
                 <tr>
+                    <!-- Imagen de un ojo con el cual seleccionara el activo y mostrara en la parte de abajo toda la informacion
+                    para editar, guardar o eliminar/desabilitar la información -->
                     <td><button class="border-0 rounded-circle"
                             style="background-color: rgba(240, 248,
                             255, 0);"><img src="{% static 'img/eye.png' %}"
@@ -121,6 +133,8 @@
                 </tr>
 
                 <tr>
+                    <!-- Imagen de un ojo con el cual seleccionara el activo y mostrara en la parte de abajo toda la informacion
+                    para editar, guardar o eliminar/desabilitar la información -->
                     <td><button class="border-0 rounded-circle"
                             style="background-color: rgba(240, 248,
                             255, 0);"><img src="{% static 'img/eye.png' %}"
@@ -145,6 +159,8 @@
                 </tr>
 
                 <tr>
+                    <!-- Imagen de un ojo con el cual seleccionara el activo y mostrara en la parte de abajo toda la informacion
+                    para editar, guardar o eliminar/desabilitar la información -->
                     <td><button class="border-0"
                             style="background-color: rgba(240, 248,
                             255, 0);"><img src="{% static 'img/eye.png' %}"
@@ -169,6 +185,8 @@
                 </tr>
 
                 <tr>
+                    <!-- Imagen de un ojo con el cual seleccionara el activo y mostrara en la parte de abajo toda la informacion
+                    para editar, guardar o eliminar/desabilitar la información -->
                     <td><button class="border-0"
                             style="background-color: rgba(240, 248,
                             255, 0);"><img src="{% static 'img/eye.png' %}"
@@ -193,6 +211,8 @@
                 </tr>
 
                 <tr>
+                    <!-- Imagen de un ojo con el cual seleccionara el activo y mostrara en la parte de abajo toda la informacion
+                    para editar, guardar o eliminar/desabilitar la información -->
                     <td><button class="border-0"
                             style="background-color: rgba(240, 248,
                             255, 0);"><img src="{% static 'img/eye.png' %}"
@@ -217,6 +237,8 @@
                 </tr>
 
                 <tr>
+                    <!-- Imagen de un ojo con el cual seleccionara el activo y mostrara en la parte de abajo toda la informacion
+                    para editar, guardar o eliminar/desabilitar la información -->
                     <td><button class="border-0"
                             style="background-color: rgba(240, 248,
                             255, 0);"><img src="{% static 'img/eye.png' %}"
@@ -242,6 +264,7 @@
 
             </tbody>
 
+            <!-- Footer de la tabla (Donde estaran los enunciados principales pero en la parte inferior) -->
             <tfoot>
                 <tr>
                     <th></th>
@@ -269,13 +292,15 @@
 
     <!-- Inicio del tercer contenedor de la página -->
     <div id="div-cajas2" class="p-3 mt-5 border-top border-dark">
+
+        <!-- Los siguientes input deberan mostrar la informacion del activo que se seleccione previamente -->
         <div class="d-inline-block width-20 ms-1 me-5">
             <label for="basic-url" class="form-label w-75 p-2">TIPO
                 DE
                 ACTIVO</label>
             <div class="input-group mb-3 w-100">
                 <input type="text" class="form-control"
-                    id="basic-url" aria-describedby="basic-addon3"
+                    id="tipo-activo-control-activo" aria-describedby="basic-addon3"
                     placeholder="TIPO DE ACTIVO">
             </div>
         </div>
@@ -285,7 +310,7 @@
                 ACTIVO</label>
             <div class="input-group mb-3 w-100">
                 <input type="text" class="form-control"
-                    id="basic-url" aria-describedby="basic-addon3"
+                    id="id-activo-control-activo" aria-describedby="basic-addon3"
                     placeholder="ID ACTIVO">
             </div>
         </div>
@@ -294,7 +319,7 @@
             <label for="basic-url" class="form-label w-75 ps-2">MARCA</label>
             <div class="input-group mb-3 w-100">
                 <input type="text" class="form-control"
-                    id="basic-url" aria-describedby="basic-addon3"
+                    id="marca-control-activo" aria-describedby="basic-addon3"
                     placeholder="MARCA">
             </div>
         </div>
@@ -303,7 +328,7 @@
             <label for="basic-url" class="form-label w-75 ps-2">MODELO</label>
             <div class="input-group mb-3 w-100">
                 <input type="text" class="form-control"
-                    id="basic-url" aria-describedby="basic-addon3"
+                    id="modelo-control-activo" aria-describedby="basic-addon3"
                     placeholder="MODELO">
             </div>
         </div>
@@ -312,7 +337,7 @@
             <label for="basic-url" class="form-label w-75 ps-2">PLACA</label>
             <div class="input-group mb-3 w-100">
                 <input type="text" class="form-control"
-                    id="basic-url" aria-describedby="basic-addon3"
+                    id="placa-control-activo" aria-describedby="basic-addon3"
                     placeholder="PLACA">
             </div>
         </div>
@@ -321,7 +346,7 @@
             <label for="basic-url" class="form-label w-75 ps-2">COLOR</label>
             <div class="input-group mb-3 w-100">
                 <input type="text" class="form-control"
-                    id="basic-url" aria-describedby="basic-addon3"
+                    id="color-control-activo" aria-describedby="basic-addon3"
                     placeholder="COLOR">
             </div>
         </div>
@@ -330,7 +355,7 @@
             <label for="basic-url" class="form-label w-75 ps-2">SERIAL</label>
             <div class="input-group mb-3 w-100">
                 <input type="text" class="form-control"
-                    id="basic-url" aria-describedby="basic-addon3"
+                    id="serial-control-activo" aria-describedby="basic-addon3"
                     placeholder="SERIAL">
             </div>
         </div>
@@ -338,10 +363,10 @@
         <div class="d-inline-block width-20 ms-1 me-5">
             <label for="basic-url" class="form-label w-75 ps-2">TIPO
                 DE
-                CONBUSTIBLE</label>
+                COMBUSTIBLE</label>
             <div class="input-group mb-3 w-100">
                 <input type="text" class="form-control"
-                    id="basic-url" aria-describedby="basic-addon3"
+                    id="tipo-combustible-control-activo" aria-describedby="basic-addon3"
                     placeholder="TIPO DE COMBUSTIBLE">
             </div>
         </div>
@@ -350,7 +375,7 @@
             <label for="basic-url" class="form-label w-75 ps-2">CAPACIDAD</label>
             <div class="input-group mb-3 w-100">
                 <input type="text" class="form-control"
-                    id="basic-url" aria-describedby="basic-addon3"
+                    id="capacidad-control-activo" aria-describedby="basic-addon3"
                     placeholder="CAPACIDAD">
             </div>
         </div>
@@ -359,7 +384,7 @@
             <label for="basic-url" class="form-label w-75 ps-2">UBICACIÓN</label>
             <div class="input-group mb-3 w-100">
                 <input type="text" class="form-control"
-                    id="basic-url" aria-describedby="basic-addon3"
+                    id="ubicacion-control-activo" aria-describedby="basic-addon3"
                     placeholder="UBICACIÓN">
             </div>
         </div>
@@ -370,7 +395,7 @@
                 CARGO</label>
             <div class="input-group mb-3 w-100">
                 <input type="text" class="form-control"
-                    id="basic-url" aria-describedby="basic-addon3"
+                    id="persona-encargada-control-activo" aria-describedby="basic-addon3"
                     placeholder="PERSONA A CARGO">
             </div>
         </div>
@@ -380,7 +405,7 @@
                 ACTUAL</label>
             <div class="input-group mb-3 w-100">
                 <input type="text" class="form-control"
-                    id="basic-url" aria-describedby="basic-addon3"
+                    id="kilometraje-control-activo" aria-describedby="basic-addon3"
                     placeholder="KILOMETRAJE ACTUAL">
             </div>
         </div>
@@ -391,7 +416,7 @@
                 INGRESO</label>
             <div class="input-group mb-3 w-100">
                 <input type="date" class="form-control"
-                    id="basic-url" aria-describedby="basic-addon3"
+                    id="fecha-ingreso-control-activo" aria-describedby="basic-addon3"
                     placeholder="FECHA DE INGRESO">
             </div>
         </div>
@@ -401,7 +426,7 @@
                 RECARGA</label>
             <div class="input-group mb-3 w-100">
                 <input type="date" class="form-control"
-                    id="basic-url" aria-describedby="basic-addon3"
+                    id="ultima-recarga-control-activo" aria-describedby="basic-addon3"
                     placeholder="ULTIMA RECARGA">
             </div>
         </div>
@@ -411,7 +436,7 @@
                 MANTENIMIENTO</label>
             <div class="input-group mb-3 w-100">
                 <input type="date" class="form-control"
-                    id="basic-url" aria-describedby="basic-addon3"
+                    id="ultimo-mantenimiento-control-activo" aria-describedby="basic-addon3"
                     placeholder="ULTIMO MANTENIMIENTO">
             </div>
         </div>
@@ -535,6 +560,8 @@
 
         <button type="button" class="btn btn-secondary fs-5 m-2">NUEVO
             ACTIVO</button>
+        
+        <!-- Este boton o link cuando se oprime debera redireccionar a un archivo en pdf o excel donde mostrar el reporte del activo -->
         <a href="generar-reporte.html" class="btn btn-secondary fs-5
             m-2">GENERAR
             REPORTE</a>

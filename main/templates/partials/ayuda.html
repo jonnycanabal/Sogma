@@ -1,5 +1,6 @@
 {% load static %}
-<!-- INICIO BOTON DE AYUDA -->
+<!-- INICIO BOTONES DE AYUDA -->
+<!-- Contenedor del botón de AYUDA -->
 <div class="bg-light d-flex justify-content-between pt-3 pe-4">
 
     <div class="ms-3">
@@ -10,16 +11,17 @@
         </a>
     </div>
 
+    <!-- Inicio configuración botón para personas con discapacidad  -->
     <a href="#" class=" link-dark text-decoration-none"
         id="dropdownUser2"
         data-bs-toggle="dropdown" aria-expanded="false">
         <img src="{% static 'img/disabled_1.png' %}" alt="imagen-ayuda" width="35"
             height="35">
     </a>
-
+    
     <ul class="dropdown-menu text-small shadow"
         aria-labelledby="dropdownUser2">
-
+        <!-- Disminuir tamaño de letra -->
         <div class="d-flex align-items-center ms-2 me-0">
             <img src="{% static 'img/zoom-out.png' %}" alt="zoom-out" width="20"
                 height="20"><li><a class="dropdown-item" href="#">Disminuir
@@ -27,28 +29,37 @@
                     Letra</a></li>
         </div>
 
+        <!-- Aumentar tamaño de letra -->
         <div class="d-flex align-items-center ms-2 me-0">
             <img src="{% static 'img/zoom-in.png' %}" alt="zoom-in" width="20"
                 height="20"><li><a class="dropdown-item" href="#">Aumentar
                     Tamaño de
                     Letra</a></li>
         </div>
+
+        <!-- Restablecer tamaño de letra -->
         <div class="d-flex align-items-center ms-2 me-0">
             <img src="{% static 'img/refresh.png' %}" alt="refresh-zoom" width="20"
                 height="20"><li><a class="dropdown-item" href="#">Restablecer
                     Tamaño
                     Letra</a></li>
         </div>
+
+        <!-- Contraste brillante -->
         <div class="d-flex align-items-center ms-2 me-0">
             <img src="{% static 'img/sun.png' %}" alt="sun" width="20"
                 height="20"><li><a class="dropdown-item" href="#">Contraste
                     Brillante</a></li>
         </div>
+
+        <!-- Contraste oscuro -->
         <div class="d-flex align-items-center ms-2 me-0">
             <img src="{% static 'img/moon.png' %}" alt="moon" width="20"
                 height="20"><li><a class="dropdown-item" href="#">Contraste
                     Oscuro</a></li>
         </div>
+
+        <!-- Restablecer contraste -->
         <div class="d-flex align-items-center ms-2 me-0">
             <img src="{% static 'img/refresh.png' %}" alt="refresh-sun-moon"
                 width="20"
@@ -58,4 +69,4 @@
         <li><hr class="dropdown-divider"></li>
     </ul>
 </div>
-<!-- FIN BOTON DE AYUDA-->
+<!-- FIN BOTONES DE AYUDA-->

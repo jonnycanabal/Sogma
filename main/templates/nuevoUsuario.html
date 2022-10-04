@@ -1,28 +1,40 @@
+<!-- ConsultarActivos se extiende de body.html siendo este la clase hija. -->
 {% extends 'partials/body.html' %}
+
+<!-- Cargar la carpeta static -->
 {% load static %}
 
 
+<!-- Bloque que incluira el nav.html para que lo muestre en la página -->
 {% block menu %}
     {% include 'partials/nav.html' %}
 {% endblock menu %}
 
+<!-- Bloque de contenido el cual estara declarado en el body.html y sera lo que se vera dependiente de la página  -->
 {% block contenido %}
 
+<!-- Inicio del contenedor para la página nuevo usuario -->
 <div id="div-caja3" class="container p-3 my-4 pb-4 d-flex
     justify-content-center pt-0">
 
+    <!-- Botones para seleccionar o digiligenciar información -->
     <form class="p-left border-start border-end border-dark
         pe-3 ps-3" style="width: 85%;">
+
+        <!-- titulo Registrar Nuevo Usuario -->
         <h2 class="text-center p-1 pb-2 mb-3 border-bottom
             border-dark border border-dark rounded">Registrar
             Nuevo Usuario</h2>
+
+        <!-- salto de línea -->
         <br>
+
         <div class="d-inline-block ms-1 me-5 width-28 ">
             <label for="basic-url" class="form-label w-75 ps-2">PRIMER
                 NOMBRE</label>
             <div class="input-group mb-3 w-100">
                 <input type="text" class="form-control"
-                    id="basic-url"
+                    id="primer-nombre-nuevo-usuario"
                     aria-describedby="basic-addon3"
                     placeholder="Jonny">
             </div>
@@ -33,7 +45,7 @@
                 NOMBRE</label>
             <div class="input-group mb-3 w-100">
                 <input type="text" class="form-control"
-                    id="basic-url"
+                    id="segundo-nombre-nuevo-usuario"
                     aria-describedby="basic-addon3"
                     placeholder="Mauricio">
             </div>
@@ -44,7 +56,7 @@
                 APELLIDO</label>
             <div class="input-group mb-3 w-100">
                 <input type="text" class="form-control"
-                    id="basic-url"
+                    id="primer-apellido-nuevo-usuario"
                     aria-describedby="basic-addon3"
                     placeholder="Canabal">
             </div>
@@ -55,7 +67,7 @@
                 APELLIDO</label>
             <div class="input-group mb-3 w-100">
                 <input type="text" class="form-control"
-                    id="basic-url"
+                    id="segundo-apellido-nuevo-usuario"
                     aria-describedby="basic-addon3"
                     placeholder="Ospina">
             </div>
@@ -80,7 +92,7 @@
                 DE IDENTIFICACIÓN</label>
             <div class="input-group mb-3 w-100">
                 <input type="text" class="form-control"
-                    id="basic-url"
+                    id="numero-identificacion-nuevo-usuario"
                     aria-describedby="basic-addon3"
                     placeholder="1115085748">
             </div>
@@ -90,7 +102,7 @@
             <label for="basic-url" class="form-label w-75 ps-2">CARGO</label>
             <div class="input-group mb-3 w-100">
                 <input type="text" class="form-control"
-                    id="basic-url"
+                    id="cargo-nuevo-usuario"
                     aria-describedby="basic-addon3"
                     placeholder="Conductor">
             </div>
@@ -100,7 +112,7 @@
             <label for="basic-url" class="form-label w-75 ps-2">TELEFONO</label>
             <div class="input-group mb-3 w-100">
                 <input type="text" class="form-control"
-                    id="basic-url"
+                    id="telefono-nuevo-usuario"
                     aria-describedby="basic-addon3"
                     placeholder="3183865987">
             </div>
@@ -111,7 +123,7 @@
                 DE RESIDENCIA</label>
             <div class="input-group mb-3 w-100">
                 <input type="text" class="form-control"
-                    id="basic-url"
+                    id="direccion-nuevo-usuario"
                     aria-describedby="basic-addon3"
                     placeholder="Calle 53 Bis # 80 - 64 Sur">
             </div>
@@ -121,7 +133,7 @@
             <label for="basic-url" class="form-label w-75 ps-2">EMAIL</label>
             <div class="input-group mb-3 w-100">
                 <input type="text" class="form-control"
-                    id="basic-url"
+                    id="email-nuevo-usuario"
                     aria-describedby="basic-addon3"
                     placeholder="jmcanabalsenaprueba@gmail.com">
             </div>
@@ -131,7 +143,7 @@
             <label for="basic-url" class="form-label w-75 ps-2">USUARIO</label>
             <div class="input-group mb-3 w-100">
                 <input type="text" class="form-control"
-                    id="basic-url"
+                    id="nombre-usuario-nuevo-usuario"
                     aria-describedby="basic-addon3"
                     placeholder="JmCanabal">
             </div>
@@ -141,7 +153,7 @@
             <label for="basic-url" class="form-label w-75 ps-2">CONTRASEÑA</label>
             <div class="input-group mb-3 w-100">
                 <input type="password" class="form-control"
-                    id="basic-url"
+                    id="contraseña-nuevo-usuario"
                     aria-describedby="basic-addon3"
                     placeholder="123456789">
             </div>
@@ -152,7 +164,7 @@
                 DE REGISTRO</label>
             <div class="input-group mb-3 w-100">
                 <input type="date" class="form-control"
-                    id="basic-url"
+                    id="fecha-registro-nuevo-usuario"
                     aria-describedby="basic-addon3"
                     placeholder="FECHA DE REGISTRO">
             </div>
@@ -172,15 +184,21 @@
             </div>
         </div>
 
+        <!-- Salto de línea -->
         <br>
         <br>
         <br>
 
+        <!-- Bloque donde se seleccionara los permisos que tendrá el nuevo usuario -->
+        <!-- Titulo Seleccione los permisos -->
         <h2 class="text-center p-1 pb-2 mb-3 border-bottom
             border-dark border border-dark rounded">Seleccione
             Los Permisos</h2>
+
+            <!-- Salto de línea -->
         <br>
 
+        <!-- Contenedor de loc checkbox tipo switch para marcar los permisos del nuevo usuario -->
         <div class="w-100">
 
             <div class="form-check form-check-inline
@@ -337,6 +355,7 @@
                 </label>
             </div>
 
+            <!-- Botón de guardar con su respectivo modal de confirmación -->
             <div class="mt-5 w-100 d-flex
                 justify-content-center">
                 <!-- USO DE MODAL CON BOOTSTRAP 5 PARA EL BOTON GUARDAR-->
@@ -413,6 +432,5 @@
         </div>
     </form>
 </div>
-
 
 {% endblock contenido %}

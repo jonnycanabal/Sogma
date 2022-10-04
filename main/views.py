@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render # No olvidar colocar esta linea de codigo para el render.
 
 # views de la pagina de Inicio - Index
 def inicio (request):

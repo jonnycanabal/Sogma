@@ -1,13 +1,19 @@
+<!-- ConsultarActivos se extiende de body.html siendo este la clase hija. -->
 {% extends 'partials/body.html' %}
+
+<!-- Cargar la carpeta static -->
 {% load static %}
 
 
+<!-- Bloque que incluira el nav.html para que lo muestre en la página -->
 {% block menu %}
     {% include 'partials/nav.html' %}
 {% endblock menu %}
 
+<!-- Bloque de contenido el cual estara declarado en el body.html y sera lo que se vera dependiente de la página  -->
 {% block contenido %}
 
+<!-- Inicio del contenedor para la página generar ruta -->
 <div id="div-caja3" class="container p-3 my-4 pb-4 d-flex
     justify-content-center pe-4 pt-0 mt-0">
 
@@ -15,18 +21,20 @@
         mt-0
         border-dark pb-4">
 
+        <!-- Enunciado o titulo de la página -->
         <div class="w-100 text-center pb-3 border-bottom
             border-dark">
             <h2>Generar Ruta</h2>
         </div>
         <br>
-
+        
+        <!-- Botones para seleccionar o digiligenciar información -->
         <div class="d-inline-block width-20 ms-1 me-5">
             <label for="basic-url" class="form-label w-75 ps-2">PLACA
                 VEHÍCULO</label>
             <div class="input-group mb-3 w-100">
                 <input type="text" class="form-control"
-                    id="basic-url"
+                    id="placa-vehiculo-generar-ruta"
                     aria-describedby="basic-addon3"
                     placeholder="XFD-581">
             </div>
@@ -37,7 +45,7 @@
                 ACTIVO</label>
             <div class="input-group mb-3 w-100">
                 <input type="text" class="form-control"
-                    id="basic-url"
+                    id="id-activo-generar-ruta"
                     aria-describedby="basic-addon3"
                     placeholder="001">
             </div>
@@ -48,7 +56,7 @@
                 VEHÍCULO</label>
             <div class="input-group mb-3 w-100">
                 <input type="text" class="form-control"
-                    id="basic-url"
+                    id="marca-vehiculo-generar-ruta"
                     aria-describedby="basic-addon3"
                     placeholder="Toyota">
             </div>
@@ -59,7 +67,7 @@
                 PASAJEROS</label>
             <div class="input-group mb-3 w-100">
                 <input type="text" class="form-control"
-                    id="basic-url"
+                    id="cantidad-pasajeros-generar-ruta"
                     aria-describedby="basic-addon3"
                     placeholder="5">
             </div>
@@ -70,7 +78,7 @@
                 CONDUCTOR</label>
             <div class="input-group mb-3 w-100">
                 <input type="text" class="form-control"
-                    id="basic-url"
+                    id="identificacion-generar-ruta"
                     aria-describedby="basic-addon3"
                     placeholder="1115025879">
             </div>
@@ -81,7 +89,7 @@
                 A CARGO</label>
             <div class="input-group mb-3 w-100">
                 <input type="text" class="form-control"
-                    id="basic-url"
+                    id="conductor-encargado-generar-ruta"
                     aria-describedby="basic-addon3"
                     placeholder="Jonny Canabal">
             </div>
@@ -92,7 +100,7 @@
                 CONDUCTOR</label>
             <div class="input-group mb-3 w-100">
                 <input type="text" class="form-control"
-                    id="basic-url"
+                    id="telefono-generar-ruta"
                     aria-describedby="basic-addon3"
                     placeholder="3183856974">
             </div>
@@ -103,7 +111,7 @@
                 ACTUAL</label>
             <div class="input-group mb-3 w-100">
                 <input type="text" class="form-control"
-                    id="basic-url"
+                    id="kilometraje-actual-generar-ruta"
                     aria-describedby="basic-addon3"
                     placeholder="10000">
             </div>
@@ -114,7 +122,7 @@
                 FINAL</label>
             <div class="input-group mb-3 w-100">
                 <input type="text" class="form-control"
-                    id="basic-url"
+                    id="kilometraje-final-generar-ruta"
                     aria-describedby="basic-addon3"
                     placeholder="Pendiente">
             </div>
@@ -125,7 +133,7 @@
                 DE SALIDA</label>
             <div class="input-group mb-3 w-100">
                 <input type="text" class="form-control"
-                    id="basic-url"
+                    id="fecha-salida-generar-ruta"
                     aria-describedby="basic-addon3"
                     placeholder="01/09/2022">
             </div>
@@ -136,7 +144,7 @@
                 DE SALIDA</label>
             <div class="input-group mb-3 w-100">
                 <input type="text" class="form-control"
-                    id="basic-url"
+                    id="hora-salida-generar-ruta"
                     aria-describedby="basic-addon3"
                     placeholder="13:00">
             </div>
@@ -147,7 +155,7 @@
                 DE SALIDA</label>
             <div class="input-group mb-3 w-100">
                 <input type="text" class="form-control"
-                    id="basic-url"
+                    id="lugar-salida-generar-ruta"
                     aria-describedby="basic-addon3"
                     placeholder="Contraloria Del Tolima">
             </div>
@@ -158,7 +166,7 @@
                 DE DESTINO</label>
             <div class="input-group mb-3 w-100">
                 <input type="text" class="form-control"
-                    id="basic-url"
+                    id="lugar-destino-generar-ruta"
                     aria-describedby="basic-addon3"
                     placeholder="Ibagué">
             </div>
@@ -169,7 +177,7 @@
                 DE REGRESO</label>
             <div class="input-group mb-3 w-100">
                 <input type="text" class="form-control"
-                    id="basic-url"
+                    id="fecha-regreso-generar-ruta"
                     aria-describedby="basic-addon3"
                     placeholder="02/09/2022">
             </div>
@@ -180,21 +188,25 @@
                 LLEGADO</label>
             <div class="input-group mb-3 w-100">
                 <input type="text" class="form-control"
-                    id="basic-url"
+                    id="hora-llegada-generar-ruta"
                     aria-describedby="basic-addon3"
                     placeholder="20:00">
             </div>
         </div>
 
+        <!-- Salto de línea -->
         <br>
         <br>
 
+        <!-- Parte para la selección y/o registro de funcionarios a transportar -->
+        <!-- Titulo de selección de funcionarios -->
         <div class="w-100">
             <div class="w-100 border-bottom border-dark">
                 <h3 class="text-center border-top border-dark
                     mt-5">SELECCIONAR FUNCIONARIOS</h3>
             </div>
 
+            <!-- Contenedor para los botones para funcionarios -->
             <div class="border-top w-100">
 
                 <div class="w-100 text-center border-bottom
@@ -207,7 +219,7 @@
                         <div class="input-group mb-3 w-100">
                             <input type="text"
                                 class="form-control text-center"
-                                id="basic-url"
+                                id="nombre-funcionarios-generar-ruta"
                                 aria-describedby="basic-addon3"
                                 placeholder="Jonny Canabal">
                         </div>
@@ -220,7 +232,7 @@
                         <div class="input-group mb-3 w-100">
                             <input type="text"
                                 class="form-control text-center"
-                                id="basic-url"
+                                id="ubicacion-funcionarios-generar-ruta"
                                 aria-describedby="basic-addon3"
                                 placeholder="Calle 53 bis # 80 - 53 sur">
                         </div>
@@ -233,7 +245,7 @@
                         <div class="input-group mb-3 w-100">
                             <input type="text"
                                 class="form-control text-center"
-                                id="basic-url"
+                                id="telefono-funcionarios-generar-ruta"
                                 aria-describedby="basic-addon3"
                                 placeholder="3183865874">
                         </div>
@@ -241,7 +253,7 @@
                 </div>
 
                 <div class="d-flex justify-content-end w-100">
-                    <button type="button" id="btn-editar"
+                    <button type="button" id="btn-agregar"
                         class="btn
                         btn-success
                         fs-5 m-2">AGREGAR</button>
@@ -249,6 +261,7 @@
             </div>
         </div>
 
+        <!-- Salto de línea -->
         <br>
         <br>
 
@@ -290,6 +303,9 @@
         </div>
     </div>
     -->
+
+    <!-- Parte donde se mostraran los funcionarios seleccionados, sus datos y si desea quitarlos de la ruta. -->
+        <!-- Titulo funcionarios seleccionados -->
         <div class="w-100">
             <div class="w-100">
                 <h3 class="text-center border-top
@@ -297,6 +313,7 @@
                     mt-5">FUNCIONARIOS SELECCIONADOS</h3>
             </div>
 
+            <!-- Información de los funcionarios agregados. -->
             <div class="border-top border-bottom
                 border-dark
                 w-100 pe-3">
@@ -332,6 +349,7 @@
                 </div>
             </div>
 
+            <!-- boton de quitar el o los funcionarios agregados -->
             <div class="d-flex justify-content-end
                 w-100">
                 <div class="w-50 d-flex
@@ -345,8 +363,10 @@
             </div>
         </div>
 
+        <!-- salto de línea -->
         <br>
 
+        <!-- Text Area para la descripción de la ruta -->
         <div class="d-inline-block ms-1 me-5
             textarea-alarma">
             <label for="basic-url" class="form-label
@@ -361,6 +381,7 @@
             </div>
         </div>
 
+        <!-- Text Area para las observaciones de la ruta -->
         <div class="d-inline-block ms-1 me-5
             textarea-alarma">
             <label for="basic-url" class="form-label
@@ -375,6 +396,7 @@
             </div>
         </div>
 
+        <!-- Salto de línea -->
         <br>
 
         <!-- USO DE MODAL CON BOOTSTRAP 5 PARA EL BOTON GENERAR RUTA-->
@@ -514,11 +536,13 @@
             </div>
         </div>
 
+        <!-- botón de imprimir el cual debera enviar aun documentos en pdf para asi imprimir la ruta. -->
         <button type="button" id="btn-editar" class="btn
             btn-secondary
             fs-5 m-2">IMPRIMIR</button>
 
     </form>
 </div>
+<!-- Fin del contenedor para la página generar ruta -->
 
 {% endblock contenido %}

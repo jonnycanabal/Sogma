@@ -1,3 +1,5 @@
+/* Inicio del archivo CSS para modificar cosas especificas de nuestro codigo que no se pudieron manejar con Bootstrap*/
+
 #bar-header{
     background-color: #ffe633;
     }
@@ -47,7 +49,6 @@
 .bg-color-guardar{
     background-color: #ffe633;
 }
-
 
 .textarea-alarma{
     width: 69%;
@@ -169,7 +170,7 @@
 }
 
 
-/* -------------------------------------------------- */                 /* VAMOS TRABAJANDO EN ESTE MEDIA QUERY*/
+/* -------------------------------------------------- */
 @media (max-width: 768px) {
     #div-cajas div, #div-cajas2 div, .w-form-login, #div-caja3 div{
         width: 40%;

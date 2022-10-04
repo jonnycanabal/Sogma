@@ -10,7 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
-import os
+import os #Aqui se importa el os requerido en las lineas de mas abajo donde esta el codigo de static
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -56,7 +56,7 @@ ROOT_URLCONF = 'main.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['main/templates'],
+        'DIRS': ['main/templates'], # En las llaves colocar la ruta relativa de nuestro templates (main/templates)
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -116,6 +116,13 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
+
+# Estructura base para colocar en esta parte del codigo en el archivo settings.py
+# STATIC_URL = '/static/'
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, "static"), # Recordar importar el os cuando se coloca esta línea de codigo
+# ]
+# STATIC_ROOT= "/static"
 
 STATIC_URL = 'static/'
 STATIC_URL = '/static/'
