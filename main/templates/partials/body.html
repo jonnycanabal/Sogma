@@ -62,43 +62,10 @@
     </main>
 </section>
 
-    <!-- Inicio Scripts DataTable-->
-    <!-- Link o referencias sacadas de la pagina https://datatables.net/ dependiente el estilo seleccionado -->
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script
-        src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-    <script
-        src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+{% block javascript %}
+    {% include 'partials/javascript.html' %}
+{% endblock javascript %}
 
-    <!-- ¡IMPORTANTE! -  este script para el funcionamiento de la datatables-->
-    <script type="text/javascript" charset="utf8"
-        src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
-
-    <!-- Script para iniciar o arrancar las DataTable-->
-    <script>
-        // TABLA - 1 (Consultar Activos)
-        $(document).ready( function () {
-            $('#example').DataTable();
-        });
-        /*Script para cambiar de idioma dentro del script de arranque. al cambiar idioma español colombia cambian varias cosas*/
-        $('#example').DataTable({
-            "language": {
-                "url": "//cdn.datatables.net/plug-ins/1.12.1/i18n/es-MX.json",
-            }
-        })
-
-        // TABLA - 2 (Historial de Rutas)
-        $(document).ready( function () {
-            $('#example2').DataTable();
-        });
-        /*Script para cambiar de idioma dentro del script de arranque. al cambiar idioma español colombia cambian varias cosas*/
-        $('#example2').DataTable({
-        "language": {
-            "url": "//cdn.datatables.net/plug-ins/1.12.1/i18n/es-MX.json",
-        }
-        })
-    </script>
-    <!-- Fin Scripts DataTable-->
 </body>
 <!-- Fin del body -->
 </html>
