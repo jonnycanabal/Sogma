@@ -15,25 +15,24 @@
 <!-- Bloque de contenido el cual estara declarado en el body.html y sera lo que se vera dependiente de la página  -->
 {% block contenido %}
 
+<!-- Bloque de codigo del formulario o tabla
 <div class="container">
     <form action="" method="POST">
-        {{form}}
+        {{form|crispy}}
         {% csrf_token %}
         <input type="submit" value="Registrar">
     </form>
-</div>
-
-<br>
-<br>
-<br>
+</div> -->
 
 <!-- Inicio del contenedor para la página nuevo usuario -->
 <div id="div-caja3" class="container p-3 my-4 pb-4 d-flex
     justify-content-center pt-0">
 
     <!-- Botones para seleccionar o digiligenciar información -->
-    <form class="p-left border-start border-end border-dark
+    <form action="" method="POST" class="p-left border-start border-end border-dark
         pe-3 ps-3" style="width: 85%;">
+        
+        {% csrf_token %}
 
         <!-- titulo Registrar Nuevo Usuario -->
         <h2 class="text-center p-1 pb-2 mb-3 border-bottom
@@ -48,9 +47,9 @@
                 NOMBRE</label>
             <div class="input-group mb-3 w-100">
                 <input type="text" class="form-control"
-                    id="primer-nombre-nuevo-usuario"
+                    id="primerNombre"
                     aria-describedby="basic-addon3"
-                    placeholder="Jonny">
+                    placeholder="">
             </div>
         </div>
 
@@ -59,9 +58,9 @@
                 NOMBRE</label>
             <div class="input-group mb-3 w-100">
                 <input type="text" class="form-control"
-                    id="segundo-nombre-nuevo-usuario"
+                    id="segundoNombre"
                     aria-describedby="basic-addon3"
-                    placeholder="Mauricio">
+                    placeholder="">
             </div>
         </div>
 
@@ -70,9 +69,9 @@
                 APELLIDO</label>
             <div class="input-group mb-3 w-100">
                 <input type="text" class="form-control"
-                    id="primer-apellido-nuevo-usuario"
+                    id="primerApellido"
                     aria-describedby="basic-addon3"
-                    placeholder="Canabal">
+                    placeholder="">
             </div>
         </div>
 
@@ -81,9 +80,9 @@
                 APELLIDO</label>
             <div class="input-group mb-3 w-100">
                 <input type="text" class="form-control"
-                    id="segundo-apellido-nuevo-usuario"
+                    id="segundoApellido"
                     aria-describedby="basic-addon3"
-                    placeholder="Ospina">
+                    placeholder="">
             </div>
         </div>
 
@@ -91,7 +90,7 @@
             <label for="basic-url" class="form-label w-75 ps-2">TIPO
                 DE DOCUMENTO</label>
             <div class="input-group mb-3 w-100">
-                <select class="form-select"
+                <select id="tipoDocumento" class="form-select"
                     aria-label="tipo-activo">
                     <option selected>--TIPO DOCUMENTO--</option>
                     <option value="1">Cédula de Ciudadanía</option>
@@ -106,9 +105,63 @@
                 DE IDENTIFICACIÓN</label>
             <div class="input-group mb-3 w-100">
                 <input type="text" class="form-control"
-                    id="numero-identificacion-nuevo-usuario"
+                    id="numeroDocumento"
                     aria-describedby="basic-addon3"
-                    placeholder="1115085748">
+                    placeholder="">
+            </div>
+        </div>
+
+        <div class="d-inline-block ms-1 me-5 width-28">
+            <label for="basic-url" class="form-label w-75 ps-2">NÚMERO DE TELEFONO</label>
+            <div class="input-group mb-3 w-100">
+                <input type="text" class="form-control"
+                    id="numeroTelefono"
+                    aria-describedby="basic-addon3"
+                    placeholder="">
+            </div>
+        </div>
+
+        <div class="d-inline-block ms-1 me-5 width-28">
+            <label for="basic-url" class="form-label w-75 ps-2">CIUDAD DE RESIDENCIA</label>
+            <div class="input-group mb-3 w-100">
+                <input type="text" class="form-control"
+                    id="ciudadResidencia"
+                    aria-describedby="basic-addon3"
+                    placeholder="">
+            </div>
+        </div>
+
+        <div class="d-inline-block ms-1 me-5 width-28">
+            <label for="basic-url" class="form-label w-75 ps-2">DIRECCIÓN DE RESIDENCIA</label>
+            <div class="input-group mb-3 w-100">
+                <input type="text" class="form-control"
+                    id="direccionResidencia"
+                    aria-describedby="basic-addon3"
+                    placeholder="">
+            </div>
+        </div>
+
+        <div class="d-inline-block ms-1 me-5 width-28">
+            <label for="basic-url" class="form-label w-75 ps-2">CORRE ELECTRONICO</label>
+            <div class="input-group mb-3 w-100">
+                <input type="text" class="form-control"
+                    id="correoElectronico"
+                    aria-describedby="basic-addon3"
+                    placeholder="">
+            </div>
+        </div>
+
+        <div class="d-inline-block ms-1 me-5 width-28">
+            <label for="basic-url" class="form-label w-75 ps-2">GENERO</label>
+            <div class="input-group mb-3 w-100">
+                <select id="genero" class="form-select"
+                    aria-label="tipo-activo">
+                    <option selected>--GENERO--</option>
+                    <option value="1">Masculino </option>
+                    <option value="2">Femenino </option>
+                    <option value="3">Otro</option>
+                    <option value="3">Prefiero No Decir</option>
+                </select>
             </div>
         </div>
 
@@ -116,60 +169,9 @@
             <label for="basic-url" class="form-label w-75 ps-2">CARGO</label>
             <div class="input-group mb-3 w-100">
                 <input type="text" class="form-control"
-                    id="cargo-nuevo-usuario"
+                    id="cargo"
                     aria-describedby="basic-addon3"
-                    placeholder="Conductor">
-            </div>
-        </div>
-
-        <div class="d-inline-block ms-1 me-5 width-28">
-            <label for="basic-url" class="form-label w-75 ps-2">TELEFONO</label>
-            <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control"
-                    id="telefono-nuevo-usuario"
-                    aria-describedby="basic-addon3"
-                    placeholder="3183865987">
-            </div>
-        </div>
-
-        <div class="d-inline-block ms-1 me-5 width-28">
-            <label for="basic-url" class="form-label w-75 ps-2">DIRECCION
-                DE RESIDENCIA</label>
-            <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control"
-                    id="direccion-nuevo-usuario"
-                    aria-describedby="basic-addon3"
-                    placeholder="Calle 53 Bis # 80 - 64 Sur">
-            </div>
-        </div>
-
-        <div class="d-inline-block ms-1 me-5 width-28">
-            <label for="basic-url" class="form-label w-75 ps-2">EMAIL</label>
-            <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control"
-                    id="email-nuevo-usuario"
-                    aria-describedby="basic-addon3"
-                    placeholder="jmcanabalsenaprueba@gmail.com">
-            </div>
-        </div>
-
-        <div class="d-inline-block ms-1 me-5 width-28">
-            <label for="basic-url" class="form-label w-75 ps-2">USUARIO</label>
-            <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control"
-                    id="nombre-usuario-nuevo-usuario"
-                    aria-describedby="basic-addon3"
-                    placeholder="JmCanabal">
-            </div>
-        </div>
-
-        <div class="d-inline-block ms-1 me-5 width-28">
-            <label for="basic-url" class="form-label w-75 ps-2">CONTRASEÑA</label>
-            <div class="input-group mb-3 w-100">
-                <input type="password" class="form-control"
-                    id="contraseña-nuevo-usuario"
-                    aria-describedby="basic-addon3"
-                    placeholder="123456789">
+                    placeholder="">
             </div>
         </div>
 
@@ -177,23 +179,33 @@
             <label for="basic-url" class="form-label w-75 ps-2">FECHA
                 DE REGISTRO</label>
             <div class="input-group mb-3 w-100">
-                <input type="date" class="form-control"
-                    id="fecha-registro-nuevo-usuario"
+                <input id="fechaRegistro" type="date" class="form-control"
                     aria-describedby="basic-addon3"
-                    placeholder="FECHA DE REGISTRO">
+                    placeholder="">
             </div>
         </div>
 
         <div class="d-inline-block ms-1 me-5 width-28">
-            <label for="basic-url" class="form-label w-75 ps-2">TIPO
-                DE USUARIO</label>
+            <label for="basic-url" class="form-label w-75 ps-2">TIPO DE USUARIO</label>
             <div class="input-group mb-3 w-100">
-                <select class="form-select"
+                <select id="tipoUsuario" class="form-select"
                     aria-label="tipo-activo">
                     <option selected>--TIPO DE USUARIO--</option>
-                    <option value="1">Funcionario</option>
-                    <option value="2">Conductor</option>
+                    <option value="1">Funcionario </option>
+                    <option value="2">Conductor </option>
                     <option value="3">Administrador</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="d-inline-block ms-1 me-5 width-28">
+            <label for="basic-url" class="form-label w-75 ps-2">ESTADO</label>
+            <div class="input-group mb-3 w-100">
+                <select id="estado" class="form-select"
+                    aria-label="tipo-activo">
+                    <option selected>--ESTADO--</option>
+                    <option value="1">Activo </option>
+                    <option value="2">Inactivo </option>
                 </select>
             </div>
         </div>
@@ -205,15 +217,15 @@
 
         <!-- Bloque donde se seleccionara los permisos que tendrá el nuevo usuario -->
         <!-- Titulo Seleccione los permisos -->
-        <h2 class="text-center p-1 pb-2 mb-3 border-bottom
+        <!-- <h2 class="text-center p-1 pb-2 mb-3 border-bottom
             border-dark border border-dark rounded">Seleccione
-            Los Permisos</h2>
+            Los Permisos</h2> -->
 
             <!-- Salto de línea -->
         <br>
 
         <!-- Contenedor de loc checkbox tipo switch para marcar los permisos del nuevo usuario -->
-        <div class="w-100">
+        <!-- <div class="w-100">
 
             <div class="form-check form-check-inline
                 form-switch ms-3 mb-3">
@@ -367,22 +379,22 @@
                     for="inlineCheckbox2">Página
                     [consultar-ruta]
                 </label>
-            </div>
+            </div> -->
 
             <!-- Botón de guardar con su respectivo modal de confirmación -->
-            <div class="mt-5 w-100 d-flex
-                justify-content-center">
+            <!-- <div class="mt-5 w-100 d-flex
+                justify-content-center"> -->
                 <!-- USO DE MODAL CON BOOTSTRAP 5 PARA EL BOTON GUARDAR-->
                 <!-- Button trigger modal -->
-                <button type="button" class="btn btn-success
+                <!-- <button type="button" class="btn btn-success
                     fs-5 m-2"
                     data-bs-toggle="modal"
                     data-bs-target="#modal-guardar">
                     GUARDAR
-                </button>
+                </button> -->
 
                 <!-- Modal -->
-                <div class="modal fade" id="modal-guardar"
+                <!-- <div class="modal fade" id="modal-guardar"
                     data-bs-backdrop="static"
                     data-bs-keyboard="false"
                     tabindex="-1"
@@ -410,19 +422,18 @@
                                     class="btn
                                     btn-secondary"
                                     data-bs-dismiss="modal">CANCELAR</button>
-                                <button type="button"
+                                <input type="submit"
                                     data-bs-toggle="modal"
                                     data-bs-target="#modal-guardar2"
                                     data-bs-dismiss="modal"
                                     class="btn
-                                    btn-primary">ACEPTAR
-                                </button>
+                                    btn-primary" value="ACEPTAR">
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <!-- MODAL INTERNO AL OPRIMIR ACEPTAR EN EL MODAL ANTERIOR DE GUARDAR-->
-                <div class="modal" id="modal-guardar2">
+                <!-- <div class="modal" id="modal-guardar2">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header alert
@@ -440,9 +451,14 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
+                </div> -->
+            <!-- </div> -->
+        </div>
 
+        <div class="mt-5 w-100 d-flex
+        justify-content-center">
+        <input class="btn btn-success
+        fs-5 m-2" type="submit" value="GUARDAR">
         </div>
     </form>
 </div>

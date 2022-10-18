@@ -1,0 +1,60 @@
+{% extends 'partials/body.html' %}
+
+<!-- Cargar la carpeta static -->
+{% load static %}
+
+<!-- Bloque que incluira el nav.html para que lo muestre en la página -->
+{% block menu %}
+{% include 'partials/nav.html' %}
+{% endblock menu %}
+
+{% block contenido %}
+<div id="tabla-control-activos" class="overflow-auto
+height-config-tabla1 m-4">
+    <table class="table display nowrap">
+        <thead>
+            <th scope="col">Primer Nombre</th>
+            <th scope="col">Segundo Nombre</th>
+            <th scope="col">Primer Apellido</th>
+            <th scope="col">Segundo Apellido</th>
+            <th scope="col">Tipo de Documento</th>
+            <th scope="col">Número de Documento</th>
+            <th scope="col">Número de Teléfono</th>
+            <th scope="col">Ciudad de Residencia</th>
+            <th scope="col">Dirección de Residencia</th>
+            <th scope="col">Correo Electronico</th>
+            <th scope="col">Genero</th>
+            <th scope="col">Cargo</th>
+            <th scope="col">Fecha de Registro</th>
+            <th scope="col">Tipo de Usuario</th>
+            <th scope="col">Estado</th>
+        </thead>
+        <tbody>
+            
+            {% for usuario in usuarios %}
+                <tr>
+                    <th scope="row">{{usuario.primerNombre}}</th>
+                    <th>{{usuario.segundoNombre}}</th>
+                    <th>{{usuario.primerApellido}}</th>
+                    <th>{{usuario.segundoApellido}}</th>
+                    <th>{{usuario.tipoDocumento}}</th>
+                    <th>{{usuario.numeroDocumento}}</th>
+                    <th>{{usuario.numeroTelefono}}</th>
+                    <th>{{usuario.ciudadResidencia}}</th>
+                    <th>{{usuario.direccionResidencia}}</th>
+                    <th>{{usuario.correoElectronico}}</th>
+                    <th>{{usuario.genero}}</th>
+                    <th>{{usuario.cargo}}</th>
+                    <th>{{usuario.fechaRegistro}}</th>
+                    <th>{{usuario.tipoUsuario}}</th>
+                    <th>{{usuario.estado}}</th>
+                </tr>
+            {% endfor %}
+                
+
+        </tbody>
+
+    </table>
+</div>
+
+{% endblock contenido %}

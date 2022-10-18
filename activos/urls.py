@@ -1,5 +1,7 @@
 from django.urls import path
+from activos.views import control_activos
 
 urlpatterns = [
-    path('')
+    path('controlActivos/', control_activos,  name="control-activos")
+
 ]

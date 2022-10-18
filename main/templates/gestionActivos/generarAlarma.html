@@ -4,6 +4,9 @@
 <!-- Cargar la carpeta static -->
 {% load static %}
 
+<!-- Carga crispy form (ayuda visual en los formularios)-->
+{% load crispy_forms_tags %}
+
 <!-- Bloque que incluira el nav.html para que lo muestre en la página -->
 {% block menu %}
     {% include 'partials/nav.html' %}
@@ -12,13 +15,24 @@
 <!-- Bloque de contenido el cual estara declarado en el body.html y sera lo que se vera dependiente de la página  -->
 {% block contenido %}
 
+<!-- Bloque de codigo del formulario o tabla
+<div class="container">
+    <form action="" method="POST">
+        {{form|crispy}}
+        {% csrf_token %}
+        <input type="submit" value="Registrar">
+    </form>
+</div> -->
+
 <!-- Inicio del contenedor para la página generar alarma -->
-<div id="div-caja3" class="container p-3 my-4 pb-4 d-flex
+<div  id="div-caja3" class="container p-3 my-4 pb-4 d-flex
     justify-content-center pe-4 pt-0 mt-0">
 
-    <form id="div-cajas" class="container p-3 my-4 border-bottom
+    <form action="" method="POST" id="div-cajas" class="container p-3 my-4 border-bottom
         mt-0
         border-dark pb-4">
+
+        {% csrf_token %}
 
         <!-- Botones para seleccionar o digiligenciar información -->
         <div class="w-100 text-center p-2 border-bottom
@@ -54,23 +68,27 @@
         </div>
 
         <div class="d-inline-block width-20 ms-1 me-5">
-            <label for="basic-url" class="form-label w-75 ps-2">LUGAR</label>
+            <label for="basic-url" class="form-label w-75 ps-2">FECHA
+                DE MANTENIMIENTO</label>
             <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control"
-                    id="lugar-generar-alarma"
+                <input id="fechaMantenimiento" type="text" class="form-control"
+                    id="fechaMantenimiento"
                     aria-describedby="basic-addon3"
-                    placeholder="LUGAR">
+                    placeholder="FECHA DE MANTENIMIENTO">
             </div>
         </div>
 
         <div class="d-inline-block width-20 ms-1 me-5">
-            <label for="basic-url" class="form-label w-75 ps-2">FECHA
+            <label for="basic-url" class="form-label w-75 ps-2">TIPO
                 DE MANTENIMIENTO</label>
             <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control"
-                    id="fecha-mantenimiento-generar-alarma"
-                    aria-describedby="basic-addon3"
-                    placeholder="FECHA DE MANTENIMIENTO">
+            <select id="tipoMantenimiento" class="form-select"
+                aria-label="tipo-activo">
+                <option selected>--TIPO DE MANTENIMIENTO--</option>
+                <option value="1">Periodico</option>
+                <option value="2">Preventivo</option>
+                <option value="3">Kilometraje</option>
+            </select>
             </div>
         </div>
 
@@ -84,13 +102,12 @@
             <textarea class="form-control textarea-alarma"
                 style="resize: none; height:
                 150px;" placeholder="Leave a comment here"
-                id="descripcion-generar-alarma" style="height: 100px"></textarea>
+                id="descripcionMantenimiento" style="height: 100px"></textarea>
         </div>
 
         <!-- Salto de línea -->
         <br>
         <br>
-
 
         <!-- USO DE MODAL CON BOOTSTRAP 5 PARA EL BOTON GERAR-->
         <!-- Button trigger modal -->
@@ -122,11 +139,11 @@
                         <button type="button" class="btn
                             btn-secondary"
                             data-bs-dismiss="modal">CANCELAR</button>
-                        <button type="button"
+                        <input type="submit"
                             data-bs-toggle="modal"
                             data-bs-target="#modal-genera2"
                             data-bs-dismiss="modal" class="btn
-                            btn-primary">ACEPTAR </button>
+                            btn-primary" value="ACEPTAR">
                     </div>
                 </div>
             </div>

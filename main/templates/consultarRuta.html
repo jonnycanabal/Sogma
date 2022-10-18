@@ -4,6 +4,8 @@
 <!-- Cargar la carpeta static -->
 {% load static %}
 
+{% load crispy_forms_tags %}
+
 <!-- Bloque que incluira el nav.html para que lo muestre en la página -->
 {% block menu %}
     {% include 'partials/nav.html' %}
@@ -11,6 +13,7 @@
 
 <!-- Bloque de contenido el cual estara declarado en el body.html y sera lo que se vera dependiente de la página  -->
 {% block contenido %}
+
 
 <!-- Inicio del contenedor para la página consultar ruta -->
 <div id="div-caja3" class="container p-3 my-4 pb-4 d-flex

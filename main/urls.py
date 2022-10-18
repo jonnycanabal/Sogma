@@ -22,11 +22,13 @@ from main.views import consultar_ruta, control_activos, generar_alarma, generar_
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', inicio, name='inicio'), # Inicio de sesión
-    path('controlActivos/', control_activos, name='Control-Activos'), # Control de activos - página principal.
-    path('generar/alarma/', generar_alarma, name='Generar-Alarma'), # generar alarma de recordatorio de mantenimiento.
-    path('generar/ruta/',generar_ruta , name='Generar-Ruta'), # generar ruta realizada por un conductor y vehículo.
+    # path('controlActivos/', control_activos, name='Control-Activos'), # Control de activos - página principal.
+    # path('generar/alarma/', generar_alarma, name='Generar-Alarma'), # generar alarma de recordatorio de mantenimiento.
+    # path('generar/ruta/',generar_ruta , name='Generar-Ruta'), # generar ruta realizada por un conductor y vehículo.
     path('consultarRuta/',consultar_ruta , name='Consultar-Ruta'), # consultar ruta realizada por el conductor y vehículo.
     # path('nuevoUsuario/',nuevo_usuario , name='Nuevo-Usuario'), # creación de nuevo usuario con sus respectiva informacion y permisos.
-    path('registrarMantenimiento/',registrar_mantenimiento , name='Registrar-Mantenimiento'), # registrar mantenimientos de los activos.
+    # path('registrarMantenimiento/',registrar_mantenimiento , name='Registrar-Mantenimiento'), # registrar mantenimientos de los activos.
     path('usuarios/', include('usuarios.urls')),
+    path('gestionActivos/', include('gestionActivos.urls')),
+    path('activos/', include('activos.urls')),
 ]

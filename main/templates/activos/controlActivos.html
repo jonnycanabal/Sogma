@@ -4,6 +4,9 @@
 <!-- Cargar la carpeta static -->
 {% load static %}
 
+<!-- Carga crispy form (ayuda visual en los formularios)-->
+{% load crispy_forms_tags %}
+
 <!-- Bloque que incluira el nav.html para que lo muestre en la página -->
 {% block menu %}
     {% include 'partials/nav.html' %}
@@ -11,6 +14,43 @@
 
 <!-- Bloque de contenido el cual estara declarado en el body.html y sera lo que se vera dependiente de la página  -->
 {% block contenido %}
+
+<div class="container">
+    <form action="" method="POST">
+        {{form|crispy}}
+        {% csrf_token %}
+        <input type="submit" value="Registrar">
+    </form>
+    
+    <!-- Salto de línea -->
+    <br>
+    <br>
+    <br>
+
+    <form action="" method="POST">
+        {{form2|crispy}}
+        {% csrf_token %}
+        <input type="submit" value="Registrar">
+    </form>
+
+    <!-- Salto de línea -->
+    <br>
+    <br>
+    <br>
+
+    <form action="" method="POST">
+        {{form3|crispy}}
+        {% csrf_token %}
+        <input type="submit" value="Registrar">
+    </form>
+
+</div>
+
+<!-- Salto de línea -->
+<br>
+<br>
+<br>
+
 
 <!-- INICIO DEL MAIN-->
 <main class="bg-light">

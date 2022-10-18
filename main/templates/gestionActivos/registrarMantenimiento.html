@@ -4,6 +4,9 @@
 <!-- Cargar la carpeta static -->
 {% load static %}
 
+<!-- Carga crispy form (ayuda visual en los formularios)-->
+{% load crispy_forms_tags %}
+
 <!-- Bloque que incluira el nav.html para que lo muestre en la página -->
 {% block menu %}
     {% include 'partials/nav.html' %}
@@ -12,12 +15,23 @@
 <!-- Bloque de contenido el cual estara declarado en el body.html y sera lo que se vera dependiente de la página  -->
 {% block contenido %}
 
+<!-- Bloque de codigo del formulario o tabla
+<div class="container">
+    <form action="" method="POST">
+        {{form|crispy}}
+        {% csrf_token %}
+        <input type="submit" value="Registrar">
+    </form>
+</div> -->
+
 <!-- Inicio del contenedor para la página registrar mantenimiento -->
 <div id="div-caja3" class="container p-3 pb-4 d-flex
     justify-content-center pe-4">
 
-    <form id="div-cajas" class="container p-3 my-4 mt-0 pb-0
+    <form action="" method="POST" id="div-cajas" class="container p-3 my-4 mt-0 pb-0
         border-start border-end border-dark">
+
+        {% csrf_token %}
 
         <!-- Título Seleccione el tipo de activo-->
         <div class="text-center p-2 w-100">
@@ -631,121 +645,88 @@
             <div class="d-inline-block width-20 ms-1
                 me-5">
                 <label for="basic-url" class="form-label
-                    w-75 ps-2">Fecha del Mantenimiento</label>
+                    w-75 ps-2">FECHA DEL MANTENIMIENTO</label>
                 <div class="input-group mb-3 w-100">
-                    <input type="text"
+                    <input type="date"
                         class="form-control"
-                        id="fecha-mantenimiento-registrar-mantenimiento"
-                        aria-describedby="basic-addon3"
-                        placeholder="30/08/2022">
+                        id="fechaMantenimiento"
+                        aria-describedby="basic-addon3">
                 </div>
             </div>
 
             <div class="d-inline-block width-20 ms-1
                 me-5">
                 <label for="basic-url" class="form-label
-                    w-75 ps-2">Nombre Del Taller</label>
+                    w-75 ps-2">LUGAR DEL MANTENIMIENTO</label>
                 <div class="input-group mb-3 w-100">
                     <input type="text"
                         class="form-control"
-                        id="nombre-taller-registrar-mantenimiento"
-                        aria-describedby="basic-addon3"
-                        placeholder="Autolag">
+                        id="lugarMantenimiento"
+                        aria-describedby="basic-addon3">
                 </div>
             </div>
 
             <div class="d-inline-block width-20 ms-1
                 me-5">
                 <label for="basic-url" class="form-label
-                    w-75 ps-2">MARCA</label>
+                    w-75 ps-2">CIUDAD DEL MANTENIMIENTO</label>
                 <div class="input-group mb-3 w-100">
                     <input type="text"
                         class="form-control"
-                        id="marca-vehiculo-registrar-mantenimiento"
-                        aria-describedby="basic-addon3"
-                        placeholder="Toyota">
+                        id="ciudadMantenimiento"
+                        aria-describedby="basic-addon3">
                 </div>
             </div>
 
             <div class="d-inline-block width-20 ms-1
                 me-5">
                 <label for="basic-url" class="form-label
-                    w-75 ps-2">Ubicación</label>
+                    w-75 ps-2">KILOMETRAJE DEL VEHÍCULO</label>
                 <div class="input-group mb-3 w-100">
                     <input type="text"
                         class="form-control"
-                        id="ubicacion-registrar-mantenimiento"
-                        aria-describedby="basic-addon3"
-                        placeholder="Avenida Carrera 30 #
-                        64-40">
+                        id="kilometrajeMantenimiento"
+                        aria-describedby="basic-addon3">
                 </div>
             </div>
 
             <div class="d-inline-block width-20 ms-1
                 me-5">
                 <label for="basic-url" class="form-label
-                    w-75 ps-2">Ciudad</label>
+                    w-75 ps-2">NUMERO DE FACTURA</label>
                 <div class="input-group mb-3 w-100">
                     <input type="text"
                         class="form-control"
-                        id="ciudad-registrar-mantenimiento"
-                        aria-describedby="basic-addon3"
-                        placeholder="Bogota D.C.">
+                        id="numeroFactura"
+                        aria-describedby="basic-addon3">
                 </div>
             </div>
 
             <div class="d-inline-block width-20 ms-1
                 me-5">
                 <label for="basic-url" class="form-label
-                    w-75 ps-2">Kilometraje</label>
+                    w-75 ps-2">VALOR DEL MANTENIMIENTO</label>
                 <div class="input-group mb-3 w-100">
                     <input type="text"
                         class="form-control"
-                        id="kilometraje-registrar-mantenimiento"
-                        aria-describedby="basic-addon3"
-                        placeholder="10000">
+                        id="valorMantenimiento"
+                        aria-describedby="basic-addon3">
                 </div>
             </div>
-
-            <div class="d-inline-block width-20 ms-1
-                me-5">
-                <label for="basic-url" class="form-label
-                    w-75 ps-2">N° Factura</label>
-                <div class="input-group mb-3 w-100">
-                    <input type="text"
-                        class="form-control"
-                        id="numero-factura-registrar-mantenimiento"
-                        aria-describedby="basic-addon3"
-                        placeholder="0012345">
-                </div>
-            </div>
-
-            <div class="d-inline-block width-20 ms-1
-                me-5">
-                <label for="basic-url" class="form-label
-                    w-75 ps-2">Valor Total</label>
-                <div class="input-group mb-3 w-100">
-                    <input type="text"
-                        class="form-control"
-                        id="valor-mantenimiento-registrar-mantenimiento"
-                        aria-describedby="basic-addon3"
-                        placeholder="25000">
-                </div>
-            </div>
-        </div>
         
-        <!-- Cuadro de observaciones donde se diligenciara que mas se le hizo en el mantenimeinto al activo. -->
-        <div class="mt-5 pt-4 border-top border-dark w-100
-            pe-3">
-            <!-- OBSERVACIONES-->
-            <div class="d-inline-block ms-1 me-5 w-100">
-                <label for="basic-url" class="form-label
-                    ps-2 fs-4 w-100">DESCRIPCIÓN DEL
-                    MANTENIMIENTO</label>
-                <div class="mb-3 w-100">
-                    <textarea class="form-control border
-                        border-dark w-100" style="height:
-                        200px; resize: none;"></textarea>
+            <!-- Cuadro de observaciones donde se diligenciara que mas se le hizo en el mantenimeinto al activo. -->
+            <div class="mt-5 pt-4 border-top border-dark w-100
+                pe-3">
+                <!-- OBSERVACIONES-->
+                <div class="d-inline-block ms-1 me-5 w-100">
+                    <label for="basic-url" class="form-label
+                        ps-2 fs-4 w-100">DESCRIPCIÓN DEL
+                        MANTENIMIENTO</label>
+                    <div class="mb-3 w-100">
+                        <textarea id="descripcionMantenimiento" class="form-control border
+                            border-dark w-100" style="height:
+                            200px; resize: none;"></textarea>
+                    </div>
                 </div>
             </div>
         </div>
@@ -811,13 +792,12 @@
                                 class="btn
                                 btn-secondary"
                                 data-bs-dismiss="modal">CANCELAR</button>
-                            <button type="button"
+                            <input type="submit"
                                 data-bs-toggle="modal"
                                 data-bs-target="#modal-registrar-mantenimiento2"
                                 data-bs-dismiss="modal"
                                 class="btn
-                                btn-primary">ACEPTAR
-                            </button>
+                                btn-primary" value="ACEPTAR">
                         </div>
                     </div>
                 </div>
