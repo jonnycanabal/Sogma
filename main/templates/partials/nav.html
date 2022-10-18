@@ -33,7 +33,7 @@
         <!-- Link que redirecciona a la pagina (Nuevo usuario) -->
         <li class="nav-item">
             <a class="nav-link text-white"
-                href="{% url 'Nuevo-Usuario' %}">Nuevo
+                href="{% url 'nuevo-usuario' %}">Nuevo
                 Usuario</a>
         </li>
 
@@ -43,6 +43,13 @@
                 href="{% url 'Registrar-Mantenimiento' %}">Registrar
                 Mantenimiento</a>
         </li>
+
+        <li class="nav-item">
+            <a class="nav-link text-white"
+                href="{% url 'usuarios-crear' %}">Crear 
+                Usuario</a>
+        </li>
+        
     </ul>
 </div>
 <!-- Fin del contenedor de la barra de navegación -->
