@@ -1,16 +1,19 @@
 from multiprocessing import context
 from django.shortcuts import render
+from activos.models import ActivoExtintor
 from activos.forms import ActivoEquipoOficinaForm, ActivoExtintorForm, ActivoVehiculoForm
 
 # Create your views here.
 
 def control_activos(request):
     titulo='control-activos'
+    extintores= ActivoExtintor.objects.all()
     form=ActivoExtintorForm()
     form2=ActivoEquipoOficinaForm()
     form3=ActivoVehiculoForm()
     context={
         'titulo':titulo,
+        'extintores':extintores,
         'form':form,
         'form2':form2,
         'form3':form3
