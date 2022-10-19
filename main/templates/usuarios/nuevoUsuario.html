@@ -9,29 +9,28 @@
 
 <!-- Bloque que incluira el nav.html para que lo muestre en la página -->
 {% block menu %}
-    {% include 'partials/nav.html' %}
+{% include 'partials/nav.html' %}
 {% endblock menu %}
 
 <!-- Bloque de contenido el cual estara declarado en el body.html y sera lo que se vera dependiente de la página  -->
 {% block contenido %}
 
-<!-- Bloque de codigo del formulario o tabla
-<div class="container">
+<!-- Bloque de codigo del formulario o tabla -->
+<!-- <div class="container">
     <form action="" method="POST">
         {{form|crispy}}
         {% csrf_token %}
         <input type="submit" value="Registrar">
     </form>
 </div> -->
-
 <!-- Inicio del contenedor para la página nuevo usuario -->
 <div id="div-caja3" class="container p-3 my-4 pb-4 d-flex
     justify-content-center pt-0">
 
     <!-- Botones para seleccionar o digiligenciar información -->
-    <form action="" method="POST" class="p-left border-start border-end border-dark
-        pe-3 ps-3" style="width: 85%;">
-        
+    <form action="" method="POST" class="p-left border-start border-end
+        border-dark pe-3 ps-3" style="width: 85%;">
+
         {% csrf_token %}
 
         <!-- titulo Registrar Nuevo Usuario -->
@@ -47,7 +46,7 @@
                 NOMBRE</label>
             <div class="input-group mb-3 w-100">
                 <input type="text" class="form-control"
-                    id="primerNombre"
+                    name="primerNombre" id="id_primerNombre"
                     aria-describedby="basic-addon3"
                     placeholder="">
             </div>
@@ -58,7 +57,7 @@
                 NOMBRE</label>
             <div class="input-group mb-3 w-100">
                 <input type="text" class="form-control"
-                    id="segundoNombre"
+                    name="segundoNombre" id="id_segundoNombre"
                     aria-describedby="basic-addon3"
                     placeholder="">
             </div>
@@ -69,7 +68,7 @@
                 APELLIDO</label>
             <div class="input-group mb-3 w-100">
                 <input type="text" class="form-control"
-                    id="primerApellido"
+                    name="primerApellido" id="id_primerApellido"
                     aria-describedby="basic-addon3"
                     placeholder="">
             </div>
@@ -79,8 +78,8 @@
             <label for="basic-url" class="form-label w-75 ps-2">SEGUNDO
                 APELLIDO</label>
             <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control"
-                    id="segundoApellido"
+                <input type="text" class="form-control" name="segundoApellido"
+                    id="id_segundoApellido"
                     aria-describedby="basic-addon3"
                     placeholder="">
             </div>
@@ -90,12 +89,12 @@
             <label for="basic-url" class="form-label w-75 ps-2">TIPO
                 DE DOCUMENTO</label>
             <div class="input-group mb-3 w-100">
-                <select id="tipoDocumento" class="form-select"
+                <select id="id_tipoDocumento" class="form-select" name="tipoDocumento"
                     aria-label="tipo-activo">
                     <option selected>--TIPO DOCUMENTO--</option>
-                    <option value="1">Cédula de Ciudadanía</option>
-                    <option value="2">Cédula de Extranjería</option>
-                    <option value="3">Pasaporte</option>
+                    <option value="C.C.">Cédula de Ciudadania</option>
+                    <option value="C.E.">Cédula de Extranjería</option>
+                    <option value="PASS">Pasaporte</option>
                 </select>
             </div>
         </div>
@@ -104,48 +103,52 @@
             <label for="basic-url" class="form-label w-75 ps-2">NÚMERO
                 DE IDENTIFICACIÓN</label>
             <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control"
-                    id="numeroDocumento"
+                <input type="text" class="form-control" name="numeroDocumento"
+                    id="id_numeroDocumento"
                     aria-describedby="basic-addon3"
                     placeholder="">
             </div>
         </div>
 
         <div class="d-inline-block ms-1 me-5 width-28">
-            <label for="basic-url" class="form-label w-75 ps-2">NÚMERO DE TELEFONO</label>
+            <label for="basic-url" class="form-label w-75 ps-2">NÚMERO DE
+                TELEFONO</label>
             <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control"
-                    id="numeroTelefono"
+                <input type="text" class="form-control" name="numeroTelefono"
+                    id="id_numeroTelefono"
                     aria-describedby="basic-addon3"
                     placeholder="">
             </div>
         </div>
 
         <div class="d-inline-block ms-1 me-5 width-28">
-            <label for="basic-url" class="form-label w-75 ps-2">CIUDAD DE RESIDENCIA</label>
+            <label for="basic-url" class="form-label w-75 ps-2">CIUDAD DE
+                RESIDENCIA</label>
             <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control"
-                    id="ciudadResidencia"
+                <input type="text" class="form-control" name="ciudadResidencia"
+                    id="id_ciudadResidencia"
                     aria-describedby="basic-addon3"
                     placeholder="">
             </div>
         </div>
 
         <div class="d-inline-block ms-1 me-5 width-28">
-            <label for="basic-url" class="form-label w-75 ps-2">DIRECCIÓN DE RESIDENCIA</label>
+            <label for="basic-url" class="form-label w-75 ps-2">DIRECCIÓN DE
+                RESIDENCIA</label>
             <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control"
-                    id="direccionResidencia"
+                <input type="text" class="form-control" name="direccionResidencia"
+                    id="id_direccionResidencia"
                     aria-describedby="basic-addon3"
                     placeholder="">
             </div>
         </div>
 
         <div class="d-inline-block ms-1 me-5 width-28">
-            <label for="basic-url" class="form-label w-75 ps-2">CORRE ELECTRONICO</label>
+            <label for="basic-url" class="form-label w-75 ps-2">CORRE
+                ELECTRONICO</label>
             <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control"
-                    id="correoElectronico"
+                <input type="text" class="form-control" name="correoElectronico"
+                    id="id_correoElectronico"
                     aria-describedby="basic-addon3"
                     placeholder="">
             </div>
@@ -154,13 +157,13 @@
         <div class="d-inline-block ms-1 me-5 width-28">
             <label for="basic-url" class="form-label w-75 ps-2">GENERO</label>
             <div class="input-group mb-3 w-100">
-                <select id="genero" class="form-select"
+                <select id="id_genero" class="form-select" name="genero"
                     aria-label="tipo-activo">
                     <option selected>--GENERO--</option>
-                    <option value="1">Masculino </option>
-                    <option value="2">Femenino </option>
-                    <option value="3">Otro</option>
-                    <option value="3">Prefiero No Decir</option>
+                    <option value="Masculino">Masculino</option>
+                    <option value="Femenino">Femenino</option>
+                    <option value="Otro">Otro</option>
+                    <option value="Prefiero No Decir">Prefiero No Decir</option>
                 </select>
             </div>
         </div>
@@ -168,8 +171,8 @@
         <div class="d-inline-block ms-1 me-5 width-28">
             <label for="basic-url" class="form-label w-75 ps-2">CARGO</label>
             <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control"
-                    id="cargo"
+                <input type="text" class="form-control" name="cargo"
+                    id="id_cargo"
                     aria-describedby="basic-addon3"
                     placeholder="">
             </div>
@@ -179,7 +182,7 @@
             <label for="basic-url" class="form-label w-75 ps-2">FECHA
                 DE REGISTRO</label>
             <div class="input-group mb-3 w-100">
-                <input id="fechaRegistro" type="date" class="form-control"
+                <input id="id_fechaRegistro" type="date" class="form-control" name="fechaRegistro"
                     aria-describedby="basic-addon3"
                     placeholder="">
             </div>
@@ -188,42 +191,27 @@
         <div class="d-inline-block ms-1 me-5 width-28">
             <label for="basic-url" class="form-label w-75 ps-2">TIPO DE USUARIO</label>
             <div class="input-group mb-3 w-100">
-                <select id="tipoUsuario" class="form-select"
+                <select id="id_tipoUsuario" class="form-select" name="tipoUsuario"
                     aria-label="tipo-activo">
                     <option selected>--TIPO DE USUARIO--</option>
-                    <option value="1">Funcionario </option>
-                    <option value="2">Conductor </option>
-                    <option value="3">Administrador</option>
+                    <option value="Funcionario">Funcionario</option>
+                    <option value="Conductor">Conductor</option>
+                    <option value="Administrador">Administrador</option>
                 </select>
             </div>
         </div>
 
-        <div class="d-inline-block ms-1 me-5 width-28">
-            <label for="basic-url" class="form-label w-75 ps-2">ESTADO</label>
-            <div class="input-group mb-3 w-100">
-                <select id="estado" class="form-select"
-                    aria-label="tipo-activo">
-                    <option selected>--ESTADO--</option>
-                    <option value="1">Activo </option>
-                    <option value="2">Inactivo </option>
-                </select>
-            </div>
+        <div class="mt-5 w-100 d-flex
+            justify-content-center">
+            <input class="btn btn-success
+                fs-5 m-2" type="submit" value="GUARDAR">
         </div>
-
-        <!-- Salto de línea -->
-        <br>
-        <br>
-        <br>
 
         <!-- Bloque donde se seleccionara los permisos que tendrá el nuevo usuario -->
         <!-- Titulo Seleccione los permisos -->
         <!-- <h2 class="text-center p-1 pb-2 mb-3 border-bottom
             border-dark border border-dark rounded">Seleccione
             Los Permisos</h2> -->
-
-            <!-- Salto de línea -->
-        <br>
-
         <!-- Contenedor de loc checkbox tipo switch para marcar los permisos del nuevo usuario -->
         <!-- <div class="w-100">
 
@@ -380,21 +368,19 @@
                     [consultar-ruta]
                 </label>
             </div> -->
-
-            <!-- Botón de guardar con su respectivo modal de confirmación -->
-            <!-- <div class="mt-5 w-100 d-flex
+        <!-- Botón de guardar con su respectivo modal de confirmación -->
+        <!-- <div class="mt-5 w-100 d-flex
                 justify-content-center"> -->
-                <!-- USO DE MODAL CON BOOTSTRAP 5 PARA EL BOTON GUARDAR-->
-                <!-- Button trigger modal -->
-                <!-- <button type="button" class="btn btn-success
+        <!-- USO DE MODAL CON BOOTSTRAP 5 PARA EL BOTON GUARDAR-->
+        <!-- Button trigger modal -->
+        <!-- <button type="button" class="btn btn-success
                     fs-5 m-2"
                     data-bs-toggle="modal"
                     data-bs-target="#modal-guardar">
                     GUARDAR
                 </button> -->
-
-                <!-- Modal -->
-                <!-- <div class="modal fade" id="modal-guardar"
+        <!-- Modal -->
+        <!-- <div class="modal fade" id="modal-guardar"
                     data-bs-backdrop="static"
                     data-bs-keyboard="false"
                     tabindex="-1"
@@ -432,8 +418,8 @@
                         </div>
                     </div>
                 </div> -->
-                <!-- MODAL INTERNO AL OPRIMIR ACEPTAR EN EL MODAL ANTERIOR DE GUARDAR-->
-                <!-- <div class="modal" id="modal-guardar2">
+        <!-- MODAL INTERNO AL OPRIMIR ACEPTAR EN EL MODAL ANTERIOR DE GUARDAR-->
+        <!-- <div class="modal" id="modal-guardar2">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header alert
@@ -452,14 +438,9 @@
                         </div>
                     </div>
                 </div> -->
-            <!-- </div> -->
-        </div>
+        <!-- </div> -->
+        <!-- </div> -->
 
-        <div class="mt-5 w-100 d-flex
-        justify-content-center">
-        <input class="btn btn-success
-        fs-5 m-2" type="submit" value="GUARDAR">
-        </div>
     </form>
 </div>
 

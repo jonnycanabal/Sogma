@@ -15,8 +15,8 @@
 <!-- Bloque de contenido el cual estara declarado en el body.html y sera lo que se vera dependiente de la página  -->
 {% block contenido %}
 
-<!-- Bloque de codigo del formulario o tabla
-<div class="container">
+<!-- Bloque de codigo del formulario o tabla  -->
+<!-- <div class="container">
     <form action="" method="POST">
         {{form|crispy}}
         {% csrf_token %}
@@ -35,7 +35,7 @@
 
         <!-- Título Seleccione el tipo de activo-->
         <div class="text-center p-2 w-100">
-            <h2>Seleccione el TIpo de Activo</h2>
+            <h2>Seleccione el Tipo de Activo</h2>
         </div>
 
         <!-- Salto de línea -->
@@ -324,7 +324,7 @@
         </div>
 
         <!-- Contenedor donde apareceran los datos básicos del activo para confirmar que selecciono bien. -->
-        <div class="border-bottom border-dark mb-4 pb-4 w-100">
+        <div class="border-bottom border-dark mb-4 pb-5 w-100">
 
             <!-- Titulo Activo Seleccionado -->
             <div class="d-flex justify-content-center p-2
@@ -434,201 +434,10 @@
             <div class="text-center w-100">
                 <h2>Registrar Mantenimiento</h2>
             </div>
-            <br>
-
-            <!-- Inicio del cuadro para seleccionar con el checkbox tipo switch -->
-            <div class="d-flex flex-wrap w-100">
-                <div class="form-check form-check-inline
-                    form-switch ms-3 mb-3">
-                    <input class="form-check-input"
-                        type="checkbox"
-                        id="inlineCheckbox1"
-                        value="option1">
-                    <label class="form-check-label"
-                        for="inlineCheckbox1">Lavado y
-                        Limpieza del vehículo</label>
-                </div>
-
-                <div class="form-check form-check-inline
-                    form-switch ms-3 mb-3">
-                    <input class="form-check-input"
-                        type="checkbox"
-                        id="inlineCheckbox1"
-                        value="option1">
-                    <label class="form-check-label"
-                        for="inlineCheckbox1">Cambio de
-                        Aceite</label>
-                </div>
-
-                <div class="form-check form-check-inline
-                    form-switch ms-3 mb-3">
-                    <input class="form-check-input"
-                        type="checkbox"
-                        id="inlineCheckbox1"
-                        value="option1">
-                    <label class="form-check-label"
-                        for="inlineCheckbox1">Cambio
-                        Filtro de Aceite</label>
-                </div>
-
-                <div class="form-check form-check-inline
-                    form-switch ms-3 mb-3">
-                    <input class="form-check-input"
-                        type="checkbox"
-                        id="inlineCheckbox1"
-                        value="option1">
-                    <label class="form-check-label"
-                        for="inlineCheckbox1">Cambio
-                        Filtro de Aire</label>
-                </div>
-
-                <div class="form-check form-check-inline
-                    form-switch ms-3 mb-3">
-                    <input class="form-check-input"
-                        type="checkbox"
-                        id="inlineCheckbox1"
-                        value="option1">
-                    <label class="form-check-label"
-                        for="inlineCheckbox1">Cambio
-                        Filtro de Combustible</label>
-                </div>
-
-                <div class="form-check form-check-inline
-                    form-switch ms-3 mb-3">
-                    <input class="form-check-input"
-                        type="checkbox"
-                        id="inlineCheckbox1"
-                        value="option1">
-                    <label class="form-check-label"
-                        for="inlineCheckbox1">Cambio
-                        Líquido de Frenos</label>
-                </div>
-
-                <div class="form-check form-check-inline
-                    form-switch ms-3 mb-3">
-                    <input class="form-check-input"
-                        type="checkbox"
-                        id="inlineCheckbox1"
-                        value="option1">
-                    <label class="form-check-label"
-                        for="inlineCheckbox1">Cambio de
-                        Refrigerante</label>
-                </div>
-
-                <div class="form-check form-check-inline
-                    form-switch ms-3 mb-3">
-                    <input class="form-check-input"
-                        type="checkbox"
-                        id="inlineCheckbox1"
-                        value="option1">
-                    <label class="form-check-label"
-                        for="inlineCheckbox1">Cambio de
-                        Bujías</label>
-                </div>
-
-                <div class="form-check form-check-inline
-                    form-switch ms-3 mb-3">
-                    <input class="form-check-input"
-                        type="checkbox"
-                        id="inlineCheckbox1"
-                        value="option1">
-                    <label class="form-check-label"
-                        for="inlineCheckbox1">Cambio de
-                        Pastillas Delanteras</label>
-                </div>
-
-                <div class="form-check form-check-inline
-                    form-switch ms-3 mb-3">
-                    <input class="form-check-input"
-                        type="checkbox"
-                        id="inlineCheckbox1"
-                        value="option1">
-                    <label class="form-check-label"
-                        for="inlineCheckbox1">Cambio de
-                        Pastillas Traseras</label>
-                </div>
-
-                <div class="form-check form-check-inline
-                    form-switch ms-3 mb-3">
-                    <input class="form-check-input"
-                        type="checkbox"
-                        id="inlineCheckbox1"
-                        value="option1">
-                    <label class="form-check-label"
-                        for="inlineCheckbox1">Cambio de
-                        Llanta Delantera Izquierda</label>
-                </div>
-
-                <div class="form-check form-check-inline
-                    form-switch ms-3 mb-3">
-                    <input class="form-check-input"
-                        type="checkbox"
-                        id="inlineCheckbox1"
-                        value="option1">
-                    <label class="form-check-label"
-                        for="inlineCheckbox1">Cambio de
-                        Llanta Delantera Derecha</label>
-                </div>
-
-                <div class="form-check form-check-inline
-                    form-switch ms-3 mb-3">
-                    <input class="form-check-input"
-                        type="checkbox"
-                        id="inlineCheckbox1"
-                        value="option1">
-                    <label class="form-check-label"
-                        for="inlineCheckbox1">Cambio de
-                        Llanta Trasera Izquierda</label>
-                </div>
-
-                <div class="form-check form-check-inline
-                    form-switch ms-3 mb-3">
-                    <input class="form-check-input"
-                        type="checkbox"
-                        id="inlineCheckbox1"
-                        value="option1">
-                    <label class="form-check-label"
-                        for="inlineCheckbox1">Cambio de
-                        Llanta Trasera Derecha</label>
-                </div>
-
-                <div class="form-check form-check-inline
-                    form-switch ms-3 mb-3">
-                    <input class="form-check-input"
-                        type="checkbox"
-                        id="inlineCheckbox1"
-                        value="option1">
-                    <label class="form-check-label"
-                        for="inlineCheckbox1">Rotación
-                        de Llantas</label>
-                </div>
-
-                <div class="form-check form-check-inline
-                    form-switch ms-3 mb-3">
-                    <input class="form-check-input"
-                        type="checkbox"
-                        id="inlineCheckbox1"
-                        value="option1">
-                    <label class="form-check-label"
-                        for="inlineCheckbox1">Balanceo
-                        de Llantas</label>
-                </div>
-
-                <div class="form-check form-check-inline
-                    form-switch ms-3 mb-3">
-                    <input class="form-check-input"
-                        type="checkbox"
-                        id="inlineCheckbox1"
-                        value="option1">
-                    <label class="form-check-label"
-                        for="inlineCheckbox1">Cambio
-                        Correa de Distribución</label>
-                </div>
-            </div>
         </div>
 
         <!-- Cuadro donde se continuara con el registro del mantenimiento con informacion mas puntual -->
-        <div class="mt-4 border-top border-dark pt-4 w-100">
+        <div class="mt-4 border-dark pt-4 w-100">
             <div class="d-inline-block width-20 ms-1
                 me-5">
                 <label for="basic-url" class="form-label
@@ -647,9 +456,9 @@
                 <label for="basic-url" class="form-label
                     w-75 ps-2">FECHA DEL MANTENIMIENTO</label>
                 <div class="input-group mb-3 w-100">
-                    <input type="date"
+                    <input type="date" name="fechaMantenimiento"
                         class="form-control"
-                        id="fechaMantenimiento"
+                        id="id_fechaMantenimiento"
                         aria-describedby="basic-addon3">
                 </div>
             </div>
@@ -659,9 +468,9 @@
                 <label for="basic-url" class="form-label
                     w-75 ps-2">LUGAR DEL MANTENIMIENTO</label>
                 <div class="input-group mb-3 w-100">
-                    <input type="text"
+                    <input type="text" name="lugarMantenimiento"
                         class="form-control"
-                        id="lugarMantenimiento"
+                        id="id_lugarMantenimiento"
                         aria-describedby="basic-addon3">
                 </div>
             </div>
@@ -672,8 +481,8 @@
                     w-75 ps-2">CIUDAD DEL MANTENIMIENTO</label>
                 <div class="input-group mb-3 w-100">
                     <input type="text"
-                        class="form-control"
-                        id="ciudadMantenimiento"
+                        class="form-control" name="ciudadMantenimiento"
+                        id="id_ciudadMantenimiento"
                         aria-describedby="basic-addon3">
                 </div>
             </div>
@@ -684,8 +493,8 @@
                     w-75 ps-2">KILOMETRAJE DEL VEHÍCULO</label>
                 <div class="input-group mb-3 w-100">
                     <input type="text"
-                        class="form-control"
-                        id="kilometrajeMantenimiento"
+                        class="form-control" name="kilometrajeMantenimiento"
+                        id="id_kilometrajeMantenimiento"
                         aria-describedby="basic-addon3">
                 </div>
             </div>
@@ -696,8 +505,8 @@
                     w-75 ps-2">NUMERO DE FACTURA</label>
                 <div class="input-group mb-3 w-100">
                     <input type="text"
-                        class="form-control"
-                        id="numeroFactura"
+                        class="form-control" name="numeroFactura"
+                        id="id_numeroFactura"
                         aria-describedby="basic-addon3">
                 </div>
             </div>
@@ -708,8 +517,8 @@
                     w-75 ps-2">VALOR DEL MANTENIMIENTO</label>
                 <div class="input-group mb-3 w-100">
                     <input type="text"
-                        class="form-control"
-                        id="valorMantenimiento"
+                        class="form-control" name="valorMantenimiento"
+                        id="id_valorMantenimiento"
                         aria-describedby="basic-addon3">
                 </div>
             </div>
@@ -723,7 +532,7 @@
                         ps-2 fs-4 w-100">DESCRIPCIÓN DEL
                         MANTENIMIENTO</label>
                     <div class="mb-3 w-100">
-                        <textarea id="descripcionMantenimiento" class="form-control border
+                        <textarea id="id_descripcionMantenimiento" name="descripcionMantenimiento" class="form-control border
                             border-dark w-100" style="height:
                             200px; resize: none;"></textarea>
                     </div>

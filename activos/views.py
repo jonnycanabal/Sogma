@@ -47,3 +47,6 @@ def control_activos(request):
 #         'form':form
 #     }
 #     return render (request, 'gestionActivos/controlActivos.html', context)
+
+
+# ---------------------------FUNCIONES PARA CONSULTAR VEHICULOS, EXTINTOR Y EQUIPOS DE OFICINA---------------------------------

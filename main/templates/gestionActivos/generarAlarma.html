@@ -15,14 +15,14 @@
 <!-- Bloque de contenido el cual estara declarado en el body.html y sera lo que se vera dependiente de la página  -->
 {% block contenido %}
 
-<!-- Bloque de codigo del formulario o tabla
-<div class="container">
+<!-- Bloque de codigo del formulario o tabla -->
+<!-- <div class="container">
     <form action="" method="POST">
         {{form|crispy}}
         {% csrf_token %}
         <input type="submit" value="Registrar">
     </form>
-</div> -->
+</div>  -->
 
 <!-- Inicio del contenedor para la página generar alarma -->
 <div  id="div-caja3" class="container p-3 my-4 pb-4 d-flex
@@ -49,7 +49,7 @@
                 <select class="form-select"
                     aria-label="tipo-activo">
                     <option selected>Seleccione el Activo</option>
-                    <option value="1">Vehículo</option>
+                    <option value="">Vehículo</option>
                     <option value="2">Extintor</option>
                     <option value="3">Equipo Oficina</option>
                 </select>
@@ -71,8 +71,8 @@
             <label for="basic-url" class="form-label w-75 ps-2">FECHA
                 DE MANTENIMIENTO</label>
             <div class="input-group mb-3 w-100">
-                <input id="fechaMantenimiento" type="text" class="form-control"
-                    id="fechaMantenimiento"
+                <input id="fechaMantenimiento" type="text" class="form-control" name="fechaMantenimiento"
+                    id="id_fechaMantenimiento"
                     aria-describedby="basic-addon3"
                     placeholder="FECHA DE MANTENIMIENTO">
             </div>
@@ -82,12 +82,12 @@
             <label for="basic-url" class="form-label w-75 ps-2">TIPO
                 DE MANTENIMIENTO</label>
             <div class="input-group mb-3 w-100">
-            <select id="tipoMantenimiento" class="form-select"
+            <select id="id_tipoMantenimiento" class="form-select" name="tipoMantenimiento"
                 aria-label="tipo-activo">
                 <option selected>--TIPO DE MANTENIMIENTO--</option>
-                <option value="1">Periodico</option>
-                <option value="2">Preventivo</option>
-                <option value="3">Kilometraje</option>
+                <option value="Periodico">Periodico</option>
+                <option value="Preventivo">Preventivo</option>
+                <option value="Kilometraje">Kilometraje</option>
             </select>
             </div>
         </div>
@@ -99,15 +99,11 @@
         <!-- Text Area descripción -->
         <label class="ms-3 mb-2">DESCRIPCIÓN</label>
         <div class="form-floating ms-1 textarea-alarma">
-            <textarea class="form-control textarea-alarma"
+            <textarea class="form-control textarea-alarma" name="descripcionMantenimiento"
                 style="resize: none; height:
                 150px;" placeholder="Leave a comment here"
-                id="descripcionMantenimiento" style="height: 100px"></textarea>
+                id="id_descripcionMantenimiento" style="height: 100px"></textarea>
         </div>
-
-        <!-- Salto de línea -->
-        <br>
-        <br>
 
         <!-- USO DE MODAL CON BOOTSTRAP 5 PARA EL BOTON GERAR-->
         <!-- Button trigger modal -->

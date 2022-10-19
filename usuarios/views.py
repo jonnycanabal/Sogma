@@ -19,12 +19,14 @@ def usuarios_creados(request):
 def nuevo_usuario(request):
     titulo='Nuevo-Usuario'
     if request.method == "POST":
+        print(request.POST)
         form=UsuarioForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('usuarios-creados')
         else:
-            print(request.POST)
+            form=UsuarioForm(request.POST)
+
     else:
         form=UsuarioForm()
     context={
