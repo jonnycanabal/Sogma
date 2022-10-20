@@ -15,8 +15,8 @@
 <!-- Bloque de contenido el cual estara declarado en el body.html y sera lo que se vera dependiente de la página  -->
 {% block contenido %}
 
-<!--<div class="container">
-     <form action="" method="POST">
+<!-- <div class="container">
+    <form action="" method="POST">
         {{form|crispy}}
         {% csrf_token %}
         <input type="submit" value="Registrar">
@@ -46,7 +46,7 @@
 <br>
 <br>
 
-</div>-->
+</div> -->
 
 
 <!-- INICIO DEL MAIN-->
@@ -54,7 +54,7 @@
 
     <!-- Inicio del primer contenedor de la página-->
     <div id="div-cajas" class="container p-3 my-4 pt-0">
-
+        
         <div class="text-center p-2 w-100">
             <h2>Seleccione el Tipo de Activo</h2>
         </div>
@@ -158,7 +158,6 @@
                                 <td>{{vehiculo.fechaFinSoat}}</td>
                                 <td>{{vehiculo.fechaInicioTecnicomecanica}}</td>
                                 <td>{{vehiculo.fechaVencimientoTecnicomecanica}}</td>
-                                <td>{{vehiculo.}}</td>
                             </tr>
                             {% endfor %}
 
@@ -195,14 +194,15 @@
     <div style="display: none;" id="table-extintor">
         <div class="d-flex flex-column" >
             <div class="h3 ms-5">Extintores</div>
-            <!-- EXTINTORES --------------------------------------------------------------------------------------------- -->
+
+<!-- EXTINTORES --------------------------------------------------------------------------------------------- -->
 
             <div class="d-flex justify-content-center pb-4 mb-4 m-2 w-100 p-3">
                 <!-- Inicio del segundo contenedor de la página-->
                 <!-- Inicio de la Tabla usando (DataTable) -->
                 <div class="overflow-auto shadow-lg p-4
             height-config-tabla1 m-2 w-100" style="height: 300px;">
-                    <table id="example3" class="table-striped display nowrap">
+                    <table id="example2" class="table-striped display nowrap">
 
                         <!-- Cabecera de la tabla (Donde estaran los enunciados principales)-->
                         <thead>
@@ -257,6 +257,8 @@
         </div>
     </div>
 
+    <!-- EQUIPOS DE OFICINA ------------------------------------------------------------------------------- -->
+    
     <div style="display: none;" id="table-oficina">
         <div class="d-flex flex-column" >
             <div class="h3 ms-5">Equipos de Oficina</div>
@@ -265,7 +267,7 @@
                 <!-- Inicio de la Tabla usando (DataTable) -->
                 <div class="overflow-auto shadow-lg p-4
             height-config-tabla1 m-2 w-100" style="height: 300px;">
-                    <table id="example4" class="table-striped display nowrap">
+                    <table id="example3" class="table-striped display nowrap">
 
                         <!-- Cabecera de la tabla (Donde estaran los enunciados principales)-->
                         <thead>
@@ -286,22 +288,28 @@
                         <!-- Cuerpo de la tabla (donde estara la informacion que se mostrara de los activos) -->
                         <tbody>
 
-                            {% for equipoOficina in activos %}
+                            {% for equipo in equipos %}
                             <tr>
                                 <!-- Imagen de un ojo con el cual seleccionara el activo y mostrara en la parte de abajo toda la informacion
                     para editar, guardar o eliminar/desabilitar la información -->
-                                <td><button class="border-0 rounded-circle" style="background-color: rgba(240, 248,
-                                255, 0);"><img src="{% static 'img/eye.png' %}" alt="iconoOjoSelector" width="20"
-                                            height="20"></td></button>
-                                <td class="text-center">{{equipoOficina.id}}</td>
-                                <td>{{equipoOficina.serialEquipo}}</td>
-                                <td>{{equipoOficina.marcaEquipo}}</td>
-                                <td>{{equipoOficina.colorEquipo}}</td>
-                                <td>{{equipoOficina.sistemaOperativo}}</td>
-                                <td>{{equipoOficina.ramEquipo}}</td>
-                                <td>{{equipoOficina.memoriaEquipo}}</td>
-                                <td>{{equipoOficina.ubicacionEquipo}}</td>
-                                <td>{{equipoOficina.componentesAdicionales}}</td>
+                                <td><button class="border-0
+                                    rounded-circle"
+                                    style="background-color:
+                                    rgba(240, 248,
+                                    255, 0);"><img
+                                        src="{% static 'img/eye.png' %}"
+                                        alt="iconoOjoSelector"
+                                        width="20"
+                                        height="20"></td></button>
+                                <td class="text-center">{{equipo.id}}</td>
+                                <td>{{equipo.serialEquipo}}</td>
+                                <td>{{equipo.marcaEquipo}}</td>
+                                <td>{{equipo.colorEquipo}}</td>
+                                <td>{{equipo.sistemaOperativo}}</td>
+                                <td>{{equipo.ramEquipo}}</td>
+                                <td>{{equipo.memoriaEquipo}}</td>
+                                <td>{{equipo.ubicacionEquipo}}</td>
+                                <td>{{equipo.componentesAdicionales}}</td>
                             </tr>
                             {% endfor %}
 
@@ -329,160 +337,233 @@
         </div>
     </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-    <!-- Fin de la Tabla usando (DataTable) -->
+<!-- Fin de la Tabla usando (DataTable) ------------------------------------------------------------------------------------------ -->
 
     <!-- Inicio del tercer contenedor de la página -->
+    <!-- BOTONES PARA VEHICULO -->
     <div id="div-cajas2" class="p-3 mt-5 border-top border-dark">
-
-        <!-- Los siguientes input deberan mostrar la informacion del activo que se seleccione previamente -->
         <div class="d-inline-block width-20 ms-1 me-5">
-            <label for="basic-url" class="form-label w-75 p-2">TIPO
-                DE
-                ACTIVO</label>
+            <label for="basic-url" class="form-label w-75 p-2">Id Activo</label>
             <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control" id="tipo-activo-control-activo" aria-describedby="basic-addon3"
-                    placeholder="TIPO DE ACTIVO">
+                <input type="text" class="form-control" id="" aria-describedby="basic-addon3">
             </div>
         </div>
 
         <div class="d-inline-block width-20 ms-1 me-5">
-            <label for="basic-url" class="form-label w-75 p-2">ID
-                ACTIVO</label>
+            <label for="basic-url" class="form-label w-75 p-2">Marca del Vehículo</label>
             <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control" id="id-activo-control-activo" aria-describedby="basic-addon3"
-                    placeholder="ID ACTIVO">
+                <input type="text" class="form-control" id="" aria-describedby="basic-addon3">
             </div>
         </div>
 
         <div class="d-inline-block width-20 ms-1 me-5">
-            <label for="basic-url" class="form-label w-75 ps-2">MARCA</label>
+            <label for="basic-url" class="form-label w-75 p-2">Modelo del Vehículo</label>
             <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control" id="marca-control-activo" aria-describedby="basic-addon3"
-                    placeholder="MARCA">
+                <input type="text" class="form-control" id="" aria-describedby="basic-addon3">
             </div>
         </div>
 
         <div class="d-inline-block width-20 ms-1 me-5">
-            <label for="basic-url" class="form-label w-75 ps-2">MODELO</label>
+            <label for="basic-url" class="form-label w-75 p-2">Placa del Vehículo</label>
             <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control" id="modelo-control-activo" aria-describedby="basic-addon3"
-                    placeholder="MODELO">
+                <input type="text" class="form-control" id="" aria-describedby="basic-addon3">
             </div>
         </div>
 
         <div class="d-inline-block width-20 ms-1 me-5">
-            <label for="basic-url" class="form-label w-75 ps-2">PLACA</label>
+            <label for="basic-url" class="form-label w-75 p-2">Color del Vehículo</label>
             <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control" id="placa-control-activo" aria-describedby="basic-addon3"
-                    placeholder="PLACA">
+                <input type="text" class="form-control" id="" aria-describedby="basic-addon3">
             </div>
         </div>
 
         <div class="d-inline-block width-20 ms-1 me-5">
-            <label for="basic-url" class="form-label w-75 ps-2">COLOR</label>
+            <label for="basic-url" class="form-label w-75 p-2">Serial del Vehiculo</label>
             <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control" id="color-control-activo" aria-describedby="basic-addon3"
-                    placeholder="COLOR">
+                <input type="text" class="form-control" id="" aria-describedby="basic-addon3">
             </div>
         </div>
 
         <div class="d-inline-block width-20 ms-1 me-5">
-            <label for="basic-url" class="form-label w-75 ps-2">SERIAL</label>
+            <label for="basic-url" class="form-label w-75 p-2">Tipo de Combustible</label>
             <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control" id="serial-control-activo" aria-describedby="basic-addon3"
-                    placeholder="SERIAL">
+                <input type="text" class="form-control" id="" aria-describedby="basic-addon3">
             </div>
         </div>
 
         <div class="d-inline-block width-20 ms-1 me-5">
-            <label for="basic-url" class="form-label w-75 ps-2">TIPO
-                DE
-                COMBUSTIBLE</label>
+            <label for="basic-url" class="form-label w-75 p-2">Cantidad de Pasajeros</label>
             <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control" id="tipo-combustible-control-activo"
-                    aria-describedby="basic-addon3" placeholder="TIPO DE COMBUSTIBLE">
+                <input type="text" class="form-control" id="" aria-describedby="basic-addon3">
             </div>
         </div>
 
         <div class="d-inline-block width-20 ms-1 me-5">
-            <label for="basic-url" class="form-label w-75 ps-2">CAPACIDAD</label>
+            <label for="basic-url" class="form-label w-75 p-2">Persona a Cargo</label>
             <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control" id="capacidad-control-activo" aria-describedby="basic-addon3"
-                    placeholder="CAPACIDAD">
+                <input type="text" class="form-control" id="" aria-describedby="basic-addon3">
             </div>
         </div>
 
         <div class="d-inline-block width-20 ms-1 me-5">
-            <label for="basic-url" class="form-label w-75 ps-2">UBICACIÓN</label>
+            <label for="basic-url" class="form-label w-75 p-2">Estado del Vehículo</label>
             <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control" id="ubicacion-control-activo" aria-describedby="basic-addon3"
-                    placeholder="UBICACIÓN">
+                <input type="text" class="form-control" id="" aria-describedby="basic-addon3">
             </div>
         </div>
 
         <div class="d-inline-block width-20 ms-1 me-5">
-            <label for="basic-url" class="form-label w-75 ps-2">PERSONA
-                A
-                CARGO</label>
+            <label for="basic-url" class="form-label w-75 p-2">Fecha de Ingreso</label>
             <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control" id="persona-encargada-control-activo"
-                    aria-describedby="basic-addon3" placeholder="PERSONA A CARGO">
+                <input type="text" class="form-control" id="" aria-describedby="basic-addon3">
             </div>
         </div>
 
         <div class="d-inline-block width-20 ms-1 me-5">
-            <label for="basic-url" class="form-label w-75 ps-2">KILOMETRAJE
-                ACTUAL</label>
+            <label for="basic-url" class="form-label w-75 p-2">Fecha Inicio Soat</label>
             <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control" id="kilometraje-control-activo" aria-describedby="basic-addon3"
-                    placeholder="KILOMETRAJE ACTUAL">
+                <input type="text" class="form-control" id="" aria-describedby="basic-addon3">
             </div>
         </div>
 
         <div class="d-inline-block width-20 ms-1 me-5">
-            <label for="basic-url" class="form-label w-75 ps-2">FECHA
-                DE
-                INGRESO</label>
+            <label for="basic-url" class="form-label w-75 p-2">Fecha Vencimiento Soat</label>
             <div class="input-group mb-3 w-100">
-                <input type="date" class="form-control" id="fecha-ingreso-control-activo"
-                    aria-describedby="basic-addon3" placeholder="FECHA DE INGRESO">
+                <input type="text" class="form-control" id="" aria-describedby="basic-addon3">
             </div>
         </div>
 
         <div class="d-inline-block width-20 ms-1 me-5">
-            <label for="basic-url" class="form-label w-75 ps-2">ULTIMA
-                RECARGA</label>
+            <label for="basic-url" class="form-label w-75 p-2">Fecha Inicio Tecnicomecanica</label>
             <div class="input-group mb-3 w-100">
-                <input type="date" class="form-control" id="ultima-recarga-control-activo"
-                    aria-describedby="basic-addon3" placeholder="ULTIMA RECARGA">
+                <input type="text" class="form-control" id="" aria-describedby="basic-addon3">
             </div>
         </div>
 
         <div class="d-inline-block width-20 ms-1 me-5">
-            <label for="basic-url" class="form-label w-75 ps-2 ">ULTIMO
-                MANTENIMIENTO</label>
+            <label for="basic-url" class="form-label w-75 p-2">Fecha Vencimiento Tecnicomecanica</label>
             <div class="input-group mb-3 w-100">
-                <input type="date" class="form-control" id="ultimo-mantenimiento-control-activo"
-                    aria-describedby="basic-addon3" placeholder="ULTIMO MANTENIMIENTO">
+                <input type="text" class="form-control" id="" aria-describedby="basic-addon3">
             </div>
         </div>
     </div>
+
+
+    <!-- BOTONES PARA EXTINTOR -->
+    <div id="div-cajas2" class="p-3 mt-5 border-top border-dark">
+        <div class="d-inline-block width-20 ms-1 me-5">
+            <label for="basic-url" class="form-label w-75 p-2">Id Activo</label>
+            <div class="input-group mb-3 w-100">
+                <input type="text" class="form-control" id="" aria-describedby="basic-addon3">
+            </div>
+        </div>
+
+        <div class="d-inline-block width-20 ms-1 me-5">
+            <label for="basic-url" class="form-label w-75 p-2">Serial del Extintor</label>
+            <div class="input-group mb-3 w-100">
+                <input type="text" class="form-control" id="" aria-describedby="basic-addon3">
+            </div>
+        </div>
+
+        <div class="d-inline-block width-20 ms-1 me-5">
+            <label for="basic-url" class="form-label w-75 p-2">Color del Extintor</label>
+            <div class="input-group mb-3 w-100">
+                <input type="text" class="form-control" id="" aria-describedby="basic-addon3">
+            </div>
+        </div>
+
+        <div class="d-inline-block width-20 ms-1 me-5">
+            <label for="basic-url" class="form-label w-75 p-2">Ubicación del Extintor</label>
+            <div class="input-group mb-3 w-100">
+                <input type="text" class="form-control" id="" aria-describedby="basic-addon3">
+            </div>
+        </div>
+
+        <div class="d-inline-block width-20 ms-1 me-5">
+            <label for="basic-url" class="form-label w-75 p-2">Tipo de Extintor</label>
+            <div class="input-group mb-3 w-100">
+                <input type="text" class="form-control" id="" aria-describedby="basic-addon3">
+            </div>
+        </div>
+
+        <div class="d-inline-block width-20 ms-1 me-5">
+            <label for="basic-url" class="form-label w-75 p-2">Peso del Extintor</label>
+            <div class="input-group mb-3 w-100">
+                <input type="text" class="form-control" id="" aria-describedby="basic-addon3">
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- BOTONES PARA EQUIPOS DE OFICINA -->
+    <div id="div-cajas2" class="p-3 mt-5 border-top border-dark">
+        <div class="d-inline-block width-20 ms-1 me-5">
+            <label for="basic-url" class="form-label w-75 p-2">Id Activo</label>
+            <div class="input-group mb-3 w-100">
+                <input type="text" class="form-control" id="" aria-describedby="basic-addon3">
+            </div>
+        </div>
+
+        <div class="d-inline-block width-20 ms-1 me-5">
+            <label for="basic-url" class="form-label w-75 p-2">Serial Equipo</label>
+            <div class="input-group mb-3 w-100">
+                <input type="text" class="form-control" id="" aria-describedby="basic-addon3">
+            </div>
+        </div>
+
+        <div class="d-inline-block width-20 ms-1 me-5">
+            <label for="basic-url" class="form-label w-75 p-2">Marca Equipo</label>
+            <div class="input-group mb-3 w-100">
+                <input type="text" class="form-control" id="" aria-describedby="basic-addon3">
+            </div>
+        </div>
+
+        <div class="d-inline-block width-20 ms-1 me-5">
+            <label for="basic-url" class="form-label w-75 p-2">Color Equipo</label>
+            <div class="input-group mb-3 w-100">
+                <input type="text" class="form-control" id="" aria-describedby="basic-addon3">
+            </div>
+        </div>
+
+        <div class="d-inline-block width-20 ms-1 me-5">
+            <label for="basic-url" class="form-label w-75 p-2">Sistema Operativo</label>
+            <div class="input-group mb-3 w-100">
+                <input type="text" class="form-control" id="" aria-describedby="basic-addon3">
+            </div>
+        </div>
+
+        <div class="d-inline-block width-20 ms-1 me-5">
+            <label for="basic-url" class="form-label w-75 p-2">Ram del Equipo</label>
+            <div class="input-group mb-3 w-100">
+                <input type="text" class="form-control" id="" aria-describedby="basic-addon3">
+            </div>
+        </div>
+
+        <div class="d-inline-block width-20 ms-1 me-5">
+            <label for="basic-url" class="form-label w-75 p-2">Memoria del Equipo</label>
+            <div class="input-group mb-3 w-100">
+                <input type="text" class="form-control" id="" aria-describedby="basic-addon3">
+            </div>
+        </div>
+
+        <div class="d-inline-block width-20 ms-1 me-5">
+            <label for="basic-url" class="form-label w-75 p-2">Ubicación del Equipo</label>
+            <div class="input-group mb-3 w-100">
+                <input type="text" class="form-control" id="" aria-describedby="basic-addon3">
+            </div>
+        </div>
+
+        <div class="d-inline-block width-20 ms-1 me-5">
+            <label for="basic-url" class="form-label w-75 p-2">Componentes del Equipo</label>
+            <div class="input-group mb-3 w-100">
+                <textarea type="text" class="form-control" id="" aria-describedby="basic-addon3"></textarea>
+            </div>
+        </div>
+
+    </div>
+
+
 
     <!-- Botones de accion (parte final del tercer contenedor de la página)-->
     <div class="w-100 m-1 pb-5">
@@ -580,12 +661,9 @@
             </div>
         </div>
 
-        <button type="button" class="btn btn-secondary fs-5 m-2">NUEVO
-            ACTIVO</button>
-
         <!-- USO DE MODAL CON BOOTSTRAP 5 PARA EL BOTON ELIMINAR-->
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-warning fs-5 m-2" data-bs-toggle="modal"
+        <button type="button" class="btn btn-secondary fs-5 m-2" data-bs-toggle="modal"
             data-bs-target="#modal-nuevo-activo">
             NUEVO
             ACTIVO
@@ -596,10 +674,10 @@
             aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
-
+                    
                     <div class="">
-                        <button type="button" class="btn-close mt-2 me-2 ms-2 float-end" data-bs-dismiss="modal"
-                            aria-label="Close"></button>
+                        <!-- <button type="button" class="btn-close mt-2 me-2 ms-2 float-end" data-bs-dismiss="modal"
+                            aria-label="Close"></button> -->
                         {% include 'partials/wizardForm.html' %}
                     </div>
                 </div>

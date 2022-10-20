@@ -1,5 +1,6 @@
 from multiprocessing import context
 from django.shortcuts import render
+from activos.models import ActivoEquipoOficina, ActivoExtintor, ActivoVehiculo
 
 from gestionActivos.forms import GenerarAlarmaForm, GenerarRutaForm, RegistrarMantenimientoForm
 
@@ -25,9 +26,15 @@ def generar_ruta(request):
 
 def registrar_mantenimiento(request):
     titulo='Registrar-Mantenimiento'
+    extintores= ActivoExtintor.objects.all()
+    vehiculos=ActivoVehiculo.objects.all()
+    equipos=ActivoEquipoOficina.objects.all()
     form=RegistrarMantenimientoForm()
     context={
         'titulo':titulo,
+        'extintores':extintores,
+        'vehiculos':vehiculos,
+        'equipos':equipos,
         'form':form
     }
     return render (request, 'gestionActivos/registrarMantenimiento.html', context)
