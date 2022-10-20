@@ -1,6 +1,6 @@
 from multiprocessing import context
 from django.shortcuts import render
-from activos.models import ActivoExtintor
+from activos.models import ActivoEquipoOficina, ActivoExtintor, ActivoVehiculo
 from activos.forms import ActivoEquipoOficinaForm, ActivoExtintorForm, ActivoVehiculoForm
 
 # Create your views here.
@@ -8,70 +8,103 @@ from activos.forms import ActivoEquipoOficinaForm, ActivoExtintorForm, ActivoVeh
 def control_activos(request):
     titulo='control-activos'
     extintores= ActivoExtintor.objects.all()
-    form=ActivoExtintorForm()
-    form2=ActivoEquipoOficinaForm()
-    form3=ActivoVehiculoForm()
+    vehiculos=ActivoVehiculo.objects.all()
+    equipos=ActivoEquipoOficina.objects.all()
+    formExtintor=ActivoExtintorForm()
+    formVehiculo=ActivoVehiculoForm()
+    formEquipoOficina=ActivoEquipoOficinaForm()
+    
+    if request.method == "POST" and 'form-extintor' in request.POST:
+        form=ActivoExtintorForm(request.POST)
+        if form.is_valid():
+            form.save()
+            print('###################################### EXTINTOR CREADO')
+        else:
+            form=ActivoExtintorForm(request.POST)
+            print('###################################### EXTINTOR ERROR')
+
+    if request.method == "POST" and 'form-oficina' in request.POST:
+        form=ActivoEquipoOficinaForm(request.POST)
+        if form.is_valid():
+            form.save()
+            print('###################################### EQUIPO CREADO')
+        else:
+            form=ActivoEquipoOficinaForm(request.POST)
+            print('###################################### EQUIPO ERROR')
+
+    if request.method == "POST" and 'form-vehiculo' in request.POST:
+        form=ActivoVehiculoForm(request.POST)
+        if form.is_valid():
+            form.save()
+            print('###################################### VEHICULO CREADO')
+        else:
+            form=ActivoVehiculoForm(request.POST)
+            print('###################################### VEHICULO ERROR')
+
     context={
         'titulo':titulo,
         'extintores':extintores,
-        'form':form,
-        'form2':form2,
-        'form3':form3
+        'vehiculos':vehiculos,
+        'equipos':equipos,
+        'formExtintor':formExtintor,
+        'formVehiculo':formVehiculo,
+        'formEquipoOficina':formEquipoOficina
     }
     return render (request, 'activos/controlActivos.html', context)
 
 
+# NO SE POR QUE REQUEIRE DE LOS DOS CODIGOS PARA GUARDAR INFORMACIÓN
 
 
-
-def crear_vehiculo(request):
-    context={
-
-    }
-    return render ()
-
-def crear_extintor(request):
-    context={
-
-    }
-    return render ()
-
-def crear_equipo_oficina(request):
-    context={
-
-    }
-    return render ()
-
-
-
-
-
-# def activo_extintor(request):
-#     titulo='control-activos'
-#     form=ActivoExtintorForm()
+# def crear_extintor(request):
+#     titulo='crear-extintor'
+#     if request.method == "POST":
+#         form=ActivoExtintorForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#         else:
+#             form=ActivoExtintorForm(request.POST)
+#     else:
+#         form=ActivoExtintorForm(request.POST)
 #     context={
 #         'titulo':titulo,
 #         'form':form
 #     }
-#     return render (request, 'gestionActivos/controlActivos.html', context)
+#     return render (request, 'activos/controlActivos.html', context)
 
-# def activo_equipo_oficina(request):
+
+# def crear_vehiculo(request):
 #     titulo='control-activos'
-#     form=ActivoEquipoOficinaForm()
+#     if request.method == "POST":
+#         form=ActivoVehiculoForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#         else:
+#             form=ActivoVehiculoForm(request.POST)
+#     else:
+#         form=ActivoVehiculoForm(request.POST)
 #     context={
 #         'titulo':titulo,
 #         'form':form
 #     }
-#     return render (request, 'gestionActivos/controlActivos.html', context)
+#     return render (request, 'activos/controlActivos.html', context)
 
-# def activo_vehiculo(request):
+
+# def crear_equipo_oficina(request):
 #     titulo='control-activos'
-#     form=ActivoVehiculoForm()
+#     if request.method == "POST":
+#         form=ActivoEquipoOficinaForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#         else:
+#             form=ActivoEquipoOficinaForm(request.POST)
+#     else:
+#         form=ActivoEquipoOficinaForm(request.POST)
 #     context={
 #         'titulo':titulo,
 #         'form':form
 #     }
-#     return render (request, 'gestionActivos/controlActivos.html', context)
+#     return render (request, 'activos/controlActivos.html', context)
 
 
 # ---------------------------FUNCIONES PARA CONSULTAR VEHICULOS, EXTINTOR Y EQUIPOS DE OFICINA---------------------------------
