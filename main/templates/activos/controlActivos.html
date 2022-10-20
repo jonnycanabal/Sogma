@@ -1,0 +1,618 @@
+<!-- ConsultarActivos se extiende de body.html siendo este la clase hija. -->
+{% extends 'partials/body.html' %}
+
+<!-- Cargar la carpeta static -->
+{% load static %}
+
+<!-- Carga crispy form (ayuda visual en los formularios)-->
+{% load crispy_forms_tags %}
+
+<!-- Bloque que incluira el nav.html para que lo muestre en la página -->
+{% block menu %}
+{% include 'partials/nav.html' %}
+{% endblock menu %}
+
+<!-- Bloque de contenido el cual estara declarado en el body.html y sera lo que se vera dependiente de la página  -->
+{% block contenido %}
+
+<div class="container">
+    <!-- <form action="" method="POST">
+        {{form|crispy}}
+        {% csrf_token %}
+        <input type="submit" value="Registrar">
+    </form>
+
+    <br>
+    <br>
+    <br> -->
+
+    <!-- <form action="" method="POST">
+        {{form2|crispy}}
+        {% csrf_token %}
+        <input type="submit" value="Registrar">
+    </form>
+
+    <br>
+    <br>
+    <br>
+
+    <form action="" method="POST">
+        {{form3|crispy}}
+        {% csrf_token %}
+        <input type="submit" value="Registrar">
+    </form> 
+
+<br>
+<br>
+<br> -->
+
+</div>
+
+
+<!-- INICIO DEL MAIN-->
+<main class="bg-light">
+
+    <!-- Inicio del primer contenedor de la página-->
+    <div id="div-cajas" class="container p-3 my-4 pt-0">
+
+        <div class="text-center p-2 w-100">
+            <h2>Seleccione el Tipo de Activo</h2>
+        </div>
+
+        <!-- Salto de línea -->
+        <br>
+
+        <!-- Botones para seleccionar el tipo de activo-->
+        <div class="text-center w-100">
+            <div class="d-inline-block width-20 ms-1 me-5">
+                <div class="input-group mb-3 w-100">
+                    <button type="button" value="vehiculo" onclick="displayTable(this)" class="btn
+                        form-control
+                        width-20 m-2 border border-dark
+                        bg-white
+                        text-dark" style="cursor: pointer;">VEHÍCULO</button>
+                </div>
+            </div>
+
+            <div class="d-inline-block width-20 ms-1 me-5">
+                <div class="input-group mb-3 w-100">
+                    <button type="button" value="extintor" onclick="displayTable(this)"  class="btn
+                        form-control
+                        width-20 m-2 border border-dark
+                        bg-white
+                        text-dark" style="cursor: pointer;">EXTINTOR</button>
+                </div>
+            </div>
+
+            <div class="d-inline-block width-20 ms-1 me-5">
+                <div class="input-group mb-3 w-100">
+                    <button type="button"  value="oficina" onclick="displayTable(this)"  class="btn
+                        form-control
+                        width-20 m-2 border border-dark
+                        bg-white
+                        text-dark" style="cursor: pointer;">EQUIPO
+                        OFICINA</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- VEHICULOS ------------------------------------------------------------------------------- -->
+
+    <div id="table-vehiculo" style="display: none;">
+        <div class="d-flex flex-column" >
+            <div class="h3 ms-5">Vehículos</div>
+            <div class="d-flex justify-content-center pb-4 mb-4 m-2 w-100 p-3">
+                <!-- Inicio del segundo contenedor de la página-->
+
+                <!-- Inicio de la Tabla usando (DataTable) -->
+                <div class="overflow-auto shadow-lg p-4
+            height-config-tabla1 m-2 w-100" style="height: 300px;">
+                    <table id="example" class="table-striped display nowrap">
+
+                        <!-- Cabecera de la tabla (Donde estaran los enunciados principales)-->
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Id Activo</th>
+                                <th>Marca del Vehículo</th>
+                                <th>Modelo del Vehículo</th>
+                                <th>Placa del Vehículo</th>
+                                <th>Color del Vehículo</th>
+                                <th>Serial del Vehiculo</th>
+                                <th>Tipo de Combustible</th>
+                                <th>Cantidad de Pasajeros</th>
+                                <th>Persona a Cargo</th>
+                                <th>Estado del Vehículo</th>
+                                <th>Fecha de Ingreso</th>
+                                <th>Fecha Inicio Soat</th>
+                                <th>Fecha Vencimiento Soat</th>
+                                <th>Fecha Inicio Tecnicomecanica</th>
+                                <th>Fecha Vencimiento Tecnicomecanica</th>
+                            </tr>
+                        </thead>
+
+                        <!-- Cuerpo de la tabla (donde estara la informacion que se mostrara de los activos) -->
+                        <tbody>
+
+                            {% for vehiculo in vehiculos %}
+                            <tr>
+                                <!-- Imagen de un ojo con el cual seleccionara el activo y mostrara en la parte de abajo toda la informacion
+                    para editar, guardar o eliminar/desabilitar la información -->
+                                <td><button class="border-0 rounded-circle" style="background-color: rgba(240, 248,
+                                255, 0);"><img src="{% static 'img/eye.png' %}" alt="iconoOjoSelector" width="20"
+                                            height="20"></td></button>
+                                <td class="text-center">{{vehiculo.id}}</td>
+                                <td>{{vehiculo.marcaVehiculo}}</td>
+                                <td>{{vehiculo.modeloVehiculo}}</td>
+                                <td>{{vehiculo.placaVehiculo}}</td>
+                                <td>{{vehiculo.colorVehiculo}}</td>
+                                <td>{{vehiculo.serialVehiculo}}</td>
+                                <td>{{vehiculo.tipoCombustible}}</td>
+                                <td>{{vehiculo.cantidadPasajeros}}</td>
+                                <td>{{vehiculo.personaEncargadaVehiculo}}</td>
+                                <td>{{vehiculo.estadoVehiculo}}</td>
+                                <td>{{vehiculo.fechaIngresoVehiculo}}</td>
+                                <td>{{vehiculo.fechaInicioSoat}}</td>
+                                <td>{{vehiculo.fechaFinSoat}}</td>
+                                <td>{{vehiculo.fechaInicioTecnicomecanica}}</td>
+                                <td>{{vehiculo.fechaVencimientoTecnicomecanica}}</td>
+                                <td>{{vehiculo.}}</td>
+                            </tr>
+                            {% endfor %}
+
+
+                        </tbody>
+
+                        <!-- Footer de la tabla (Donde estaran los enunciados principales pero en la parte inferior) -->
+                        <tfoot>
+                            <tr>
+                                <th></th>
+                                <th>Id Activo</th>
+                                <th>Marca del Vehículo</th>
+                                <th>Modelo del Vehículo</th>
+                                <th>Placa del Vehículo</th>
+                                <th>Color del Vehículo</th>
+                                <th>Serial del Vehiculo</th>
+                                <th>Tipo de Combustible</th>
+                                <th>Cantidad de Pasajeros</th>
+                                <th>Persona a Cargo</th>
+                                <th>Estado del Vehículo</th>
+                                <th>Fecha de Ingreso</th>
+                                <th>Fecha Inicio Soat</th>
+                                <th>Fecha Vencimiento Soat</th>
+                                <th>Fecha Inicio Tecnicomecanica</th>
+                                <th>Fecha Vencimiento Tecnicomecanica</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div style="display: none;" id="table-extintor">
+        <div class="d-flex flex-column" >
+            <div class="h3 ms-5">Extintores</div>
+
+<!-- EXTINTORES --------------------------------------------------------------------------------------------- -->
+
+            <div class="d-flex justify-content-center pb-4 mb-4 m-2 w-100 p-3">
+                <!-- Inicio del segundo contenedor de la página-->
+                <!-- Inicio de la Tabla usando (DataTable) -->
+                <div class="overflow-auto shadow-lg p-4
+            height-config-tabla1 m-2 w-100" style="height: 300px;">
+                    <table id="example3" class="table-striped display nowrap">
+
+                        <!-- Cabecera de la tabla (Donde estaran los enunciados principales)-->
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Id Activo</th>
+                                <th>Serial Extintor</th>
+                                <th>Color Extintor</th>
+                                <th>Ubicación del Extintor</th>
+                                <th>Tipo de Extintor</th>
+                                <th>Peso del Extintor</th>
+                            </tr>
+                        </thead>
+
+                        <!-- Cuerpo de la tabla (donde estara la informacion que se mostrara de los activos) -->
+                        <tbody>
+
+                            {% for extintor in extintores %}
+                            <tr>
+                                <!-- Imagen de un ojo con el cual seleccionara el activo y mostrara en la parte de abajo toda la informacion
+                    para editar, guardar o eliminar/desabilitar la información -->
+                                <td><button class="border-0 rounded-circle" style="background-color: rgba(240, 248,
+                                255, 0);"><img src="{% static 'img/eye.png' %}" alt="iconoOjoSelector" width="20"
+                                            height="20"></td></button>
+                                <td class="text-center">{{extintor.id}}</td>
+                                <td>{{extintor.serialExtintor}}</td>
+                                <td>{{extintor.colorExtintor}}</td>
+                                <td>{{extintor.ubicacionExtintor}}</td>
+                                <td>{{extintor.tipoExtintor}}</td>
+                                <td>{{extintor.pesoExtintor}}</td>
+                            </tr>
+                            {% endfor %}
+
+
+                        </tbody>
+
+                        <!-- Footer de la tabla (Donde estaran los enunciados principales pero en la parte inferior) -->
+                        <tfoot>
+                            <tr>
+                                <th></th>
+                                <th>Id Activo</th>
+                                <th>Serial Extintor</th>
+                                <th>Color Extintor</th>
+                                <th>Ubicación del Extintor</th>
+                                <th>Tipo de Extintor</th>
+                                <th>Peso del Extintor</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- EQUIPOS DE OFICINA ------------------------------------------------------------------------------- -->
+    <div style="display: none;" id="table-oficina">
+        <div class="d-flex flex-column" >
+            <div class="h3 ms-5">Equipos de Oficina</div>
+            <div class="d-flex justify-content-center pb-4 mb-4 m-2 w-100 p-3">
+                <!-- Inicio del segundo contenedor de la página-->
+                <!-- Inicio de la Tabla usando (DataTable) -->
+                <div class="overflow-auto shadow-lg p-4
+            height-config-tabla1 m-2 w-100" style="height: 300px;">
+                    <table id="example4" class="table-striped display nowrap">
+
+                        <!-- Cabecera de la tabla (Donde estaran los enunciados principales)-->
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Id Activo</th>
+                                <th>Serial Equipo</th>
+                                <th>Marca Equipo</th>
+                                <th>Color Equipo</th>
+                                <th>Sistema Operativo</th>
+                                <th>Ram del Equipo</th>
+                                <th>Memoria del Equipo</th>
+                                <th>Ubicación del Equipo</th>
+                                <th>Componentes del Equipo</th>
+                            </tr>
+                        </thead>
+
+                        <!-- Cuerpo de la tabla (donde estara la informacion que se mostrara de los activos) -->
+                        <tbody>
+
+                            {% for equipo in equipos %}
+                            <tr>
+                                <!-- Imagen de un ojo con el cual seleccionara el activo y mostrara en la parte de abajo toda la informacion
+                    para editar, guardar o eliminar/desabilitar la información -->
+                                <td><button class="border-0 rounded-circle" style="background-color: rgba(240, 248,
+                                255, 0);"><img src="{% static 'img/eye.png' %}" alt="iconoOjoSelector" width="20"
+                                            height="20"></td></button>
+                                <td class="text-center">{{equipo.id}}</td>
+                                <td>{{equipo.serialEquipo}}</td>
+                                <td>{{equipo.marcaEquipo}}</td>
+                                <td>{{equipo.colorEquipo}}</td>
+                                <td>{{equipo.sistemaOperativo}}</td>
+                                <td>{{equipo.ramEquipo}}</td>
+                                <td>{{equipo.memoriaEquipo}}</td>
+                                <td>{{equipo.ubicacionEquipo}}</td>
+                                <td>{{equipo.componentesAdicionales}}</td>
+                            </tr>
+                            {% endfor %}
+
+
+                        </tbody>
+
+                        <!-- Footer de la tabla (Donde estaran los enunciados principales pero en la parte inferior) -->
+                        <tfoot>
+                            <tr>
+                                <th></th>
+                                <th>Id Activo</th>
+                                <th>Serial Equipo</th>
+                                <th>Marca Equipo</th>
+                                <th>Color Equipo</th>
+                                <th>Sistema Operativo</th>
+                                <th>Ram del Equipo</th>
+                                <th>Memoria del Equipo</th>
+                                <th>Ubicación del Equipo</th>
+                                <th>Componentes del Equipo</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    <!-- Fin de la Tabla usando (DataTable) -->
+
+    <!-- Inicio del tercer contenedor de la página -->
+    <div id="div-cajas2" class="p-3 mt-5 border-top border-dark">
+
+        <!-- Los siguientes input deberan mostrar la informacion del activo que se seleccione previamente -->
+        <div class="d-inline-block width-20 ms-1 me-5">
+            <label for="basic-url" class="form-label w-75 p-2">TIPO
+                DE
+                ACTIVO</label>
+            <div class="input-group mb-3 w-100">
+                <input type="text" class="form-control" id="tipo-activo-control-activo" aria-describedby="basic-addon3"
+                    placeholder="TIPO DE ACTIVO">
+            </div>
+        </div>
+
+        <div class="d-inline-block width-20 ms-1 me-5">
+            <label for="basic-url" class="form-label w-75 p-2">ID
+                ACTIVO</label>
+            <div class="input-group mb-3 w-100">
+                <input type="text" class="form-control" id="id-activo-control-activo" aria-describedby="basic-addon3"
+                    placeholder="ID ACTIVO">
+            </div>
+        </div>
+
+        <div class="d-inline-block width-20 ms-1 me-5">
+            <label for="basic-url" class="form-label w-75 ps-2">MARCA</label>
+            <div class="input-group mb-3 w-100">
+                <input type="text" class="form-control" id="marca-control-activo" aria-describedby="basic-addon3"
+                    placeholder="MARCA">
+            </div>
+        </div>
+
+        <div class="d-inline-block width-20 ms-1 me-5">
+            <label for="basic-url" class="form-label w-75 ps-2">MODELO</label>
+            <div class="input-group mb-3 w-100">
+                <input type="text" class="form-control" id="modelo-control-activo" aria-describedby="basic-addon3"
+                    placeholder="MODELO">
+            </div>
+        </div>
+
+        <div class="d-inline-block width-20 ms-1 me-5">
+            <label for="basic-url" class="form-label w-75 ps-2">PLACA</label>
+            <div class="input-group mb-3 w-100">
+                <input type="text" class="form-control" id="placa-control-activo" aria-describedby="basic-addon3"
+                    placeholder="PLACA">
+            </div>
+        </div>
+
+        <div class="d-inline-block width-20 ms-1 me-5">
+            <label for="basic-url" class="form-label w-75 ps-2">COLOR</label>
+            <div class="input-group mb-3 w-100">
+                <input type="text" class="form-control" id="color-control-activo" aria-describedby="basic-addon3"
+                    placeholder="COLOR">
+            </div>
+        </div>
+
+        <div class="d-inline-block width-20 ms-1 me-5">
+            <label for="basic-url" class="form-label w-75 ps-2">SERIAL</label>
+            <div class="input-group mb-3 w-100">
+                <input type="text" class="form-control" id="serial-control-activo" aria-describedby="basic-addon3"
+                    placeholder="SERIAL">
+            </div>
+        </div>
+
+        <div class="d-inline-block width-20 ms-1 me-5">
+            <label for="basic-url" class="form-label w-75 ps-2">TIPO
+                DE
+                COMBUSTIBLE</label>
+            <div class="input-group mb-3 w-100">
+                <input type="text" class="form-control" id="tipo-combustible-control-activo"
+                    aria-describedby="basic-addon3" placeholder="TIPO DE COMBUSTIBLE">
+            </div>
+        </div>
+
+        <div class="d-inline-block width-20 ms-1 me-5">
+            <label for="basic-url" class="form-label w-75 ps-2">CAPACIDAD</label>
+            <div class="input-group mb-3 w-100">
+                <input type="text" class="form-control" id="capacidad-control-activo" aria-describedby="basic-addon3"
+                    placeholder="CAPACIDAD">
+            </div>
+        </div>
+
+        <div class="d-inline-block width-20 ms-1 me-5">
+            <label for="basic-url" class="form-label w-75 ps-2">UBICACIÓN</label>
+            <div class="input-group mb-3 w-100">
+                <input type="text" class="form-control" id="ubicacion-control-activo" aria-describedby="basic-addon3"
+                    placeholder="UBICACIÓN">
+            </div>
+        </div>
+
+        <div class="d-inline-block width-20 ms-1 me-5">
+            <label for="basic-url" class="form-label w-75 ps-2">PERSONA
+                A
+                CARGO</label>
+            <div class="input-group mb-3 w-100">
+                <input type="text" class="form-control" id="persona-encargada-control-activo"
+                    aria-describedby="basic-addon3" placeholder="PERSONA A CARGO">
+            </div>
+        </div>
+
+        <div class="d-inline-block width-20 ms-1 me-5">
+            <label for="basic-url" class="form-label w-75 ps-2">KILOMETRAJE
+                ACTUAL</label>
+            <div class="input-group mb-3 w-100">
+                <input type="text" class="form-control" id="kilometraje-control-activo" aria-describedby="basic-addon3"
+                    placeholder="KILOMETRAJE ACTUAL">
+            </div>
+        </div>
+
+        <div class="d-inline-block width-20 ms-1 me-5">
+            <label for="basic-url" class="form-label w-75 ps-2">FECHA
+                DE
+                INGRESO</label>
+            <div class="input-group mb-3 w-100">
+                <input type="date" class="form-control" id="fecha-ingreso-control-activo"
+                    aria-describedby="basic-addon3" placeholder="FECHA DE INGRESO">
+            </div>
+        </div>
+
+        <div class="d-inline-block width-20 ms-1 me-5">
+            <label for="basic-url" class="form-label w-75 ps-2">ULTIMA
+                RECARGA</label>
+            <div class="input-group mb-3 w-100">
+                <input type="date" class="form-control" id="ultima-recarga-control-activo"
+                    aria-describedby="basic-addon3" placeholder="ULTIMA RECARGA">
+            </div>
+        </div>
+
+        <div class="d-inline-block width-20 ms-1 me-5">
+            <label for="basic-url" class="form-label w-75 ps-2 ">ULTIMO
+                MANTENIMIENTO</label>
+            <div class="input-group mb-3 w-100">
+                <input type="date" class="form-control" id="ultimo-mantenimiento-control-activo"
+                    aria-describedby="basic-addon3" placeholder="ULTIMO MANTENIMIENTO">
+            </div>
+        </div>
+    </div>
+
+    <!-- Botones de accion (parte final del tercer contenedor de la página)-->
+    <div class="w-100 m-1 pb-5">
+
+        <button type="button" id="btn-editar" class="btn
+            btn-secondary
+            fs-5 m-2">EDITAR</button>
+
+        <!-- USO DE MODAL CON BOOTSTRAP 5 PARA EL BOTON GUARDAR-->
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-success fs-5 m-2" data-bs-toggle="modal" data-bs-target="#modal-guardar">
+            GUARDAR
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="modal-guardar" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">VERIFICAR</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body text-start">
+                        Esta seguro que desea guardar los
+                        cambios.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn
+                            btn-secondary" data-bs-dismiss="modal">CANCELAR</button>
+                        <button type="button" data-bs-toggle="modal" data-bs-target="#modal-guardar2"
+                            data-bs-dismiss="modal" class="btn
+                            btn-primary">ACEPTAR </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- MODAL INTERNO AL OPRIMIR ACEPTAR EN EL MODAL ANTERIOR DE GUARDAR-->
+        <div class="modal" id="modal-guardar2">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header alert alert-success">
+                        <h5 class="modal-tittle">Guardado Exitoso</h5>
+                        <button class="btn-close" type="buttom" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body text-start">
+                        Los cambios se Guardaron con Exito.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- USO DE MODAL CON BOOTSTRAP 5 PARA EL BOTON ELIMINAR-->
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-danger fs-5 m-2" data-bs-toggle="modal" data-bs-target="#modal-eliminar">
+            ELIMINAR
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="modal-eliminar" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">ALERTA DE
+                            ELIMINACIÓN</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body text-start">
+                        ¿Esta seguro que desea Eliminar El
+                        activo Seleccionado?.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn
+                            btn-secondary" data-bs-dismiss="modal">CANCELAR</button>
+                        <button type="button" data-bs-toggle="modal" data-bs-target="#modal-eliminar2"
+                            data-bs-dismiss="modal" class="btn
+                            btn-primary">ACEPTAR</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- MODAL INTERNO AL OPRIMIR ACEPTAR EN EL MODAL ANTERIOR DE ELIMINAR-->
+        <div class="modal" id="modal-eliminar2">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header alert alert-success">
+                        <h5 class="modal-tittle">Eliminacion Exitosa</h5>
+                        <button class="btn-close" type="buttom" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body text-start">
+                        El Activo de Elimino de Manera Exitosa.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- USO DE MODAL CON BOOTSTRAP 5 PARA EL BOTON ELIMINAR-->
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-secondary fs-5 m-2" data-bs-toggle="modal"
+            data-bs-target="#modal-nuevo-activo">
+            NUEVO
+            ACTIVO
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="modal-nuevo-activo" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="">
+                        <!-- <button type="button" class="btn-close mt-2 me-2 ms-2 float-end" data-bs-dismiss="modal"
+                            aria-label="Close"></button> -->
+                        {% include 'partials/wizardForm.html' %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Este boton o link cuando se oprime debera redireccionar a un archivo en pdf o excel donde mostrar el reporte del activo -->
+        <a href="generar-reporte.html" class="btn btn-secondary fs-5
+            m-2">GENERAR
+            REPORTE</a>
+
+    </div>
+
+</main>
+
+{% endblock contenido %}

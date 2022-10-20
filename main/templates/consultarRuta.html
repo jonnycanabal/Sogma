@@ -4,6 +4,8 @@
 <!-- Cargar la carpeta static -->
 {% load static %}
 
+{% load crispy_forms_tags %}
+
 <!-- Bloque que incluira el nav.html para que lo muestre en la página -->
 {% block menu %}
     {% include 'partials/nav.html' %}
@@ -11,6 +13,7 @@
 
 <!-- Bloque de contenido el cual estara declarado en el body.html y sera lo que se vera dependiente de la página  -->
 {% block contenido %}
+
 
 <!-- Inicio del contenedor para la página consultar ruta -->
 <div id="div-caja3" class="container p-3 my-4 pb-4 d-flex
@@ -419,10 +422,12 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                
+                                {% for ruta in rutas %}
                                 <tr>
-                                    <td class="text-center">001</td>
-                                    <td>15/01/2022</td>
-                                    <td>Jonny Canabal</td>
+                                    <td class="text-center">{{ruta.id}}</td>
+                                    <td>{{ruta.fechaSalida}}</td>
+                                    <td>{{ruta.fkUsuario}}</td>
                                     <!-- Imagen de una lupa con la cual seleccionara la ruta y 
                                     te redireccionara a la página con la información de dicha rutay con algunos campos activos
                                     para editar, guardar o eliminar/desabilitar la información -->
@@ -436,91 +441,7 @@
                                                 width="20"
                                                 height="20"></td></button>
                                 </tr>
-                                <tr>
-                                    <td class="text-center">002</td>
-                                    <td>18/01/2022</td>
-                                    <td>Jonny Canabal</td>
-                                    <!-- Imagen de una lupa con la cual seleccionara la ruta y 
-                                    te redireccionara a la página con la información de dicha rutay con algunos campos activos
-                                    para editar, guardar o eliminar/desabilitar la información -->
-                                    <td class="text-center"><button
-                                            class="border-0"
-                                            style="background-color:
-                                            rgba(240, 248,
-                                            255, 0);"><img
-                                                src="{% static 'img/search.png'%}"
-                                                alt="iconoOjoSelector"
-                                                width="20"
-                                                height="20"></td></button>
-                                </tr>
-                                <tr>
-                                    <td class="text-center">003</td>
-                                    <td>21/01/2022</td>
-                                    <td>Nicolas Molina</td>
-                                    <!-- Imagen de una lupa con la cual seleccionara la ruta y 
-                                    te redireccionara a la página con la información de dicha rutay con algunos campos activos
-                                    para editar, guardar o eliminar/desabilitar la información -->
-                                    <td class="text-center"><button
-                                            class="border-0"
-                                            style="background-color:
-                                            rgba(240, 248,
-                                            255, 0);"><img
-                                                src="{% static 'img/search.png'%}"
-                                                alt="iconoOjoSelector"
-                                                width="20"
-                                                height="20"></td></button>
-                                </tr>
-                                <tr>
-                                    <td class="text-center">004</td>
-                                    <td>24/01/2022</td>
-                                    <td>Nicolas Molina</td>
-                                    <!-- Imagen de una lupa con la cual seleccionara la ruta y 
-                                    te redireccionara a la página con la información de dicha rutay con algunos campos activos
-                                    para editar, guardar o eliminar/desabilitar la información -->
-                                    <td class="text-center"><button
-                                            class="border-0"
-                                            style="background-color:
-                                            rgba(240, 248,
-                                            255, 0);"><img
-                                                src="{% static 'img/search.png'%}"
-                                                alt="iconoOjoSelector"
-                                                width="20"
-                                                height="20"></td></button>
-                                </tr>
-                                <tr>
-                                    <td class="text-center">005</td>
-                                    <td>27/01/2022</td>
-                                    <td>Silverio Pedroza</td>
-                                    <!-- Imagen de una lupa con la cual seleccionara la ruta y 
-                                    te redireccionara a la página con la información de dicha rutay con algunos campos activos
-                                    para editar, guardar o eliminar/desabilitar la información -->
-                                    <td class="text-center"><button
-                                            class="border-0"
-                                            style="background-color:
-                                            rgba(240, 248,
-                                            255, 0);"><img
-                                                src="{% static 'img/search.png'%}"
-                                                alt="iconoOjoSelector"
-                                                width="20"
-                                                height="20"></td></button>
-                                </tr>
-                                <tr>
-                                    <td class="text-center">006</td>
-                                    <td>30/01/2022</td>
-                                    <td>Silverio Pedroza</td>
-                                    <!-- Imagen de una lupa con la cual seleccionara la ruta y 
-                                    te redireccionara a la página con la información de dicha rutay con algunos campos activos
-                                    para editar, guardar o eliminar/desabilitar la información -->
-                                    <td class="text-center"><button
-                                            class="border-0"
-                                            style="background-color:
-                                            rgba(240, 248,
-                                            255, 0);"><img
-                                                src="{% static 'img/search.png'%}"
-                                                alt="iconoOjoSelector"
-                                                width="20"
-                                                height="20"></td></button>
-                                </tr>
+                                {% endfor %}
                             </tbody>
 
                             <!-- Footer de la tabla Historial (Donde estaran los enunciados principales pero en la parte inferior) -->

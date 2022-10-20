@@ -4,6 +4,8 @@
 <!-- Cargar la carpeta static -->
 {% load static %}
 
+<!-- Carga crispy form (ayuda visual en los formularios)-->
+{% load crispy_forms_tags %}
 
 <!-- Bloque que incluira el nav.html para que lo muestre en la página -->
 {% block menu %}
@@ -13,14 +15,24 @@
 <!-- Bloque de contenido el cual estara declarado en el body.html y sera lo que se vera dependiente de la página  -->
 {% block contenido %}
 
+<!-- Bloque de codigo del formulario o tabla -->
+<!-- <div class="container">
+    <form action="" method="POST">
+        {{form|crispy}}
+        {% csrf_token %}
+        <input type="submit" value="Registrar">
+    </form>
+</div> -->
+
+
 <!-- Inicio del contenedor para la página generar ruta -->
 <div id="div-caja3" class="container p-3 my-4 pb-4 d-flex
     justify-content-center pe-4 pt-0 mt-0">
 
-    <form id="div-cajas" class="container p-3 my-4 border-bottom
+    <form action="" method="POST" id="div-cajas" class="container p-3 my-4 border-bottom
         mt-0
         border-dark pb-4">
-
+        {% csrf_token %}
         <!-- Enunciado o titulo de la página -->
         <div class="w-100 text-center pb-3 border-bottom
             border-dark">
@@ -79,8 +91,7 @@
             <div class="input-group mb-3 w-100">
                 <input type="text" class="form-control"
                     id="identificacion-generar-ruta"
-                    aria-describedby="basic-addon3"
-                    placeholder="1115025879">
+                    aria-describedby="basic-addon3">
             </div>
         </div>
 
@@ -90,8 +101,7 @@
             <div class="input-group mb-3 w-100">
                 <input type="text" class="form-control"
                     id="conductor-encargado-generar-ruta"
-                    aria-describedby="basic-addon3"
-                    placeholder="Jonny Canabal">
+                    aria-describedby="basic-addon3">
             </div>
         </div>
 
@@ -101,96 +111,70 @@
             <div class="input-group mb-3 w-100">
                 <input type="text" class="form-control"
                     id="telefono-generar-ruta"
-                    aria-describedby="basic-addon3"
-                    placeholder="3183856974">
+                    aria-describedby="basic-addon3">
             </div>
         </div>
 
         <div class="d-inline-block width-20 ms-1 me-5">
-            <label for="basic-url" class="form-label w-75 ps-2">KILOMETRAJE
-                ACTUAL</label>
+            <label for="basic-url" class="form-label w-75 ps-2">HORA DE SALIDA</label>
             <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control"
-                    id="kilometraje-actual-generar-ruta"
-                    aria-describedby="basic-addon3"
-                    placeholder="10000">
+                <input type="text" class="form-control" name="horaSalida"
+                    id="id_horaSalida"
+                    aria-describedby="basic-addon3">
             </div>
         </div>
 
         <div class="d-inline-block width-20 ms-1 me-5">
-            <label for="basic-url" class="form-label w-75 ps-2">KILOMETRAJE
-                FINAL</label>
+            <label for="basic-url" class="form-label w-75 ps-2">HORA DE REGRESO</label>
             <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control"
-                    id="kilometraje-final-generar-ruta"
-                    aria-describedby="basic-addon3"
-                    placeholder="Pendiente">
+                <input type="text" class="form-control" name="horaRegreso"
+                    id="id_horaRegreso"
+                    aria-describedby="basic-addon3">
             </div>
         </div>
 
         <div class="d-inline-block width-20 ms-1 me-5">
-            <label for="basic-url" class="form-label w-75 ps-2">FECHA
-                DE SALIDA</label>
+            <label for="basic-url" class="form-label w-75 ps-2">FECHA DE SALIDA</label>
             <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control"
-                    id="fecha-salida-generar-ruta"
-                    aria-describedby="basic-addon3"
-                    placeholder="01/09/2022">
+                <input type="date" class="form-control" name="fechaSalida"
+                    id="id_fechaSalida"
+                    aria-describedby="basic-addon3">
             </div>
         </div>
 
         <div class="d-inline-block width-20 ms-1 me-5">
-            <label for="basic-url" class="form-label w-75 ps-2">HORA
-                DE SALIDA</label>
+            <label for="basic-url" class="form-label w-75 ps-2">FECHA DE REGRESO</label>
             <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control"
-                    id="hora-salida-generar-ruta"
-                    aria-describedby="basic-addon3"
-                    placeholder="13:00">
+                <input type="date" class="form-control" name="fechaRegreso"
+                    id="id_fechaRegreso"
+                    aria-describedby="basic-addon3">
             </div>
         </div>
 
         <div class="d-inline-block width-20 ms-1 me-5">
-            <label for="basic-url" class="form-label w-75 ps-2">LUGAR
-                DE SALIDA</label>
+            <label for="basic-url" class="form-label w-75 ps-2">LUGAR DE SALIDA</label>
             <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control"
-                    id="lugar-salida-generar-ruta"
-                    aria-describedby="basic-addon3"
-                    placeholder="Contraloria Del Tolima">
+                <input type="text" class="form-control" name="lugarSalida"
+                    id="id_lugarSalida"
+                    aria-describedby="basic-addon3">
             </div>
         </div>
 
         <div class="d-inline-block width-20 ms-1 me-5">
-            <label for="basic-url" class="form-label w-75 ps-2">LUGAR
-                DE DESTINO</label>
+            <label for="basic-url" class="form-label w-75 ps-2">LUGAR DE DESTINO</label>
             <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control"
-                    id="lugar-destino-generar-ruta"
-                    aria-describedby="basic-addon3"
-                    placeholder="Ibagué">
+                <input type="text" class="form-control" name="lugarDestino"
+                    id="id_lugarDestino"
+                    aria-describedby="basic-addon3">
             </div>
         </div>
 
         <div class="d-inline-block width-20 ms-1 me-5">
-            <label for="basic-url" class="form-label w-75 ps-2">FECHA
-                DE REGRESO</label>
+            <label for="basic-url" class="form-label w-75 ps-2">KILOMETRAJE FINAL</label>
             <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control"
-                    id="fecha-regreso-generar-ruta"
-                    aria-describedby="basic-addon3"
-                    placeholder="02/09/2022">
-            </div>
-        </div>
-
-        <div class="d-inline-block width-20 ms-1 me-5">
-            <label for="basic-url" class="form-label w-75 ps-2">HORA
-                LLEGADO</label>
-            <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control"
-                    id="hora-llegada-generar-ruta"
-                    aria-describedby="basic-addon3"
-                    placeholder="20:00">
+                <input type="text" class="form-control" name="kilometrajeFinalVehiculo"
+                    id="id_kilometrajeFinalVehiculo"
+                    aria-describedby="basic-addon3">
             </div>
         </div>
 
@@ -234,7 +218,7 @@
                                 class="form-control text-center"
                                 id="ubicacion-funcionarios-generar-ruta"
                                 aria-describedby="basic-addon3"
-                                placeholder="Calle 53 bis # 80 - 53 sur">
+                                placeholder="">
                         </div>
                     </div>
 
@@ -247,7 +231,7 @@
                                 class="form-control text-center"
                                 id="telefono-funcionarios-generar-ruta"
                                 aria-describedby="basic-addon3"
-                                placeholder="3183865874">
+                                placeholder="">
                         </div>
                     </div>
                 </div>
@@ -374,10 +358,10 @@
             <div class="form-floating mb-3 w-100
                 height-textarea">
                 <textarea class="form-control border
-                    border-dark" style="height:
+                    border-dark" name="descripcionRuta" style="height:
                     150px; resize: none;"
                     placeholder="Leave a comment here "
-                    id="floatingTextarea"></textarea>
+                    id="id_descripcionRuta"></textarea>
             </div>
         </div>
 
@@ -390,9 +374,9 @@
                 height-textarea">
                 <textarea class="form-control border
                     border-dark" style="height:
-                    150px; resize: none;"
+                    150px; resize: none;" name="observacionesRuta"
                     placeholder="Leave a comment here "
-                    id="floatingTextarea"></textarea>
+                    id="id_observacionesRuta"></textarea>
             </div>
         </div>
 
@@ -434,13 +418,12 @@
                         <button type="button" class="btn
                             btn-secondary"
                             data-bs-dismiss="modal">CANCELAR</button>
-                        <button type="button"
+                        <input type="submit"
                             data-bs-toggle="modal"
                             data-bs-target="#modal-generar-ruta2"
                             data-bs-dismiss="modal"
                             class="btn
-                            btn-primary">ACEPTAR
-                        </button>
+                            btn-primary" value="ACEPTAR">
                     </div>
                 </div>
             </div>

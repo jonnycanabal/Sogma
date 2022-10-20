@@ -1,4 +1,6 @@
-from django.shortcuts import render # No olvidar colocar esta linea de codigo para el render.
+from django.shortcuts import render
+
+from gestionActivos.models import GenerarRuta # No olvidar colocar esta linea de codigo para el render.
 
 # views de la pagina de Inicio - Index
 def inicio (request):
@@ -42,10 +44,11 @@ def generar_ruta (request):
 
 # views de la pagina de Consultar Ruta
 def consultar_ruta (request):
-
+    rutas= GenerarRuta.objects.all() #Esto mismo de establece para los vehiculos
     titulo = 'Consultar-Ruta'
     context = {
-        'titulo': titulo
+        'titulo': titulo,
+        'rutas': rutas
     }
 
     return render (request, 'consultarRuta.html', context)

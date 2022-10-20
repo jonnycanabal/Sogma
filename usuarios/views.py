@@ -1,25 +1,36 @@
 from multiprocessing import context
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 
 from usuarios.forms import UsuarioForm
+from usuarios.models import Usuario
 
 
 # Create your views here.
 
-def usuarios_crear(request):
-    titulo='Usuarios - crear'
-    form=UsuarioForm()
+def usuarios_creados(request):
+    titulo='Usuarios - Creados'
+    usuarios = Usuario.objects.all()
     context={
         'titulo':titulo,
-        'form':form
+        'usuarios': usuarios
     }
-    return render (request, 'usuarios/usuarios-crear.html', context)
+    return render (request, 'usuarios/usuariosCreados.html', context)
 
 def nuevo_usuario(request):
     titulo='Nuevo-Usuario'
-    form=UsuarioForm()
+    if request.method == "POST":
+        print(request.POST)
+        form=UsuarioForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('usuarios-creados')
+        else:
+            form=UsuarioForm(request.POST)
+
+    else:
+        form=UsuarioForm()
     context={
         'titulo':titulo,
-        'form':form
+        'form': form
     }
     return render (request, 'usuarios/nuevoUsuario.html', context)

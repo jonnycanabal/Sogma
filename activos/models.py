@@ -22,11 +22,11 @@ class ActivoEquipoOficina(models.Model):
     serialEquipo=models.CharField(max_length=50, verbose_name="Serial Equipo")
     marcaEquipo=models.CharField(max_length=20, verbose_name="Marca Equipo")
     colorEquipo=models.CharField(max_length=20, verbose_name="Color Equipo")
-    sistemaOperativo=models.CharField(max_length=20, default="No Aplica", verbose_name="Sistema Operativo")
-    ramEquipo=models.CharField(max_length=20, default="No Aplica", verbose_name="Ram del Equipo")
-    memoriaEquipo=models.CharField(max_length=20, default="No Aplica", verbose_name="Memoria del Equipo")
+    sistemaOperativo=models.CharField(max_length=20, verbose_name="Sistema Operativo", blank=True)
+    ramEquipo=models.CharField(max_length=20, verbose_name="Ram del Equipo", blank=True)
+    memoriaEquipo=models.CharField(max_length=20, verbose_name="Memoria del Equipo", blank=True)
     ubicacionEquipo=models.CharField(max_length=50, verbose_name="Ubicación del Equipo")
-    componentesAdicionales=models.TextField(max_length=100, verbose_name="Componentes del Equipo")
+    componentesAdicionales=models.TextField(max_length=100, verbose_name="Componentes del Equipo", blank=True)
     class Estado(models.TextChoices):
         ACTIVO='1', _("Activo")
         INACTIVO='0', _("Inactivo")
@@ -55,17 +55,3 @@ class ActivoVehiculo(models.Model):
         ACTIVO='1', _("Activo")
         INACTIVO='0', _("Inactivo")
     estado=models.CharField(max_length=1, choices=Estado.choices, default=Estado.ACTIVO, verbose_name="Estado")
-
-# CREACIÓN DE LA TABLA (pasajero) DE NUESTRA MER DISEÑADO EN MYSQL WORKBENCH
-class Pasajero(models.Model):
-    primerNombrePasajero=models.CharField(max_length=50, verbose_name="Primer Nombre")
-    primerApellidoPasajero=models.CharField(max_length=50, verbose_name="Primer Apellido")
-    class TipoDocumentoPasajero(models.TextChoices):
-        CC='C.C.', _("Cédula de Ciudadania")
-        CE='C.E.', _("Cédula de Extranjería")
-        PASS='PASS', _("Pasaporte")
-    tipoDocumento=models.CharField(max_length=5, choices=TipoDocumentoPasajero.choices, default=TipoDocumentoPasajero.CC, verbose_name="Tipo de Documento")
-    numeroDocumentoPasajero=models.CharField(max_length=50, unique=True, verbose_name="Número de Documento") #Tiene campo Único
-    primerApellidoPasajero=models.CharField(max_length=50, verbose_name="Primer Apellido")
-    direccionPasajero=models.CharField(max_length=100, verbose_name="Dirección Residencia")
-    telefonoPasajero=models.CharField(max_length=20, verbose_name="Teléfono")

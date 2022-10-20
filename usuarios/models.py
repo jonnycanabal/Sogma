@@ -1,4 +1,4 @@
-from pdb import post_mortem
+from venv import create
 from django.utils.translation import gettext_lazy as _
 from enum import unique
 from django.db import models
@@ -8,9 +8,9 @@ from django.db import models
 # CREACIÓN DE LA TABLA (usuario) DE NUESTRA MER DISEÑADO EN MYSQL WORKBENCH
 class Usuario(models.Model):
     primerNombre=models.CharField(max_length=50, verbose_name="Primer Nombre")
-    segundoNombre=models.CharField(max_length=50, verbose_name="Segundo Nombre")
+    segundoNombre=models.CharField(max_length=50, verbose_name="Segundo Nombre", blank=True)
     primerApellido=models.CharField(max_length=50, verbose_name="Primer Apellido")
-    segundoApellido=models.CharField(max_length=50, verbose_name="Segundo Apellido")
+    segundoApellido=models.CharField(max_length=50, verbose_name="Segundo Apellido", blank=True)
     class TipoDocumento(models.TextChoices):
         CC='C.C.', _("Cédula de Ciudadania")
         CE='C.E.', _("Cédula de Extranjería")
@@ -40,12 +40,14 @@ class Usuario(models.Model):
 
     # Pendiente el tipo de dato SET como se manejaria para los permisos de usuario.
     # permisos=models.
-    # post_mortem.objects.create(name="Permisos", tags={'Consultar', 'Editar', 'Guardar', 'Eliminar', 'Nuevo Activo', 'Generar Reporte', 
-    # 'Control Activos Todos', 'Control Activos Extintores', 'Control Activos Vehículos', 'Control Activos Equipo de Oficina', 
-    # 'Todas las Páginas', 'Página [control-activos]', 'Página [generar-alarma]', 'Página [generar-ruta]', 'Página [consultar-ruta]'})
+    # class Permisos(models.Model):
+    #     tags={'Consultar', 'Editar', 'Guardar', 'Eliminar', 'Nuevo Activo', 'Generar Reporte', 
+    #     'Control Activos Todos', 'Control Activos Extintores', 'Control Activos Vehículos', 'Control Activos Equipo de Oficina', 
+    #     'Todas las Páginas', 'Página [control-activos]', 'Página [generar-alarma]', 'Página [generar-ruta]', 'Página [consultar-ruta]'}
 
     class Estado(models.TextChoices):
         ACTIVO='1', _("Activo")
         INACTIVO='0', _("Inactivo")
     estado=models.CharField(max_length=1, choices=Estado.choices, default=Estado.ACTIVO, verbose_name="Estado")
-
+    def __str__(self):
+        return "%s %s" %(self.primerNombre, self.primerApellido)
