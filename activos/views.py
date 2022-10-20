@@ -24,6 +24,28 @@ def control_activos(request):
 
 
 
+def crear_vehiculo(request):
+    context={
+
+    }
+    return render ()
+
+def crear_extintor(request):
+    context={
+
+    }
+    return render ()
+
+def crear_equipo_oficina(request):
+    context={
+
+    }
+    return render ()
+
+
+
+
+
 # def activo_extintor(request):
 #     titulo='control-activos'
 #     form=ActivoExtintorForm()

@@ -11,7 +11,8 @@
 <div class="container-wizard mt-5">
     <div class="row d-flex justify-content-center align-items-center">
         <div class="">
-            <form id="regForm">
+            <form id="regForm" action="" method="POST">
+                {% csrf_token %}
                 <h1 id="register">REGISTRAR</h1>
                 <div class="all-steps" id="all-steps"> <span class="step"></span> <span class="step"></span> <span
                         class="step"></span> <span class="step"></span> </div>
@@ -37,6 +38,7 @@
 
                 <div class="tab">
                     <div id="form-vehiculo" style="display: none;">
+                        <h2 style="text-align: center;">Vehículo</h2>
                         <p><input id="id_marcaVehiculo" class="input-wizard" placeholder="Marca del Vehículo"
                                 name="marcaVehiculo"></p>
                         <p><input id="id_modeloVehiculo" class="input-wizard" placeholder="Modelo del Vehículo"
@@ -70,55 +72,58 @@
                                 placeholder="Fecha Vencimiento Tecnicomecanica" name="fechaVencimientoTecnicomecanica">
                         </p>
                     </div>
-                    <div id="form-extintor" style="display: none;">
-                        <h2>extintores</h2>
-                    </div>
-                    <div id="form-oficina" style="display: none;">
-                        <h2>oficina</h2>
-                    </div>
-                </div>
-                
-                <div class="tab">
-                    <p><input class="input-wizard" placeholder="Credit Card #" oninput="this.className = ''"
-                            name="email"></p>
-                    <p>Exp Month
-                        <select id="month">
-                            <option value="1">January</option>
-                            <option value="2">February</option>
-                            <option value="3">March</option>
-                            <option value="4">April</option>
-                            <option value="5">May</option>
-                            <option value="6">June</option>
-                            <option value="7">July</option>
-                            <option value="8">August</option>
-                            <option value="9">September</option>
-                            <option value="10">October</option>
-                            <option value="11">November</option>
-                            <option value="12">December</option>
-                        </select>
-                    </p>
-                    <p>Exp Year
-                        <select id="year">
-                            <option value="2021">2021</option>
-                            <option value="2022">2022</option>
-                            <option value="2023">2023</option>
-                            <option value="2024">2024</option>
-                        </select>
-                    </p>
 
-                    <p><input class="input-wizard" placeholder="CVV" oninput="this.className = ''" name="phone"></p>
+                    <div id="form-extintor" style="display: none;">
+                        <h2 style="text-align: center;">Extintor</h2>
+                        <p><input id="id_serialExtintor" class="input-wizard" placeholder="Serial Extintor"
+                                name="serialExtintor"></p>
+                        <p><input id="id_colorExtintor" class="input-wizard" placeholder="Color Extintor"
+                                name="colorExtintor"></p>
+                        <p><input id="id_ubicacionExtintor" class="input-wizard" placeholder="Ubicación del Extintor"
+                                name="ubicacionExtintor"></p>
+                        <p><select id="id_tipoExtintor" class="form-select input-wizard" name="Tipo de Extintor">
+                            <option selected>Tipo de Extintor</option>
+                            <option value="A">Tipo A</option>
+                            <option value="B">Tipo B</option>
+                            <option value="C">Tipo C</option>
+                            <option value="D">Tipo C</option>
+                        </select></p>
+                        <p><input id="id_pesoExtintor" class="input-wizard" placeholder="Peso del Extintor"
+                                name="pesoExtintor"></p>
+                    </div>
+
+                    <div id="form-oficina" style="display: none;">
+                        <h2 style="text-align: center;">Equipo De Oficina</h2>
+                        <p><input id="id_serialEquipo" class="input-wizard" placeholder="Serial Extintor"
+                                name="serialEquipo"></p>
+                        <p><input id="id_marcaEquipo" class="input-wizard" placeholder="Color Extintor"
+                                name="marcaEquipo"></p>
+                        <p><input id="id_colorEquipo" class="input-wizard" placeholder="Ubicación del Extintor"
+                                name="colorEquipo"></p>
+                        <p><input id="id_sistemaOperativo" class="input-wizard" placeholder="Sistema Operativo"
+                                name="sistemaOperativo"></p>
+                        <p><input id="id_ramEquipo" class="input-wizard" placeholder="Ram del Equipo"
+                                name="ramEquipo"></p>
+                        <p><input id="id_memoriaEquipo" class="input-wizard" placeholder="Memoria del Equipo"
+                                name="memoriaEquipo"></p>
+                        <p><input id="id_ubicacionEquipo" class="input-wizard" placeholder="Ubicación del Equipo"
+                                name="ubicacionEquipo"></p>
+                        <p><textarea id="id_componentesAdicionales" class="input-wizard" placeholder="Componentes del Equipo"
+                            name="componentesAdicionales" style="resize: none;"></textarea></p>
+                    </div>
                 </div>
 
                 <div class="thanks-message text-center" id="text-message"> <img src="https://i.imgur.com/O18mJ1K.png"
                         width="100" class="mb-4">
-                    <h3>Thanks for your Donation!</h3> <span>Your donation has been entered! We will contact you
-                        shortly!</span>
+                    <h3>Registro Exitoso!</h3> <span>El activo ha quedado registrado correctamente</span>
+                    <a href="{% url 'control-activos' %}" style="font-size: 20px;"  class="btn btn-warning mt-3"
+                        aria-label="Close">Volver a la Página</a>
                 </div>
                 <div style="overflow:auto;" id="nextprevious">
                     <div style="float:right;">  <a href="{% url 'control-activos' %}" style="font-size: 20px;"  class="btn btn-danger"
                         
-                        aria-label="Close">Cancelar</a> <button class="btn btn-primary"
-                            style="font-size: 20px;" type="button" id="nextBtn" onclick="nextPrev(1)">SIGUIENTE</button>
+                        aria-label="Close">Cancelar</a> <button class="btn btn-success"
+                            style="font-size: 20px;" type="button" id="nextBtn" onclick="nextPrev(1)">Siguiente</button>
                     </div>
                 </div>
             </form>
@@ -127,7 +132,9 @@
 </div>
 
 {% block javascript %}
+<!-- SCRIPTS PARA MENEJAR LOS FORMULARIOS Y TABLAS DE CONTROL ACTIVOS -->
 <script>
+    // Script para visualizar los datos de los activos segun el que seleccione
     function displayTable(c) {
         if (c.value == "vehiculo") {
             jQuery('#table-vehiculo').toggle('show');
@@ -147,6 +154,7 @@
 
         }
     }
+    // Script para visualizar el formulario de registro de un activo segun el que seleccione
     function displayForm(c) {
         if (c.value == "1") {
             jQuery('#form-vehiculo').toggle('show');
@@ -164,10 +172,11 @@
             jQuery('#form-oficina').toggle('show');
             jQuery('#form-vehiculo').remove();
             jQuery('#form-extintor').remove();
-
         }
     };  
 </script>
+
+<!-- SCRIPT PARA EL FUNCIONAMIENTO DEL STEP FOR O WIZARD FORM EN EL BOTON NUEVO ACTIVO EN CONTROL ACTIVOS -->
 <script>
     //your javascript goes here
     var currentTab = 0;
@@ -187,7 +196,7 @@
         //     document.getElementById("prevBtn").style.display = "inline";
         // }
         if (n == (x.length - 1)) {
-            document.getElementById("nextBtn").innerHTML = "Submit";
+            document.getElementById("nextBtn").innerHTML = "Registrar";
         } else {
             document.getElementById("nextBtn").innerHTML = "Siguiente";
         }

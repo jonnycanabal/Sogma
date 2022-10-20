@@ -15,8 +15,8 @@
 <!-- Bloque de contenido el cual estara declarado en el body.html y sera lo que se vera dependiente de la página  -->
 {% block contenido %}
 
-<!--<div class="container">
-     <form action="" method="POST">
+<div class="container">
+    <!-- <form action="" method="POST">
         {{form|crispy}}
         {% csrf_token %}
         <input type="submit" value="Registrar">
@@ -24,9 +24,9 @@
 
     <br>
     <br>
-    <br>
+    <br> -->
 
-    <form action="" method="POST">
+    <!-- <form action="" method="POST">
         {{form2|crispy}}
         {% csrf_token %}
         <input type="submit" value="Registrar">
@@ -44,9 +44,9 @@
 
 <br>
 <br>
-<br>
+<br> -->
 
-</div>-->
+</div>
 
 
 <!-- INICIO DEL MAIN-->
@@ -195,7 +195,8 @@
     <div style="display: none;" id="table-extintor">
         <div class="d-flex flex-column" >
             <div class="h3 ms-5">Extintores</div>
-            <!-- EXTINTORES --------------------------------------------------------------------------------------------- -->
+
+<!-- EXTINTORES --------------------------------------------------------------------------------------------- -->
 
             <div class="d-flex justify-content-center pb-4 mb-4 m-2 w-100 p-3">
                 <!-- Inicio del segundo contenedor de la página-->
@@ -257,6 +258,7 @@
         </div>
     </div>
 
+    <!-- EQUIPOS DE OFICINA ------------------------------------------------------------------------------- -->
     <div style="display: none;" id="table-oficina">
         <div class="d-flex flex-column" >
             <div class="h3 ms-5">Equipos de Oficina</div>
@@ -286,22 +288,22 @@
                         <!-- Cuerpo de la tabla (donde estara la informacion que se mostrara de los activos) -->
                         <tbody>
 
-                            {% for equipoOficina in activos %}
+                            {% for equipo in equipos %}
                             <tr>
                                 <!-- Imagen de un ojo con el cual seleccionara el activo y mostrara en la parte de abajo toda la informacion
                     para editar, guardar o eliminar/desabilitar la información -->
                                 <td><button class="border-0 rounded-circle" style="background-color: rgba(240, 248,
                                 255, 0);"><img src="{% static 'img/eye.png' %}" alt="iconoOjoSelector" width="20"
                                             height="20"></td></button>
-                                <td class="text-center">{{equipoOficina.id}}</td>
-                                <td>{{equipoOficina.serialEquipo}}</td>
-                                <td>{{equipoOficina.marcaEquipo}}</td>
-                                <td>{{equipoOficina.colorEquipo}}</td>
-                                <td>{{equipoOficina.sistemaOperativo}}</td>
-                                <td>{{equipoOficina.ramEquipo}}</td>
-                                <td>{{equipoOficina.memoriaEquipo}}</td>
-                                <td>{{equipoOficina.ubicacionEquipo}}</td>
-                                <td>{{equipoOficina.componentesAdicionales}}</td>
+                                <td class="text-center">{{equipo.id}}</td>
+                                <td>{{equipo.serialEquipo}}</td>
+                                <td>{{equipo.marcaEquipo}}</td>
+                                <td>{{equipo.colorEquipo}}</td>
+                                <td>{{equipo.sistemaOperativo}}</td>
+                                <td>{{equipo.ramEquipo}}</td>
+                                <td>{{equipo.memoriaEquipo}}</td>
+                                <td>{{equipo.ubicacionEquipo}}</td>
+                                <td>{{equipo.componentesAdicionales}}</td>
                             </tr>
                             {% endfor %}
 
@@ -580,12 +582,9 @@
             </div>
         </div>
 
-        <button type="button" class="btn btn-secondary fs-5 m-2">NUEVO
-            ACTIVO</button>
-
         <!-- USO DE MODAL CON BOOTSTRAP 5 PARA EL BOTON ELIMINAR-->
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-warning fs-5 m-2" data-bs-toggle="modal"
+        <button type="button" class="btn btn-secondary fs-5 m-2" data-bs-toggle="modal"
             data-bs-target="#modal-nuevo-activo">
             NUEVO
             ACTIVO
@@ -598,8 +597,8 @@
                 <div class="modal-content">
 
                     <div class="">
-                        <button type="button" class="btn-close mt-2 me-2 ms-2 float-end" data-bs-dismiss="modal"
-                            aria-label="Close"></button>
+                        <!-- <button type="button" class="btn-close mt-2 me-2 ms-2 float-end" data-bs-dismiss="modal"
+                            aria-label="Close"></button> -->
                         {% include 'partials/wizardForm.html' %}
                     </div>
                 </div>

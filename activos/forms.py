@@ -9,10 +9,10 @@ class ActivoExtintorForm(forms.ModelForm):
 class ActivoEquipoOficinaForm(forms.ModelForm):
     class Meta:
         model=ActivoEquipoOficina
-        fields='__all__'
+        exclude=["estado"]
 
 class ActivoVehiculoForm(forms.ModelForm):
     class Meta:
         model=ActivoVehiculo
-        fields='__all__'
+        exclude=["estado"]
 

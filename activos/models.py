@@ -22,9 +22,9 @@ class ActivoEquipoOficina(models.Model):
     serialEquipo=models.CharField(max_length=50, verbose_name="Serial Equipo")
     marcaEquipo=models.CharField(max_length=20, verbose_name="Marca Equipo")
     colorEquipo=models.CharField(max_length=20, verbose_name="Color Equipo")
-    sistemaOperativo=models.CharField(max_length=20, default="No Aplica", verbose_name="Sistema Operativo", blank=True)
-    ramEquipo=models.CharField(max_length=20, default="No Aplica", verbose_name="Ram del Equipo", blank=True)
-    memoriaEquipo=models.CharField(max_length=20, default="No Aplica", verbose_name="Memoria del Equipo", blank=True)
+    sistemaOperativo=models.CharField(max_length=20, verbose_name="Sistema Operativo", blank=True)
+    ramEquipo=models.CharField(max_length=20, verbose_name="Ram del Equipo", blank=True)
+    memoriaEquipo=models.CharField(max_length=20, verbose_name="Memoria del Equipo", blank=True)
     ubicacionEquipo=models.CharField(max_length=50, verbose_name="Ubicación del Equipo")
     componentesAdicionales=models.TextField(max_length=100, verbose_name="Componentes del Equipo", blank=True)
     class Estado(models.TextChoices):
