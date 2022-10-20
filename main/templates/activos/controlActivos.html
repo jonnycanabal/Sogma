@@ -54,7 +54,7 @@
 
     <!-- Inicio del primer contenedor de la página-->
     <div id="div-cajas" class="container p-3 my-4 pt-0">
-        
+
         <div class="text-center p-2 w-100">
             <h2>Seleccione el Tipo de Activo</h2>
         </div>
@@ -76,7 +76,7 @@
 
             <div class="d-inline-block width-20 ms-1 me-5">
                 <div class="input-group mb-3 w-100">
-                    <button type="button" value="extintor" onclick="displayTable(this)"  class="btn
+                    <button type="button" value="extintor" onclick="displayTable(this)" class="btn
                         form-control
                         width-20 m-2 border border-dark
                         bg-white
@@ -86,7 +86,7 @@
 
             <div class="d-inline-block width-20 ms-1 me-5">
                 <div class="input-group mb-3 w-100">
-                    <button type="button"  value="oficina" onclick="displayTable(this)"  class="btn
+                    <button type="button" value="oficina" onclick="displayTable(this)" class="btn
                         form-control
                         width-20 m-2 border border-dark
                         bg-white
@@ -101,7 +101,7 @@
     <!-- VEHICULOS ------------------------------------------------------------------------------- -->
 
     <div id="table-vehiculo" style="display: none;">
-        <div class="d-flex flex-column" >
+        <div class="d-flex flex-column">
             <div class="h3 ms-5">Vehículos</div>
             <div class="d-flex justify-content-center pb-4 mb-4 m-2 w-100 p-3">
                 <!-- Inicio del segundo contenedor de la página-->
@@ -192,10 +192,10 @@
     </div>
 
     <div style="display: none;" id="table-extintor">
-        <div class="d-flex flex-column" >
+        <div class="d-flex flex-column">
             <div class="h3 ms-5">Extintores</div>
 
-<!-- EXTINTORES --------------------------------------------------------------------------------------------- -->
+            <!-- EXTINTORES --------------------------------------------------------------------------------------------- -->
 
             <div class="d-flex justify-content-center pb-4 mb-4 m-2 w-100 p-3">
                 <!-- Inicio del segundo contenedor de la página-->
@@ -224,9 +224,15 @@
                             <tr>
                                 <!-- Imagen de un ojo con el cual seleccionara el activo y mostrara en la parte de abajo toda la informacion
                     para editar, guardar o eliminar/desabilitar la información -->
-                                <td><button class="border-0 rounded-circle" style="background-color: rgba(240, 248,
-                                255, 0);"><img src="{% static 'img/eye.png' %}" alt="iconoOjoSelector" width="20"
-                                            height="20"></td></button>
+                                <td>
+                                    <form action="" method="POST" class="col-4">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="pk_extintor" value="{{extintor.id}}">
+                                        <button class="btn btn-primary btn-block" onClick="editarExtintor()" name="editar-extintor">
+                                            <i class="bi bi-eye-fill"></i>
+                                        </button>
+                                    </form>
+                                </td></button>
                                 <td class="text-center">{{extintor.id}}</td>
                                 <td>{{extintor.serialExtintor}}</td>
                                 <td>{{extintor.colorExtintor}}</td>
@@ -255,12 +261,14 @@
                 </div>
             </div>
         </div>
+        
     </div>
 
-    <!-- EQUIPOS DE OFICINA ------------------------------------------------------------------------------- -->
     
+    <!-- EQUIPOS DE OFICINA ------------------------------------------------------------------------------- -->
+
     <div style="display: none;" id="table-oficina">
-        <div class="d-flex flex-column" >
+        <div class="d-flex flex-column">
             <div class="h3 ms-5">Equipos de Oficina</div>
             <div class="d-flex justify-content-center pb-4 mb-4 m-2 w-100 p-3">
                 <!-- Inicio del segundo contenedor de la página-->
@@ -293,14 +301,10 @@
                                 <!-- Imagen de un ojo con el cual seleccionara el activo y mostrara en la parte de abajo toda la informacion
                     para editar, guardar o eliminar/desabilitar la información -->
                                 <td><button class="border-0
-                                    rounded-circle"
-                                    style="background-color:
+                                    rounded-circle" style="background-color:
                                     rgba(240, 248,
-                                    255, 0);"><img
-                                        src="{% static 'img/eye.png' %}"
-                                        alt="iconoOjoSelector"
-                                        width="20"
-                                        height="20"></td></button>
+                                    255, 0);"><img src="{% static 'img/eye.png' %}" alt="iconoOjoSelector" width="20"
+                                            height="20"></td></button>
                                 <td class="text-center">{{equipo.id}}</td>
                                 <td>{{equipo.serialEquipo}}</td>
                                 <td>{{equipo.marcaEquipo}}</td>
@@ -337,7 +341,7 @@
         </div>
     </div>
 
-<!-- Fin de la Tabla usando (DataTable) ------------------------------------------------------------------------------------------ -->
+    <!-- Fin de la Tabla usando (DataTable) ------------------------------------------------------------------------------------------ -->
 
     <!-- Inicio del tercer contenedor de la página -->
     <!-- BOTONES PARA VEHICULO -->
@@ -454,42 +458,42 @@
         <div class="d-inline-block width-20 ms-1 me-5">
             <label for="basic-url" class="form-label w-75 p-2">Id Activo</label>
             <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control" id="" aria-describedby="basic-addon3">
+                <input type="text" class="form-control" disabled id="" value="{{extintor.id}}" aria-describedby="basic-addon3">
             </div>
         </div>
 
         <div class="d-inline-block width-20 ms-1 me-5">
             <label for="basic-url" class="form-label w-75 p-2">Serial del Extintor</label>
             <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control" id="" aria-describedby="basic-addon3">
+                <input type="text" class="form-control" id="" value="{{extintor.serialExtintor}}" aria-describedby="basic-addon3">
             </div>
         </div>
 
         <div class="d-inline-block width-20 ms-1 me-5">
             <label for="basic-url" class="form-label w-75 p-2">Color del Extintor</label>
             <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control" id="" aria-describedby="basic-addon3">
+                <input type="text" class="form-control" id="" value="{{extintor.colorExtintor}}" aria-describedby="basic-addon3">
             </div>
         </div>
 
         <div class="d-inline-block width-20 ms-1 me-5">
             <label for="basic-url" class="form-label w-75 p-2">Ubicación del Extintor</label>
             <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control" id="" aria-describedby="basic-addon3">
+                <input type="text" class="form-control" id="" value="{{extintor.ubicacionExtintor}}" aria-describedby="basic-addon3">
             </div>
         </div>
 
         <div class="d-inline-block width-20 ms-1 me-5">
             <label for="basic-url" class="form-label w-75 p-2">Tipo de Extintor</label>
             <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control" id="" aria-describedby="basic-addon3">
+                <input type="text" class="form-control" id="" value="{{extintor.tipoExtintor}}" aria-describedby="basic-addon3">
             </div>
         </div>
 
         <div class="d-inline-block width-20 ms-1 me-5">
             <label for="basic-url" class="form-label w-75 p-2">Peso del Extintor</label>
             <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control" id="" aria-describedby="basic-addon3">
+                <input type="text" class="form-control" id="" value="{{extintor.pesoExtintor}}" aria-describedby="basic-addon3">
             </div>
         </div>
     </div>
@@ -674,7 +678,7 @@
             aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    
+
                     <div class="">
                         <!-- <button type="button" class="btn-close mt-2 me-2 ms-2 float-end" data-bs-dismiss="modal"
                             aria-label="Close"></button> -->

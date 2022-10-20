@@ -13,7 +13,11 @@ def control_activos(request):
     formExtintor=ActivoExtintorForm()
     formVehiculo=ActivoVehiculoForm()
     formEquipoOficina=ActivoEquipoOficinaForm()
-    
+    extintor=None
+
+    if request.method == "POST" and 'editar-extintor' in request.POST:
+        extintor= ActivoExtintor.objects.get(id=int(request.POST['pk_extintor']))
+
     if request.method == "POST" and 'form-extintor' in request.POST:
         form=ActivoExtintorForm(request.POST)
         if form.is_valid():
@@ -44,11 +48,11 @@ def control_activos(request):
     context={
         'titulo':titulo,
         'extintores':extintores,
+        'extintor':extintor,
+
         'vehiculos':vehiculos,
         'equipos':equipos,
-        'formExtintor':formExtintor,
-        'formVehiculo':formVehiculo,
-        'formEquipoOficina':formEquipoOficina
+ 
     }
     return render (request, 'activos/controlActivos.html', context)
 
