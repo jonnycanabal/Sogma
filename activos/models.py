@@ -16,6 +16,10 @@ class ActivoExtintor(models.Model):
         D='D', _("Tipo C")
     tipoExtintor=models.CharField(max_length=5, choices=TipoExtintor.choices, default=TipoExtintor.A, verbose_name="Tipo de Extintor")
     pesoExtintor=models.CharField(max_length=10, verbose_name="Peso del Extintor")
+    class EstadoExtintor(models.TextChoices):
+        ACTIVO='Activo', _("Activo")
+        INACTIVO='Inactivo', _("Inactivo")
+    estadoExtintor=models.CharField(max_length=10, choices=EstadoExtintor.choices, default=EstadoExtintor.ACTIVO, verbose_name="Estado")
 
 # CREACIÓN DE LA TABLA (activoEquipoOficina) DE NUESTRA MER DISEÑADO EN MYSQL WORKBENCH
 class ActivoEquipoOficina(models.Model):
@@ -27,10 +31,10 @@ class ActivoEquipoOficina(models.Model):
     memoriaEquipo=models.CharField(max_length=20, verbose_name="Memoria del Equipo", blank=True)
     ubicacionEquipo=models.CharField(max_length=50, verbose_name="Ubicación del Equipo")
     componentesAdicionales=models.TextField(max_length=100, verbose_name="Componentes del Equipo", blank=True)
-    # class Estado(models.TextChoices):
-    #     ACTIVO='1', _("Activo")
-    #     INACTIVO='0', _("Inactivo")
-    # estado=models.CharField(max_length=1, choices=Estado.choices, default=Estado.ACTIVO, verbose_name="Estado")
+    class EstadoEquipo(models.TextChoices):
+        ACTIVO='Activo', _("Activo")
+        INACTIVO='Inactivo', _("Inactivo")
+    estadoEquipo=models.CharField(max_length=10, choices=EstadoEquipo.choices, default=EstadoEquipo.ACTIVO, verbose_name="Estado")
 
 # CREACIÓN DE LA TABLA (activoVehiculo) DE NUESTRA MER DISEÑADO EN MYSQL WORKBENCH
 class ActivoVehiculo(models.Model):
@@ -42,16 +46,16 @@ class ActivoVehiculo(models.Model):
     tipoCombustible=models.CharField(max_length=20, verbose_name="Tipo de Combustible")
     cantidadPasajeros=models.CharField(max_length=5, verbose_name="Cantidad de Pasajeros")
     personaEncargadaVehiculo=models.CharField(max_length=50, verbose_name="Persona a Cargo")
-    class Estado (models.TextChoices):
+    class CondicionVehiculo (models.TextChoices):
         NUEVO='Nuevo', _("Nuevo")
         USADO='Usado', _("Usado")
-    estadoVehiculo=models.CharField(max_length=10, choices=Estado.choices, default=Estado.NUEVO, verbose_name="Estado del Vehículo")
+    condicionVehiculo=models.CharField(max_length=10, choices=CondicionVehiculo.choices, default=CondicionVehiculo.NUEVO, verbose_name="Condicion del Vehículo")
     fechaIngresoVehiculo=models.DateField(verbose_name="Fecha de Ingreso", help_text="MM/DD/AAAA")
     fechaInicioSoat=models.DateField(verbose_name="Fecha Inicio Soat", help_text="MM/DD/AAAA")
     fechaFinSoat=models.DateField(verbose_name="Fecha Vencimiento Soat", help_text="MM/DD/AAAA")
     fechaInicioTecnicomecanica=models.DateField(verbose_name="Fecha Inicio Tecnicomecanica", help_text="MM/DD/AAAA")
     fechaVencimientoTecnicomecanica=models.DateField(verbose_name="Fecha Vencimiento Tecnicomecanica", help_text="MM/DD/AAAA")
-    # class Estado(models.TextChoices):
-    #     ACTIVO='1', _("Activo")
-    #     INACTIVO='0', _("Inactivo")
-    # estado=models.CharField(max_length=1, choices=Estado.choices, default=Estado.ACTIVO, verbose_name="Estado")
+    class EstadoVehiculo(models.TextChoices):
+        ACTIVO='Activo', _("Activo")
+        INACTIVO='Inactivo', _("Inactivo")
+    estadoVehiculo=models.CharField(max_length=10, choices=EstadoVehiculo.choices, default=EstadoVehiculo.ACTIVO, verbose_name="Estado")

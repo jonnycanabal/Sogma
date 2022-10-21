@@ -1,5 +1,5 @@
 from multiprocessing import context
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from activos.models import ActivoEquipoOficina, ActivoExtintor, ActivoVehiculo
 from activos.forms import ActivoEquipoOficinaForm, ActivoExtintorForm, ActivoVehiculoForm
 
@@ -10,10 +10,26 @@ def control_activos(request):
     extintores= ActivoExtintor.objects.all()
     vehiculos=ActivoVehiculo.objects.all()
     equipos=ActivoEquipoOficina.objects.all()
-    formExtintor=ActivoExtintorForm()
-    formVehiculo=ActivoVehiculoForm()
-    formEquipoOficina=ActivoEquipoOficinaForm()
-    
+    # formExtintor=ActivoExtintorForm()
+    # formVehiculo=ActivoVehiculoForm()
+    # formEquipoOficina=ActivoEquipoOficinaForm()
+    extintor=None
+    vehiculo=None
+    equipo=None
+
+
+    # Bloque de codigo para traer informacion de la tabla a los campos de la pagina html por medio de la Primary Key
+    if request.method == "POST" and 'editar-extintor' in request.POST:
+        extintor = ActivoExtintor.objects.get(id=int(request.POST['pk_extintor']))
+
+    if request.method == "POST" and 'editar-vehiculo' in request.POST:
+        vehiculo = ActivoVehiculo.objects.get(id=int(request.POST['pk_vehiculo']))
+
+    if request.method == "POST" and 'editar-equipo-oficina' in request.POST:
+        equipo = ActivoEquipoOficina.objects.get(id=int(request.POST['pk_equipo']))
+
+
+
     if request.method == "POST" and 'form-extintor' in request.POST:
         form=ActivoExtintorForm(request.POST)
         if form.is_valid():
@@ -44,67 +60,102 @@ def control_activos(request):
     context={
         'titulo':titulo,
         'extintores':extintores,
+        'extintor':extintor,
         'vehiculos':vehiculos,
+        'vehiculo':vehiculo,
         'equipos':equipos,
-        'formExtintor':formExtintor,
-        'formVehiculo':formVehiculo,
-        'formEquipoOficina':formEquipoOficina
+        'equipo':equipo,
     }
     return render (request, 'activos/controlActivos.html', context)
 
 
-# NO SE POR QUE REQUEIRE DE LOS DOS CODIGOS PARA GUARDAR INFORMACIÓN
+
+# FUNCIONES PARA ELIMINAR O INHABILITAR LOS VEHICULOS
+def control_activos_eliminar_vehiculo(request,pk):
+    titulo = 'control-activos'
+    estadoVehiculo='Activo'
+    vehiculos=ActivoVehiculo.objects.all()
+
+    # Bloque de codigo para ELIMINAR O DESACTIVAR UN ACTIVO
+    ActivoVehiculo.objects.filter(id=pk).update(
+        estadoVehiculo='Inactivo'
+    )
+
+    if estadoVehiculo == 'Inactivo':
+        return redirect('control-activos')
+    else:
+        print('Error')
+
+    context ={
+        'titulo':titulo,
+        'vehiculos':vehiculos,
+    }
+
+    return render (request, 'activos/controlActivos.html', context)
 
 
-# def crear_extintor(request):
-#     titulo='crear-extintor'
-#     if request.method == "POST":
-#         form=ActivoExtintorForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-#         else:
-#             form=ActivoExtintorForm(request.POST)
-#     else:
-#         form=ActivoExtintorForm(request.POST)
-#     context={
+# FUNCIONES PARA ELIMINAR O INHABILITAR LOS EXTINTORES
+def control_activos_eliminar_extintor(request,pk):
+    titulo = 'control-activos'
+    extintores= ActivoExtintor.objects.all()
+
+    # Bloque de codigo para ELIMINAR O DESACTIVAR UN ACTIVO
+    ActivoExtintor.objects.filter(id=pk).update(
+        estadoExtintor='Inactivo'
+        
+    )
+
+    context ={
+        'titulo':titulo,
+        'extintores':extintores,
+    }
+
+    return render (request, 'activos/controlActivos.html', context)
+
+
+# FUNCIONES PARA ELIMINAR O INHABILITAR LOS EQUIPOS DE OFICINA
+def control_activos_eliminar_equipo(request,pk):
+    titulo = 'control-activos'
+    equipos=ActivoEquipoOficina.objects.all()
+
+    # Bloque de codigo para ELIMINAR O DESACTIVAR UN ACTIVO
+    ActivoEquipoOficina.objects.filter(id=pk).update(
+        estadoEquipo='Inactivo'
+    )
+
+    context ={
+        'titulo':titulo,
+        'equipos':equipos
+    }
+
+    return render (request, 'activos/controlActivos.html', context)
+
+
+
+# def control_activos_eliminar_vehiculo(request,pk):
+#     titulo = 'control-activos'
+#     extintores= ActivoExtintor.objects.all()
+#     vehiculos=ActivoVehiculo.objects.all()
+#     equipos=ActivoEquipoOficina.objects.all()
+
+#     # Bloque de codigo para ELIMINAR O DESACTIVAR UN ACTIVO
+#     ActivoExtintor.objects.filter(id=pk).update(
+#         estadoExtintor='Inactivo'
+#     )
+
+#     ActivoVehiculo.objects.filter(id=pk).update(
+#         estadoVehiculo='Inactivo'
+#     )
+
+#     ActivoEquipoOficina.objects.filter(id=pk).update(
+#         estadoEquipo='Inactivo'
+#     )
+
+#     context ={
 #         'titulo':titulo,
-#         'form':form
+#         'extintores':extintores,
+#         'vehiculos':vehiculos,
+#         'equipos':equipos
 #     }
+
 #     return render (request, 'activos/controlActivos.html', context)
-
-
-# def crear_vehiculo(request):
-#     titulo='control-activos'
-#     if request.method == "POST":
-#         form=ActivoVehiculoForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-#         else:
-#             form=ActivoVehiculoForm(request.POST)
-#     else:
-#         form=ActivoVehiculoForm(request.POST)
-#     context={
-#         'titulo':titulo,
-#         'form':form
-#     }
-#     return render (request, 'activos/controlActivos.html', context)
-
-
-# def crear_equipo_oficina(request):
-#     titulo='control-activos'
-#     if request.method == "POST":
-#         form=ActivoEquipoOficinaForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-#         else:
-#             form=ActivoEquipoOficinaForm(request.POST)
-#     else:
-#         form=ActivoEquipoOficinaForm(request.POST)
-#     context={
-#         'titulo':titulo,
-#         'form':form
-#     }
-#     return render (request, 'activos/controlActivos.html', context)
-
-
-# ---------------------------FUNCIONES PARA CONSULTAR VEHICULOS, EXTINTOR Y EQUIPOS DE OFICINA---------------------------------
