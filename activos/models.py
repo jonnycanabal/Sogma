@@ -59,3 +59,5 @@ class ActivoVehiculo(models.Model):
         ACTIVO='Activo', _("Activo")
         INACTIVO='Inactivo', _("Inactivo")
     estadoVehiculo=models.CharField(max_length=10, choices=EstadoVehiculo.choices, default=EstadoVehiculo.ACTIVO, verbose_name="Estado")
+    def __str__(self):
+        return "%s" %(self.placaVehiculo)

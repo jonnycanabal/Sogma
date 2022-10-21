@@ -97,7 +97,7 @@
 /*----------- INICIO MODIFICACION DEL RESPONSIVE @MEDIA QUERY (No servia algunos responsive de Bootstrap 5) ------------*/
 /* -------------------------------------------------- */
 @media (max-width: 1200px) { 
-    #div-cajas div, #div-cajas2 div{
+    #div-cajas div, .div-cajas2 div{
         width: 26%;
     }
 
@@ -130,7 +130,7 @@
 /* -------------------------------------------------- */
 @media (max-width: 992px) {
 
-    #div-cajas div, #div-cajas2 div{
+    #div-cajas div, .div-cajas2 div{
         width: 40%;
     }
 
@@ -172,7 +172,7 @@
 
 /* -------------------------------------------------- */
 @media (max-width: 768px) {
-    #div-cajas div, #div-cajas2 div, .w-form-login, #div-caja3 div{
+    #div-cajas div, .div-cajas2 div, .w-form-login, #div-caja3 div{
         width: 40%;
     }
 
@@ -205,7 +205,7 @@
 
 /* -------------------------------------------------- */
 @media (max-width:576px){
-    #div-cajas div, #div-cajas2 div, .w-form-login, #div-caja3 div{
+    #div-cajas div, .div-cajas2 div, .w-form-login, #div-caja3 div{
         width: 95%;
     }
 
@@ -246,7 +246,7 @@
 
 /* -------------------------------------------------- */
 @media (max-width:320px){
-    #div-cajas div, #div-cajas2 div, .w-form-login, #div-caja3 div{
+    #div-cajas div, .div-cajas2 div, .w-form-login, #div-caja3 div{
         width: 95%;
     }
 

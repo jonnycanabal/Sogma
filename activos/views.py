@@ -7,7 +7,7 @@ from activos.forms import ActivoEquipoOficinaForm, ActivoExtintorForm, ActivoVeh
 
 def control_activos(request):
     titulo='control-activos'
-    extintores= ActivoExtintor.objects.all()
+    extintores= ActivoExtintor.objects.filter(estadoExtintor="Activo")
     vehiculos=ActivoVehiculo.objects.all()
     equipos=ActivoEquipoOficina.objects.all()
     # formExtintor=ActivoExtintorForm()
@@ -28,7 +28,14 @@ def control_activos(request):
     if request.method == "POST" and 'editar-equipo-oficina' in request.POST:
         equipo = ActivoEquipoOficina.objects.get(id=int(request.POST['pk_equipo']))
 
-
+    if request.method == "POST" and 'c-editar-extintor' in request.POST:
+        print("######################", request.POST)
+        extintor = ActivoExtintor.objects.get(id=int(request.POST['pk_extintor']))
+        form=ActivoExtintorForm(request.POST,instance=extintor)
+        if form.is_valid():
+            form.save()
+        else:
+          print("error editar extintor")
 
     if request.method == "POST" and 'form-extintor' in request.POST:
         form=ActivoExtintorForm(request.POST)
@@ -80,11 +87,11 @@ def control_activos_eliminar_vehiculo(request,pk):
     ActivoVehiculo.objects.filter(id=pk).update(
         estadoVehiculo='Inactivo'
     )
-
-    if estadoVehiculo == 'Inactivo':
-        return redirect('control-activos')
-    else:
-        print('Error')
+    return redirect('control-activos')
+    # if estadoVehiculo == 'Inactivo':
+    #     return redirect('control-activos')
+    # else:
+    #     print('Error')
 
     context ={
         'titulo':titulo,
@@ -96,22 +103,13 @@ def control_activos_eliminar_vehiculo(request,pk):
 
 # FUNCIONES PARA ELIMINAR O INHABILITAR LOS EXTINTORES
 def control_activos_eliminar_extintor(request,pk):
-    titulo = 'control-activos'
-    extintores= ActivoExtintor.objects.all()
-
     # Bloque de codigo para ELIMINAR O DESACTIVAR UN ACTIVO
     ActivoExtintor.objects.filter(id=pk).update(
-        estadoExtintor='Inactivo'
-        
+        estadoExtintor='Inactivo'        
     )
 
-    context ={
-        'titulo':titulo,
-        'extintores':extintores,
-    }
-
-    return render (request, 'activos/controlActivos.html', context)
-
+    return redirect('control-activos')
+    
 
 # FUNCIONES PARA ELIMINAR O INHABILITAR LOS EQUIPOS DE OFICINA
 def control_activos_eliminar_equipo(request,pk):
