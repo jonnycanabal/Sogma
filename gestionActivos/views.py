@@ -1,7 +1,7 @@
 from multiprocessing import context
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from activos.models import ActivoEquipoOficina, ActivoExtintor, ActivoVehiculo
-
+from gestionActivos.models import GenerarRuta
 from gestionActivos.forms import GenerarAlarmaForm, GenerarRutaForm, RegistrarMantenimientoForm
 
 # Create your views here.
@@ -17,16 +17,35 @@ def generar_alarma(request):
 
 def generar_ruta(request):
     titulo='Consultar-Ruta'
+    ruta=None
     vehiculos=ActivoVehiculo.objects.all()
     form=GenerarRutaForm()
+    if request.method== 'POST':
+        
+        return redirect('agregar-ruta', 1)
 
+    
 
     context={
         'titulo':titulo,
         'vehiculos':vehiculos,
-        'form':form
+        'form':form,
+        'ruta':ruta
     }
     return render (request, 'gestionActivos/generarRuta.html', context)
+
+def agregar_funcionarios_ruta(request, pk):
+    titulo='Consultar-Ruta'
+    ruta= GenerarRuta.objects.get(id=pk)
+    # pasajeros= DetalleRuta.objects.filter(fkRuta_id=pk)
+
+    context={
+        'titulo':titulo,
+        'vehiculos':vehiculos,
+        'ruta':ruta
+    }
+    return render (request, 'gestionActivos/generarRuta.html', context)
+
 
 def registrar_mantenimiento(request):
     titulo='Registrar-Mantenimiento'

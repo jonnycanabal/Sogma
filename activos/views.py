@@ -42,7 +42,9 @@ def control_activos(request):
                 request,f"SE EDITO EL VEHÍCULO CON ID # {vehiculo.id} EXITOSAMENTE"
             )
         else:
-            print("error editar vehiculo")
+           messages.error(
+                request,f"ERROR NO SE EDITO EL VEHÍCULO CON ID # {vehiculo.id} "
+            )
 
     # EDITAR EXTINTOR
     if request.method == "POST" and 'c-editar-extintor' in request.POST:
