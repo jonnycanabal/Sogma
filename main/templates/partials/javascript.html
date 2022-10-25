@@ -1,4 +1,4 @@
-
+{% load static %}
 {% block javascript %}
 
 <!-- Inicio Scripts DataTable-->
@@ -11,6 +11,10 @@
 <!-- ¡IMPORTANTE! -  este script para el funcionamiento de la datatables-->
 <script type="text/javascript" charset="utf8"
     src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+<!-- importante del TOASTR-->
+<script type="application/json" src="{% static 'toastr/toast.js.map' %}"></script>
+<script type="text/javascript" src="{% static 'toastr/toast.min.js' %}"></script>
+
 <!-- Script para iniciar o arrancar las DataTable-->
 <script>
         // TABLA - vehiculos (Consultar Activos)

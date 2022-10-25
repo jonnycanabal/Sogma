@@ -17,9 +17,13 @@ def generar_alarma(request):
 
 def generar_ruta(request):
     titulo='Consultar-Ruta'
+    vehiculos=ActivoVehiculo.objects.all()
     form=GenerarRutaForm()
+
+
     context={
         'titulo':titulo,
+        'vehiculos':vehiculos,
         'form':form
     }
     return render (request, 'gestionActivos/generarRuta.html', context)

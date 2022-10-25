@@ -15,3 +15,4 @@ class RegistrarMantenimientoForm(forms.ModelForm):
     class Meta:
         model=RegistrarMantenimiento
         fields='__all__'
+
