@@ -37,7 +37,11 @@
     <link rel="stylesheet" type="text/css"
         href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
     <!-- Fin Data Tables -->
-
+    <!-- Importe de los CSS del TOASTR -->
+    <link rel="stylesheet" href="{% static 'toastr/toastr.min.css' %}">
+    <link rel="stylesheet" href="{% static 'toastr/toastr.css' %}">
+    <!-- Link con el que cargamos un Icono a nuestra pestaña de la Página -->
+    <link rel="shortcut icon" href="{% static 'img/logo_contraloria.png' %}">
     <!-- Titulo de la pestaña en el navegador -->
     <title>{{titulo}}</title> 
 </head>
@@ -66,6 +70,17 @@
 
     </main>
 </section>
+
+<!-- Bloque de codigo y script para mostrar un mensaje usando el TOASTR -->
+{% if messages %}
+    
+    {% for message in messages %}
+        <script type="text/java">
+            toastr.{{message.tags}}("{{message}}")
+        </script>
+    {% endfor %}
+{% endif %}
+
 
 {% block javascript %}
     {% include 'partials/javascript.html' %}

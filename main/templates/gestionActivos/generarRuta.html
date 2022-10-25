@@ -45,10 +45,17 @@
             <label for="basic-url" class="form-label w-75 ps-2">PLACA
                 VEHÍCULO</label>
             <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control"
+                <select class="form-contro" name="fkVehiculo" id="id_fkVehiculo">
+                    <option selected>Seleccione el Vehiculo</option>
+                    
+                    {% for vehiculo in vehiculos %}
+                        <option value='{{vehiculo.id}}'>{{vehiculo.placaVehiculo}}</option>
+                    {% endfor %}
+                        
+                </select>
+                <!-- <input type="text" class="form-control"
                     id="placa-vehiculo-generar-ruta"
-                    aria-describedby="basic-addon3"
-                    placeholder="XFD-581">
+                    aria-describedby="basic-addon3"> -->
             </div>
         </div>
 
@@ -58,8 +65,7 @@
             <div class="input-group mb-3 w-100">
                 <input type="text" class="form-control"
                     id="id-activo-generar-ruta"
-                    aria-describedby="basic-addon3"
-                    placeholder="001">
+                    aria-describedby="basic-addon3">
             </div>
         </div>
 
@@ -69,8 +75,7 @@
             <div class="input-group mb-3 w-100">
                 <input type="text" class="form-control"
                     id="marca-vehiculo-generar-ruta"
-                    aria-describedby="basic-addon3"
-                    placeholder="Toyota">
+                    aria-describedby="basic-addon3">
             </div>
         </div>
 
@@ -80,8 +85,7 @@
             <div class="input-group mb-3 w-100">
                 <input type="text" class="form-control"
                     id="cantidad-pasajeros-generar-ruta"
-                    aria-describedby="basic-addon3"
-                    placeholder="5">
+                    aria-describedby="basic-addon3">
             </div>
         </div>
 

@@ -39,7 +39,6 @@
                             name="radioActivo">
                         <span class="checkmark"></span>
                     </label>
-                    <!-- oninput="this.className = ''" Este evento produce que se acorde el input al escribir.-->
                 </div>
 
                 <div class="tab">
@@ -74,7 +73,7 @@
                                 name="personaEncargadaVehiculo"></p>
                         <p><select id="id_condicionVehiculo" class="form-select
                                 input-wizard" name="condicionVehiculo">
-                                <option selected>Estado Del Vehículo</option>
+                                <option selected>Condición Del Vehículo</option>
                                 <option value="Nuevo">Nuevo</option>
                                 <option value="Usado">Usado</option>
                             </select></p>
@@ -164,14 +163,15 @@
                     <a href="{% url 'control-activos' %}" style="font-size:
                         20px;" class="btn btn-warning mt-3"
                         aria-label="Close">Volver a la Página</a>
+                        <input type="submit" value="Registrar">
                 </div>
 
                 <div style="overflow:auto;" id="nextprevious">
                     <div style="float:right;"> <a href="{% url 'control-activos'%}" style="font-size: 20px;" class="btn btn-danger"
-                            aria-label="Close">Cancelar</a> <button name="" class="btn btn-success" style="font-size: 20px;" type="button" id="nextBtn" onclick="nextPrev(1)">Siguiente</button>
+                            aria-label="Close">Cancelar</a><button class="btn btn-success" style="font-size: 20px;" type="button" id="nextBtn" onclick="nextPrev(1)">Registrar</button>
+                            <input type="submit" value="Registrar">
                     </div>
                 </div>
-
             </form>
         </div>
     </div>   
@@ -181,26 +181,35 @@
 <!-- SCRIPTS PARA MENEJAR LOS FORMULARIOS Y TABLAS DE CONTROL ACTIVOS -->
 <script>
     // Script para visualizar los datos de los activos segun el que seleccione
-    function displayTable(c) {
-        if (c.value == "vehiculo") {
-            jQuery('#table-vehiculo').toggle('show');
-            jQuery('#table-extintor').hide();
-            jQuery('#table-oficina').hide();
-        }
-        if (c.value == "extintor") {
-            jQuery('#table-extintor').toggle('show');
-            jQuery('#table-vehiculo').hide();
-            jQuery('#table-oficina').hide();
+    // function displayTable(c) {
+    //     if (c.value == "vehiculo") {
+    //         jQuery('#table-vehiculo').toggle('show');
+    //         jQuery('#table-extintor').hide();
+    //         jQuery('#table-oficina').hide();
+    //         jQuery('#edit-vehiculo').show();
+    //         jQuery('#edit-extintor').hide();
+    //         jQuery('#edit-oficina').hide();
+    //     }
+    //     if (c.value == "extintor") {
+    //         jQuery('#table-extintor').toggle('show');
+    //         jQuery('#table-vehiculo').hide();
+    //         jQuery('#table-oficina').hide();
+    //         jQuery('#edit-extintor').show();
+    //         jQuery('#edit-vehiculo').hide();
+    //         jQuery('#edit-oficina').hide();
 
-        }
-        if (c.value == "oficina") {
-            jQuery('#table-oficina').toggle('show');
-            jQuery('#table-vehiculo').hide();
-            jQuery('#table-extintor').hide();
+    //     }
+    //     if (c.value == "oficina") {
+    //         jQuery('#table-oficina').toggle('show');
+    //         jQuery('#table-vehiculo').hide();
+    //         jQuery('#table-extintor').hide();
+    //         jQuery('#edit-oficina').show();
+    //         jQuery('#edit-vehiculo').hide();
+    //         jQuery('#edit-extintor').hide();
 
-        }
+    //     }
 
-    }
+    // }
 </script>
 <script>
     // Script para visualizar el formulario de registro de un activo segun el que seleccione
