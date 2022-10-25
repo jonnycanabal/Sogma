@@ -45,9 +45,12 @@ class GenerarRuta(models.Model):
     lugarSalida=models.CharField(max_length=50, verbose_name="Lugar de Salida")
     lugarDestino=models.CharField(max_length=50, verbose_name="Lugar de Destino")
     kilometrajeFinalVehiculo=models.IntegerField(verbose_name="Kilometraje Final")  # Valor numero (IntegerField) Para sumar Kilometraje!!!!!!
-    fkPasajero=models.ForeignKey(Pasajero, on_delete=models.CASCADE, verbose_name="Pasajero")
     descripcionRuta=models.TextField(max_length=100, verbose_name="Descripción")
     observacionesRuta=models.TextField(max_length=100, verbose_name="Observaciones")
+
+class DetalleRuta(models.Model):
+    fkRuta=models.ForeignKey(GenerarRuta, on_delete=models.CASCADE, verbose_name="Ruta")
+    fkPasajero=models.ForeignKey(Pasajero, on_delete=models.CASCADE, verbose_name="Pasajero")
 
 
 # CREACIÓN DE LA TABLA (registrarMantenimiento) DE NUESTRA MER DISEÑADO EN MYSQL WORKBENCH
