@@ -32,6 +32,9 @@ class Pasajero(models.Model):
     numeroDocumentoPasajero=models.CharField(max_length=50, unique=True, verbose_name="Número de Documento") #Tiene campo Único
     direccionPasajero=models.CharField(max_length=100, verbose_name="Dirección Residencia")
     telefonoPasajero=models.CharField(max_length=20, verbose_name="Teléfono")
+    def __str__(self):
+        return "%s %s"%(self.primerNombrePasajero,self.primerApellidoPasajero)
+
 
 # CREACIÓN DE LA TABLA (generarRuta) DE NUESTRA MER DISEÑADO EN MYSQL WORKBENCH
 class GenerarRuta(models.Model):

@@ -1,6 +1,22 @@
 <!-- ConsultarActivos se extiende de body.html siendo este la clase hija. -->
 {% extends 'partials/body.html' %}
 
+
+<!-- PRUEBA ----------------------------------------------------------- -->
+{% block estilos %}
+<!-- Styles -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
+<link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
+<!-- Or for RTL support -->
+<link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.rtl.min.css" />
+
+{% endblock estilos %}
+<!-- PRUEBA ----------------------------------------------------------- -->
+
+
 <!-- Cargar la carpeta static -->
 {% load static %}
 
@@ -50,10 +66,10 @@
                 VEHÍCULO</label>
             <div class="input-group mb-3 w-100">
                 <select class="form-control form-select" name="fkVehiculo" id="id_fkVehiculo">
-                    <option selected>Seleccione el Vehiculo</option>
+                    <option selected disabled>Seleccione el Vehiculo</option>
 
                     {% for vehiculo in vehiculos %}
-                    <option value='{{vehiculo.id}}'>{{vehiculo.placaVehiculo}}</option>
+                    <option value='{{vehiculo.id}}'>{{vehiculo.placaVehiculo}} - {{vehiculo.marcaVehiculo}}</option>
                     {% endfor %}
 
                 </select>
@@ -67,12 +83,12 @@
             <label for="basic-url" class="form-label w-75 ps-2">DOCUMENTO CONDUCTOR</label>
             <div class="input-group mb-3 w-100">
                 <select class="form-control form-select" name="fkUsuario" id="id_fkUsuario">
-                    <option selected>Seleccione el Documento</option>
+                    <option selected disabled>Seleccione el Documento</option>
 
                     {% for usuario in usuarios %}
                     
                     {% if usuario.tipoUsuario == 'Conductor' %}
-                        <option value='{{usuario.id}}'>{{usuario.numeroDocumento}}</option>
+                        <option value='{{usuario.id}}'>{{usuario.numeroDocumento}} - {{usuario.primerNombre}} {{usuario.primerApellido}}</option>
                     {% endif %}
 
                     {% endfor %}
@@ -214,13 +230,13 @@
         <!-- Parte para la selección y/o registro de funcionarios a transportar -->
         <!-- Titulo de selección de funcionarios -->
         <div class="w-100">
+
+            {% if pasajero %}
             <div class="w-100 border-bottom border-dark">
+
                 <h3 class="text-center border-top border-dark
-                    mt-5">SELECCIONAR PASAJERO</h3>
+                    mt-5">AGREGAR PASAJERO</h3>
             </div>
-
-            {% if pasajero != None %}
-
             <!-- Contenedor para los botones para funcionarios -->
             <div class="border-top w-100">
 
@@ -290,55 +306,40 @@
                                 aria-describedby="basic-addon3" placeholder="Jonny Canabal">
                         </div>
                     </div>
-
-
-
-
-                    <div class="d-inline-block width-20 ms-1
-                        me-5 mt-4">
-                        <label for="basic-url" class="form-label
-                            w-75 ps-2">UBICACIÓN</label>
-                        <div class="input-group mb-3 w-100">
-                            <input type="text" class="form-control text-center" id="ubicacion-funcionarios-generar-ruta"
-                                aria-describedby="basic-addon3" placeholder="">
-                        </div>
-                    </div>
-
-                    <div class="d-inline-block width-20 ms-1
-                        me-5 mt-4">
-                        <label for="basic-url" class="form-label
-                            w-75 ps-2">TELEFONO</label>
-                        <div class="input-group mb-3 w-100">
-                            <input type="text" class="form-control text-center" id="telefono-funcionarios-generar-ruta"
-                                aria-describedby="basic-addon3" placeholder="">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="d-flex justify-content-end w-100">
-                    <button type="button" id="btn-agregar" class="btn
-                        btn-success
-                        fs-5 m-2">AGREGAR</button>
-                </div>
             </div>
         </div>
         {% else %}
+        <div class="w-100 border-bottom border-dark">
+
+            <h3 class="text-center border-top border-dark
+        mt-5">SELECCIONAR PASAJERO</h3>
+        </div>
         <div class="w-100 text-center border-bottom
                     border-dark pb-4">
 
-            <div class="d-inline-block w-25 ms-1
-                        me-5 mt-4">
-                <label for="basic-url" class="form-label
-                            w-75 ps-2">Documento Del Pasajero</label>
+            <div class="d-inline-block ms-1 me-5 width-28">
+                <label for="basic-url" class="form-label w-75 ps-2">DOCUMENTO</label>
                 <div class="input-group mb-3 w-100">
-                        <div class="input-group mb-3">
-                            <input type="search" class="form-control border-1" placeholder="Documento Del Pasajero" aria-label="Recipient's username" aria-describedby="button-addon2">
-                            <button class="btn btn-outline-secondary text-black border-1" type="submit" id="button-addon2">Buscar</button>
-                        </div>
+                    
+                    <select id="id_tipoDocumento" class="form-select select-field" name="tipoDocumento"
+                        aria-label="tipo-activo">
+                        <option selected disabled>--Pasajero--</option>
+
+                        {% for pasajero in pasajeros %}
+                        <option value="{{pasajero.id}}">{{pasajero.numeroDocumentoPasajero}} - {{pasajero.primerNombrePasajero}} 
+                            {{pasajero.primerApellidoPasajero}}</option>
+
+                        {% endfor %}
+
+                    </select>
                 </div>
             </div>
         </div>
-
+        <script>
+            $('.select-field').select2({
+                theme: 'bootstrap-5'
+            });
+        </script>
         {% endif %}
         <!-- Salto de línea -->
         <br>
@@ -576,3 +577,12 @@
 <!-- Fin del contenedor para la página generar ruta -->
 
 {% endblock contenido %}
+
+
+
+{% block javascript %}
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.0/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+{% endblock javascript %}

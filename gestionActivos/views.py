@@ -1,7 +1,7 @@
 from multiprocessing import context
 from django.shortcuts import render,redirect
 from activos.models import ActivoEquipoOficina, ActivoExtintor, ActivoVehiculo
-from gestionActivos.models import GenerarRuta
+from gestionActivos.models import GenerarRuta, Pasajero
 from gestionActivos.forms import GenerarAlarmaForm, GenerarRutaForm, RegistrarMantenimientoForm
 from usuarios.models import Usuario
 from django.contrib import messages
@@ -24,19 +24,20 @@ def generar_alarma(request):
 def generar_ruta(request):
     titulo='Consultar-Ruta'
     ruta=None
+    pasajeros= Pasajero.objects.all()
+
     vehiculos=ActivoVehiculo.objects.all()
     usuarios=Usuario.objects.all()
     # BLoque para guardar el formulario de generar ruta
     form=GenerarRutaForm(request.POST)
     if form.is_valid():
         form.save()
-        print('###################################### EXTINTOR CREADO')
         messages.success(
             request,f"SE REGISTRO LA RUTA EXITOSAMENTE"
         )
+        return redirect('agregar-ruta')
 
-    if request.method== 'POST':
-        
+    if request.method== 'POST' and 'pasajero-buscar' in request.POST:
         return redirect('agregar-ruta')
 
     context={
@@ -44,7 +45,8 @@ def generar_ruta(request):
         'vehiculos':vehiculos,
         'usuarios':usuarios,
         'form':form,
-        'ruta':ruta
+        'ruta':ruta,
+        'pasajeros':pasajeros,
     }
     return render (request, 'gestionActivos/generarRuta.html', context)
 

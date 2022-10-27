@@ -20,6 +20,9 @@ from django.urls import path, include
 from main.views import consultar_ruta, control_activos, generar_alarma, generar_ruta, inicio, nuevo_usuario, registrar_mantenimiento
 
 urlpatterns = [
+
+    path("select2/", include("django_select2.urls")),
+
     path('admin/', admin.site.urls),
     path('', inicio, name='inicio'), # Inicio de sesión
     # path('controlActivos/', control_activos, name='Control-Activos'), # Control de activos - página principal.
