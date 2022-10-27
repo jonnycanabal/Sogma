@@ -14,19 +14,22 @@
 <!-- Estructura HTML5 -->
 <!DOCTYPE html>
 <html lang="en">
+
+<!-- Inicio del head -->
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- link o referencia a mi archivo css en la carpeta static -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+
+    <!-- bloque llamado estilos includo en el wizardForm.html donde se referencia static/css/wizardForm.css para su uso -->
     {% block estilos %}
         
     {% endblock estilos %}
-        
 
-        <!-- Inicio links o referencias para DataTables -->
+    <!-- Inicio links o referencias para DataTables -->
     <link rel="stylesheet"
         href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
     <link rel="stylesheet"
@@ -38,9 +41,17 @@
         href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
     <!-- Fin Data Tables -->
 
+    <!-- Importe de los CSS del TOASTR -->
+    <link rel="stylesheet" href="{% static 'toastr/toastr.min.css' %}">
+    <link rel="stylesheet" href="{% static 'toastr/toastr.css' %}">
+
+    <!-- Link con el que cargamos un Icono a nuestra pestaña de la Página -->
+    <link rel="shortcut icon" href="{% static 'img/logo_contraloria.png' %}">
+
     <!-- Titulo de la pestaña en el navegador -->
     <title>{{titulo}}</title> 
 </head>
+<!-- Fin del head -->
 
 <!-- Inicio del body -->
 <body class="color-bg p-4">
@@ -64,13 +75,30 @@
 
         {% include 'partials/footer.html' %}
 
-    </main>
-</section>
+        </main>
+    </section>
+
+<!-- Bloque de codigo y script para mostrar un mensaje usando el TOASTR -->
+{% if messages %}
+    
+    {% for message in messages %}
+        <script type="text/java">
+            toastr.{{message.tags}}("{{message}}")
+        </script>
+    {% endfor %}
+{% endif %}
+<!--  -->
 
 {% block javascript %}
     {% include 'partials/javascript.html' %}
 {% endblock javascript %}
 
+
+{% block javascripttabla %}
+    {% include 'partials/javascripttabla.html' %}
+{% endblock javascripttabla %}
+
 </body>
 <!-- Fin del body -->
+
 </html>

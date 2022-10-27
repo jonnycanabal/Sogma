@@ -1,4 +1,7 @@
+<!-- Cargar la carpeta static -->
+{% load static %}
 
+<!-- Bloque de codigo donde referenciamos los links y scripts para el uso de javascript en nuestro codigo -->
 {% block javascript %}
 
 <!-- Inicio Scripts DataTable-->
@@ -11,9 +14,13 @@
 <!-- ¡IMPORTANTE! -  este script para el funcionamiento de la datatables-->
 <script type="text/javascript" charset="utf8"
     src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+<!-- importante del TOASTR-->
+<script type="application/json" src="{% static 'toastr/toast.js.map' %}"></script>
+<script type="text/javascript" src="{% static 'toastr/toast.min.js' %}"></script>
+
 <!-- Script para iniciar o arrancar las DataTable-->
 <script>
-        // TABLA - 1 (Consultar Activos)
+        // TABLA - vehiculos (Consultar Activos)
         $(document).ready( function () {
             $('#example').DataTable();
         });
@@ -24,31 +31,31 @@
             }
         })
 
-        // TABLA - 2 (Historial de Rutas)
+        // TABLA - extintores (Consultar Activos)
         $(document).ready( function () {
             $('#example2').DataTable();
         });
         /*Script para cambiar de idioma dentro del script de arranque. al cambiar idioma español colombia cambian varias cosas*/
         $('#example2').DataTable({
-        "language": {
-            "url": "//cdn.datatables.net/plug-ins/1.12.1/i18n/es-MX.json",
-        }
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.12.1/i18n/es-MX.json",
+            }
         })
 
-        // TABLA - 2 (Historial de Rutas)
-                $(document).ready( function () {
-            $('#example2').DataTable();
+        // TABLA - equipos de oficina (Consultar Activos)
+        $(document).ready( function () {
+            $('#example3').DataTable();
         });
         /*Script para cambiar de idioma dentro del script de arranque. al cambiar idioma español colombia cambian varias cosas*/
         $('#example3').DataTable({
-        "language": {
-            "url": "//cdn.datatables.net/plug-ins/1.12.1/i18n/es-MX.json",
-        }
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.12.1/i18n/es-MX.json",
+            }
         })
 
-        // TABLA - 2 (Historial de Rutas)
-                $(document).ready( function () {
-            $('#example2').DataTable();
+        // TABLA (Historial de Rutas)
+        $(document).ready( function () {
+            $('#example4').DataTable();
         });
         /*Script para cambiar de idioma dentro del script de arranque. al cambiar idioma español colombia cambian varias cosas*/
         $('#example4').DataTable({
@@ -56,6 +63,7 @@
             "url": "//cdn.datatables.net/plug-ins/1.12.1/i18n/es-MX.json",
         }
         })
+
     </script>
 <!-- Fin Scripts DataTable-->
 

@@ -15,44 +15,18 @@
 <!-- Bloque de contenido el cual estara declarado en el body.html y sera lo que se vera dependiente de la página  -->
 {% block contenido %}
 
-<div class="container">
-    <!-- <form action="" method="POST">
+<!-- Código de prueba para traer el formulario a mi página de control de activos. -->
+<!-- <div class="container">
+    <form action="" method="POST">
         {{form|crispy}}
         {% csrf_token %}
         <input type="submit" value="Registrar">
-    </form>
-
-    <br>
-    <br>
-    <br> -->
-
-    <!-- <form action="" method="POST">
-        {{form2|crispy}}
-        {% csrf_token %}
-        <input type="submit" value="Registrar">
-    </form>
-
-    <br>
-    <br>
-    <br>
-
-    <form action="" method="POST">
-        {{form3|crispy}}
-        {% csrf_token %}
-        <input type="submit" value="Registrar">
     </form> 
+</div> -->
 
-<br>
-<br>
-<br> -->
-
-</div>
-
-
-<!-- INICIO DEL MAIN-->
+<!-- INICIO DEL MAIN ########################################################################################################-->
 <main class="bg-light">
 
-    <!-- Inicio del primer contenedor de la página-->
     <div id="div-cajas" class="container p-3 my-4 pt-0">
 
         <div class="text-center p-2 w-100">
@@ -62,7 +36,7 @@
         <!-- Salto de línea -->
         <br>
 
-        <!-- Botones para seleccionar el tipo de activo-->
+        <!-- Botones para seleccionar el tipo de activo -->
         <div class="text-center w-100">
             <div class="d-inline-block width-20 ms-1 me-5">
                 <div class="input-group mb-3 w-100">
@@ -76,7 +50,7 @@
 
             <div class="d-inline-block width-20 ms-1 me-5">
                 <div class="input-group mb-3 w-100">
-                    <button type="button" value="extintor" onclick="displayTable(this)"  class="btn
+                    <button type="button" value="extintor" onclick="displayTable(this)" class="btn
                         form-control
                         width-20 m-2 border border-dark
                         bg-white
@@ -86,7 +60,7 @@
 
             <div class="d-inline-block width-20 ms-1 me-5">
                 <div class="input-group mb-3 w-100">
-                    <button type="button"  value="oficina" onclick="displayTable(this)"  class="btn
+                    <button type="button" value="oficina" onclick="displayTable(this)" class="btn
                         form-control
                         width-20 m-2 border border-dark
                         bg-white
@@ -95,26 +69,24 @@
                 </div>
             </div>
         </div>
-
     </div>
 
-    <!-- VEHICULOS ------------------------------------------------------------------------------- -->
+    <!-- TABLA VEHICULOS. La tabla tiene un id="example", la cual se relaciona un javascript de DATATABLE -->
+    <!-- Tambien en el partials/javascript.html se encuentran los script y links de referncias de CSS para su funcionamiento -->
+    <div style="display: none;" id="table-vehiculo">
+        <div class="d-flex flex-column" style="text-align: center;">
 
-    <div id="table-vehiculo" style="display: none;">
-        <div class="d-flex flex-column" >
             <div class="h3 ms-5">Vehículos</div>
-            <div class="d-flex justify-content-center pb-4 mb-4 m-2 w-100 p-3">
-                <!-- Inicio del segundo contenedor de la página-->
 
-                <!-- Inicio de la Tabla usando (DataTable) -->
+            <div class="d-flex justify-content-center pb-4 mb-4 m-2 w-100 p-3">
                 <div class="overflow-auto shadow-lg p-4
-            height-config-tabla1 m-2 w-100" style="height: 300px;">
+                    height-config-tabla1 m-2 w-100" style="height: 300px;">
                     <table id="example" class="table-striped display nowrap">
 
                         <!-- Cabecera de la tabla (Donde estaran los enunciados principales)-->
                         <thead>
                             <tr>
-                                <th></th>
+                                <th>Acción</th>
                                 <th>Id Activo</th>
                                 <th>Marca del Vehículo</th>
                                 <th>Modelo del Vehículo</th>
@@ -124,7 +96,7 @@
                                 <th>Tipo de Combustible</th>
                                 <th>Cantidad de Pasajeros</th>
                                 <th>Persona a Cargo</th>
-                                <th>Estado del Vehículo</th>
+                                <th>Condición del Vehículo</th>
                                 <th>Fecha de Ingreso</th>
                                 <th>Fecha Inicio Soat</th>
                                 <th>Fecha Vencimiento Soat</th>
@@ -136,13 +108,52 @@
                         <!-- Cuerpo de la tabla (donde estara la informacion que se mostrara de los activos) -->
                         <tbody>
 
+                            <!-- For para recorrer los vehiculos y asi traer la información a la tabla -->
                             {% for vehiculo in vehiculos %}
                             <tr>
-                                <!-- Imagen de un ojo con el cual seleccionara el activo y mostrara en la parte de abajo toda la informacion
-                    para editar, guardar o eliminar/desabilitar la información -->
-                                <td><button class="border-0 rounded-circle" style="background-color: rgba(240, 248,
-                                255, 0);"><img src="{% static 'img/eye.png' %}" alt="iconoOjoSelector" width="20"
-                                            height="20"></td></button>
+                                <!-- Imagenes de: un "ojo" con el cual seleccionara el activo y se mostrara en la parte de abajo toda 
+                                la informacion para editar y guardar. La otra imagen es un "bote de basura" con el cual se
+                                eliminará/desabilitará el activo que seleccione-->
+                                <td>
+                                    <form action="" method="POST" class="col-4">
+
+                                        <!-- TOKEN DE SEGURIDAD -->
+                                        {% csrf_token %}
+
+                                        <!-- Botón del ojo para editar la información -->
+                                        <input type="hidden" name="pk_vehiculo" value="{{vehiculo.id}}">
+                                        <button class="btn btn-block fs-5 pe-1 ps-1" onClick="editarVehiculo()" name="editar-vehiculo">
+                                            <i class="bi bi-eye-fill"></i>
+                                        </button>
+
+                                        <!-- Boton de eliminar integrado con un modal y un toastr de mensaje despues de aceptar -->
+                                        <button type="button" class="btn fs-5 pe-1 ps-1" data-bs-toggle="modal" data-bs-target="#modal-eliminar-vehiculo"><i class="bi bi-trash3-fill"></i></a>
+                                        </button>
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="modal-eliminar-vehiculo" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                                            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="staticBackdropLabel">ALERTA DE
+                                                            ELIMINACIÓN</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body text-start">
+                                                        ¿Esta seguro que desea Eliminar El
+                                                        activo Seleccionado?.
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn
+                                                            btn-secondary" data-bs-dismiss="modal">CANCELAR</button>
+                                                        <input type="hidden" name="pk_vehiculo" value="{{vehiculo.id}}">
+                                                        <a class="btn btn-block btn-success" onClick="eliminarVehiculo()" name="eliminar-vehiculo" href="{% url 'control-activos-eliminar-vehiculo' vehiculo.id %}">ACEPTAR</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </td>
                                 <td class="text-center">{{vehiculo.id}}</td>
                                 <td>{{vehiculo.marcaVehiculo}}</td>
                                 <td>{{vehiculo.modeloVehiculo}}</td>
@@ -152,23 +163,20 @@
                                 <td>{{vehiculo.tipoCombustible}}</td>
                                 <td>{{vehiculo.cantidadPasajeros}}</td>
                                 <td>{{vehiculo.personaEncargadaVehiculo}}</td>
-                                <td>{{vehiculo.estadoVehiculo}}</td>
-                                <td>{{vehiculo.fechaIngresoVehiculo}}</td>
-                                <td>{{vehiculo.fechaInicioSoat}}</td>
-                                <td>{{vehiculo.fechaFinSoat}}</td>
-                                <td>{{vehiculo.fechaInicioTecnicomecanica}}</td>
-                                <td>{{vehiculo.fechaVencimientoTecnicomecanica}}</td>
-                                <td>{{vehiculo.}}</td>
+                                <td>{{vehiculo.condicionVehiculo}}</td>
+                                <td class="text-center">{{vehiculo.fechaIngresoVehiculo | date:"d/m/Y"}}</td>
+                                <td class="text-center">{{vehiculo.fechaInicioSoat | date:"d/m/Y"}}</td>
+                                <td class="text-center">{{vehiculo.fechaFinSoat | date:"d/m/Y"}}</td>
+                                <td class="text-center">{{vehiculo.fechaInicioTecnicomecanica | date:"d/m/Y"}}</td>
+                                <td class="text-center">{{vehiculo.fechaVencimientoTecnicomecanica | date:"d/m/Y"}}</td>
                             </tr>
                             {% endfor %}
-
-
                         </tbody>
 
                         <!-- Footer de la tabla (Donde estaran los enunciados principales pero en la parte inferior) -->
                         <tfoot>
                             <tr>
-                                <th></th>
+                                <th>Acción</th>
                                 <th>Id Activo</th>
                                 <th>Marca del Vehículo</th>
                                 <th>Modelo del Vehículo</th>
@@ -178,7 +186,7 @@
                                 <th>Tipo de Combustible</th>
                                 <th>Cantidad de Pasajeros</th>
                                 <th>Persona a Cargo</th>
-                                <th>Estado del Vehículo</th>
+                                <th>Condición del Vehículo</th>
                                 <th>Fecha de Ingreso</th>
                                 <th>Fecha Inicio Soat</th>
                                 <th>Fecha Vencimiento Soat</th>
@@ -192,87 +200,128 @@
         </div>
     </div>
 
+    <!-- TABLA EXTINTORES. La tabla tiene un id="example", la cual se relaciona un javascript de DATATABLE -->
+    <!-- Tambien en el partials/javascript.html se encuentran los script y links de referncias de CSS para su funcionamiento -->
+
     <div style="display: none;" id="table-extintor">
-        <div class="d-flex flex-column" >
+        <div class="d-flex flex-column" style="text-align: center;">
+            
             <div class="h3 ms-5">Extintores</div>
-
-<!-- EXTINTORES --------------------------------------------------------------------------------------------- -->
-
+            
             <div class="d-flex justify-content-center pb-4 mb-4 m-2 w-100 p-3">
-                <!-- Inicio del segundo contenedor de la página-->
-                <!-- Inicio de la Tabla usando (DataTable) -->
                 <div class="overflow-auto shadow-lg p-4
-            height-config-tabla1 m-2 w-100" style="height: 300px;">
+                    height-config-tabla1 m-2 w-100" style="height: 300px;">
+                    <table id="example2" class="table-striped display nowrap">
+
+                        <!-- Cabecera de la tabla (Donde estaran los enunciados principales)-->
+                        <thead>
+                            <tr>
+                                <th>Acción</th>
+                                <th>Id Activo</th>
+                                <th>Serial Extintor</th>
+                                <th>Color Extintor</th>
+                                <th>Ubicación del Extintor</th>
+                                <th>Tipo de Extintor</th>
+                                <th>Peso del Extintor (kg)</th>
+                            </tr>
+                        </thead>
+
+                        <!-- Cuerpo de la tabla (donde estara la informacion que se mostrara de los activos) -->
+                        <tbody>
+
+                            <!-- For para recorrer los vehiculos y asi traer la información a la tabla -->
+                            {% for extintor in extintores %}
+                            <tr>
+                                <!-- Imagenes de: un "ojo" con el cual seleccionara el activo y se mostrara en la parte de abajo toda 
+                                la informacion para editar y guardar. La otra imagen es un "bote de basura" con el cual se
+                                eliminará/desabilitará el activo que seleccione-->
+                                <td>
+                                        <form action="" method="POST" class="col-4">
+                                            
+                                            <!-- TOKEN DE SEGURIDAD -->
+                                            {% csrf_token %}
+                                            
+                                            <!-- Botón del ojo para editar la información -->
+                                            <input type="hidden" name="pk_extintor" value="{{extintor.id}}">
+                                            <button class="btn btn-block fs-5 pe-1 ps-1" onClick="editarExtintor()" name="editar-extintor">
+                                                <i class="bi bi-eye-fill"></i>
+                                            </button>
+
+                                            <!-- Boton de eliminar integrado con un modal y un toastr de mensaje despues de aceptar -->
+                                            <button type="button" class="btn fs-5 pe-1 ps-1" data-bs-toggle="modal" data-bs-target="#modal-eliminar-extintor"><i class="bi bi-trash3-fill"></i></a>
+                                            </button>
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="modal-eliminar-extintor" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                                                aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="staticBackdropLabel">ALERTA DE
+                                                                ELIMINACIÓN</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body text-start">
+                                                            ¿Esta seguro que desea Eliminar El
+                                                            activo Seleccionado?.
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn
+                                                                btn-secondary" data-bs-dismiss="modal">CANCELAR</button>
+                                                            <input type="hidden" name="pk_extintor" value="{{extintor.id}}">
+                                                            <a class="btn btn-block btn-success" onClick="eliminarExtintor()" name="eliminar-extintor" href="{% url 'control-activos-eliminar-extintor' extintor.id %}">ACEPTAR</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </td>
+                                    <td class="text-center">{{extintor.id}}</td>
+                                    <td>{{extintor.serialExtintor}}</td>
+                                    <td>{{extintor.colorExtintor}}</td>
+                                    <td>{{extintor.ubicacionExtintor}}</td>
+                                    <td>{{extintor.tipoExtintor}}</td>
+                                    <td>{{extintor.pesoExtintor}}</td>
+                            </tr>
+                            {% endfor %}
+
+                        </tbody>
+
+                        <!-- Footer de la tabla (Donde estaran los enunciados principales pero en la parte inferior) -->
+                        <tfoot>
+                            <tr>
+                                <th>Acción</th>
+                                <th>Id Activo</th>
+                                <th>Serial Extintor</th>
+                                <th>Color Extintor</th>
+                                <th>Ubicación del Extintor</th>
+                                <th>Tipo de Extintor</th>
+                                <th>Peso del Extintor (kg)</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>    
+    </div>
+
+    
+    <!-- TABLA EQUIPOS DE OFICINA. La tabla tiene un id="example", la cual se relaciona un javascript de DATATABLE -->
+    <!-- Tambien en el partials/javascript.html se encuentran los script y links de referncias de CSS para su funcionamiento -->
+
+    <div style="display: none;" id="table-oficina">
+        <div class="d-flex flex-column">
+            
+            <div class="h3 ms-5" style="text-align: center;">Equipos de Oficina</div>
+            
+            <div class="d-flex justify-content-center pb-4 mb-4 m-2 w-100 p-3">
+                <div class="overflow-auto shadow-lg p-4
+                    height-config-tabla1 m-2 w-100" style="height: 300px;">
                     <table id="example3" class="table-striped display nowrap">
 
                         <!-- Cabecera de la tabla (Donde estaran los enunciados principales)-->
                         <thead>
                             <tr>
-                                <th></th>
-                                <th>Id Activo</th>
-                                <th>Serial Extintor</th>
-                                <th>Color Extintor</th>
-                                <th>Ubicación del Extintor</th>
-                                <th>Tipo de Extintor</th>
-                                <th>Peso del Extintor</th>
-                            </tr>
-                        </thead>
-
-                        <!-- Cuerpo de la tabla (donde estara la informacion que se mostrara de los activos) -->
-                        <tbody>
-
-                            {% for extintor in extintores %}
-                            <tr>
-                                <!-- Imagen de un ojo con el cual seleccionara el activo y mostrara en la parte de abajo toda la informacion
-                    para editar, guardar o eliminar/desabilitar la información -->
-                                <td><button class="border-0 rounded-circle" style="background-color: rgba(240, 248,
-                                255, 0);"><img src="{% static 'img/eye.png' %}" alt="iconoOjoSelector" width="20"
-                                            height="20"></td></button>
-                                <td class="text-center">{{extintor.id}}</td>
-                                <td>{{extintor.serialExtintor}}</td>
-                                <td>{{extintor.colorExtintor}}</td>
-                                <td>{{extintor.ubicacionExtintor}}</td>
-                                <td>{{extintor.tipoExtintor}}</td>
-                                <td>{{extintor.pesoExtintor}}</td>
-                            </tr>
-                            {% endfor %}
-
-
-                        </tbody>
-
-                        <!-- Footer de la tabla (Donde estaran los enunciados principales pero en la parte inferior) -->
-                        <tfoot>
-                            <tr>
-                                <th></th>
-                                <th>Id Activo</th>
-                                <th>Serial Extintor</th>
-                                <th>Color Extintor</th>
-                                <th>Ubicación del Extintor</th>
-                                <th>Tipo de Extintor</th>
-                                <th>Peso del Extintor</th>
-                            </tr>
-                        </tfoot>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- EQUIPOS DE OFICINA ------------------------------------------------------------------------------- -->
-    <div style="display: none;" id="table-oficina">
-        <div class="d-flex flex-column" >
-            <div class="h3 ms-5">Equipos de Oficina</div>
-            <div class="d-flex justify-content-center pb-4 mb-4 m-2 w-100 p-3">
-                <!-- Inicio del segundo contenedor de la página-->
-                <!-- Inicio de la Tabla usando (DataTable) -->
-                <div class="overflow-auto shadow-lg p-4
-            height-config-tabla1 m-2 w-100" style="height: 300px;">
-                    <table id="example4" class="table-striped display nowrap">
-
-                        <!-- Cabecera de la tabla (Donde estaran los enunciados principales)-->
-                        <thead>
-                            <tr>
-                                <th></th>
+                                <th>Acción</th>
                                 <th>Id Activo</th>
                                 <th>Serial Equipo</th>
                                 <th>Marca Equipo</th>
@@ -288,32 +337,69 @@
                         <!-- Cuerpo de la tabla (donde estara la informacion que se mostrara de los activos) -->
                         <tbody>
 
+                            <!-- For para recorrer los vehiculos y asi traer la información a la tabla -->
                             {% for equipo in equipos %}
                             <tr>
-                                <!-- Imagen de un ojo con el cual seleccionara el activo y mostrara en la parte de abajo toda la informacion
-                    para editar, guardar o eliminar/desabilitar la información -->
-                                <td><button class="border-0 rounded-circle" style="background-color: rgba(240, 248,
-                                255, 0);"><img src="{% static 'img/eye.png' %}" alt="iconoOjoSelector" width="20"
-                                            height="20"></td></button>
-                                <td class="text-center">{{equipo.id}}</td>
-                                <td>{{equipo.serialEquipo}}</td>
-                                <td>{{equipo.marcaEquipo}}</td>
-                                <td>{{equipo.colorEquipo}}</td>
-                                <td>{{equipo.sistemaOperativo}}</td>
-                                <td>{{equipo.ramEquipo}}</td>
-                                <td>{{equipo.memoriaEquipo}}</td>
-                                <td>{{equipo.ubicacionEquipo}}</td>
-                                <td>{{equipo.componentesAdicionales}}</td>
+                                <!-- Imagenes de: un "ojo" con el cual seleccionara el activo y se mostrara en la parte de abajo toda 
+                                la informacion para editar y guardar. La otra imagen es un "bote de basura" con el cual se
+                                eliminará/desabilitará el activo que seleccione-->
+                                <td>
+                                        <form action="" method="POST" class="col-4">
+                                            
+                                            <!-- TOKEN DE SEGURIDAD -->
+                                            {% csrf_token %}
+                                            
+                                            <!-- Botón del ojo para editar la información -->
+                                            <input type="hidden" name="pk_equipo" value="{{equipo.id}}">
+                                            <button class="btn btn-block fs-5 pe-1 ps-1" onClick="editarEquipo()" name="editar-equipo-oficina">
+                                                <i class="bi bi-eye-fill"></i>
+                                            </button>
+
+                                            <!-- Boton de eliminar integrado con un modal y un toastr de mensaje despues de aceptar -->
+                                            <button type="button" class="btn fs-5 pe-1 ps-1" data-bs-toggle="modal" data-bs-target="#modal-eliminar-equipo"><i class="bi bi-trash3-fill"></i></a>
+                                            </button>
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="modal-eliminar-equipo" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                                                aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="staticBackdropLabel">ALERTA DE
+                                                                ELIMINACIÓN</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body text-start">
+                                                            ¿Esta seguro que desea Eliminar El
+                                                            activo Seleccionado?.
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn
+                                                                btn-secondary" data-bs-dismiss="modal">CANCELAR</button>
+                                                            <input type="hidden" name="pk_equipo" value="{{equipo.id}}">
+                                                            <a class="btn btn-block btn-success" onClick="eliminarEquipo()" name="eliminar-equipo" href="{% url 'control-activos-eliminar-equipo' equipo.id %}">ACEPTAR</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </td>
+                                    <td class="text-center">{{equipo.id}}</td>
+                                    <td>{{equipo.serialEquipo}}</td>
+                                    <td>{{equipo.marcaEquipo}}</td>
+                                    <td>{{equipo.colorEquipo}}</td>
+                                    <td>{{equipo.sistemaOperativo}}</td>
+                                    <td>{{equipo.ramEquipo}}</td>
+                                    <td>{{equipo.memoriaEquipo}}</td>
+                                    <td>{{equipo.ubicacionEquipo}}</td>
+                                    <td>{{equipo.componentesAdicionales}}</td>
                             </tr>
                             {% endfor %}
-
-
                         </tbody>
 
                         <!-- Footer de la tabla (Donde estaran los enunciados principales pero en la parte inferior) -->
                         <tfoot>
                             <tr>
-                                <th></th>
+                                <th>Acción</th>
                                 <th>Id Activo</th>
                                 <th>Serial Equipo</th>
                                 <th>Marca Equipo</th>
@@ -330,286 +416,389 @@
             </div>
         </div>
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    <!-- FIN DE LA TABLA USANDO (DataTable) -------------------------------------------------------------------------------------- -->
     
-    <!-- Fin de la Tabla usando (DataTable) -->
+    <!-- Se trabaja un IF para dar la condicion que si selecciona un vehiculo o un extintor o un equipo de oficina, traera la
+    los campos correspondientes a dicho activo. -->
 
-    <!-- Inicio del tercer contenedor de la página -->
-    <div id="div-cajas2" class="p-3 mt-5 border-top border-dark">
+    <!-- BOTONES DONDE SE TRAE LA INFORMACIÓN PARA VISUALIZAR Y EDITAR DEL ACTIVO VEHICULO -->
 
-        <!-- Los siguientes input deberan mostrar la informacion del activo que se seleccione previamente -->
-        <div class="d-inline-block width-20 ms-1 me-5">
-            <label for="basic-url" class="form-label w-75 p-2">TIPO
-                DE
-                ACTIVO</label>
-            <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control" id="tipo-activo-control-activo" aria-describedby="basic-addon3"
-                    placeholder="TIPO DE ACTIVO">
+    {% if vehiculo %}
+    <h3 style="text-align: center;">Editando EL Vehículo</h3>
+
+    <div id="edit-vehiculo">
+
+        <form action="" method="POST">
+
+            <!-- TOKEN DE SEGURIDAD -->
+            {% csrf_token %}
+
+            <div class="p-3 mt-5 border-top border-dark div-cajas2">
+                <div class="d-inline-block width-20 ms-1 me-5">
+                    <label for="basic-url" class="form-label w-75 p-2">Id Activo</label>
+                    <div class="input-group mb-3 w-100">
+                        <input type="hidden" name="pk_vehiculo" value="{{vehiculo.id}}">
+                        <input type="text" class="form-control" disabled id="" name="" value="{{vehiculo.id}}" aria-describedby="basic-addon3">
+                    </div>
+                </div>
+
+                <div class="d-inline-block width-20 ms-1 me-5">
+                    <label for="basic-url" class="form-label w-75 p-2">Marca del Vehículo</label>
+                    <div class="input-group mb-3 w-100">
+                        <input type="text" class="form-control" id="id_marcaVehiculo" name="marcaVehiculo" value="{{vehiculo.marcaVehiculo}}" aria-describedby="basic-addon3">
+                    </div>
+                </div>
+
+                <div class="d-inline-block width-20 ms-1 me-5">
+                    <label for="basic-url" class="form-label w-75 p-2">Modelo del Vehículo</label>
+                    <div class="input-group mb-3 w-100">
+                        <input type="text" class="form-control" id="id_modeloVehiculo" name="modeloVehiculo" value="{{vehiculo.modeloVehiculo}}" aria-describedby="basic-addon3">
+                    </div>
+                </div>
+
+                <div class="d-inline-block width-20 ms-1 me-5">
+                    <label for="basic-url" class="form-label w-75 p-2">Placa del Vehículo</label>
+                    <div class="input-group mb-3 w-100">
+                        <input type="text" class="form-control" id="id_placaVehiculo" name="placaVehiculo" value="{{vehiculo.placaVehiculo}}" aria-describedby="basic-addon3">
+                    </div>
+                </div>
+
+                <div class="d-inline-block width-20 ms-1 me-5">
+                    <label for="basic-url" class="form-label w-75 p-2">Color del Vehículo</label>
+                    <div class="input-group mb-3 w-100">
+                        <input type="text" class="form-control" id="id_colorVehiculo" name="colorVehiculo" value="{{vehiculo.colorVehiculo}}" aria-describedby="basic-addon3">
+                    </div>
+                </div>
+
+                <div class="d-inline-block width-20 ms-1 me-5">
+                    <label for="basic-url" class="form-label w-75 p-2">Serial del Vehiculo</label>
+                    <div class="input-group mb-3 w-100">
+                        <input type="text" class="form-control" id="id_serialVehiculo" name="serialVehiculo" value="{{vehiculo.serialVehiculo}}" aria-describedby="basic-addon3">
+                    </div>
+                </div>
+
+                <div class="d-inline-block width-20 ms-1 me-5">
+                    <label for="basic-url" class="form-label w-75 p-2">Tipo de Combustible</label>
+                    <div class="input-group mb-3 w-100">
+                        <input type="text" class="form-control" id="id_tipoCombustible" name="tipoCombustible" value="{{vehiculo.tipoCombustible}}" aria-describedby="basic-addon3">
+                    </div>
+                </div>
+
+                <div class="d-inline-block width-20 ms-1 me-5">
+                    <label for="basic-url" class="form-label w-75 p-2">Cantidad de Pasajeros</label>
+                    <div class="input-group mb-3 w-100">
+                        <input type="text" class="form-control" id="id_cantidadPasajeros" name="cantidadPasajeros" value="{{vehiculo.cantidadPasajeros}}" aria-describedby="basic-addon3">
+                    </div>
+                </div>
+
+                <div class="d-inline-block width-20 ms-1 me-5">
+                    <label for="basic-url" class="form-label w-75 p-2">Persona a Cargo</label>
+                    <div class="input-group mb-3 w-100">
+                        <input type="text" class="form-control" id="id_personaEncargadaVehiculo" name="personaEncargadaVehiculo" value="{{vehiculo.personaEncargadaVehiculo}}" aria-describedby="basic-addon3">
+                    </div>
+                </div>
+
+                <div class="d-inline-block width-20 ms-1 me-5">
+                    <label for="basic-url" class="form-label w-75 p-2">Condicion del Vehículo</label>
+                    <div class="input-group mb-3 w-100">
+                        <input type="text" class="form-control" id="id_condicionVehiculo" name="condicionVehiculo" value="{{vehiculo.condicionVehiculo}}" aria-describedby="basic-addon3">
+                    </div>
+                </div>
+
+                <div class="d-inline-block width-20 ms-1 me-5">
+                    <label for="basic-url" class="form-label w-75 p-2">Fecha de Ingreso</label>
+                    <div class="input-group mb-3 w-100">
+                        <input type="date" class="form-control" id="id_fechaIngresoVehiculo" name="fechaIngresoVehiculo" value="{{vehiculo.fechaIngresoVehiculo | date:'Y-m-d'}}" aria-describedby="basic-addon3">
+                    </div>
+                </div>
+
+                <div class="d-inline-block width-20 ms-1 me-5">
+                    <label for="basic-url" class="form-label w-75 p-2">Fecha Inicio Soat</label>
+                    <div class="input-group mb-3 w-100">
+                        <input type="date" class="form-control" id="id_fechaInicioSoat" name="fechaInicioSoat" value="{{vehiculo.fechaInicioSoat | date:'Y-m-d'}}" aria-describedby="basic-addon3">
+                    </div>
+                </div>
+
+                <div class="d-inline-block width-20 ms-1 me-5">
+                    <label for="basic-url" class="form-label w-75 p-2">Fecha Vencimiento Soat</label>
+                    <div class="input-group mb-3 w-100">
+                        <input type="date" class="form-control" id="id_fechaFinSoat" name="fechaFinSoat" value="{{vehiculo.fechaFinSoat | date:'Y-m-d'}}" aria-describedby="basic-addon3">
+                    </div>
+                </div>
+
+                <div class="d-inline-block width-20 ms-1 me-5">
+                    <label for="basic-url" class="form-label w-75 p-2">Fecha Inicio Tecnicomecanica</label>
+                    <div class="input-group mb-3 w-100">
+                        <input type="date" class="form-control" id="id_fechaInicioTecnicomecanica" name="fechaInicioTecnicomecanica" value="{{vehiculo.fechaInicioTecnicomecanica | date:'Y-m-d'}}" aria-describedby="basic-addon3">
+                    </div>
+                </div>
+
+                <div class="d-inline-block width-20 ms-1 me-5">
+                    <label for="basic-url" class="form-label w-75 p-2">Fecha Vencimiento Tecnicomecanica</label>
+                    <div class="input-group mb-3 w-100">
+                        <input type="date" class="form-control" id="id_fechaVencimientoTecnicomecanica" name="fechaVencimientoTecnicomecanica" value="{{vehiculo.fechaVencimientoTecnicomecanica | date:'Y-m-d'}}" aria-describedby="basic-addon3">
+                    </div>
+                </div>
             </div>
-        </div>
 
-        <div class="d-inline-block width-20 ms-1 me-5">
-            <label for="basic-url" class="form-label w-75 p-2">ID
-                ACTIVO</label>
-            <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control" id="id-activo-control-activo" aria-describedby="basic-addon3"
-                    placeholder="ID ACTIVO">
+            <!-- USO DE MODAL CON BOOTSTRAP 5 PARA EL BOTON GUARDAR-->
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-success fs-5 m-2 ms-3" data-bs-toggle="modal" data-bs-target="#modal-guardar-vehiculo">
+                GUARDAR
+            </button>
+            <!-- Modal -->
+            <div class="modal fade" id="modal-guardar-vehiculo" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel">VERIFICAR</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body text-start">
+                            Esta seguro que desea guardar los
+                            cambios.
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn
+                                btn-secondary" data-bs-dismiss="modal">CANCELAR</button>
+                            <button data-bs-toggle="modal" data-bs-target=""
+                                data-bs-dismiss="modal" class="btn
+                                btn-primary" name="c-editar-vehiculo">ACEPTAR </button>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
+        </form>
+    </div>
 
-        <div class="d-inline-block width-20 ms-1 me-5">
-            <label for="basic-url" class="form-label w-75 ps-2">MARCA</label>
-            <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control" id="marca-control-activo" aria-describedby="basic-addon3"
-                    placeholder="MARCA">
+    <!-- BOTONES DONDE SE TRAE LA INFORMACIÓN PARA VISUALIZAR Y EDITAR DEL ACTIVO EXTINTOR -->
+    {% elif extintor %}
+    <h3 style="text-align: center;">Editando El Extintor</h3>
+
+    <div id="edit-extintor">
+
+        <form action="" method="POST">
+
+            <!-- TOKEN DE SEGURIDAD -->
+            {% csrf_token %}
+
+            <div class="p-3 mt-5 border-top border-dark div-cajas2">
+                <div class="d-inline-block width-20 ms-1 me-5">
+                    <label for="basic-url" class="form-label w-75 p-2">Id Activo</label>
+                    <div class="input-group mb-3 w-100">
+                        <input type="hidden" name="pk_extintor" value="{{extintor.id}}">
+                        <input type="text" class="form-control" disabled id="" name="" value="{{extintor.id}}" aria-describedby="basic-addon3">
+                    </div>
+                </div>
+
+                <div class="d-inline-block width-20 ms-1 me-5">
+                    <label for="basic-url" class="form-label w-75 p-2">Serial del Extintor</label>
+                    <div class="input-group mb-3 w-100">
+                        <input type="text" class="form-control" id="id_serialExtintor" name="serialExtintor" value="{{extintor.serialExtintor}}" aria-describedby="basic-addon3">
+                    </div>
+                </div>
+
+                <div class="d-inline-block width-20 ms-1 me-5">
+                    <label for="basic-url" class="form-label w-75 p-2">Color del Extintor</label>
+                    <div class="input-group mb-3 w-100">
+                        <input type="text" class="form-control" id="id_colorExtintor" name="colorExtintor" value="{{extintor.colorExtintor}}" aria-describedby="basic-addon3">
+                    </div>
+                </div>
+
+                <div class="d-inline-block width-20 ms-1 me-5">
+                    <label for="basic-url" class="form-label w-75 p-2">Ubicación del Extintor</label>
+                    <div class="input-group mb-3 w-100">
+                        <input type="text" class="form-control" id="id_ubicacionExtintor" name="ubicacionExtintor" value="{{extintor.ubicacionExtintor}}" aria-describedby="basic-addon3">
+                    </div>
+                </div>
+
+                <div class="d-inline-block width-20 ms-1 me-5">
+                    <label for="basic-url" class="form-label w-75 p-2">Tipo de Extintor</label>
+                    <div class="input-group mb-3 w-100">
+                        <input type="text" class="form-control" id="id_tipoExtintor" name="tipoExtintor" value="{{extintor.tipoExtintor}}" aria-describedby="basic-addon3">
+                    </div>
+                </div>
+
+                <div class="d-inline-block width-20 ms-1 me-5">
+                    <label for="basic-url" class="form-label w-75 p-2">Peso del Extintor</label>
+                    <div class="input-group mb-3 w-100">
+                        <input type="text" class="form-control" id="id_pesoExtintor" name="pesoExtintor" value="{{extintor.pesoExtintor}}" aria-describedby="basic-addon3">
+                    </div>
+                </div>
             </div>
-        </div>
 
-        <div class="d-inline-block width-20 ms-1 me-5">
-            <label for="basic-url" class="form-label w-75 ps-2">MODELO</label>
-            <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control" id="modelo-control-activo" aria-describedby="basic-addon3"
-                    placeholder="MODELO">
+            <!-- USO DE MODAL CON BOOTSTRAP 5 PARA EL BOTON GUARDAR-->
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-success fs-5 m-2 ms-3" data-bs-toggle="modal" data-bs-target="#modal-guardar-extintor">
+                GUARDAR
+            </button>
+            <!-- Modal -->
+            <div class="modal fade" id="modal-guardar-extintor" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel">VERIFICAR</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body text-start">
+                            Esta seguro que desea guardar los
+                            cambios.
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn
+                                btn-secondary" data-bs-dismiss="modal">CANCELAR</button>
+                            <button data-bs-toggle="modal" data-bs-target=""
+                                data-bs-dismiss="modal" class="btn
+                                btn-primary" name="c-editar-extintor">ACEPTAR </button>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
+        </form>
+    </div>
 
-        <div class="d-inline-block width-20 ms-1 me-5">
-            <label for="basic-url" class="form-label w-75 ps-2">PLACA</label>
-            <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control" id="placa-control-activo" aria-describedby="basic-addon3"
-                    placeholder="PLACA">
+
+    <!-- BOTONES DONDE SE TRAE LA INFORMACIÓN PARA VISUALIZAR Y EDITAR DEL ACTIVO EQUIPO DE OFICINA -->
+
+    {% elif equipo %}
+    <h3 style="text-align: center;">Editando El Equipo De Oficina</h3>
+
+    <div id="edit-oficina">
+
+        <form action="" method="POST">
+
+            <!-- TOKEN DE SEGURIDAD -->
+            {% csrf_token %}
+
+            <div class="p-3 mt-5 border-top border-dark div-cajas2">
+                <div class="d-inline-block width-20 ms-1 me-5">
+                    <label for="basic-url" class="form-label w-75 p-2">Id Activo</label>
+                    <div class="input-group mb-3 w-100">
+                        <input type="hidden" name="pk_equipo" value="{{equipo.id}}">
+                        <input type="text" class="form-control" disabled id="" name="" value="{{equipo.id}}" aria-describedby="basic-addon3">
+                    </div>
+                </div>
+
+                <div class="d-inline-block width-20 ms-1 me-5">
+                    <label for="basic-url" class="form-label w-75 p-2">Serial Equipo</label>
+                    <div class="input-group mb-3 w-100">
+                        <input type="text" class="form-control" id="id_serialEquipo" name="serialEquipo" value="{{equipo.serialEquipo}}" aria-describedby="basic-addon3">
+                    </div>
+                </div>
+
+                <div class="d-inline-block width-20 ms-1 me-5">
+                    <label for="basic-url" class="form-label w-75 p-2">Marca Equipo</label>
+                    <div class="input-group mb-3 w-100">
+                        <input type="text" class="form-control" id="id_marcaEquipo" name="marcaEquipo" value="{{equipo.marcaEquipo}}" aria-describedby="basic-addon3">
+                    </div>
+                </div>
+
+                <div class="d-inline-block width-20 ms-1 me-5">
+                    <label for="basic-url" class="form-label w-75 p-2">Color Equipo</label>
+                    <div class="input-group mb-3 w-100">
+                        <input type="text" class="form-control" id="id_colorEquipo" name="colorEquipo" value="{{equipo.colorEquipo}}" aria-describedby="basic-addon3">
+                    </div>
+                </div>
+
+                <div class="d-inline-block width-20 ms-1 me-5">
+                    <label for="basic-url" class="form-label w-75 p-2">Sistema Operativo</label>
+                    <div class="input-group mb-3 w-100">
+                        <input type="text" class="form-control" id="id_sistemaOperativo" name="sistemaOperativo" value="{{equipo.sistemaOperativo}}" aria-describedby="basic-addon3">
+                    </div>
+                </div>
+
+                <div class="d-inline-block width-20 ms-1 me-5">
+                    <label for="basic-url" class="form-label w-75 p-2">Ram del Equipo</label>
+                    <div class="input-group mb-3 w-100">
+                        <input type="text" class="form-control" id="id_ramEquipo" name="ramEquipo" value="{{equipo.ramEquipo}}" aria-describedby="basic-addon3">
+                    </div>
+                </div>
+
+                <div class="d-inline-block width-20 ms-1 me-5">
+                    <label for="basic-url" class="form-label w-75 p-2">Memoria del Equipo</label>
+                    <div class="input-group mb-3 w-100">
+                        <input type="text" class="form-control" id="id_memoriaEquipo" name="memoriaEquipo" value="{{equipo.memoriaEquipo}}" aria-describedby="basic-addon3">
+                    </div>
+                </div>
+
+                <div class="d-inline-block width-20 ms-1 me-5">
+                    <label for="basic-url" class="form-label w-75 p-2">Ubicación del Equipo</label>
+                    <div class="input-group mb-3 w-100">
+                        <input type="text" class="form-control" id="id_ubicacionEquipo" name="ubicacionEquipo" value="{{equipo.ubicacionEquipo}}" aria-describedby="basic-addon3">
+                    </div>
+                </div>
+
+                <div class="d-inline-block width-20 ms-1 me-5">
+                    <label for="basic-url" class="form-label w-75 p-2">Componentes del Equipo</label>
+                    <div class="input-group mb-3 w-100">
+                        <textarea type="text" class="form-control" id="id_componentesAdicionales" name="componentesAdicionales" value="{{equipo.componentesAdicionales}}" aria-describedby="basic-addon3"></textarea>
+                    </div>
+                </div>
             </div>
-        </div>
 
-        <div class="d-inline-block width-20 ms-1 me-5">
-            <label for="basic-url" class="form-label w-75 ps-2">COLOR</label>
-            <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control" id="color-control-activo" aria-describedby="basic-addon3"
-                    placeholder="COLOR">
+            <!-- USO DE MODAL CON BOOTSTRAP 5 PARA EL BOTON GUARDAR-->
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-success fs-5 m-2 ms-3" data-bs-toggle="modal" data-bs-target="#modal-guardar-equipo">
+                GUARDAR
+            </button>
+            <!-- Modal -->
+            <div class="modal fade" id="modal-guardar-equipo" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel">VERIFICAR</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body text-start">
+                            Esta seguro que desea guardar los
+                            cambios.
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn
+                                btn-secondary" data-bs-dismiss="modal">CANCELAR</button>
+                            <button data-bs-toggle="modal" data-bs-target=""
+                                data-bs-dismiss="modal" class="btn
+                                btn-primary" name="c-editar-equipo">ACEPTAR </button>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
+        </form>
+    </div>
+    {% endif %}
+    <!-- FIN DE LA CONDICIÓN IF -->
 
-        <div class="d-inline-block width-20 ms-1 me-5">
-            <label for="basic-url" class="form-label w-75 ps-2">SERIAL</label>
-            <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control" id="serial-control-activo" aria-describedby="basic-addon3"
-                    placeholder="SERIAL">
-            </div>
-        </div>
+    <!-- USO DE MODAL CON BOOTSTRAP 5 PARA EL BOTON NUEVO ACTIVO -->
+    <!-- Este modal se trabaja junto con el wizardForm.html para el registro de un nuevo activo -->
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-secondary fs-5 m-2 ms-3" data-bs-toggle="modal"
+        data-bs-target="#modal-nuevo-activo">
+        NUEVO
+        ACTIVO
+    </button>
 
-        <div class="d-inline-block width-20 ms-1 me-5">
-            <label for="basic-url" class="form-label w-75 ps-2">TIPO
-                DE
-                COMBUSTIBLE</label>
-            <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control" id="tipo-combustible-control-activo"
-                    aria-describedby="basic-addon3" placeholder="TIPO DE COMBUSTIBLE">
-            </div>
-        </div>
+    <!-- Modal -->
+    <div class="modal fade" id="modal-nuevo-activo" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
 
-        <div class="d-inline-block width-20 ms-1 me-5">
-            <label for="basic-url" class="form-label w-75 ps-2">CAPACIDAD</label>
-            <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control" id="capacidad-control-activo" aria-describedby="basic-addon3"
-                    placeholder="CAPACIDAD">
-            </div>
-        </div>
-
-        <div class="d-inline-block width-20 ms-1 me-5">
-            <label for="basic-url" class="form-label w-75 ps-2">UBICACIÓN</label>
-            <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control" id="ubicacion-control-activo" aria-describedby="basic-addon3"
-                    placeholder="UBICACIÓN">
-            </div>
-        </div>
-
-        <div class="d-inline-block width-20 ms-1 me-5">
-            <label for="basic-url" class="form-label w-75 ps-2">PERSONA
-                A
-                CARGO</label>
-            <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control" id="persona-encargada-control-activo"
-                    aria-describedby="basic-addon3" placeholder="PERSONA A CARGO">
-            </div>
-        </div>
-
-        <div class="d-inline-block width-20 ms-1 me-5">
-            <label for="basic-url" class="form-label w-75 ps-2">KILOMETRAJE
-                ACTUAL</label>
-            <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control" id="kilometraje-control-activo" aria-describedby="basic-addon3"
-                    placeholder="KILOMETRAJE ACTUAL">
-            </div>
-        </div>
-
-        <div class="d-inline-block width-20 ms-1 me-5">
-            <label for="basic-url" class="form-label w-75 ps-2">FECHA
-                DE
-                INGRESO</label>
-            <div class="input-group mb-3 w-100">
-                <input type="date" class="form-control" id="fecha-ingreso-control-activo"
-                    aria-describedby="basic-addon3" placeholder="FECHA DE INGRESO">
-            </div>
-        </div>
-
-        <div class="d-inline-block width-20 ms-1 me-5">
-            <label for="basic-url" class="form-label w-75 ps-2">ULTIMA
-                RECARGA</label>
-            <div class="input-group mb-3 w-100">
-                <input type="date" class="form-control" id="ultima-recarga-control-activo"
-                    aria-describedby="basic-addon3" placeholder="ULTIMA RECARGA">
-            </div>
-        </div>
-
-        <div class="d-inline-block width-20 ms-1 me-5">
-            <label for="basic-url" class="form-label w-75 ps-2 ">ULTIMO
-                MANTENIMIENTO</label>
-            <div class="input-group mb-3 w-100">
-                <input type="date" class="form-control" id="ultimo-mantenimiento-control-activo"
-                    aria-describedby="basic-addon3" placeholder="ULTIMO MANTENIMIENTO">
+                <div class="">
+                    <!-- Con este include en este punto logramos traer el wizardForm.html con su configuración para trabajar
+                    el formulario de la creacion o regitro de un nuevo activo -->
+                    {% include 'partials/wizardForm.html' %}
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- Botones de accion (parte final del tercer contenedor de la página)-->
-    <div class="w-100 m-1 pb-5">
-
-        <button type="button" id="btn-editar" class="btn
-            btn-secondary
-            fs-5 m-2">EDITAR</button>
-
-        <!-- USO DE MODAL CON BOOTSTRAP 5 PARA EL BOTON GUARDAR-->
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-success fs-5 m-2" data-bs-toggle="modal" data-bs-target="#modal-guardar">
-            GUARDAR
-        </button>
-
-        <!-- Modal -->
-        <div class="modal fade" id="modal-guardar" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-            aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="staticBackdropLabel">VERIFICAR</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body text-start">
-                        Esta seguro que desea guardar los
-                        cambios.
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn
-                            btn-secondary" data-bs-dismiss="modal">CANCELAR</button>
-                        <button type="button" data-bs-toggle="modal" data-bs-target="#modal-guardar2"
-                            data-bs-dismiss="modal" class="btn
-                            btn-primary">ACEPTAR </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- MODAL INTERNO AL OPRIMIR ACEPTAR EN EL MODAL ANTERIOR DE GUARDAR-->
-        <div class="modal" id="modal-guardar2">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header alert alert-success">
-                        <h5 class="modal-tittle">Guardado Exitoso</h5>
-                        <button class="btn-close" type="buttom" data-bs-dismiss="modal"></button>
-                    </div>
-                    <div class="modal-body text-start">
-                        Los cambios se Guardaron con Exito.
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- USO DE MODAL CON BOOTSTRAP 5 PARA EL BOTON ELIMINAR-->
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-danger fs-5 m-2" data-bs-toggle="modal" data-bs-target="#modal-eliminar">
-            ELIMINAR
-        </button>
-
-        <!-- Modal -->
-        <div class="modal fade" id="modal-eliminar" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-            aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="staticBackdropLabel">ALERTA DE
-                            ELIMINACIÓN</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body text-start">
-                        ¿Esta seguro que desea Eliminar El
-                        activo Seleccionado?.
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn
-                            btn-secondary" data-bs-dismiss="modal">CANCELAR</button>
-                        <button type="button" data-bs-toggle="modal" data-bs-target="#modal-eliminar2"
-                            data-bs-dismiss="modal" class="btn
-                            btn-primary">ACEPTAR</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- MODAL INTERNO AL OPRIMIR ACEPTAR EN EL MODAL ANTERIOR DE ELIMINAR-->
-        <div class="modal" id="modal-eliminar2">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header alert alert-success">
-                        <h5 class="modal-tittle">Eliminacion Exitosa</h5>
-                        <button class="btn-close" type="buttom" data-bs-dismiss="modal"></button>
-                    </div>
-                    <div class="modal-body text-start">
-                        El Activo de Elimino de Manera Exitosa.
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- USO DE MODAL CON BOOTSTRAP 5 PARA EL BOTON ELIMINAR-->
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-secondary fs-5 m-2" data-bs-toggle="modal"
-            data-bs-target="#modal-nuevo-activo">
-            NUEVO
-            ACTIVO
-        </button>
-
-        <!-- Modal -->
-        <div class="modal fade" id="modal-nuevo-activo" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-            aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-
-                    <div class="">
-                        <!-- <button type="button" class="btn-close mt-2 me-2 ms-2 float-end" data-bs-dismiss="modal"
-                            aria-label="Close"></button> -->
-                        {% include 'partials/wizardForm.html' %}
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-        <!-- Este boton o link cuando se oprime debera redireccionar a un archivo en pdf o excel donde mostrar el reporte del activo -->
-        <a href="generar-reporte.html" class="btn btn-secondary fs-5
-            m-2">GENERAR
-            REPORTE</a>
+    <!-- Este boton o link cuando se oprime debera redireccionar a un archivo en pdf o excel donde mostrar el reporte del activo -->
+    <a href="generar-reporte.html" class="btn btn-secondary fs-5
+        m-2">GENERAR
+        REPORTE</a>
 
     </div>
 

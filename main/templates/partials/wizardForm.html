@@ -11,119 +11,234 @@
 <div class="container-wizard mt-5">
     <div class="row d-flex justify-content-center align-items-center">
         <div class="">
+
+            <!-- FORM PARA EL REGISTRO DE USUARIO -->
             <form id="regForm" action="" method="POST">
+
+                <!-- TOKEN DE SEGURIDAD -->
                 {% csrf_token %}
+
+                <!-- CANTIDAD DE STEP O BOTONES DEBAJO DEL TITULO QUE SE MOSTRARAN -->
                 <h1 id="register">REGISTRAR</h1>
-                <div class="all-steps" id="all-steps"> <span class="step"></span> <span class="step"></span> <span
-                        class="step"></span> <span class="step"></span> </div>
-                <div class="tab">
-                    <h3>Seleccione El Tipo De Activo</h3>
-                    <label class="container-wizard">Vehículo
-                        <input value="1" onClick="displayForm(this)" class="input-wizard" type="radio" 
-                            name="radioActivo">
-                        <span class="checkmark"></span>
-                    </label>
-                    <label class="container-wizard">Extintor
-                        <input value="2" onClick="displayForm(this)" class="input-wizard" type="radio"
-                            name="radioActivo">
-                        <span class="checkmark"></span>
-                    </label>
-                    <label class="container-wizard">Equipo De Oficina
-                        <input value="3" onClick="displayForm(this)" class="input-wizard" type="radio"
-                            name="radioActivo">
-                        <span class="checkmark"></span>
-                    </label>
-                    <!-- oninput="this.className = ''" Este evento produce que se acorde el input al escribir.-->
+                <div class="all-steps" id="all-steps"> <span class="step"></span>
+                    <span class="step"></span>
                 </div>
 
+                <!-- PRIMERA PARTE DEL WIZZARD DONDE SE SELECCIONE QUE ACTIVO SE DESEA REGISTRAR -->
                 <div class="tab">
+                    <!-- TÍTULO -->
+                    <h3>Seleccione El Tipo De Activo</h3>
+                    <label class="container-wizard">Vehículo
+                        <input value="1" onClick="displayForm(this)"
+                            class="input-wizard" type="radio"
+                            name="radioActivo">
+                        <span class="checkmark"></span>
+                    </label>
+
+                    <label class="container-wizard">Extintor
+                        <input value="2" onClick="displayForm(this)"
+                            class="input-wizard" type="radio"
+                            name="radioActivo">
+                        <span class="checkmark"></span>
+                    </label>
+
+                    <label class="container-wizard">Equipo De Oficina
+                        <input value="3" onClick="displayForm(this)"
+                            class="input-wizard" type="radio"
+                            name="radioActivo">
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
+
+                <!-- SEGUNDA PARTE DONDE DEPENDIENDO DEL ACTIVO QUE SE SELECCIONE APARECE EL FORMULARIO PARA SU REGISTRO -->
+                <div class="tab">
+                    <!-- CAMPOS PARA REGISTRAR LOS VEHÍCULOS ################################################################## -->
                     <div id="form-vehiculo" style="display: none;">
                         <h2 style="text-align: center;">Vehículo</h2>
-                        <p><input id="id_marcaVehiculo" class="input-wizard" placeholder="Marca del Vehículo"
+                        <p><label class="w-75 mb-0 fs-5">Marca del Vehículo</label><input
+                                id="id_marcaVehiculo" class="input-wizard"
+                                placeholder="Marca del Vehículo"
                                 name="marcaVehiculo"></p>
-                        <p><input id="id_modeloVehiculo" class="input-wizard" placeholder="Modelo del Vehículo"
+                        <p><label class="w-75 mb-0 fs-5">Modelo del Vehículo</label><input
+                                id="id_modeloVehiculo" class="input-wizard"
+                                placeholder="Modelo del Vehículo"
                                 name="modeloVehiculo"></p>
-                        <p><input id="id_placaVehiculo" class="input-wizard" placeholder="Placa del Vehículo"
+                        <p><label class="w-75 mb-0 fs-5">Placa del Vehículo</label><input
+                                id="id_placaVehiculo" class="input-wizard"
+                                placeholder="Placa del Vehículo"
                                 name="placaVehiculo"></p>
-                        <p><input id="id_colorVehiculo" class="input-wizard" placeholder="Color del Vehículo"
+                        <p><label class="w-75 mb-0 fs-5">Color del Vehículo</label><input
+                                id="id_colorVehiculo" class="input-wizard"
+                                placeholder="Color del Vehículo"
                                 name="colorVehiculo"></p>
-                        <p><input id="id_serialVehiculo" class="input-wizard" placeholder="Serial del Vehiculo"
+                        <p><label class="w-75 mb-0 fs-5">Serial del Vehiculo</label><input
+                                id="id_serialVehiculo" class="input-wizard"
+                                placeholder="Serial del Vehiculo"
                                 name="serialVehiculo"></p>
-                        <p><input id="id_tipoCombustible" class="input-wizard" placeholder="Tipo de Combustible"
+                        <p><label class="w-75 mb-0 fs-5">Tipo de Combustible</label><input
+                                id="id_tipoCombustible" class="input-wizard"
+                                placeholder="Tipo de Combustible"
                                 name="tipoCombustible"></p>
-                        <p><input id="id_cantidadPasajeros" class="input-wizard" placeholder="Cantidad de Pasajeros"
+                        <p><label class="w-75 mb-0 fs-5">Cantidad de Pasajeros</label><input
+                                id="id_cantidadPasajeros" class="input-wizard"
+                                placeholder="Cantidad de Pasajeros"
                                 name="cantidadPasajeros"></p>
-                        <p><input id="id_personaEncargadaVehiculo" class="input-wizard" placeholder="Persona a Cargo"
+                        <p><label class="w-75 mb-0 fs-5">Persona a Cargo</label><input
+                                id="id_personaEncargadaVehiculo"
+                                class="input-wizard" placeholder="Persona a Cargo"
                                 name="personaEncargadaVehiculo"></p>
-                        <p><select id="id_estadoVehiculo" class="form-select input-wizard" name="estadoVehiculo">
-                                <option selected>Estado Del Vehículo</option>
+                        <p><label class="w-75 mb-0 fs-5">Condición Del Vehículo</label><select
+                                id="id_condicionVehiculo" class="form-select
+                                input-wizard" name="condicionVehiculo">
+                                <option selected>Condición Del Vehículo</option>
                                 <option value="Nuevo">Nuevo</option>
                                 <option value="Usado">Usado</option>
                             </select></p>
-                        <p><input id="id_fechaIngresoVehiculo" class="input-wizard" placeholder="Fecha de Ingreso"
+                        <p><label class="w-75 mb-0 fs-5">Fecha de
+                                Ingreso</label><input type="date"
+                                id="id_fechaIngresoVehiculo"
+                                class="input-wizard" placeholder="Fecha de Ingreso"
                                 name="fechaIngresoVehiculo"></p>
-                        <p><input id="id_fechaInicioSoat" class="input-wizard" placeholder="Fecha Inicio Soat"
+                        <p><label class="w-75 mb-0 fs-5">Fecha Inicio Soa</label><input
+                                type="date" id="id_fechaInicioSoat"
+                                class="input-wizard"
+                                placeholder="Fecha Inicio Soat"
                                 name="fechaInicioSoat"></p>
-                        <p><input id="id_fechaFinSoat" class="input-wizard" placeholder="Fecha Vencimiento Soat"
+                        <p><label class="w-75 mb-0 fs-5">Fecha Vencimiento Soat</label><input
+                                type="date" id="id_fechaFinSoat"
+                                class="input-wizard"
+                                placeholder="Fecha Vencimiento Soat"
                                 name="fechaFinSoat"></p>
-                        <p><input id="id_fechaInicioTecnicomecanica" class="input-wizard"
-                                placeholder="Fecha Inicio Tecnicomecanica" name="fechaInicioTecnicomecanica"></p>
-                        <p><input id="id_fechaVencimientoTecnicomecanica" class="input-wizard"
-                                placeholder="Fecha Vencimiento Tecnicomecanica" name="fechaVencimientoTecnicomecanica">
+                        <p><label class="w-75 mb-0 fs-5">Fecha Inicio
+                                Tecnicomecanica</label><input type="date"
+                                id="id_fechaInicioTecnicomecanica"
+                                class="input-wizard"
+                                placeholder="Fecha Inicio Tecnicomecanica"
+                                name="fechaInicioTecnicomecanica"></p>
+                        <p><label class="w-75 mb-0 fs-5">Fecha Vencimiento
+                                Tecnicomecanica</label><input type="date"
+                                id="id_fechaVencimientoTecnicomecanica"
+                                class="input-wizard"
+                                placeholder="Fecha Vencimiento Tecnicomecanica"
+                                name="fechaVencimientoTecnicomecanica">
                         </p>
+
+                        <!-- BOTON PARA GUARDAR LA INFORMACIÓN DIGITADA EN EL FORMULARIO DEL ACTIVO -->
+                        <div class="mt-5 w-100 d-flex
+                            justify-content-center">
+                            <button class="btn btn-success
+                                fs-5 m-2" name="form-vehiculo">GUARDAR</button>
+                        </div>
                     </div>
 
+                    <!-- CAMPOS PARA REGISTRAR LOS EXTINTORES ################################################################## -->
                     <div id="form-extintor" style="display: none;">
                         <h2 style="text-align: center;">Extintor</h2>
-                        <p><input id="id_serialExtintor" class="input-wizard" placeholder="Serial Extintor"
+                        <p><label class="w-75 mb-0 fs-5">Serial
+                                Extintor</label><input type="text"
+                                id="id_serialExtintor"
+                                class="input-wizard" placeholder="Serial Extintor"
                                 name="serialExtintor"></p>
-                        <p><input id="id_colorExtintor" class="input-wizard" placeholder="Color Extintor"
+                        <p><label class="w-75 mb-0 fs-5">Color
+                                Extintor</label><input type="text"
+                                id="id_colorExtintor"
+                                class="input-wizard" placeholder="Color Extintor"
                                 name="colorExtintor"></p>
-                        <p><input id="id_ubicacionExtintor" class="input-wizard" placeholder="Ubicación del Extintor"
+                        <p><label class="w-75 mb-0 fs-5">Ubicación del
+                                Extintor</label><input type="text"
+                                id="id_ubicacionExtintor"
+                                class="input-wizard" placeholder="Ubicación del Extintor"
                                 name="ubicacionExtintor"></p>
-                        <p><select id="id_tipoExtintor" class="form-select input-wizard" name="Tipo de Extintor">
-                            <option selected>Tipo de Extintor</option>
-                            <option value="A">Tipo A</option>
-                            <option value="B">Tipo B</option>
-                            <option value="C">Tipo C</option>
-                            <option value="D">Tipo C</option>
-                        </select></p>
-                        <p><input id="id_pesoExtintor" class="input-wizard" placeholder="Peso del Extintor"
+                        <p><label class="w-75 mb-0 fs-5">Tipo de Extintor</label><select
+                                id="id_tipoExtintor" class="form-select
+                                input-wizard" name="tipoExtintor">
+                                <option selected>Tipo de Extintor</option>
+                                <option value="A">Tipo A</option>
+                                <option value="B">Tipo B</option>
+                                <option value="C">Tipo C</option>
+                                <option value="D">Tipo D</option>
+                            </select></p>
+                        <p><label class="w-75 mb-0 fs-5">Peso del
+                                Extintor (Kg)</label><input type="text"
+                                id="id_pesoExtintor"
+                                class="input-wizard" placeholder="Peso del Extintor"
                                 name="pesoExtintor"></p>
+
+                        <!-- BOTON PARA GUARDAR LA INFORMACIÓN DIGITADA EN EL FORMULARIO DEL ACTIVO -->
+                        <div class="mt-5 w-100 d-flex
+                            justify-content-center">
+                            <button class="btn btn-success
+                                fs-5 m-2" name="form-extintor">GUARDAR</button>
+                        </div>
                     </div>
 
+                    <!-- CAMPOS PARA REGISTRAR LOS EQUIPOS DE OFICINA ############################################################## -->
                     <div id="form-oficina" style="display: none;">
                         <h2 style="text-align: center;">Equipo De Oficina</h2>
-                        <p><input id="id_serialEquipo" class="input-wizard" placeholder="Serial Extintor"
+                        <p><label class="w-75 mb-0 fs-5">Serial Extintor</label><input
+                                id="id_serialEquipo" class="input-wizard"
+                                placeholder="Serial Extintor"
                                 name="serialEquipo"></p>
-                        <p><input id="id_marcaEquipo" class="input-wizard" placeholder="Color Extintor"
+                        <p><label class="w-75 mb-0 fs-5">Marca del Equipo</label><input
+                                id="id_marcaEquipo" class="input-wizard"
+                                placeholder="Marca del Equipo"
                                 name="marcaEquipo"></p>
-                        <p><input id="id_colorEquipo" class="input-wizard" placeholder="Ubicación del Extintor"
+                        <p><label class="w-75 mb-0 fs-5">Color del Equipo</label><input
+                                id="id_colorEquipo" class="input-wizard"
+                                placeholder="Color del Equipo"
                                 name="colorEquipo"></p>
-                        <p><input id="id_sistemaOperativo" class="input-wizard" placeholder="Sistema Operativo"
+                        <p><label class="w-75 mb-0 fs-5">Sistema Operativo</label><input
+                                id="id_sistemaOperativo" class="input-wizard"
+                                placeholder="Sistema Operativo"
                                 name="sistemaOperativo"></p>
-                        <p><input id="id_ramEquipo" class="input-wizard" placeholder="Ram del Equipo"
+                        <p><label class="w-75 mb-0 fs-5">Ram del Equipo</label><input
+                                id="id_ramEquipo" class="input-wizard"
+                                placeholder="Ram del Equipo"
                                 name="ramEquipo"></p>
-                        <p><input id="id_memoriaEquipo" class="input-wizard" placeholder="Memoria del Equipo"
+                        <p><label class="w-75 mb-0 fs-5">Memoria del Equipo</label><input
+                                id="id_memoriaEquipo" class="input-wizard"
+                                placeholder="Memoria del Equipo"
                                 name="memoriaEquipo"></p>
-                        <p><input id="id_ubicacionEquipo" class="input-wizard" placeholder="Ubicación del Equipo"
+                        <p><label class="w-75 mb-0 fs-5">Ubicación del Equipo</label><input
+                                id="id_ubicacionEquipo" class="input-wizard"
+                                placeholder="Ubicación del Equipo"
                                 name="ubicacionEquipo"></p>
-                        <p><textarea id="id_componentesAdicionales" class="input-wizard" placeholder="Componentes del Equipo"
-                            name="componentesAdicionales" style="resize: none;"></textarea></p>
+                        <p><label class="w-75 mb-0 fs-5">Componentes
+                                del Equipo</label><textarea
+                                id="id_componentesAdicionales"
+                                class="input-wizard" placeholder="Componentes del Equipo"
+                                name="componentesAdicionales" style="resize:
+                                none;"></textarea></p>
+
+                        <!-- BOTON PARA GUARDAR LA INFORMACIÓN DIGITADA EN EL FORMULARIO DEL ACTIVO -->
+                        <div class="w-100 d-flex
+                            justify-content-center">
+                            <button class="btn btn-success
+                                m-2" style="font-size: 20px;"
+                                name="form-oficina">GUARDAR</button>
+                        </div>
                     </div>
                 </div>
 
-                <div class="thanks-message text-center" id="text-message"> <img src="https://i.imgur.com/O18mJ1K.png"
+                <!-- <div class="thanks-message text-center" id="text-message"> <img
+                        src="https://i.imgur.com/O18mJ1K.png"
                         width="100" class="mb-4">
-                    <h3>Registro Exitoso!</h3> <span>El activo ha quedado registrado correctamente</span>
-                    <a href="{% url 'control-activos' %}" style="font-size: 20px;"  class="btn btn-warning mt-3"
+                    <h3>Registro Exitoso!</h3> <span>El activo ha quedado
+                        registrado correctamente</span>
+                    <a href="{% url 'control-activos' %}" style="font-size:
+                        20px;" class="btn btn-warning mt-3"
                         aria-label="Close">Volver a la Página</a>
-                </div>
-                <div style="overflow:auto;" id="nextprevious">
-                    <div style="float:right;">  <a href="{% url 'control-activos' %}" style="font-size: 20px;"  class="btn btn-danger"
-                        
-                        aria-label="Close">Cancelar</a> <button class="btn btn-success"
-                            style="font-size: 20px;" type="button" id="nextBtn" onclick="nextPrev(1)">Siguiente</button>
+                </div> -->
+
+                <!-- BOTON DE CANCELAR Y SIGUIENTE. EL BOTON DE SIGUIENTE ESTA ENLAZADO POR EL ID A UN JAVASCRIPT DE MAS ABAJO -->
+                <div class="w-100 d-flex
+                    justify-content-center" style="overflow:auto;"
+                    id="nextprevious">
+                    <div style="float:right;"> <a href="{% url 'control-activos' %}" style="font-size: 20px;"
+                            class="btn btn-danger"
+                            aria-label="Close">Cancelar</a> <button class="btn btn-success" 
+                            style="font-size: 20px;" type="button"
+                            id="nextBtn" name="" onclick="nextPrev(1)">Registrar</button>
                     </div>
                 </div>
             </form>
@@ -131,52 +246,68 @@
     </div>
 </div>
 
-{% block javascript %}
+{% block javascriptwizard %}
 <!-- SCRIPTS PARA MENEJAR LOS FORMULARIOS Y TABLAS DE CONTROL ACTIVOS -->
-<script>
-    // Script para visualizar los datos de los activos segun el que seleccione
+<!-- <script>
+    Script para visualizar los datos de los activos segun el que seleccione
     function displayTable(c) {
         if (c.value == "vehiculo") {
             jQuery('#table-vehiculo').toggle('show');
             jQuery('#table-extintor').hide();
             jQuery('#table-oficina').hide();
+            jQuery('#edit-vehiculo').show();
+            jQuery('#edit-extintor').hide();
+            jQuery('#edit-oficina').hide();
         }
         if (c.value == "extintor") {
             jQuery('#table-extintor').toggle('show');
             jQuery('#table-vehiculo').hide();
             jQuery('#table-oficina').hide();
+            jQuery('#edit-extintor').show();
+            jQuery('#edit-vehiculo').hide();
+            jQuery('#edit-oficina').hide();
 
         }
         if (c.value == "oficina") {
             jQuery('#table-oficina').toggle('show');
             jQuery('#table-vehiculo').hide();
             jQuery('#table-extintor').hide();
+            jQuery('#edit-oficina').show();
+            jQuery('#edit-vehiculo').hide();
+            jQuery('#edit-extintor').hide();
 
         }
+
     }
-    // Script para visualizar el formulario de registro de un activo segun el que seleccione
+</script> -->
+
+<script>
+    // Script para visualizar el formulario de registro de un activo segun el que seleccione.
+    // Sí selecciona un formulario con esta funcion remueve los otros para que no cree conflicto.
     function displayForm(c) {
         if (c.value == "1") {
             jQuery('#form-vehiculo').toggle('show');
             jQuery('#form-extintor').remove();
             jQuery('#form-oficina').remove();
-
+            $('#nextBtn').attr('name','form-vehiculo')
         }
         if (c.value == "2") {
             jQuery('#form-extintor').toggle('show');
             jQuery('#form-vehiculo').remove();
             jQuery('#form-oficina').remove();
+            $('#nextBtn').attr('name','form-extintor')
 
         }
         if (c.value == "3") {
             jQuery('#form-oficina').toggle('show');
             jQuery('#form-vehiculo').remove();
             jQuery('#form-extintor').remove();
+            $('#nextBtn').attr('name','form-oficina')
         }
     };  
 </script>
 
-<!-- SCRIPT PARA EL FUNCIONAMIENTO DEL STEP FOR O WIZARD FORM EN EL BOTON NUEVO ACTIVO EN CONTROL ACTIVOS -->
+<!-- SCRIPT PARA EL FUNCIONAMIENTO DEL STEP FORM O WIZARD FORM EN EL BOTON NUEVO ACTIVO EN CONTROL ACTIVOS -->
 <script>
     //your javascript goes here
     var currentTab = 0;
@@ -195,8 +326,13 @@
         // } else {
         //     document.getElementById("prevBtn").style.display = "inline";
         // }
+
+        // EN COMENTAL EL DE REGISTRAR Y SE AGREGA "jQuery('#nextBtn').remove();", Con el cual removemos el botón 
+        // y solo quedaria el botón de guardar agregado en cada formulario
         if (n == (x.length - 1)) {
-            document.getElementById("nextBtn").innerHTML = "Registrar";
+            // document.getElementById("nextBtn").innerHTML = "Registrar";
+            jQuery('#nextBtn').remove();
+            
         } else {
             document.getElementById("nextBtn").innerHTML = "Siguiente";
         }
@@ -209,9 +345,9 @@
         x[currentTab].style.display = "none";
         currentTab = currentTab + n;
         if (currentTab >= x.length) {
-            // document.getElementById("regForm").submit();
+            //document.getElementById("regForm").submit();
             // return false;
-            //alert("sdf");
+            // alert("sdf");
             document.getElementById("nextprevious").style.display = "none";
             document.getElementById("all-steps").style.display = "none";
             document.getElementById("register").style.display = "none";
@@ -241,4 +377,4 @@
         x[n].className += " active";
     }
 </script>
-{% endblock javascript %}
+{% endblock javascriptwizard %}

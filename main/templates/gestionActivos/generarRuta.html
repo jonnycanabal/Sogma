@@ -1,6 +1,22 @@
 <!-- ConsultarActivos se extiende de body.html siendo este la clase hija. -->
 {% extends 'partials/body.html' %}
 
+
+<!-- PRUEBA ----------------------------------------------------------- -->
+{% block estilos %}
+<!-- Styles -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
+<link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
+<!-- Or for RTL support -->
+<link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.rtl.min.css" />
+
+{% endblock estilos %}
+<!-- PRUEBA ----------------------------------------------------------- -->
+
+
 <!-- Cargar la carpeta static -->
 {% load static %}
 
@@ -9,7 +25,7 @@
 
 <!-- Bloque que incluira el nav.html para que lo muestre en la página -->
 {% block menu %}
-    {% include 'partials/nav.html' %}
+{% include 'partials/nav.html' %}
 {% endblock menu %}
 
 <!-- Bloque de contenido el cual estara declarado en el body.html y sera lo que se vera dependiente de la página  -->
@@ -33,33 +49,61 @@
         mt-0
         border-dark pb-4">
         {% csrf_token %}
+
+
+        {% if ruta == None %}
+
         <!-- Enunciado o titulo de la página -->
         <div class="w-100 text-center pb-3 border-bottom
             border-dark">
             <h2>Generar Ruta</h2>
         </div>
         <br>
-        
+
         <!-- Botones para seleccionar o digiligenciar información -->
         <div class="d-inline-block width-20 ms-1 me-5">
             <label for="basic-url" class="form-label w-75 ps-2">PLACA
                 VEHÍCULO</label>
             <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control"
+                <select class="form-control form-select" name="fkVehiculo" id="id_fkVehiculo">
+                    <option selected disabled>Seleccione el Vehiculo</option>
+
+                    {% for vehiculo in vehiculos %}
+                    <option value='{{vehiculo.id}}'>{{vehiculo.placaVehiculo}} - {{vehiculo.marcaVehiculo}}</option>
+                    {% endfor %}
+
+                </select>
+                <!-- <input type="text" class="form-control"
                     id="placa-vehiculo-generar-ruta"
-                    aria-describedby="basic-addon3"
-                    placeholder="XFD-581">
+                    aria-describedby="basic-addon3"> -->
             </div>
         </div>
 
         <div class="d-inline-block width-20 ms-1 me-5">
+            <label for="basic-url" class="form-label w-75 ps-2">DOCUMENTO CONDUCTOR</label>
+            <div class="input-group mb-3 w-100">
+                <select class="form-control form-select" name="fkUsuario" id="id_fkUsuario">
+                    <option selected disabled>Seleccione el Documento</option>
+
+                    {% for usuario in usuarios %}
+                    
+                    {% if usuario.tipoUsuario == 'Conductor' %}
+                        <option value='{{usuario.id}}'>{{usuario.numeroDocumento}} - {{usuario.primerNombre}} {{usuario.primerApellido}}</option>
+                    {% endif %}
+
+                    {% endfor %}
+
+                </select>
+            </div>
+        </div>
+
+        <!-- <div class="d-inline-block width-20 ms-1 me-5">
             <label for="basic-url" class="form-label w-75 ps-2">ID
                 ACTIVO</label>
             <div class="input-group mb-3 w-100">
                 <input type="text" class="form-control"
                     id="id-activo-generar-ruta"
-                    aria-describedby="basic-addon3"
-                    placeholder="001">
+                    aria-describedby="basic-addon3">
             </div>
         </div>
 
@@ -69,32 +113,28 @@
             <div class="input-group mb-3 w-100">
                 <input type="text" class="form-control"
                     id="marca-vehiculo-generar-ruta"
-                    aria-describedby="basic-addon3"
-                    placeholder="Toyota">
+                    aria-describedby="basic-addon3">
             </div>
-        </div>
+        </div> -->
 
-        <div class="d-inline-block width-20 ms-1 me-5">
+        <!-- <div class="d-inline-block width-20 ms-1 me-5">
             <label for="basic-url" class="form-label w-75 ps-2">CANTIDAD
                 PASAJEROS</label>
             <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control"
-                    id="cantidad-pasajeros-generar-ruta"
-                    aria-describedby="basic-addon3"
-                    placeholder="5">
+                <input type="text" class="form-control" id="cantidad-pasajeros-generar-ruta"
+                    aria-describedby="basic-addon3">
             </div>
-        </div>
+        </div> -->
 
-        <div class="d-inline-block width-20 ms-1 me-5">
+        <!-- <div class="d-inline-block width-20 ms-1 me-5">
             <label for="basic-url" class="form-label w-75 ps-2">IDENTIFICACION
                 CONDUCTOR</label>
             <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control"
-                    id="identificacion-generar-ruta"
+                <input type="text" class="form-control" id="identificacion-generar-ruta"
                     aria-describedby="basic-addon3">
             </div>
-        </div>
-
+        </div> -->
+        <!-- 
         <div class="d-inline-block width-20 ms-1 me-5">
             <label for="basic-url" class="form-label w-75 ps-2">CONDUCTOR
                 A CARGO</label>
@@ -113,31 +153,29 @@
                     id="telefono-generar-ruta"
                     aria-describedby="basic-addon3">
             </div>
-        </div>
+        </div> -->
 
         <div class="d-inline-block width-20 ms-1 me-5">
             <label for="basic-url" class="form-label w-75 ps-2">HORA DE SALIDA</label>
             <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control" name="horaSalida"
-                    id="id_horaSalida"
+                <input type="time" class="form-control" name="horaSalida" id="id_horaSalida"
                     aria-describedby="basic-addon3">
             </div>
         </div>
 
-        <div class="d-inline-block width-20 ms-1 me-5">
+        <!-- <div class="d-inline-block width-20 ms-1 me-5">
             <label for="basic-url" class="form-label w-75 ps-2">HORA DE REGRESO</label>
             <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control" name="horaRegreso"
+                <input type="time" class="form-control" name="horaRegreso"
                     id="id_horaRegreso"
                     aria-describedby="basic-addon3">
             </div>
-        </div>
+        </div> -->
 
         <div class="d-inline-block width-20 ms-1 me-5">
             <label for="basic-url" class="form-label w-75 ps-2">FECHA DE SALIDA</label>
             <div class="input-group mb-3 w-100">
-                <input type="date" class="form-control" name="fechaSalida"
-                    id="id_fechaSalida"
+                <input type="date" class="form-control" name="fechaSalida" id="id_fechaSalida"
                     aria-describedby="basic-addon3">
             </div>
         </div>
@@ -145,8 +183,7 @@
         <div class="d-inline-block width-20 ms-1 me-5">
             <label for="basic-url" class="form-label w-75 ps-2">FECHA DE REGRESO</label>
             <div class="input-group mb-3 w-100">
-                <input type="date" class="form-control" name="fechaRegreso"
-                    id="id_fechaRegreso"
+                <input type="date" class="form-control" name="fechaRegreso" id="id_fechaRegreso"
                     aria-describedby="basic-addon3">
             </div>
         </div>
@@ -154,8 +191,7 @@
         <div class="d-inline-block width-20 ms-1 me-5">
             <label for="basic-url" class="form-label w-75 ps-2">LUGAR DE SALIDA</label>
             <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control" name="lugarSalida"
-                    id="id_lugarSalida"
+                <input type="text" class="form-control" name="lugarSalida" id="id_lugarSalida"
                     aria-describedby="basic-addon3">
             </div>
         </div>
@@ -163,33 +199,44 @@
         <div class="d-inline-block width-20 ms-1 me-5">
             <label for="basic-url" class="form-label w-75 ps-2">LUGAR DE DESTINO</label>
             <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control" name="lugarDestino"
-                    id="id_lugarDestino"
+                <input type="text" class="form-control" name="lugarDestino" id="id_lugarDestino"
                     aria-describedby="basic-addon3">
             </div>
         </div>
 
-        <div class="d-inline-block width-20 ms-1 me-5">
+        <!-- <div class="d-inline-block width-20 ms-1 me-5">
             <label for="basic-url" class="form-label w-75 ps-2">KILOMETRAJE FINAL</label>
             <div class="input-group mb-3 w-100">
                 <input type="text" class="form-control" name="kilometrajeFinalVehiculo"
                     id="id_kilometrajeFinalVehiculo"
                     aria-describedby="basic-addon3">
             </div>
-        </div>
+        </div> -->
 
         <!-- Salto de línea -->
         <br>
         <br>
 
+        <input class="btn btn-success w-25 ms-1" type="submit" value="Llenar">
+        {% else %}
+
+        <div class="w-100 text-center pb-3 border-bottom
+            border-dark">
+            <h2>Llenando ruta {{ruta.id}}</h2>
+        </div>
+        {% endif %}
+
+<!-- ################################################################################################################################## -->
         <!-- Parte para la selección y/o registro de funcionarios a transportar -->
         <!-- Titulo de selección de funcionarios -->
         <div class="w-100">
-            <div class="w-100 border-bottom border-dark">
-                <h3 class="text-center border-top border-dark
-                    mt-5">SELECCIONAR FUNCIONARIOS</h3>
-            </div>
 
+            {% if pasajero %}
+            <div class="w-100 border-bottom border-dark">
+
+                <h3 class="text-center border-top border-dark
+                    mt-5">AGREGAR PASAJERO</h3>
+            </div>
             <!-- Contenedor para los botones para funcionarios -->
             <div class="border-top w-100">
 
@@ -199,52 +246,101 @@
                     <div class="d-inline-block width-20 ms-1
                         me-5 mt-4">
                         <label for="basic-url" class="form-label
-                            w-75 ps-2">NOMBRE FUNCIONARIO</label>
+                            w-75 ps-2">PRIMER NOMBRE</label>
                         <div class="input-group mb-3 w-100">
-                            <input type="text"
-                                class="form-control text-center"
-                                id="nombre-funcionarios-generar-ruta"
-                                aria-describedby="basic-addon3"
-                                placeholder="Jonny Canabal">
+                            <input type="search" class="form-control text-center" id="nombre-funcionarios-generar-ruta"
+                                aria-describedby="basic-addon3" placeholder="Jonny Canabal">
                         </div>
                     </div>
 
                     <div class="d-inline-block width-20 ms-1
                         me-5 mt-4">
                         <label for="basic-url" class="form-label
-                            w-75 ps-2">UBICACIÓN</label>
+                            w-75 ps-2">PRIMER APELLIDO</label>
                         <div class="input-group mb-3 w-100">
-                            <input type="text"
-                                class="form-control text-center"
-                                id="ubicacion-funcionarios-generar-ruta"
-                                aria-describedby="basic-addon3"
-                                placeholder="">
+                            <input type="search" class="form-control text-center" id="nombre-funcionarios-generar-ruta"
+                                aria-describedby="basic-addon3" placeholder="Jonny Canabal">
+                        </div>
+                    </div>
+
+                    <div class="d-inline-block ms-1 me-5 width-28">
+                        <label for="basic-url" class="form-label w-75 ps-2">TIPO
+                            DE DOCUMENTO</label>
+                        <div class="input-group mb-3 w-100">
+                            <select id="id_tipoDocumento" class="form-select" name="tipoDocumento"
+                                aria-label="tipo-activo">
+                                <option selected>--TIPO DOCUMENTO--</option>
+                                <option value="C.C.">Cédula de Ciudadania</option>
+                                <option value="C.E.">Cédula de Extranjería</option>
+                                <option value="PASS">Pasaporte</option>
+                            </select>
                         </div>
                     </div>
 
                     <div class="d-inline-block width-20 ms-1
                         me-5 mt-4">
                         <label for="basic-url" class="form-label
-                            w-75 ps-2">TELEFONO</label>
+                            w-75 ps-2">NÚMERO DE DOCUMENTO</label>
                         <div class="input-group mb-3 w-100">
-                            <input type="text"
-                                class="form-control text-center"
-                                id="telefono-funcionarios-generar-ruta"
-                                aria-describedby="basic-addon3"
-                                placeholder="">
+                            <input type="search" class="form-control text-center" id="nombre-funcionarios-generar-ruta"
+                                aria-describedby="basic-addon3" placeholder="Jonny Canabal">
                         </div>
                     </div>
-                </div>
 
-                <div class="d-flex justify-content-end w-100">
-                    <button type="button" id="btn-agregar"
-                        class="btn
-                        btn-success
-                        fs-5 m-2">AGREGAR</button>
+                    <div class="d-inline-block width-20 ms-1
+                        me-5 mt-4">
+                        <label for="basic-url" class="form-label
+                            w-75 ps-2">DIRECCIÓN PASAJERO</label>
+                        <div class="input-group mb-3 w-100">
+                            <input type="search" class="form-control text-center" id="nombre-funcionarios-generar-ruta"
+                                aria-describedby="basic-addon3" placeholder="Jonny Canabal">
+                        </div>
+                    </div>
+
+                    <div class="d-inline-block width-20 ms-1
+                        me-5 mt-4">
+                        <label for="basic-url" class="form-label
+                            w-75 ps-2">TELEFONO PASAJERO</label>
+                        <div class="input-group mb-3 w-100">
+                            <input type="search" class="form-control text-center" id="nombre-funcionarios-generar-ruta"
+                                aria-describedby="basic-addon3" placeholder="Jonny Canabal">
+                        </div>
+                    </div>
+            </div>
+        </div>
+        {% else %}
+        <div class="w-100 border-bottom border-dark">
+
+            <h3 class="text-center border-top border-dark
+        mt-5">SELECCIONAR PASAJERO</h3>
+        </div>
+        <div class="w-100 text-center border-bottom
+                    border-dark pb-4">
+
+            <div class="d-inline-block ms-1 me-5 width-28">
+                <label for="basic-url" class="form-label w-75 ps-2">DOCUMENTO</label>
+                <div class="input-group mb-3 w-100">
+                    
+                    <select id="id_tipoDocumento" class="form-select select-field" name="tipoDocumento"
+                        aria-label="tipo-activo">
+                        <option selected disabled>--Pasajero--</option>
+
+                        {% for pasajero in pasajeros %}
+                        <option value="{{pasajero.id}}">{{pasajero.numeroDocumentoPasajero}} - {{pasajero.primerNombrePasajero}} 
+                            {{pasajero.primerApellidoPasajero}}</option>
+
+                        {% endfor %}
+
+                    </select>
                 </div>
             </div>
         </div>
-
+        <script>
+            $('.select-field').select2({
+                theme: 'bootstrap-5'
+            });
+        </script>
+        {% endif %}
         <!-- Salto de línea -->
         <br>
         <br>
@@ -285,10 +381,11 @@
                 btn-success
                 fs-5 m-2">AGREGAR</button>
         </div>
-    </div>
+    
     -->
+</div>
 
-    <!-- Parte donde se mostraran los funcionarios seleccionados, sus datos y si desea quitarlos de la ruta. -->
+        <!-- Parte donde se mostraran los funcionarios seleccionados, sus datos y si desea quitarlos de la ruta. -->
         <!-- Titulo funcionarios seleccionados -->
         <div class="w-100">
             <div class="w-100">
@@ -302,49 +399,35 @@
                 border-dark
                 w-100 pe-3">
                 <div class="form-check m-3 ms-3">
-                    <input class="form-check-input"
-                        type="checkbox"
-                        id="inlineCheckbox1"
-                        value="option1">
-                    <label class="form-check-label"
-                        for="inlineCheckbox1">Jonny
+                    <i class="bi bi-trash3-fill"></i>
+                    <label class="form-check-label" for="inlineCheckbox1">Jonny
                         Canabal / Calle 53 bis # 80 - 53
                         sur / 3183865874</label>
                 </div>
 
                 <div class="form-check m-3 ms-3">
-                    <input class="form-check-input"
-                        type="checkbox"
-                        id="inlineCheckbox1"
-                        value="option1">
-                    <label class="form-check-label"
-                        for="inlineCheckbox1">Nicolas
+                    <i class="bi bi-trash3-fill"></i>
+                    <label class="form-check-label" for="inlineCheckbox1">Nicolas
                         Molina</label>
                 </div>
 
                 <div class="form-check m-3 ms-3">
-                    <input class="form-check-input"
-                        type="checkbox"
-                        id="inlineCheckbox1"
-                        value="option1">
-                    <label class="form-check-label"
-                        for="inlineCheckbox1">Silverio
+                    <i class="bi bi-trash3-fill"></i>
+                    <label class="form-check-label" for="inlineCheckbox1">Silverio
                         Pedroza</label>
                 </div>
             </div>
 
             <!-- boton de quitar el o los funcionarios agregados -->
-            <div class="d-flex justify-content-end
+            <!-- <div class="d-flex justify-content-end
                 w-100">
                 <div class="w-50 d-flex
                     justify-content-end">
-                    <button type="button"
-                        id="btn-editar"
-                        class="btn
+                    <button type="button" id="btn-editar" class="btn
                         btn-danger
                         fs-5 m-2">QUITAR</button>
                 </div>
-            </div>
+            </div> -->
         </div>
 
         <!-- salto de línea -->
@@ -359,9 +442,7 @@
                 height-textarea">
                 <textarea class="form-control border
                     border-dark" name="descripcionRuta" style="height:
-                    150px; resize: none;"
-                    placeholder="Leave a comment here "
-                    id="id_descripcionRuta"></textarea>
+                    150px; resize: none;" placeholder="Leave a comment here " id="id_descripcionRuta"></textarea>
             </div>
         </div>
 
@@ -374,8 +455,7 @@
                 height-textarea">
                 <textarea class="form-control border
                     border-dark" style="height:
-                    150px; resize: none;" name="observacionesRuta"
-                    placeholder="Leave a comment here "
+                    150px; resize: none;" name="observacionesRuta" placeholder="Leave a comment here "
                     id="id_observacionesRuta"></textarea>
             </div>
         </div>
@@ -386,28 +466,18 @@
         <!-- USO DE MODAL CON BOOTSTRAP 5 PARA EL BOTON GENERAR RUTA-->
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-primary
-            fs-5 m-2"
-            data-bs-toggle="modal"
-            data-bs-target="#modal-generar-ruta">
+            fs-5 m-2" data-bs-toggle="modal" data-bs-target="#modal-generar-ruta">
             GENERAR RUTA
         </button>
 
         <!-- Modal -->
-        <div class="modal fade" id="modal-generar-ruta"
-            data-bs-backdrop="static"
-            data-bs-keyboard="false"
-            tabindex="-1"
-            aria-labelledby="staticBackdropLabel"
-            aria-hidden="true">
+        <div class="modal fade" id="modal-generar-ruta" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title"
-                            id="staticBackdropLabel">RUTA</h5>
-                        <button type="button"
-                            class="btn-close"
-                            data-bs-dismiss="modal"
-                            aria-label="Close"></button>
+                        <h5 class="modal-title" id="staticBackdropLabel">RUTA</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body text-start">
                         ¿Esta seguro que desea generar
@@ -416,13 +486,9 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn
-                            btn-secondary"
-                            data-bs-dismiss="modal">CANCELAR</button>
-                        <input type="submit"
-                            data-bs-toggle="modal"
-                            data-bs-target="#modal-generar-ruta2"
-                            data-bs-dismiss="modal"
-                            class="btn
+                            btn-secondary" data-bs-dismiss="modal">CANCELAR</button>
+                        <input type="submit" data-bs-toggle="modal" data-bs-target="#modal-generar-ruta2"
+                            data-bs-dismiss="modal" class="btn
                             btn-primary" value="ACEPTAR">
                     </div>
                 </div>
@@ -436,9 +502,7 @@
                         alert-success">
                         <h5 class="modal-tittle">Ruta
                             Generada</h5>
-                        <button class="btn-close"
-                            type="buttom"
-                            data-bs-dismiss="modal"></button>
+                        <button class="btn-close" type="buttom" data-bs-dismiss="modal"></button>
                     </div>
                     <div class="modal-body text-start">
                         Se ha generado la ruta de forma
@@ -455,28 +519,18 @@
         <!-- USO DE MODAL CON BOOTSTRAP 5 PARA EL BOTON GERAR-->
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-success
-            fs-5 m-2"
-            data-bs-toggle="modal"
-            data-bs-target="#modal-guardar-ruta">
+            fs-5 m-2" data-bs-toggle="modal" data-bs-target="#modal-guardar-ruta">
             GUARDAR
         </button>
 
         <!-- Modal -->
-        <div class="modal fade" id="modal-guardar-ruta"
-            data-bs-backdrop="static"
-            data-bs-keyboard="false"
-            tabindex="-1"
-            aria-labelledby="staticBackdropLabel"
-            aria-hidden="true">
+        <div class="modal fade" id="modal-guardar-ruta" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title"
-                            id="staticBackdropLabel">VERIFICAR</h5>
-                        <button type="button"
-                            class="btn-close"
-                            data-bs-dismiss="modal"
-                            aria-label="Close"></button>
+                        <h5 class="modal-title" id="staticBackdropLabel">VERIFICAR</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body text-start">
                         ¿Esta seguro que desea guardar
@@ -485,13 +539,9 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn
-                            btn-secondary"
-                            data-bs-dismiss="modal">CANCELAR</button>
-                        <button type="button"
-                            data-bs-toggle="modal"
-                            data-bs-target="#modal-guardar-ruta2"
-                            data-bs-dismiss="modal"
-                            class="btn
+                            btn-secondary" data-bs-dismiss="modal">CANCELAR</button>
+                        <button type="button" data-bs-toggle="modal" data-bs-target="#modal-guardar-ruta2"
+                            data-bs-dismiss="modal" class="btn
                             btn-primary">ACEPTAR
                         </button>
                     </div>
@@ -506,9 +556,7 @@
                         alert-success">
                         <h5 class="modal-tittle">Cambios
                             Realiazdos</h5>
-                        <button class="btn-close"
-                            type="buttom"
-                            data-bs-dismiss="modal"></button>
+                        <button class="btn-close" type="buttom" data-bs-dismiss="modal"></button>
                     </div>
                     <div class="modal-body text-start">
                         Los cambios se generaron de
@@ -529,3 +577,12 @@
 <!-- Fin del contenedor para la página generar ruta -->
 
 {% endblock contenido %}
+
+
+
+{% block javascript %}
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.0/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+{% endblock javascript %}
