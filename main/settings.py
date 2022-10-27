@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
+from ctypes.wintypes import SHORT
 import os #Aqui se importa el os requerido en las lineas de mas abajo donde esta el codigo de static
 from pathlib import Path
 
@@ -48,6 +49,10 @@ INSTALLED_APPS = [
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
+
+# DATE_INPUT_FORMATS =[
+#     '%d/%m/%Y'
+# ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -120,6 +125,12 @@ TIME_ZONE = 'America/Bogota' # Configuración de la zona horaria.
 USE_I18N = True
 
 USE_TZ = True
+
+SHORT_DATE_FORMAT = "d/m/Y"
+
+# DATE_FORMAT = ['%d-%m-%Y']
+
+# DATE_INPUT_FORMATS = ['%d-%m-%Y']
 
 
 # Static files (CSS, JavaScript, Images)

@@ -11,12 +11,13 @@ def control_activos(request):
     extintores= ActivoExtintor.objects.filter(estadoExtintor="Activo")
     vehiculos=ActivoVehiculo.objects.filter(estadoVehiculo="Activo")
     equipos=ActivoEquipoOficina.objects.filter(estadoEquipo="Activo")
-    # formExtintor=ActivoExtintorForm()
-    # formVehiculo=ActivoVehiculoForm()
-    # formEquipo=ActivoEquipoOficinaForm()
+    # form=ActivoExtintorForm()
+    # form=ActivoVehiculoForm()
+    # form=ActivoEquipoOficinaForm()
     extintor=None
     vehiculo=None
     equipo=None
+
 
 # ###################################################################################################################################
     # Bloque de codigo para traer informacion de la tabla a los campos de la pagina html por medio de la Primary Key
@@ -42,8 +43,8 @@ def control_activos(request):
                 request,f"SE EDITO EL VEHÍCULO CON ID # {vehiculo.id} EXITOSAMENTE"
             )
         else:
-           messages.error(
-                request,f"ERROR NO SE EDITO EL VEHÍCULO CON ID # {vehiculo.id} "
+            messages.error(
+                request,f"ERROR NO SE EDITO EL VEHÍCULO CON ID # {vehiculo.id} " # EL ERROR ES POR EL FORMATO DE LA FECHA PERO NO SE LOGRA CAMBIAR
             )
 
     # EDITAR EXTINTOR
@@ -119,10 +120,31 @@ def control_activos(request):
         'vehiculo':vehiculo,
         'equipos':equipos,
         'equipo':equipo,
+        # 'form':form 
     }
     return render (request, 'activos/controlActivos.html', context)
 
+# def crear_equipo(request):
+#     if request.method == "POST" and 'form-oficina' in request.POST:
+#         form=ActivoEquipoOficinaForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             print('###################################### EQUIPO CREADO')
+#             messages.success(
+#             request,f"SE REGISTRO EL EQUIPO DE OFICINA EXITOSAMENTE"
+#         )
+#         else:
+#             form=ActivoEquipoOficinaForm(request.POST)
+#             print('###################################### EQUIPO ERROR')
+#     else:
+#         form=ActivoEquipoOficinaForm()
 
+#     return redirect('control-activos')
+        
+#     context={
+#             'form':form
+#         }
+#     return render (request, 'activos/controlActivos.html', context)
 # ###################################################################################################################################
 # FUNCIONES PARA ELIMINAR O INHABILITAR LOS VEHICULOS
 def control_activos_eliminar_vehiculo(request,pk):

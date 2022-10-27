@@ -1,3 +1,5 @@
+<!-- Bloque de codigo en javascript para aplicarlo en las tablas usadas con DATABLE donde dependiente cual seleccione se mostrara 
+    y las otras se ocultaran -->
 {% block javascripttabla %}
 <script>
     // Script para visualizar los datos de los activos segun el que seleccione
@@ -7,19 +9,18 @@
             jQuery('#table-extintor').hide();
             jQuery('#table-oficina').hide();
         }
+
         if (c.value == "extintor") {
             jQuery('#table-extintor').toggle('show');
             jQuery('#table-vehiculo').hide();
             jQuery('#table-oficina').hide();
-
         }
+
         if (c.value == "oficina") {
             jQuery('#table-oficina').toggle('show');
             jQuery('#table-vehiculo').hide();
             jQuery('#table-extintor').hide();
-
         }
-
     }
 </script>
 {% endblock javascripttabla %}
