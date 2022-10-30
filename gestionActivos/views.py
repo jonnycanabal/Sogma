@@ -2,14 +2,21 @@ from multiprocessing import context
 from django.shortcuts import render,redirect
 from activos.models import ActivoEquipoOficina, ActivoExtintor, ActivoVehiculo
 from gestionActivos.models import GenerarRuta, Pasajero
-from gestionActivos.forms import GenerarAlarmaForm, GenerarRutaForm, RegistrarMantenimientoForm
+from gestionActivos.forms import GenerarAlarmaForm, GenerarRutaForm, PasajeroForm, RegistrarMantenimientoForm
 from usuarios.models import Usuario
 from django.contrib import messages
+
+# Importe con el cual habilitamos el @login_required
+from django.contrib.auth.decorators import login_required
+# Importe para logout en la funcion logout_user
+from django.contrib.auth import logout 
+
 
 # Create your views here.
 
 # ##################################################################################################################################
 # FUNCION * GENERAR ALARMA *
+@login_required(login_url='login')
 def generar_alarma(request):
     titulo='Generar-Alarma'
     form=GenerarAlarmaForm()
@@ -21,6 +28,7 @@ def generar_alarma(request):
 
 # ##################################################################################################################################
 # FUNCION * GENERAR RUTA *
+@login_required(login_url='login')
 def generar_ruta(request):
     titulo='Consultar-Ruta'
     ruta=None
@@ -40,6 +48,24 @@ def generar_ruta(request):
     if request.method== 'POST' and 'pasajero-buscar' in request.POST:
         return redirect('agregar-ruta')
 
+
+
+    if request.method == "POST" and 'form-pasajero' in request.POST:
+        form=PasajeroForm(request.POST)
+        if form.is_valid():
+            form.save()
+            print('###################################### PASAJERO REGISTRADO')
+            messages.success(
+            request,f"SE REGISTRO EL PASAJERO EXITOSAMENTE"
+        )
+        else:
+            form=PasajeroForm(request.POST)
+            print('###################################### ERROR PASAJERO NO REGISTRADO')
+            messages.error(
+            request,f"ERROR. NO SE PUDO REGISTRAR AL PASAJERO. INTENTELO DE NUEVO"
+        )
+
+
     context={
         'titulo':titulo,
         'vehiculos':vehiculos,
@@ -50,8 +76,17 @@ def generar_ruta(request):
     }
     return render (request, 'gestionActivos/generarRuta.html', context)
 
+def registrar_pasajero(request):
+
+    context={
+
+    }
+
+    return render (request, 'gestionActivos/generarRuta.html', context)
+
 # ##################################################################################################################################
 # FUNCION * AGREGAR FUNCIONARIOS RUTA *
+@login_required(login_url='login')
 def agregar_funcionarios_ruta(request, pk):
     titulo='Consultar-Ruta'
     ruta= GenerarRuta.objects.get(id=pk)
@@ -74,6 +109,7 @@ def agregar_funcionarios_ruta(request, pk):
 
 # ##################################################################################################################################
 # FUNCION * REGISTRAR MANTENIMIENTO *
+@login_required(login_url='login')
 def registrar_mantenimiento(request):
     titulo='Registrar-Mantenimiento'
     extintores= ActivoExtintor.objects.all()
@@ -109,6 +145,7 @@ def registrar_mantenimiento(request):
 
 # ##################################################################################################################################
 # FUNCION * CONSULTAR RUTA *
+@login_required(login_url='login')
 def consultar_ruta(request):
     titulo='Consultar-Ruta'
     extintores= ActivoExtintor.objects.all()
@@ -129,3 +166,9 @@ def consultar_ruta(request):
 
     }
     return render (request, 'gestionActivos/consultarRuta.html', context)
+
+
+# Funcion para el Logout o cierre de sesión
+def logout_user(request):
+    logout(request)
+    return redirect("login")

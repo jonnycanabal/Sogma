@@ -9,36 +9,28 @@
 
 <!-- Inicio del contenedor para la página de inicio de sesión (Index) -->
 <div class="container p-5 text-center">
-    <form class="w-form-login mx-auto">
+    <form method="POST" class="w-form-login mx-auto">
+        {% csrf_token %}
 
         <!-- Botones para seleccionar o digiligenciar información -->
-        <div class="mb-3">
-            <select class="form-select border border-dark"
-                aria-label="Default select example">
-                <option class="text-center " selected disabled>--
-                    TIPO DE
-                    USUARIO --</option>
-                <option value="1">FUNCIONARIO</option>
-                <option value="2">CONDUCTOR</option>
-                <option value="3">ADMINISTRADOR</option>
-            </select>
-        </div>
 
         <div class="mb-3">
+            
             <label for="ususarioInicio" class="form-label">USUARIO</label>
-            <input type="text" class="form-control border
+            {{form.username}}
+            <!-- <input type="text" class="form-control border
                 border-dark" id="usuario-inicio-index"
-                aria-describedby="emailHelp">
+                aria-describedby="emailHelp"> -->
             <div id="usuarioMensaje" class="form-text
                 text-start">Ingrese
                 correctamente su usuario y evite compartirlo.</div>
         </div>
 
         <div class="mb-3">
-            <label for="contraseñaInicio"
-                class="form-label">CONTRASEÑA</label>
-            <input type="password" class="form-control border
-                border-dark" id="contraseña-inicio-index">
+            <label for="contraseñaInicio" class="form-label">CONTRASEÑA</label>
+            {{form.password}}
+            <!-- <input type="password" class="form-control border
+                border-dark" id="contraseña-inicio-index"> -->
         </div>
 
         <div class="mb-3">
@@ -54,7 +46,8 @@
         </div>
 
         <!-- Botón de aceptar para validar la información ingresada y si es correcta le da acceso a la página principal del programa -->
-        <button type="submit" class="btn btn-primary"><a style="color: white; text-decoration: none;" href="{% url 'control-activos' %}">ACEPTAR</a></button>
+        <!-- <button type="submit" class="btn btn-primary"><a style="color: white; text-decoration: none;" href="{% url 'control-activos' %}">ACEPTAR</a></button> -->
+        <input type="submit" class="btn btn-primary " value="Ingresar">
     </form>
 </div>
 

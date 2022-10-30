@@ -4,8 +4,15 @@ from django.shortcuts import redirect, render
 from activos.models import ActivoEquipoOficina, ActivoExtintor, ActivoVehiculo
 from activos.forms import ActivoEquipoOficinaForm, ActivoExtintorForm, ActivoVehiculoForm
 from django.contrib import messages
+
+# Importe con el cual habilitamos el @login_required
+from django.contrib.auth.decorators import login_required
+# Importe para logout en la funcion logout_user
+from django.contrib.auth import logout 
+
 # Create your views here.
 
+@login_required(login_url='login')
 def control_activos(request):
     titulo='control-activos'
     extintores= ActivoExtintor.objects.filter(estadoExtintor="Activo")
@@ -147,6 +154,7 @@ def control_activos(request):
 #     return render (request, 'activos/controlActivos.html', context)
 # ###################################################################################################################################
 # FUNCIONES PARA ELIMINAR O INHABILITAR LOS VEHICULOS
+@login_required(login_url='login')
 def control_activos_eliminar_vehiculo(request,pk):
     titulo = 'control-activos'
     vehiculos=ActivoVehiculo.objects.all()
@@ -170,6 +178,7 @@ def control_activos_eliminar_vehiculo(request,pk):
 
 # ###################################################################################################################################
 # FUNCIONES PARA ELIMINAR O INHABILITAR LOS EXTINTORES
+@login_required(login_url='login')
 def control_activos_eliminar_extintor(request,pk):
     # Bloque de codigo para ELIMINAR O DESACTIVAR UN ACTIVO
     ActivoExtintor.objects.filter(id=pk).update(
@@ -190,6 +199,7 @@ def control_activos_eliminar_extintor(request,pk):
     
 # ###################################################################################################################################
 # FUNCIONES PARA ELIMINAR O INHABILITAR LOS EQUIPOS DE OFICINA
+@login_required(login_url='login')
 def control_activos_eliminar_equipo(request,pk):
     titulo = 'control-activos'
     equipos=ActivoEquipoOficina.objects.all()
@@ -211,7 +221,10 @@ def control_activos_eliminar_equipo(request,pk):
 
     return render (request, 'activos/controlActivos.html', context)
 
-
+# Funcion para el Logout o cierre de sesión
+def logout_user(request):
+    logout(request)
+    return redirect("login")
 
 # def control_activos_eliminar_vehiculo(request,pk):
 #     titulo = 'control-activos'

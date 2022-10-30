@@ -1,3 +1,4 @@
+from tabnanny import verbose
 from django.utils.translation import gettext_lazy as _
 from django.db import models
 
@@ -6,6 +7,7 @@ from usuarios.models import Usuario
 
 # Create your models here.
 
+# ###############################################################################################################################
 # CREACIÓN DE LA TABLA (generarAlarma) DE NUESTRA MER DISEÑADO EN MYSQL WORKBENCH
 class GenerarAlarma(models.Model):
     # REVISAR ESTAR PARTE SI ESTA BIEN DECLARADA O LLAMADA LA FOREING KEY
@@ -20,6 +22,8 @@ class GenerarAlarma(models.Model):
     tipoMantenimiento=models.CharField(max_length=15, choices=TipoMantenimiento.choices, default=TipoMantenimiento.PREVENTIVO, verbose_name="Tipo de Mantenimiento")
     descripcionMantenimiento=models.TextField(max_length=100, verbose_name="Descripción del Mantenimiento")
 
+
+# ###############################################################################################################################
 # CREACIÓN DE LA TABLA (pasajero) DE NUESTRA MER DISEÑADO EN MYSQL WORKBENCH
 class Pasajero(models.Model):
     primerNombrePasajero=models.CharField(max_length=50, verbose_name="Primer Nombre")
@@ -36,6 +40,8 @@ class Pasajero(models.Model):
         return "%s %s"%(self.primerNombrePasajero,self.primerApellidoPasajero)
 
 
+
+# ###############################################################################################################################
 # CREACIÓN DE LA TABLA (generarRuta) DE NUESTRA MER DISEÑADO EN MYSQL WORKBENCH
 class GenerarRuta(models.Model):
     # FOREING KEY REREFENCIADA DEL MODELO ACTIVOS DE LAS CLASES REQUERIDAS VEHICULO, USUARIO Y PASAJERO.
@@ -48,14 +54,18 @@ class GenerarRuta(models.Model):
     lugarSalida=models.CharField(max_length=50, verbose_name="Lugar de Salida", blank=True)
     lugarDestino=models.CharField(max_length=50, verbose_name="Lugar de Destino", blank=True)
     kilometrajeFinalVehiculo=models.IntegerField(verbose_name="Kilometraje Final", blank=True)  # Valor numero (IntegerField) Para sumar Kilometraje!!!!!!
+    # fkDetalleRuta=models.ForeignKey(DetalleRuta, on_delete=models.CASCADE, verbose_name="Pasajero")
     descripcionRuta=models.TextField(max_length=100, verbose_name="Descripción", blank=True)
     observacionesRuta=models.TextField(max_length=100, verbose_name="Observaciones", blank=True)
 
+
+# ###############################################################################################################################
 class DetalleRuta(models.Model):
     fkRuta=models.ForeignKey(GenerarRuta, on_delete=models.CASCADE, verbose_name="Ruta")
     fkPasajero=models.ForeignKey(Pasajero, on_delete=models.CASCADE, verbose_name="Pasajero")
 
 
+# ###############################################################################################################################
 # CREACIÓN DE LA TABLA (registrarMantenimiento) DE NUESTRA MER DISEÑADO EN MYSQL WORKBENCH
 class RegistrarMantenimiento(models.Model):
     # FOREING KEY REREFENCIADA DEL MODELO ACTIVOS DE LAS CLASES REQUERIDAS EXTINTOR, EQUIPO OFICINA, VEHICULO.

@@ -78,6 +78,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                # 'main.context_processors.sesion', --------------------------------------------------------------------
             ],
         },
     },
@@ -155,3 +156,9 @@ STATIC_ROOT= "/static"
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# fragmento de codigo para redireccionar a la página principal cuando un usuario se logea desde el login
+LOGIN_REDIRECT_URL='control-activos'
+
+# fragmento de codigo para redireccionar a la p+agina de login o inicio de sesión cuando un ususario de deslogee o cierre sesión
+LOGOUT_REDIRECT_URL='login'
