@@ -10,6 +10,7 @@ from django.contrib.auth.models import User
 # Importe para logout en la funcion logout_user
 from django.contrib.auth import logout 
 
+# Importe con el cual habilitamos la función de make_password en nuestra contraseña que se crea por defecto.
 from django.contrib.auth.hashers import make_password
 # Importe con el cual habilitamos el @login_required
 from django.contrib.auth.decorators import login_required

@@ -51,10 +51,6 @@ INSTALLED_APPS = [
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 
-# DATE_INPUT_FORMATS =[
-#     '%d/%m/%Y'
-# ]
-
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -130,9 +126,6 @@ USE_TZ = True
 
 SHORT_DATE_FORMAT = "d/m/Y"
 
-# DATE_FORMAT = ['%d-%m-%Y']
-
-# DATE_INPUT_FORMATS = ['%d-%m-%Y']
 
 
 # Static files (CSS, JavaScript, Images)
@@ -160,5 +153,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # fragmento de codigo para redireccionar a la página principal cuando un usuario se logea desde el login
 LOGIN_REDIRECT_URL='control-activos'
 
-# fragmento de codigo para redireccionar a la p+agina de login o inicio de sesión cuando un ususario de deslogee o cierre sesión
+# fragmento de codigo para redireccionar a la página de login o inicio de sesión cuando un ususario de deslogee o cierre sesión
 LOGOUT_REDIRECT_URL='login'
