@@ -78,6 +78,10 @@ class DetalleRuta(models.Model):
     fkRuta=models.ForeignKey(GenerarRuta, on_delete=models.CASCADE, verbose_name="Ruta")
     fkPasajero=models.ForeignKey(Pasajero, on_delete=models.CASCADE, verbose_name="Pasajero")
 
+class DetalleRuta(models.Model):
+    fkRuta=models.ForeignKey(GenerarRuta, on_delete=models.CASCADE, verbose_name="Ruta")
+    fkPasajero=models.ForeignKey(Pasajero, on_delete=models.CASCADE, verbose_name="Pasajero")
+
 
 # ###############################################################################################################################
 # CREACIÓN DE LA TABLA (registrarMantenimiento) DE NUESTRA MER DISEÑADO EN MYSQL WORKBENCH

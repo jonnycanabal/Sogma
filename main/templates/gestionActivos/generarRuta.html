@@ -46,14 +46,20 @@
         {% csrf_token %}
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
         {% if ruta == None %}
 
 =======
+=======
+>>>>>>> Stashed changes
         {% if ruta == None %}
 
 
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
         <!-- Enunciado o titulo de la página -->
         <div class="w-100 text-center pb-3 border-bottom
@@ -68,17 +74,23 @@
                 VEHÍCULO</label>
             <div class="input-group mb-3 w-100">
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                 <select class="form-control form-select" name="fkVehiculo" id="id_fkVehiculo">
                     <option selected disabled>Seleccione el Vehiculo</option>
 
                     {% for vehiculo in vehiculos %}
                     <option value='{{vehiculo.id}}'>{{vehiculo.placaVehiculo}} - {{vehiculo.marcaVehiculo}}</option>
 =======
+=======
+>>>>>>> Stashed changes
                 <select class="form-control" name="fkVehiculo" id="id_fkVehiculo">
                     <option selected>Seleccione el Vehiculo ▼</option>
 
                     {% for vehiculo in vehiculos %}
                     <option value='{{vehiculo.id}}'>{{vehiculo.placaVehiculo}}</option>
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
                     {% endfor %}
 
@@ -89,6 +101,7 @@
             </div>
         </div>
 
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
         <div class="d-inline-block width-20 ms-1 me-5">
             <label for="basic-url" class="form-label w-75 ps-2">DOCUMENTO CONDUCTOR</label>
@@ -108,6 +121,8 @@
             </div>
         </div>
 
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
         <!-- <div class="d-inline-block width-20 ms-1 me-5">
@@ -150,6 +165,9 @@
         </div> -->
 =======
         </div>
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
         <!-- 
         <div class="d-inline-block width-20 ms-1 me-5">
@@ -241,9 +259,12 @@
             <h2>Llenando ruta {{ruta.id}}</h2>
         </div>
         {% endif %}
+<<<<<<< Updated upstream
 
         <input class="btn btn-success w-25 ms-1" type="submit" value="Llenar">
         {% else %}
+=======
+>>>>>>> Stashed changes
 
         <div class="w-100 text-center pb-3 border-bottom
             border-dark">
@@ -264,6 +285,7 @@
             </div>
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         {% else %}
 
         <div class="w-100 border-bottom border-top border-dark">
@@ -274,6 +296,8 @@
 
             <div class="d-inline-block ms-1 me-5 width-28">
 =======
+=======
+>>>>>>> Stashed changes
             {% if pasajero != None %}
 
 
@@ -434,6 +458,7 @@
         </div>
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         <!-- <script>
             $('.select-field').select2({
                 theme: 'bootstrap-5'
@@ -442,6 +467,8 @@
         {% endif %}
 </div>
 <!-- ########################################################################################################################### -->
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
         <!-- Parte donde se mostraran los funcionarios seleccionados, sus datos y si desea quitarlos de la ruta. -->
@@ -458,7 +485,11 @@
                 w-100 pe-3">
                 <div class="form-check m-3 ms-3">
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                     <i class="bi bi-trash3-fill"></i>
+=======
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+>>>>>>> Stashed changes
 =======
                     <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
 >>>>>>> Stashed changes
@@ -469,7 +500,11 @@
 
                 <div class="form-check m-3 ms-3">
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                     <i class="bi bi-trash3-fill"></i>
+=======
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+>>>>>>> Stashed changes
 =======
                     <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
 >>>>>>> Stashed changes
@@ -479,7 +514,11 @@
 
                 <div class="form-check m-3 ms-3">
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                     <i class="bi bi-trash3-fill"></i>
+=======
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+>>>>>>> Stashed changes
 =======
                     <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
 >>>>>>> Stashed changes
@@ -686,6 +725,7 @@
 <!-- Fin del contenedor para la página generar ruta -->
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 {% endblock contenido %}
 
 
@@ -696,6 +736,9 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 {% endblock javascript %} -->
+=======
+{% endblock contenido %}
+>>>>>>> Stashed changes
 =======
 {% endblock contenido %}
 >>>>>>> Stashed changes
