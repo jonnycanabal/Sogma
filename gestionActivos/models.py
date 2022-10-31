@@ -49,6 +49,7 @@ class GenerarRuta(models.Model):
     fkUsuario=models.ForeignKey(Usuario, on_delete=models.CASCADE, verbose_name="Usuario", blank=True)
     horaSalida=models.TimeField(verbose_name="Hora de Salida", help_text="HH:MM", blank=True)
     horaRegreso=models.TimeField(verbose_name="Hora de Regreso", help_text="HH:MM")
+<<<<<<< Updated upstream
     fechaSalida=models.DateField(verbose_name="Fecha de Salida", help_text="MM/DD/AAAA", blank=True)
     fechaRegreso=models.DateField(verbose_name="Fecha de Regreso", help_text="MM/DD/AAAA", blank=True)
     lugarSalida=models.CharField(max_length=50, verbose_name="Lugar de Salida", blank=True)
@@ -60,6 +61,19 @@ class GenerarRuta(models.Model):
 
 
 # ###############################################################################################################################
+class DetalleRuta(models.Model):
+    fkRuta=models.ForeignKey(GenerarRuta, on_delete=models.CASCADE, verbose_name="Ruta")
+    fkPasajero=models.ForeignKey(Pasajero, on_delete=models.CASCADE, verbose_name="Pasajero")
+=======
+    fechaSalida=models.DateField(verbose_name="Fecha de Salida", help_text="MM/DD/AAAA")
+    fechaRegreso=models.DateField(verbose_name="Fecha de Regreso", help_text="MM/DD/AAAA")
+    lugarSalida=models.CharField(max_length=50, verbose_name="Lugar de Salida")
+    lugarDestino=models.CharField(max_length=50, verbose_name="Lugar de Destino")
+    kilometrajeFinalVehiculo=models.IntegerField(verbose_name="Kilometraje Final")  # Valor numero (IntegerField) Para sumar Kilometraje!!!!!!
+    descripcionRuta=models.TextField(max_length=100, verbose_name="Descripción")
+    observacionesRuta=models.TextField(max_length=100, verbose_name="Observaciones")
+>>>>>>> Stashed changes
+
 class DetalleRuta(models.Model):
     fkRuta=models.ForeignKey(GenerarRuta, on_delete=models.CASCADE, verbose_name="Ruta")
     fkPasajero=models.ForeignKey(Pasajero, on_delete=models.CASCADE, verbose_name="Pasajero")

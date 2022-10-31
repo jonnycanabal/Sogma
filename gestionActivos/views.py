@@ -1,6 +1,7 @@
 from multiprocessing import context
 from django.shortcuts import render,redirect
 from activos.models import ActivoEquipoOficina, ActivoExtintor, ActivoVehiculo
+<<<<<<< Updated upstream
 from gestionActivos.models import GenerarRuta, Pasajero
 from gestionActivos.forms import GenerarAlarmaForm, GenerarRutaForm, PasajeroForm, RegistrarMantenimientoForm
 from usuarios.models import Usuario
@@ -11,6 +12,10 @@ from django.contrib.auth.decorators import login_required
 # Importe para logout en la funcion logout_user
 from django.contrib.auth import logout 
 
+=======
+from gestionActivos.models import GenerarRuta
+from gestionActivos.forms import GenerarAlarmaForm, GenerarRutaForm, RegistrarMantenimientoForm
+>>>>>>> Stashed changes
 
 # Create your views here.
 
@@ -32,6 +37,7 @@ def generar_alarma(request):
 def generar_ruta(request):
     titulo='Consultar-Ruta'
     ruta=None
+<<<<<<< Updated upstream
     pasajeros= Pasajero.objects.all()
     vehiculos=ActivoVehiculo.objects.all()
     usuarios=Usuario.objects.all()
@@ -64,11 +70,20 @@ def generar_ruta(request):
             messages.error(
             request,f"ERROR. NO SE PUDO REGISTRAR AL PASAJERO. INTENTELO DE NUEVO"
         )
+=======
+    vehiculos=ActivoVehiculo.objects.all()
+    form=GenerarRutaForm()
+    if request.method== 'POST':
+        
+        return redirect('agregar-ruta', 1)
+>>>>>>> Stashed changes
 
+    
 
     context={
         'titulo':titulo,
         'vehiculos':vehiculos,
+<<<<<<< Updated upstream
         'usuarios':usuarios,
         'form':form,
         'ruta':ruta,
@@ -87,6 +102,13 @@ def registrar_pasajero(request):
 # ##################################################################################################################################
 # FUNCION * AGREGAR FUNCIONARIOS RUTA *
 @login_required(login_url='login')
+=======
+        'form':form,
+        'ruta':ruta
+    }
+    return render (request, 'gestionActivos/generarRuta.html', context)
+
+>>>>>>> Stashed changes
 def agregar_funcionarios_ruta(request, pk):
     titulo='Consultar-Ruta'
     ruta= GenerarRuta.objects.get(id=pk)
@@ -94,11 +116,16 @@ def agregar_funcionarios_ruta(request, pk):
 
     context={
         'titulo':titulo,
+<<<<<<< Updated upstream
         # 'vehiculos':vehiculos,
+=======
+        'vehiculos':vehiculos,
+>>>>>>> Stashed changes
         'ruta':ruta
     }
     return render (request, 'gestionActivos/generarRuta.html', context)
 
+<<<<<<< Updated upstream
 # def eliminar_pasajero(request):
 
 #     context={
@@ -110,6 +137,9 @@ def agregar_funcionarios_ruta(request, pk):
 # ##################################################################################################################################
 # FUNCION * REGISTRAR MANTENIMIENTO *
 @login_required(login_url='login')
+=======
+
+>>>>>>> Stashed changes
 def registrar_mantenimiento(request):
     titulo='Registrar-Mantenimiento'
     extintores= ActivoExtintor.objects.all()

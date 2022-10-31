@@ -50,8 +50,13 @@ def control_activos(request):
                 request,f"SE EDITO EL VEHÍCULO CON ID # {vehiculo.id} EXITOSAMENTE"
             )
         else:
+<<<<<<< Updated upstream
             messages.error(
                 request,f"ERROR NO SE EDITO EL VEHÍCULO CON ID # {vehiculo.id} " # EL ERROR ES POR EL FORMATO DE LA FECHA PERO NO SE LOGRA CAMBIAR
+=======
+           messages.error(
+                request,f"ERROR NO SE EDITO EL VEHÍCULO CON ID # {vehiculo.id} "
+>>>>>>> Stashed changes
             )
 
     # EDITAR EXTINTOR

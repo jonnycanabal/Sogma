@@ -45,9 +45,16 @@
         border-dark">
         {% csrf_token %}
 
+<<<<<<< Updated upstream
 
         {% if ruta == None %}
 
+=======
+        {% if ruta == None %}
+
+
+
+>>>>>>> Stashed changes
         <!-- Enunciado o titulo de la página -->
         <div class="w-100 text-center pb-3 border-bottom
             border-dark">
@@ -60,11 +67,19 @@
             <label for="basic-url" class="form-label w-75 ps-2">PLACA
                 VEHÍCULO</label>
             <div class="input-group mb-3 w-100">
+<<<<<<< Updated upstream
                 <select class="form-control form-select" name="fkVehiculo" id="id_fkVehiculo">
                     <option selected disabled>Seleccione el Vehiculo</option>
 
                     {% for vehiculo in vehiculos %}
                     <option value='{{vehiculo.id}}'>{{vehiculo.placaVehiculo}} - {{vehiculo.marcaVehiculo}}</option>
+=======
+                <select class="form-control" name="fkVehiculo" id="id_fkVehiculo">
+                    <option selected>Seleccione el Vehiculo ▼</option>
+
+                    {% for vehiculo in vehiculos %}
+                    <option value='{{vehiculo.id}}'>{{vehiculo.placaVehiculo}}</option>
+>>>>>>> Stashed changes
                     {% endfor %}
 
                 </select>
@@ -74,6 +89,7 @@
             </div>
         </div>
 
+<<<<<<< Updated upstream
         <div class="d-inline-block width-20 ms-1 me-5">
             <label for="basic-url" class="form-label w-75 ps-2">DOCUMENTO CONDUCTOR</label>
             <div class="input-group mb-3 w-100">
@@ -92,6 +108,8 @@
             </div>
         </div>
 
+=======
+>>>>>>> Stashed changes
         <!-- <div class="d-inline-block width-20 ms-1 me-5">
             <label for="basic-url" class="form-label w-75 ps-2">ID
                 ACTIVO</label>
@@ -128,7 +146,11 @@
                 <input type="text" class="form-control" id="identificacion-generar-ruta"
                     aria-describedby="basic-addon3">
             </div>
+<<<<<<< Updated upstream
         </div> -->
+=======
+        </div>
+>>>>>>> Stashed changes
         <!-- 
         <div class="d-inline-block width-20 ms-1 me-5">
             <label for="basic-url" class="form-label w-75 ps-2">CONDUCTOR
@@ -211,6 +233,14 @@
         <!-- Salto de línea -->
         <br>
         <br>
+        <input type="submit" value="Llenar">
+        {% else %}
+
+        <div class="w-100 text-center pb-3 border-bottom
+            border-dark">
+            <h2>Llenando ruta {{ruta.id}}</h2>
+        </div>
+        {% endif %}
 
         <input class="btn btn-success w-25 ms-1" type="submit" value="Llenar">
         {% else %}
@@ -233,6 +263,7 @@
                     mt-5">AGREGAR PASAJERO</h3>
             </div>
 
+<<<<<<< Updated upstream
         {% else %}
 
         <div class="w-100 border-bottom border-top border-dark">
@@ -242,6 +273,75 @@
         <div class="w-100 text-center">
 
             <div class="d-inline-block ms-1 me-5 width-28">
+=======
+            {% if pasajero != None %}
+
+
+
+            <!-- Contenedor para los botones para funcionarios -->
+            <div class="border-top w-100">
+
+                <div class="w-100 text-center border-bottom
+                    border-dark pb-4">
+
+                    <div class="d-inline-block width-20 ms-1
+                        me-5 mt-4">
+                        <label for="basic-url" class="form-label
+                            w-75 ps-2">NOMBRE FUNCIONARIO</label>
+                        <div class="input-group mb-3 w-100">
+                            <input type="text" class="form-control text-center" id="nombre-funcionarios-generar-ruta"
+                                aria-describedby="basic-addon3" placeholder="Jonny Canabal">
+                        </div>
+                    </div>
+
+                    <div class="d-inline-block width-20 ms-1
+                        me-5 mt-4">
+                        <label for="basic-url" class="form-label
+                            w-75 ps-2">UBICACIÓN</label>
+                        <div class="input-group mb-3 w-100">
+                            <input type="text" class="form-control text-center" id="ubicacion-funcionarios-generar-ruta"
+                                aria-describedby="basic-addon3" placeholder="">
+                        </div>
+                    </div>
+
+                    <div class="d-inline-block width-20 ms-1
+                        me-5 mt-4">
+                        <label for="basic-url" class="form-label
+                            w-75 ps-2">TELEFONO</label>
+                        <div class="input-group mb-3 w-100">
+                            <input type="text" class="form-control text-center" id="telefono-funcionarios-generar-ruta"
+                                aria-describedby="basic-addon3" placeholder="">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-end w-100">
+                    <button type="button" id="btn-agregar" class="btn
+                        btn-success
+                        fs-5 m-2">AGREGAR</button>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <div class="w-100 text-center border-bottom
+                    border-dark pb-4">
+
+            <div class="d-inline-block width-20 ms-1
+                        me-5 mt-4">
+                <label for="basic-url" class="form-label
+                            w-75 ps-2">Documento FUNCIONARIO</label>
+                <div class="input-group mb-3 w-100">
+                    <input type="text" class="form-control text-center" id="nombre-funcionarios-generar-ruta"
+                        aria-describedby="basic-addon3" placeholder="Jonny Canabal">
+                </div>
+            </div>
+        </div>
+
+        {% endif %}
+        <!-- Salto de línea -->
+        <br>
+        <br>
+>>>>>>> Stashed changes
 
                 <label for="basic-url" class="form-label w-75 ps-2 mt-3">DOCUMENTO</label>
 
@@ -333,6 +433,7 @@
         </div>
         </div>
 
+<<<<<<< Updated upstream
         <!-- <script>
             $('.select-field').select2({
                 theme: 'bootstrap-5'
@@ -341,6 +442,8 @@
         {% endif %}
 </div>
 <!-- ########################################################################################################################### -->
+=======
+>>>>>>> Stashed changes
         <!-- Parte donde se mostraran los funcionarios seleccionados, sus datos y si desea quitarlos de la ruta. -->
         <!-- Titulo funcionarios seleccionados -->
         <div class="w-100">
@@ -354,24 +457,50 @@
                 border-dark
                 w-100 pe-3">
                 <div class="form-check m-3 ms-3">
+<<<<<<< Updated upstream
                     <i class="bi bi-trash3-fill"></i>
+=======
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+>>>>>>> Stashed changes
                     <label class="form-check-label" for="inlineCheckbox1">Jonny
                         Canabal / Calle 53 bis # 80 - 53
                         sur / 3183865874</label>
                 </div>
 
                 <div class="form-check m-3 ms-3">
+<<<<<<< Updated upstream
                     <i class="bi bi-trash3-fill"></i>
+=======
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+>>>>>>> Stashed changes
                     <label class="form-check-label" for="inlineCheckbox1">Nicolas
                         Molina</label>
                 </div>
 
                 <div class="form-check m-3 ms-3">
+<<<<<<< Updated upstream
                     <i class="bi bi-trash3-fill"></i>
+=======
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+>>>>>>> Stashed changes
                     <label class="form-check-label" for="inlineCheckbox1">Silverio
                         Pedroza</label>
                 </div>
             </div>
+<<<<<<< Updated upstream
+=======
+
+            <!-- boton de quitar el o los funcionarios agregados -->
+            <div class="d-flex justify-content-end
+                w-100">
+                <div class="w-50 d-flex
+                    justify-content-end">
+                    <button type="button" id="btn-editar" class="btn
+                        btn-danger
+                        fs-5 m-2">QUITAR</button>
+                </div>
+            </div>
+>>>>>>> Stashed changes
         </div>
 
         <!-- salto de línea -->
@@ -556,6 +685,7 @@
 </div>
 <!-- Fin del contenedor para la página generar ruta -->
 
+<<<<<<< Updated upstream
 {% endblock contenido %}
 
 
@@ -566,3 +696,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 {% endblock javascript %} -->
+=======
+{% endblock contenido %}
+>>>>>>> Stashed changes
