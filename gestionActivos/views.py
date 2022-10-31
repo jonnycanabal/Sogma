@@ -33,9 +33,9 @@ def generar_ruta(request):
     titulo='Consultar-Ruta'
     ruta=None
     pasajeros= Pasajero.objects.all()
-
     vehiculos=ActivoVehiculo.objects.all()
     usuarios=Usuario.objects.all()
+
     # BLoque para guardar el formulario de generar ruta
     form=GenerarRutaForm(request.POST)
     if form.is_valid():
@@ -119,6 +119,7 @@ def registrar_mantenimiento(request):
     vehiculo=None
     equipo=None
 
+    # ####################################################################################################################
     # Bloque de codigo para traer informacion de la tabla a los campos de la pagina html por medio de la Primary Key
     if request.method == "POST" and 'editar-extintor' in request.POST:
         extintor = ActivoExtintor.objects.get(id=int(request.POST['pk_extintor']))
@@ -129,7 +130,26 @@ def registrar_mantenimiento(request):
     if request.method == "POST" and 'editar-equipo-oficina' in request.POST:
         equipo = ActivoEquipoOficina.objects.get(id=int(request.POST['pk_equipo']))
 
-    form=RegistrarMantenimientoForm()
+    # ####################################################################################################################
+    if request.method == "POST":
+        form=RegistrarMantenimientoForm(request.POST)
+        if form.is_valid():
+            form.saved()
+            print('###################################### MANTENIMIENTO REGISTRADO')
+            messages.success(
+                request, f"EL MANTENIMIENTO SE REGISTRO DE FORMA EXITOSA"
+            )
+
+            return redirect('registrar-mantenimiento')
+        else:
+            form=RegistrarMantenimientoForm(request.POST)
+            print('###################################### ERROR MANTENIMIENTO NO REGISTRADO')
+            messages.error(
+                request, f"ERROR, EL MANTENIMIENTO NO SE PUDO REGISTRAR!!!!!!!"
+            )
+    
+    else:
+        form=RegistrarMantenimientoForm()
     
     context={
         'titulo':titulo,

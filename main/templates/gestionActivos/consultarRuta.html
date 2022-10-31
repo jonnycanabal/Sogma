@@ -268,7 +268,7 @@
                                 {% for ruta in rutas %}
                                 <tr>
                                     <td class="text-center">{{ruta.id}}</td>
-                                    <td>{{ruta.fechaSalida}}</td>
+                                    <td>{{ruta.fechaSalida | date:"d/m/Y"}}</td>
                                     <td>{{ruta.fkUsuario}}</td>
                                     <!-- Imagen de una lupa con la cual seleccionara la ruta y 
                                     te redireccionara a la página con la información de dicha rutay con algunos campos activos

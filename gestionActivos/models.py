@@ -84,5 +84,5 @@ class RegistrarMantenimiento(models.Model):
     # adjuntarArchivoMantenimiento=models.FileField(upload_to='uploads', blank=True)
     # adjuntarArchivoMantenimiento=models.ImageField(upload_to='uploads', blank=True)
 
-
-
+# HACER 3 MODELOS PARA MANTENIMIENTO DE CADA ACTIVO - INDIVIDUAL
+# añadir una tabla intermedia donde se registre el activo que quiero asociarle un mantenimiento. ---------------------------------

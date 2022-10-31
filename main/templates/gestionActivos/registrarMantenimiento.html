@@ -326,16 +326,18 @@
         <!-- Contenedor donde apareceran los datos básicos del activo para confirmar que selecciono bien. -->
 <div class="border-bottom border-top border-dark mb-4 pb-5 w-100">
 
-<!-- --------------------------------------- TRABAJANDO EN UN IF EN ESTA PARTE (CONTINUAR MAÑANA ----------------------------) -->
+    
+{% if vehiculo %}
 
-
-        
     <!-- Titulo Activo Seleccionado -->
     <div class="d-flex justify-content-center p-2
         mb-4 w-100 pt-4 border-bottom border-dark">
-        <h2>Activo Seleccionado</h2>
+        <h2>Activo Seleccionado (VEHÍCULO)</h2>
     </div>
 
+    <form action="" method="POST">
+
+        {% csrf_token %}
 
     <!-- BOTONES PARA VEHICULO -->
     <div id="div-cajas2" class="p-3 mt-5 border-dark">
@@ -390,7 +392,18 @@
         </div>
     </div>
 
+    </form>
 
+    {% elif extintor %}
+
+        <!-- Titulo Activo Seleccionado -->
+        <div class="d-flex justify-content-center p-2
+        mb-4 w-100 pt-4 border-bottom border-dark">
+        <h2>Activo Seleccionado (EXTINTOR)</h2>
+        </div>
+
+    <form action="" method="POST">
+    {% csrf_token %}
     <!-- BOTONES PARA EXTINTOR -->
     <div id="div-cajas2" class="p-3 mt-5 border-top border-dark">
         <div class="d-inline-block width-20 ms-1 me-5">
@@ -428,7 +441,18 @@
             </div>
         </div>
     </div>
+    </form>
 
+    {% elif equipo %}
+
+    <!-- Titulo Activo Seleccionado -->
+        <div class="d-flex justify-content-center p-2
+        mb-4 w-100 pt-4 border-bottom border-dark">
+        <h2>Activo Seleccionado (EQUIPO DE OFICINA)</h2>
+        </div>
+
+    <form action="" method="POST">
+        {% csrf_token %}
 
     <!-- BOTONES PARA EQUIPOS DE OFICINA -->
     <div id="div-cajas2" class="p-3 mt-5 border-top border-dark">
@@ -481,9 +505,10 @@
             </div>
         </div>
     </div>
+    </form>
+    {% endif %}
 </div>
 
-        <!-- Contenedor de checkbox tipo switch para seleccionar algunas opciones del mantenimiento del activo -->
         <div class="w-100">
 
             <!-- Título Registrar Mantenimiento -->
@@ -492,9 +517,13 @@
             </div>
         </div>
 
+    <form action="" method="POST">
+
+        {% csrf_token %}
+
         <!-- Cuadro donde se continuara con el registro del mantenimiento con informacion mas puntual -->
         <div class="mt-4 border-dark pt-4 w-100">
-            <div class="d-inline-block width-20 ms-1
+            <!-- <div class="d-inline-block width-20 ms-1
                 me-5">
                 <label for="basic-url" class="form-label
                     w-75 ps-2">N° Mantenimiento</label>
@@ -505,7 +534,7 @@
                         aria-describedby="basic-addon3"
                         placeholder="001">
                 </div>
-            </div>
+            </div> -->
 
             <div class="d-inline-block width-20 ms-1
                 me-5">
@@ -572,7 +601,7 @@
                 <label for="basic-url" class="form-label
                     w-75 ps-2">VALOR DEL MANTENIMIENTO</label>
                 <div class="input-group mb-3 w-100">
-                    <input type="text"
+                    <input type="number"
                         class="form-control" name="valorMantenimiento"
                         id="id_valorMantenimiento"
                         aria-describedby="basic-addon3">
@@ -600,7 +629,7 @@
 
         <!-- Cuadro donde se adjuntara un archivo preferiblemente en pdf e la factura del mantenimiento. -->
         <!-- ADJUNTAR ARCHIVO-->
-        <div class="w-100">
+        <!-- <div class="w-100">
             <label for="formFileLg"
                 class="form-label ps-2 w-100">Adjuntar
                 Archivo del Mantenimiento Realizado</label>
@@ -608,7 +637,7 @@
                 form-control-lg" style="font-size: 14px;"
                 id="adjuntar-archivo-registrar-mantenimiento"
                 type="file">
-        </div>
+        </div> -->
 
         <!-- Salto de línea -->
         <br>
@@ -668,7 +697,7 @@
                 </div>
             </div>
             <!-- MODAL INTERNO AL OPRIMIR ACEPTAR EN EL MODAL ANTERIOR DE GUARDAR-->
-            <div class="modal"
+            <!-- <div class="modal"
                 id="modal-registrar-mantenimiento2">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -687,8 +716,9 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
+            </div> -->
+        </di|v>
+    </form>
     </form>
 </div>
 

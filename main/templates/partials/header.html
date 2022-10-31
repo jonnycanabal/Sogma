@@ -29,12 +29,15 @@ py-3 border-bottom">
             data-bs-toggle="dropdown" aria-expanded="false">
             <img src="https://github.com/mdo.png" alt="" width="50"
                 height="50" class="rounded-circle me-2">
-            <strong>Jmcanabal</strong>
+            <strong>Jmcanabal {{usuario_actual.firts_name}}</strong>
             <!-- <strong>{{usuario_actual.firts_name}}</strong> -->
         </a>
         <ul class="dropdown-menu text-small shadow"
             aria-labelledby="dropdownUser2">
-            <li><a class="dropdown-item" href="#">Perfil</a></li>
+            <li><a class="dropdown-item" href="#"
+                data-bs-toggle="modal"
+                data-bs-target="#perfil">Pefil</a></li>
+                
             <li><a class="dropdown-item" href="#">Copia de Seguridad</a></li>
             <li><hr class="dropdown-divider"></li>
 
@@ -44,7 +47,209 @@ py-3 border-bottom">
                     data-bs-toggle="modal"
                     data-bs-target="#cerrar-sesion">Cerrar sesión</a></li>
         </ul>
-        <!-- Modal -->
+
+        <!-- ################################################################################################################ -->
+        <!-- MODAL PARA EL PERFIL -->
+        <div class="modal fade" id="perfil"
+            data-bs-backdrop="static" data-bs-keyboard="false"
+            tabindex="-1" aria-labelledby="staticBackdropLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title"
+                            id="staticBackdropLabel">PERFIL USUARIO</h5>
+                        <button type="button" class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body text-start me-3">
+
+                        <div class="d-inline-block ms-1 me-5 w-100">
+                            <label for="basic-url" class="form-label w-100 ps-2 text-center fs-4 pe-3">FOTO</label>
+                            <div class="input-group mb-3 w-100 d-flex justify-content-around">
+                                <input type="image" class=""
+                                    name="" id=""
+                                    aria-describedby="basic-addon3" style="width: 150px ; height: 150px;">
+                            </div>
+                        </div>
+
+                        <br>
+                        <br>
+
+                        <div class="d-inline-block ms-1 me-5 w-100">
+                            <label for="basic-url" class="form-label w-75 ps-2">PRIMER
+                                NOMBRE</label>
+                            <div class="input-group mb-3 w-100">
+                                <input type="text" class="form-control"
+                                    name="primerNombre" id="id_primerNombre"
+                                    aria-describedby="basic-addon3"
+                                    placeholder="">
+                            </div>
+                        </div>
+                        
+                        <div class="d-inline-block ms-1 me-5 w-100">
+                            <label for="basic-url" class="form-label w-75 ps-2">SEGUNDO
+                                NOMBRE</label>
+                            <div class="input-group mb-3 w-100">
+                                <input type="text" class="form-control"
+                                    name="segundoNombre" id="id_segundoNombre"
+                                    aria-describedby="basic-addon3"
+                                    placeholder="">
+                            </div>
+                        </div>
+                        
+                        <div class="d-inline-block ms-1 me-5 w-100">
+                            <label for="basic-url" class="form-label w-75 ps-2">PRIMER
+                                APELLIDO</label>
+                            <div class="input-group mb-3 w-100">
+                                <input type="text" class="form-control"
+                                    name="primerApellido" id="id_primerApellido"
+                                    aria-describedby="basic-addon3"
+                                    placeholder="">
+                            </div>
+                        </div>
+                        
+                        <div class="d-inline-block ms-1 me-5 w-100">
+                            <label for="basic-url" class="form-label w-75 ps-2">SEGUNDO
+                                APELLIDO</label>
+                            <div class="input-group mb-3 w-100">
+                                <input type="text" class="form-control" name="segundoApellido"
+                                    id="id_segundoApellido"
+                                    aria-describedby="basic-addon3"
+                                    placeholder="">
+                            </div>
+                        </div>
+                        
+                        <div class="d-inline-block ms-1 me-5 w-100">
+                            <label for="basic-url" class="form-label w-75 ps-2">TIPO
+                                DE DOCUMENTO</label>
+                            <div class="input-group mb-3 w-100">
+                                <select id="id_tipoDocumento" class="form-select" name="tipoDocumento"
+                                    aria-label="tipo-activo">
+                                    <option selected>--TIPO DOCUMENTO--</option>
+                                    <option value="C.C.">Cédula de Ciudadania</option>
+                                    <option value="C.E.">Cédula de Extranjería</option>
+                                    <option value="PASS">Pasaporte</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="d-inline-block ms-1 me-5 w-100">
+                            <label for="basic-url" class="form-label w-75 ps-2">NÚMERO
+                                DE IDENTIFICACIÓN</label>
+                            <div class="input-group mb-3 w-100">
+                                <input type="text" class="form-control" name="numeroDocumento"
+                                    id="id_numeroDocumento"
+                                    aria-describedby="basic-addon3"
+                                    placeholder="">
+                            </div>
+                        </div>
+                        
+                        <div class="d-inline-block ms-1 me-5 w-100">
+                            <label for="basic-url" class="form-label w-75 ps-2">NÚMERO DE
+                                TELEFONO</label>
+                            <div class="input-group mb-3 w-100">
+                                <input type="text" class="form-control" name="numeroTelefono"
+                                    id="id_numeroTelefono"
+                                    aria-describedby="basic-addon3"
+                                    placeholder="">
+                            </div>
+                        </div>
+                        
+                        <div class="d-inline-block ms-1 me-5 w-100">
+                            <label for="basic-url" class="form-label w-75 ps-2">CIUDAD DE
+                                RESIDENCIA</label>
+                            <div class="input-group mb-3 w-100">
+                                <input type="text" class="form-control" name="ciudadResidencia"
+                                    id="id_ciudadResidencia"
+                                    aria-describedby="basic-addon3"
+                                    placeholder="">
+                            </div>
+                        </div>
+                        
+                        <div class="d-inline-block ms-1 me-5 w-100">
+                            <label for="basic-url" class="form-label w-75 ps-2">DIRECCIÓN DE
+                                RESIDENCIA</label>
+                            <div class="input-group mb-3 w-100">
+                                <input type="text" class="form-control" name="direccionResidencia"
+                                    id="id_direccionResidencia"
+                                    aria-describedby="basic-addon3"
+                                    placeholder="">
+                            </div>
+                        </div>
+                        
+                        <div class="d-inline-block ms-1 me-5 w-100">
+                            <label for="basic-url" class="form-label w-75 ps-2">CORRE
+                                ELECTRONICO</label>
+                            <div class="input-group mb-3 w-100">
+                                <input type="text" class="form-control" name="correoElectronico"
+                                    id="id_correoElectronico"
+                                    aria-describedby="basic-addon3"
+                                    placeholder="">
+                            </div>
+                        </div>
+                        
+                        <div class="d-inline-block ms-1 me-5 w-100">
+                            <label for="basic-url" class="form-label w-75 ps-2">GENERO</label>
+                            <div class="input-group mb-3 w-100">
+                                <select id="id_genero" class="form-select" name="genero"
+                                    aria-label="tipo-activo">
+                                    <option selected>--GENERO--</option>
+                                    <option value="Masculino">Masculino</option>
+                                    <option value="Femenino">Femenino</option>
+                                    <option value="Otro">Otro</option>
+                                    <option value="Prefiero No Decir">Prefiero No Decir</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="d-inline-block ms-1 me-5 w-100">
+                            <label for="basic-url" class="form-label w-75 ps-2">CARGO</label>
+                            <div class="input-group mb-3 w-100">
+                                <input type="text" class="form-control" name="cargo"
+                                    id="id_cargo"
+                                    aria-describedby="basic-addon3"
+                                    placeholder="">
+                            </div>
+                        </div>
+                        
+                        <div class="d-inline-block ms-1 me-5 w-100">
+                            <label for="basic-url" class="form-label w-75 ps-2">FECHA
+                                DE REGISTRO</label>
+                            <div class="input-group mb-3 w-100">
+                                <input id="id_fechaRegistro" type="date" class="form-control" name="fechaRegistro"
+                                    aria-describedby="basic-addon3"
+                                    placeholder="">
+                            </div>
+                        </div>
+                        
+                        <div class="d-inline-block ms-1 me-5 w-100">
+                            <label for="basic-url" class="form-label w-75 ps-2">TIPO DE USUARIO</label>
+                            <div class="input-group mb-3 w-100">
+                                <select id="id_tipoUsuario" class="form-select" name="tipoUsuario"
+                                    aria-label="tipo-activo">
+                                    <option selected>--TIPO DE USUARIO--</option>
+                                    <option value="Funcionario">Funcionario</option>
+                                    <option value="Conductor">Conductor</option>
+                                    <option value="Administrador">Administrador</option>
+                                </select>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn
+                            btn-secondary" data-bs-dismiss="modal">SALIR</button>
+                        <!-- <button type="submit" class="btn
+                            btn-primary"><a style="color: white; text-decoration: none;" href="{% url 'logout' %}">ACEPTAR</a></button> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ################################################################################################################ -->
+        <!-- MODAL PARA CERRAR SESIÓN -->
         <div class="modal fade" id="cerrar-sesion"
             data-bs-backdrop="static" data-bs-keyboard="false"
             tabindex="-1" aria-labelledby="staticBackdropLabel"

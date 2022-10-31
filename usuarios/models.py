@@ -1,10 +1,10 @@
+from distutils.command.upload import upload
 from tabnanny import verbose
 from venv import create
 from django.utils.translation import gettext_lazy as _
-from enum import unique
+from enum import unique 
 from django.db import models
 from django.contrib.auth.models import User
-
 # Create your models here.
 
 # CREACIÓN DE LA TABLA (usuario) DE NUESTRA MER DISEÑADO EN MYSQL WORKBENCH
@@ -13,6 +13,7 @@ class Usuario(models.Model):
     segundoNombre=models.CharField(max_length=50, verbose_name="Segundo Nombre", blank=True)
     primerApellido=models.CharField(max_length=50, verbose_name="Primer Apellido")
     segundoApellido=models.CharField(max_length=50, verbose_name="Segundo Apellido", blank=True)
+    foto=models.ImageField(upload_to='images/usuarios',blank=True, default='media/imagenes/usuarios/default.jpg')
     class TipoDocumento(models.TextChoices):
         CC='C.C.', _("Cédula de Ciudadania")
         CE='C.E.', _("Cédula de Extranjería")
