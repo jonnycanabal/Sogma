@@ -27,10 +27,15 @@ py-3 border-bottom">
         <a href="#" class="d-flex align-items-center link-dark
             text-decoration-none dropdown-toggle" id="dropdownUser2"
             data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="https://github.com/mdo.png" alt="" width="50"
-                height="50" class="rounded-circle me-2">
-            <strong>Jmcanabal</strong>
-            <!-- <strong>{{usuario_actual.firts_name}}</strong> -->
+            <div class="image">
+                <img src="{{MEDIA_URL}}{{image_user}}" alt="user Image" width="50"
+                    height="50" class="rounded-circle me-2"> <!-- https://github.com/mdo.png -->
+            </div>
+
+            <div class="info text-black">
+                <strong>{{usuario_actual.first_name}} {{usuario_actual.last_name}}</strong>
+            </div>
+
         </a>
         <ul class="dropdown-menu text-small shadow"
             aria-labelledby="dropdownUser2">

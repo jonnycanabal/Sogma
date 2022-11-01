@@ -33,7 +33,7 @@ def nuevo_usuario(request):
     titulo='Nuevo-Usuario'
     if request.method == "POST":
         print(request.POST)
-        form=UsuarioForm(request.POST) # ,request.FILES -------------------------------------
+        form=UsuarioForm(request.POST, request.FILES) # ,request.FILES -------------------------------------
         if form.is_valid():
             # ###############################################################################################################
             # Bloque de codigo para el registro del usuario y contraseña
@@ -52,7 +52,7 @@ def nuevo_usuario(request):
                 segundoNombre=request.POST['segundoNombre'],
                 primerApellido=request.POST['primerApellido'],
                 segundoApellido=request.POST['segundoApellido'],
-                # foto=form.cleaned_data.get('foto'),
+                foto=form.cleaned_data.get('foto'),
                 correoElectronico=request.POST['correoElectronico'],
                 tipoDocumento=request.POST['tipoDocumento'],
                 numeroDocumento=request.POST['numeroDocumento'],
@@ -62,7 +62,7 @@ def nuevo_usuario(request):
                 genero=request.POST['genero'],
                 cargo=request.POST['cargo'],
                 fechaRegistro=request.POST['fechaRegistro'],
-            # empresa=Empresa.objects.get(id=int(request.POST['empresa'])),
+                # empresa=Empresa.objects.get(id=int(request.POST['empresa'])),
                 user=user,
                 tipoUsuario=request.POST['tipoUsuario'],
             )
@@ -73,7 +73,7 @@ def nuevo_usuario(request):
             return redirect ('usuarios-creados')
 
         else:
-            form=UsuarioForm(request.POST) #, request.FILES
+            form=UsuarioForm(request.POST, request.FILES) #, request.FILES
 
             print('###################################### ERROR')
             messages.error(
