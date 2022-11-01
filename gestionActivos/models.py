@@ -84,5 +84,34 @@ class RegistrarMantenimiento(models.Model):
     # adjuntarArchivoMantenimiento=models.FileField(upload_to='uploads', blank=True)
     # adjuntarArchivoMantenimiento=models.ImageField(upload_to='uploads', blank=True)
 
+# ###############################################################################################################################
+# CREACIÓN DE TABLA INTERMEDIA PARA EL REGISTRO DEL MANTENIMIENTO DE UN ACTIVO 
+# class ActivoMantenimiento(models.Model):
+#     fkVehiculo=models.ForeignKey(ActivoVehiculo, on_delete=models.CASCADE, verbose_name="Vehículo")
+#     fkIdExtintor=models.ForeignKey(ActivoExtintor, on_delete=models.CASCADE, verbose_name="Extintor")
+#     fkIdEquipoOficina=models.ForeignKey(ActivoEquipoOficina, on_delete=models.CASCADE, verbose_name="Equipo de Oficina")
 
+
+
+# ###############################################################################################################################
+# CREACIÓN DE TABLA PARA REGISTRAR MANTENIMIENTO DE UN VEHICULO
+# class MantenimientoVehiculo(models.Model):
+#     fkVehiculo=models.ForeignKey(ActivoVehiculo, on_delete=models.CASCADE, verbose_name="Vehículo")
+#     kilometrajeMantenimiento=models.IntegerField(verbose_name="Kilometraje del Vehículo") # Valor numero (IntegerField) Para sumar Kilometraje!!!!!!
+
+
+
+# ###############################################################################################################################
+# CREACIÓN DE TABLA PARA REGISTRAR MANTENIMIENTO DE UN EXINTOR
+# class MantenimientoExtintor(models.Model):
+#     fkIdExtintor=models.ForeignKey(ActivoExtintor, on_delete=models.CASCADE, verbose_name="Extintor")
+#     usado?
+
+
+
+# ###############################################################################################################################
+# CREACIÓN DE TABLA PARA REGISTRAR MANTENIMIENTO DE UN EQUIPO DE OFICINA
+# class MantenimientoEquipo(models.Model):
+#     fkIdEquipoOficina=models.ForeignKey(ActivoEquipoOficina, on_delete=models.CASCADE, verbose_name="Equipo de Oficina")
+#     
 

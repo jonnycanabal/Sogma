@@ -119,6 +119,7 @@ def registrar_mantenimiento(request):
     vehiculo=None
     equipo=None
 
+    # ##############################################################################################################
     # Bloque de codigo para traer informacion de la tabla a los campos de la pagina html por medio de la Primary Key
     if request.method == "POST" and 'editar-extintor' in request.POST:
         extintor = ActivoExtintor.objects.get(id=int(request.POST['pk_extintor']))
@@ -128,6 +129,51 @@ def registrar_mantenimiento(request):
 
     if request.method == "POST" and 'editar-equipo-oficina' in request.POST:
         equipo = ActivoEquipoOficina.objects.get(id=int(request.POST['pk_equipo']))
+
+
+    # ##############################################################################################################
+    # BLOQUE DE CODIGO PARA REGISTRAR MANTENIMIENTO CON VEHICULO
+    # if request.method == "POST" and 'r-mantenimiento-vehiculo' in request.POST:
+    #     vehiculo=ActivoVehiculo.objects.get(id=int(request.POST['pk_vehiculo']))
+    #     form=RegistrarMantenimientoForm(request.POST, instance=vehiculo)
+    #     if form.is_valid():
+    #         form.save()
+    #         messages.success(
+    #             request, f"SE REGISTRO EL MANTENIMIENTO DEL VEHICULO EXITOSAMENTE"
+    #         )
+    #     else:
+    #         messages.error(
+    #             request, f"ERROR!!!, NO SE PUDO REGISTRAR EL MANTENIMIENTO DEL VEHICULO"
+    #         )
+    
+    # BLOQUE DE CODIGO PARA REGISTRAR MANTENIMIENTO CON EXTINTOR
+    # if request.method == "POST" and 'r-mantenimiento-extintor' in request.POST:
+    #     extintor=ActivoExtintor.objects.get(id=int(request.POST['pk_extintor']))
+    #     form=RegistrarMantenimientoForm(request.POST, instance=extintor)
+    #     if form.is_valid():
+    #         form.save()
+    #         messages.success(
+    #             request, f"SE REGISTRO EL MANTENIMIENTO DEL EXTINTOR EXITOSAMENTE"
+    #         )
+    #     else:
+    #         messages.error(
+    #             request, f"ERROR!!!, NO SE PUDO REGISTRAR EL MANTENIMIENTO DEL EXTINTOR"
+    #         )
+
+    # BLOQUE DE CODIGO PARA REGISTRAR MANTENIMIENTO CON EQUIPO DE OFICINA
+    # if request.method == "POST" and 'r-mantenimiento-equipo' in request.POST:
+    #     equipo=ActivoEquipoOficina.objects.get(id=int(request.POST['pk_equipo']))
+    #     form=RegistrarMantenimientoForm(request.POST, instance=equipo)
+    #     if form.is_valid():
+    #         form.save()
+    #         messages.success(
+    #             request, f"SE REGISTRO EL MANTENIMIENTO DEL EQUIPO DE OFICINA EXITOSAMENTE"
+    #         )
+    #     else:
+    #         messages.error(
+    #             request, f"ERROR!!!, NO SE PUDO REGISTRAR EL MANTENIMIENTO DEL EQUIPO DE OFICINA"
+    #         )
+
 
     form=RegistrarMantenimientoForm()
     
@@ -142,6 +188,9 @@ def registrar_mantenimiento(request):
         'form':form
     }
     return render (request, 'gestionActivos/registrarMantenimiento.html', context)
+
+
+
 
 # ##################################################################################################################################
 # FUNCION * CONSULTAR RUTA *
