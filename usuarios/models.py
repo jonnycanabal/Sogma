@@ -13,7 +13,7 @@ class Usuario(models.Model):
     segundoNombre=models.CharField(max_length=50, verbose_name="Segundo Nombre", blank=True)
     primerApellido=models.CharField(max_length=50, verbose_name="Primer Apellido")
     segundoApellido=models.CharField(max_length=50, verbose_name="Segundo Apellido", blank=True)
-    foto=models.ImageField(upload_to='media/usuarios', blank=True, default='media/usuarios/default.jpg') # pip install pillow
+    foto=models.ImageField(upload_to='usuarios', blank=True, default='usuarios/default.jpg') # pip install pillow
     class TipoDocumento(models.TextChoices):
         CC='C.C.', _("Cédula de Ciudadania")
         CE='C.E.', _("Cédula de Extranjería")

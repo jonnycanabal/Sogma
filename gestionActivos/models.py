@@ -68,50 +68,37 @@ class DetalleRuta(models.Model):
 # ###############################################################################################################################
 # CREACIÓN DE LA TABLA (registrarMantenimiento) DE NUESTRA MER DISEÑADO EN MYSQL WORKBENCH
 class RegistrarMantenimiento(models.Model):
-    # FOREING KEY REREFENCIADA DEL MODELO ACTIVOS DE LAS CLASES REQUERIDAS EXTINTOR, EQUIPO OFICINA, VEHICULO.
-    fkIdExtintor=models.ForeignKey(ActivoExtintor, on_delete=models.CASCADE, verbose_name="Extintor")
-    fkIdEquipoOficina=models.ForeignKey(ActivoEquipoOficina, on_delete=models.CASCADE, verbose_name="Equipo de Oficina")
-    fkVehiculo=models.ForeignKey(ActivoVehiculo, on_delete=models.CASCADE, verbose_name="Vehículo")
     fechaMantenimiento=models.DateField(verbose_name="Fecha del Mantenimiento", help_text="MM/DD/AAAA")
     lugarMantenimiento=models.CharField(max_length=50, verbose_name="Lugar del Mantenimiento")
     ciudadMantenimiento=models.CharField(max_length=20, verbose_name="Lugar del Mantenimiento")
-    kilometrajeMantenimiento=models.IntegerField(verbose_name="Kilometraje del Vehículo") # Valor numero (IntegerField) Para sumar Kilometraje!!!!!!
     numeroFactura=models.CharField(max_length=10, verbose_name="Número de Factura")
     valorMantenimiento=models.IntegerField(verbose_name="Valor del Mantenimiento") # Valor numero (IntegerField)!!!!!!
-    descripcionMantenimiento=models.TextField(max_length=200, verbose_name="Descripción")
-    
-    # (!!!!!!!!!ADJUNTAR ARCHIVO DEL MANTENIMIENTO - PENDIENTE POR ESTABLECER SI ES LA FORMA ADECUADA!!!!!!!!)
-    # adjuntarArchivoMantenimiento=models.FileField(upload_to='uploads', blank=True)
-    # adjuntarArchivoMantenimiento=models.ImageField(upload_to='uploads', blank=True)
-
-# ###############################################################################################################################
-# CREACIÓN DE TABLA INTERMEDIA PARA EL REGISTRO DEL MANTENIMIENTO DE UN ACTIVO 
-# class ActivoMantenimiento(models.Model):
-#     fkVehiculo=models.ForeignKey(ActivoVehiculo, on_delete=models.CASCADE, verbose_name="Vehículo")
-#     fkIdExtintor=models.ForeignKey(ActivoExtintor, on_delete=models.CASCADE, verbose_name="Extintor")
-#     fkIdEquipoOficina=models.ForeignKey(ActivoEquipoOficina, on_delete=models.CASCADE, verbose_name="Equipo de Oficina")
-
+    descripcionMantenimiento=models.TextField(max_length=200, verbose_name="Descripción")   
+    adjuntarArchivoMantenimiento=models.FileField(upload_to='uploads', blank=True)
 
 
 # ###############################################################################################################################
 # CREACIÓN DE TABLA PARA REGISTRAR MANTENIMIENTO DE UN VEHICULO
-# class MantenimientoVehiculo(models.Model):
-#     fkVehiculo=models.ForeignKey(ActivoVehiculo, on_delete=models.CASCADE, verbose_name="Vehículo")
-#     kilometrajeMantenimiento=models.IntegerField(verbose_name="Kilometraje del Vehículo") # Valor numero (IntegerField) Para sumar Kilometraje!!!!!!
-
+class MantenimientoVehiculo(models.Model):
+    fkVehiculo=models.ForeignKey(ActivoVehiculo, on_delete=models.CASCADE, verbose_name="Vehículo")
+    kilometrajeMantenimiento=models.IntegerField(verbose_name="Kilometraje del Vehículo") # Valor numero (IntegerField) Para sumar Kilometraje!!!!!!
+    fkRegistrarMantenimiento=models.ForeignKey(RegistrarMantenimiento, on_delete=models.CASCADE, verbose_name="mantenimiento")
 
 
 # ###############################################################################################################################
 # CREACIÓN DE TABLA PARA REGISTRAR MANTENIMIENTO DE UN EXINTOR
-# class MantenimientoExtintor(models.Model):
-#     fkIdExtintor=models.ForeignKey(ActivoExtintor, on_delete=models.CASCADE, verbose_name="Extintor")
-#     usado?
-
-
+class MantenimientoExtintor(models.Model):
+    fkIdExtintor=models.ForeignKey(ActivoExtintor, on_delete=models.CASCADE, verbose_name="Extintor")
+    class Usado(models.TextChoices):
+        SI='SI', _("SI")
+        NO='NO', _("NO")
+    usado=models.CharField(max_length=5, choices=Usado.choices, default=Usado.NO, verbose_name="¿Extintor usado?")
+    fkRegistrarMantenimiento=models.ForeignKey(RegistrarMantenimiento, on_delete=models.CASCADE, verbose_name="mantenimiento")
 
 # ###############################################################################################################################
 # CREACIÓN DE TABLA PARA REGISTRAR MANTENIMIENTO DE UN EQUIPO DE OFICINA
-# class MantenimientoEquipo(models.Model):
-#     fkIdEquipoOficina=models.ForeignKey(ActivoEquipoOficina, on_delete=models.CASCADE, verbose_name="Equipo de Oficina")
-#     
+class MantenimientoEquipo(models.Model):
+    fkIdEquipoOficina=models.ForeignKey(ActivoEquipoOficina, on_delete=models.CASCADE, verbose_name="Equipo de Oficina")
+    fkRegistrarMantenimiento=models.ForeignKey(RegistrarMantenimiento, on_delete=models.CASCADE, verbose_name="mantenimiento")
+
 

@@ -1,7 +1,7 @@
 from multiprocessing import context
 from django.shortcuts import render,redirect
 from activos.models import ActivoEquipoOficina, ActivoExtintor, ActivoVehiculo
-from gestionActivos.models import GenerarRuta, Pasajero
+from gestionActivos.models import GenerarRuta, MantenimientoEquipo, MantenimientoExtintor, MantenimientoVehiculo, Pasajero, RegistrarMantenimiento
 from gestionActivos.forms import GenerarAlarmaForm, GenerarRutaForm, PasajeroForm, RegistrarMantenimientoForm
 from usuarios.models import Usuario
 from django.contrib import messages
@@ -118,7 +118,7 @@ def registrar_mantenimiento(request):
     extintor=None
     vehiculo=None
     equipo=None
-
+    form=None
     # ##############################################################################################################
     # Bloque de codigo para traer informacion de la tabla a los campos de la pagina html por medio de la Primary Key
     if request.method == "POST" and 'editar-extintor' in request.POST:
@@ -131,51 +131,69 @@ def registrar_mantenimiento(request):
         equipo = ActivoEquipoOficina.objects.get(id=int(request.POST['pk_equipo']))
 
 
-    # ##############################################################################################################
+    # ############################################################################################################################
     # BLOQUE DE CODIGO PARA REGISTRAR MANTENIMIENTO CON VEHICULO
-    # if request.method == "POST" and 'r-mantenimiento-vehiculo' in request.POST:
-    #     vehiculo=ActivoVehiculo.objects.get(id=int(request.POST['pk_vehiculo']))
-    #     form=RegistrarMantenimientoForm(request.POST, instance=vehiculo)
-    #     if form.is_valid():
-    #         form.save()
-    #         messages.success(
-    #             request, f"SE REGISTRO EL MANTENIMIENTO DEL VEHICULO EXITOSAMENTE"
-    #         )
-    #     else:
-    #         messages.error(
-    #             request, f"ERROR!!!, NO SE PUDO REGISTRAR EL MANTENIMIENTO DEL VEHICULO"
-    #         )
-    
+    if request.method == "POST" and 'r-mantenimiento-vehiculo' in request.POST:
+        vehiculo=ActivoVehiculo.objects.get(id=int(request.POST['pk_vehiculo']))
+        form=RegistrarMantenimientoForm(request.POST, request.FILES)
+        if form.is_valid():
+            registro=form.save()
+            print(registro)
+            detalle=MantenimientoVehiculo.objects.create(
+                fkVehiculo=vehiculo,
+                kilometrajeMantenimiento=request.POST['kilometrajeMantenimiento'],
+                fkRegistrarMantenimiento=RegistrarMantenimiento.objects.get(id=registro.id)
+            )
+            messages.success(
+                request, f"SE REGISTRO EL MANTENIMIENTO DEL VEHICULO EXITOSAMENTE"
+            )
+        else:
+            messages.error(
+                request, f"ERROR!!!, NO SE PUDO REGISTRAR EL MANTENIMIENTO DEL VEHICULO"
+            )
+
+    # ############################################################################################################################
     # BLOQUE DE CODIGO PARA REGISTRAR MANTENIMIENTO CON EXTINTOR
-    # if request.method == "POST" and 'r-mantenimiento-extintor' in request.POST:
-    #     extintor=ActivoExtintor.objects.get(id=int(request.POST['pk_extintor']))
-    #     form=RegistrarMantenimientoForm(request.POST, instance=extintor)
-    #     if form.is_valid():
-    #         form.save()
-    #         messages.success(
-    #             request, f"SE REGISTRO EL MANTENIMIENTO DEL EXTINTOR EXITOSAMENTE"
-    #         )
-    #     else:
-    #         messages.error(
-    #             request, f"ERROR!!!, NO SE PUDO REGISTRAR EL MANTENIMIENTO DEL EXTINTOR"
-    #         )
+    if request.method == "POST" and 'r-mantenimiento-extintor' in request.POST:
+        extintor=ActivoExtintor.objects.get(id=int(request.POST['pk_extintor']))
+        form=RegistrarMantenimientoForm(request.POST, request.FILES)
+        if form.is_valid():
+            registro=form.save()
+            print(registro)
+            detalle=MantenimientoExtintor.objects.create(
+                fkExtintor=extintor,
+                fkRegistrarMantenimiento=RegistrarMantenimiento.objects.get(id=registro.id)
+            )
+            messages.success(
+                request, f"SE REGISTRO EL MANTENIMIENTO DEL EXTINTOR EXITOSAMENTE"
+            )
+        else:
+            messages.error(
+                request, f"ERROR!!!, NO SE PUDO REGISTRAR EL MANTENIMIENTO DEL EXTINTOR"
+            )
 
+    # ############################################################################################################################
     # BLOQUE DE CODIGO PARA REGISTRAR MANTENIMIENTO CON EQUIPO DE OFICINA
-    # if request.method == "POST" and 'r-mantenimiento-equipo' in request.POST:
-    #     equipo=ActivoEquipoOficina.objects.get(id=int(request.POST['pk_equipo']))
-    #     form=RegistrarMantenimientoForm(request.POST, instance=equipo)
-    #     if form.is_valid():
-    #         form.save()
-    #         messages.success(
-    #             request, f"SE REGISTRO EL MANTENIMIENTO DEL EQUIPO DE OFICINA EXITOSAMENTE"
-    #         )
-    #     else:
-    #         messages.error(
-    #             request, f"ERROR!!!, NO SE PUDO REGISTRAR EL MANTENIMIENTO DEL EQUIPO DE OFICINA"
-    #         )
-
-
-    form=RegistrarMantenimientoForm()
+    if request.method == "POST" and 'r-mantenimiento-equipo' in request.POST:
+        equipo=ActivoEquipoOficina.objects.get(id=int(request.POST['pk_equipo']))
+        form=RegistrarMantenimientoForm(request.POST, request.FILES)
+        if form.is_valid():
+            registro=form.save()
+            print(registro)
+            detalle=MantenimientoEquipo.objects.create(
+                fkEquipo=equipo,
+                usado=request.POST['usado'],
+                fkRegistrarMantenimiento=RegistrarMantenimiento.objects.get(id=registro.id)
+            )
+            messages.success(
+                request, f"SE REGISTRO EL MANTENIMIENTO DEL EQUIPO DE OFICINA EXITOSAMENTE"
+            )
+        else:
+            messages.error(
+                request, f"ERROR!!!, NO SE PUDO REGISTRAR EL MANTENIMIENTO DEL EQUIPO DE OFICINA"
+            )
+    
+        # form=RegistrarMantenimientoForm()
     
     context={
         'titulo':titulo,

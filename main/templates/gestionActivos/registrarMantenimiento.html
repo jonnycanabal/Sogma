@@ -27,7 +27,7 @@
 <div id="div-caja3" class="container p-3 pb-4 d-flex
     justify-content-center pe-4">
 
-    <form action="" method="POST" id="div-cajas" class="container p-3 my-4 mt-0
+    <form action="" method="POST" id="div-cajas" enctype="multipart/form-data" class="container p-3 my-4 mt-0
         pb-0
         border-start border-end border-dark">
         {% csrf_token %}
@@ -586,19 +586,7 @@
             </div>
         </div>
 
-        <div class="mt-4 border-dark pt-4 w-100">
-            <div class="d-inline-block width-20 ms-1
-                me-5">
-                <label for="basic-url" class="form-label
-                    w-75 ps-2">N° Mantenimiento</label>
-                <div class="input-group mb-3 w-100">
-                    <input type="text"
-                        class="form-control"
-                        id="numero-mantenimiento-registrar-mantenimiento"
-                        aria-describedby="basic-addon3"
-                        placeholder="001">
-                </div>
-            </div>
+        <div class="mt-4 border-dark pt-4 w-100" id="m-vehiculo">
 
             <div class="d-inline-block width-20 ms-1
                 me-5">
@@ -701,7 +689,7 @@
                 Archivo del Mantenimiento Realizado</label>
             <input class="form-control w-75
                 form-control-lg" style="font-size: 14px;"
-                id="adjuntar-archivo-registrar-mantenimiento"
+                id="id_adjuntarArchivoMantenimiento" name="adjuntarArchivoMantenimiento"
                 type="file">
         </div>
 
@@ -757,28 +745,7 @@
                                 data-bs-target="#modal-registrar-mantenimiento2"
                                 data-bs-dismiss="modal"
                                 class="btn
-                                btn-primary" value="ACEPTAR">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- MODAL INTERNO AL OPRIMIR ACEPTAR EN EL MODAL ANTERIOR DE GUARDAR-->
-            <div class="modal"
-                id="modal-registrar-mantenimiento2">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header alert
-                            alert-success">
-                            <h5 class="modal-tittle">MANTENIMIENTO
-                                REGISTRADO</h5>
-                            <button class="btn-close"
-                                type="buttom"
-                                data-bs-dismiss="modal"></button>
-                        </div>
-                        <div class="modal-body
-                            text-start">
-                            Se registro el mantenimiento
-                            de forma exitosa.
+                                btn-primary" value="ACEPTAR" name="r-mantenimiento-vehiculo">
                         </div>
                     </div>
                 </div>
@@ -795,19 +762,7 @@
             </div>
         </div>
 
-        <div class="mt-4 border-dark pt-4 w-100">
-            <div class="d-inline-block width-20 ms-1
-                me-5">
-                <label for="basic-url" class="form-label
-                    w-75 ps-2">N° Mantenimiento</label>
-                <div class="input-group mb-3 w-100">
-                    <input type="text"
-                        class="form-control"
-                        id="numero-mantenimiento-registrar-mantenimiento"
-                        aria-describedby="basic-addon3"
-                        placeholder="001">
-                </div>
-            </div>
+        <div class="mt-4 border-dark pt-4 w-100" id="m-extintor">
 
             <div class="d-inline-block width-20 ms-1
                 me-5">
@@ -842,6 +797,19 @@
                         class="form-control" name="ciudadMantenimiento"
                         id="id_ciudadMantenimiento"
                         aria-describedby="basic-addon3">
+                </div>
+            </div>
+
+            <div class="d-inline-block width-20 ms-1
+                me-5">
+                <label for="basic-url" class="form-label w-75 ps-2">¿Extintor usado?</label>
+                <div class="input-group mb-3 w-100">
+                    <select id="id_usado" class="form-select" name="usado"
+                        aria-label="tipo-activo">
+                        <option selected disabled>¿Extintor usado?</option>
+                        <option value="SI">Si</option>
+                        <option value="NO">No</option>
+                    </select>
                 </div>
             </div>
 
@@ -898,7 +866,7 @@
                 Archivo del Mantenimiento Realizado</label>
             <input class="form-control w-75
                 form-control-lg" style="font-size: 14px;"
-                id="adjuntar-archivo-registrar-mantenimiento"
+                id="id_adjuntarArchivoMantenimiento" name="adjuntarArchivoMantenimiento"
                 type="file">
         </div>
 
@@ -954,28 +922,7 @@
                                 data-bs-target="#modal-registrar-mantenimiento2"
                                 data-bs-dismiss="modal"
                                 class="btn
-                                btn-primary" value="ACEPTAR">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- MODAL INTERNO AL OPRIMIR ACEPTAR EN EL MODAL ANTERIOR DE GUARDAR-->
-            <div class="modal"
-                id="modal-registrar-mantenimiento2">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header alert
-                            alert-success">
-                            <h5 class="modal-tittle">MANTENIMIENTO
-                                REGISTRADO</h5>
-                            <button class="btn-close"
-                                type="buttom"
-                                data-bs-dismiss="modal"></button>
-                        </div>
-                        <div class="modal-body
-                            text-start">
-                            Se registro el mantenimiento
-                            de forma exitosa.
+                                btn-primary" value="ACEPTAR" name="r-mantenimiento-vehiculo">
                         </div>
                     </div>
                 </div>
@@ -992,19 +939,7 @@
             </div>
         </div>
 
-        <div class="mt-4 border-dark pt-4 w-100">
-            <div class="d-inline-block width-20 ms-1
-                me-5">
-                <label for="basic-url" class="form-label
-                    w-75 ps-2">N° Mantenimiento</label>
-                <div class="input-group mb-3 w-100">
-                    <input type="text"
-                        class="form-control"
-                        id="numero-mantenimiento-registrar-mantenimiento"
-                        aria-describedby="basic-addon3"
-                        placeholder="001">
-                </div>
-            </div>
+        <div class="mt-4 border-dark pt-4 w-100" id="m-equipo">
 
             <div class="d-inline-block width-20 ms-1
                 me-5">
@@ -1095,7 +1030,7 @@
                 Archivo del Mantenimiento Realizado</label>
             <input class="form-control w-75
                 form-control-lg" style="font-size: 14px;"
-                id="adjuntar-archivo-registrar-mantenimiento"
+                id="id_adjuntarArchivoMantenimiento" name="adjuntarArchivoMantenimiento"
                 type="file">
         </div>
 
@@ -1151,28 +1086,7 @@
                                 data-bs-target="#modal-registrar-mantenimiento2"
                                 data-bs-dismiss="modal"
                                 class="btn
-                                btn-primary" value="ACEPTAR">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- MODAL INTERNO AL OPRIMIR ACEPTAR EN EL MODAL ANTERIOR DE GUARDAR-->
-            <div class="modal"
-                id="modal-registrar-mantenimiento2">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header alert
-                            alert-success">
-                            <h5 class="modal-tittle">MANTENIMIENTO
-                                REGISTRADO</h5>
-                            <button class="btn-close"
-                                type="buttom"
-                                data-bs-dismiss="modal"></button>
-                        </div>
-                        <div class="modal-body
-                            text-start">
-                            Se registro el mantenimiento
-                            de forma exitosa.
+                                btn-primary" value="ACEPTAR" name="r-mantenimiento-extintor">
                         </div>
                     </div>
                 </div>
@@ -1181,9 +1095,30 @@
 
         {% endif %}
 
-
-
     </form>
 </div>
 
 {% endblock contenido %}
+
+<script>
+    // Script para visualizar el formulario de registro de un activo segun el que seleccione.
+    // Sí selecciona un formulario con esta funcion remueve los otros para que no cree conflicto.
+    function displayForm(c) {
+        if (c.value == "vehiculo") {
+            jQuery('#m-vehiculo').toggle('show');
+            jQuery('#m-extintor').remove();
+            jQuery('#m-oficina').remove();
+        }
+        if (c.value == "extintor") {
+            jQuery('#m-extintor').toggle('show');
+            jQuery('#m-vehiculo').remove();
+            jQuery('#m-oficina').remove();
+
+        }
+        if (c.value == "equipo") {
+            jQuery('#m-oficina').toggle('show');
+            jQuery('#m-vehiculo').remove();
+            jQuery('#m-extintor').remove();
+        }
+    };  
+</script>

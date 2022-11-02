@@ -81,21 +81,22 @@ py-3 border-bottom">
                             <label for="basic-url" class="form-label ps-2">PRIMER
                                 NOMBRE</label>
                             <div class="input-group mb-3 w-100">
-                                <input type="text" class="form-control"
+                                <input type="text" class="form-control text-center"
                                     name="primerNombre" id="id_primerNombre"
                                     aria-describedby="basic-addon3"
-                                    placeholder="">
+                                    value="{{user.first_name}}"> <!-- ESTE SI FUNCIONA-->
                             </div>
                         </div>
                 
                         <div class="d-inline-block ms-1 me-5 w-100">
                             <label for="basic-url" class="form-label ps-2">SEGUNDO
                                 NOMBRE</label>
-                            <div class="input-group mb-3 w-100">
+                                <p>{{usuario.segundoNombre}}</p> <!-- TRABAJAR ESTA PARTE -------------------------->
+                            <!-- <div class="input-group mb-3 w-100">
                                 <input type="text" class="form-control"
                                     name="segundoNombre" id="id_segundoNombre"
                                     aria-describedby="basic-addon3"
-                                    placeholder="">
+                                    placeholder=""> -->
                             </div>
                         </div>
                 
@@ -105,8 +106,7 @@ py-3 border-bottom">
                             <div class="input-group mb-3 w-100">
                                 <input type="text" class="form-control"
                                     name="primerApellido" id="id_primerApellido"
-                                    aria-describedby="basic-addon3"
-                                    placeholder="">
+                                    value="{{usuario.primerApellido}}"> <!-- ESTE NO FUNCIONA-->
                             </div>
                         </div>
                 

@@ -24,6 +24,11 @@ from django.contrib.auth.views import LoginView as login
 from main.views import consultar_ruta, control_activos, generar_alarma, generar_ruta, inicio, nuevo_usuario, registrar_mantenimiento
 from usuarios.views import logout_user
 
+####### Importes para subir imágenes #######
+from django.conf import settings
+from django.conf.urls.static import static
+############################################
+
 urlpatterns = [
 
     path("select2/", include("django_select2.urls")),
@@ -44,4 +49,4 @@ urlpatterns = [
 # --------------------------------------LOGIN--------------------------------------------
     # path('loggedin', loggedIn, name="inicio-sesion")
     path('logout', logout_user, name="logout")
-]
+]+ static(settings.MEDIA_URL, document_root= settings.MEDIA_ROOT)
