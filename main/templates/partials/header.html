@@ -72,7 +72,7 @@ py-3 border-bottom">
                 
                         <div class="d-block ms-1 w-100">
                             <div class="input-group mb-3 w-100 d-flex justify-content-center">
-                                <img src="https://github.com/mdo.png" alt="" width="150"
+                                <img src="{{image_user}}" alt="" width="150"
                                 height="150" class="rounded-circle me-2 ">
                             </div>
                         </div>
@@ -81,22 +81,21 @@ py-3 border-bottom">
                             <label for="basic-url" class="form-label ps-2">PRIMER
                                 NOMBRE</label>
                             <div class="input-group mb-3 w-100">
-                                <input type="text" class="form-control text-center"
+                                <input type="text" class="form-control text-center" disabled
                                     name="primerNombre" id="id_primerNombre"
                                     aria-describedby="basic-addon3"
-                                    value="{{user.first_name}}"> <!-- ESTE SI FUNCIONA-->
+                                    value="{{usuario.primerNombre}}"> <!-- ESTE SI FUNCIONA-->
                             </div>
                         </div>
                 
                         <div class="d-inline-block ms-1 me-5 w-100">
                             <label for="basic-url" class="form-label ps-2">SEGUNDO
                                 NOMBRE</label>
-                                <p>{{usuario.segundoNombre}}</p> <!-- TRABAJAR ESTA PARTE -------------------------->
-                            <!-- <div class="input-group mb-3 w-100">
-                                <input type="text" class="form-control"
+                                <!-- <p>{{usuario.segundoNombre}}</p> TRABAJAR ESTA PARTE ------------------------ -->
+                            <div class="input-group mb-3 w-100">
+                                <input type="text" class="form-control text-center" disabled
                                     name="segundoNombre" id="id_segundoNombre"
-                                    aria-describedby="basic-addon3"
-                                    placeholder=""> -->
+                                    aria-describedby="basic-addon3" value="{{usuario.segundoNombre}}">
                             </div>
                         </div>
                 
@@ -104,7 +103,7 @@ py-3 border-bottom">
                             <label for="basic-url" class="form-label ps-2">PRIMER
                                 APELLIDO</label>
                             <div class="input-group mb-3 w-100">
-                                <input type="text" class="form-control"
+                                <input type="text" class="form-control text-center" disabled
                                     name="primerApellido" id="id_primerApellido"
                                     value="{{usuario.primerApellido}}"> <!-- ESTE NO FUNCIONA-->
                             </div>
@@ -114,14 +113,23 @@ py-3 border-bottom">
                             <label for="basic-url" class="form-label ps-2">SEGUNDO
                                 APELLIDO</label>
                             <div class="input-group mb-3 w-100">
-                                <input type="text" class="form-control" name="segundoApellido"
+                                <input type="text" class="form-control text-center" disabled name="segundoApellido"
                                     id="id_segundoApellido"
-                                    aria-describedby="basic-addon3"
-                                    placeholder="">
+                                    aria-describedby="basic-addon3" value="{{usuario.segundoApellido}}">
+                            </div>
+                        </div>
+
+                        <div class="d-inline-block ms-1 me-5 w-100">
+                            <label for="basic-url" class="form-label ps-2">TIPO
+                                DE DOCUMENTO</label>
+                            <div class="input-group mb-3 w-100">
+                                <input type="text" class="form-control text-center" disabled name="cargo"
+                                    id="id_cargo"
+                                    aria-describedby="basic-addon3" value="{{usuario.tipoDocumento}}">
                             </div>
                         </div>
                 
-                        <div class="d-inline-block ms-1 me-5 w-100">
+                        <!-- <div class="d-inline-block ms-1 me-5 w-100">
                             <label for="basic-url" class="form-label ps-2">TIPO
                                 DE DOCUMENTO</label>
                             <div class="input-group mb-3 w-100">
@@ -133,16 +141,15 @@ py-3 border-bottom">
                                     <option value="PASS">Pasaporte</option>
                                 </select>
                             </div>
-                        </div>
+                        </div> -->
                 
                         <div class="d-inline-block ms-1 me-5 w-100">
                             <label for="basic-url" class="form-label ps-2">NÚMERO
                                 DE IDENTIFICACIÓN</label>
                             <div class="input-group mb-3 w-100">
-                                <input type="text" class="form-control" name="numeroDocumento"
+                                <input type="text" class="form-control text-center" disabled name="numeroDocumento"
                                     id="id_numeroDocumento"
-                                    aria-describedby="basic-addon3"
-                                    placeholder="">
+                                    aria-describedby="basic-addon3" value="{{usuario.numeroDocumento}}">
                             </div>
                         </div>
                 
@@ -150,10 +157,9 @@ py-3 border-bottom">
                             <label for="basic-url" class="form-label ps-2">NÚMERO DE
                                 TELEFONO</label>
                             <div class="input-group mb-3 w-100">
-                                <input type="text" class="form-control" name="numeroTelefono"
+                                <input type="text" class="form-control text-center" disabled name="numeroTelefono"
                                     id="id_numeroTelefono"
-                                    aria-describedby="basic-addon3"
-                                    placeholder="">
+                                    aria-describedby="basic-addon3" value="{{usuario.numeroTelefono}}">
                             </div>
                         </div>
                 
@@ -161,10 +167,9 @@ py-3 border-bottom">
                             <label for="basic-url" class="form-label ps-2">CIUDAD DE
                                 RESIDENCIA</label>
                             <div class="input-group mb-3 w-100">
-                                <input type="text" class="form-control" name="ciudadResidencia"
+                                <input type="text" class="form-control text-center" disabled name="ciudadResidencia"
                                     id="id_ciudadResidencia"
-                                    aria-describedby="basic-addon3"
-                                    placeholder="">
+                                    aria-describedby="basic-addon3" value="{{usuario.ciudadResidencia}}">
                             </div>
                         </div>
                 
@@ -172,10 +177,9 @@ py-3 border-bottom">
                             <label for="basic-url" class="form-label ps-2">DIRECCIÓN DE
                                 RESIDENCIA</label>
                             <div class="input-group mb-3 w-100">
-                                <input type="text" class="form-control" name="direccionResidencia"
+                                <input type="text" class="form-control text-center" disabled name="direccionResidencia"
                                     id="id_direccionResidencia"
-                                    aria-describedby="basic-addon3"
-                                    placeholder="">
+                                    aria-describedby="basic-addon3" value="{{usuario.direccionResidencia}}">
                             </div>
                         </div>
                 
@@ -183,14 +187,22 @@ py-3 border-bottom">
                             <label for="basic-url" class="form-label ps-2">CORRE
                                 ELECTRONICO</label>
                             <div class="input-group mb-3 w-100">
-                                <input type="text" class="form-control" name="correoElectronico"
+                                <input type="text" class="form-control text-center" disabled name="correoElectronico"
                                     id="id_correoElectronico"
-                                    aria-describedby="basic-addon3"
-                                    placeholder="">
+                                    aria-describedby="basic-addon3" value="{{usuario.correoElectronico}}">
+                            </div>
+                        </div>
+
+                        <div class="d-inline-block ms-1 me-5 w-100">
+                            <label for="basic-url" class="form-label ps-2">GENERO</label>
+                            <div class="input-group mb-3 w-100">
+                                <input type="text" class="form-control text-center" disabled name="cargo"
+                                    id="id_cargo"
+                                    aria-describedby="basic-addon3" value="{{usuario.genero}}">
                             </div>
                         </div>
                 
-                        <div class="d-inline-block ms-1 me-5 w-100">
+                        <!-- <div class="d-inline-block ms-1 me-5 w-100">
                             <label for="basic-url" class="form-label ps-2">GENERO</label>
                             <div class="input-group mb-3 w-100">
                                 <select id="id_genero" class="form-select" name="genero"
@@ -202,29 +214,46 @@ py-3 border-bottom">
                                     <option value="Prefiero No Decir">Prefiero No Decir</option>
                                 </select>
                             </div>
-                        </div>
+                        </div> -->
                 
                         <div class="d-inline-block ms-1 me-5 w-100">
                             <label for="basic-url" class="form-label ps-2">CARGO</label>
                             <div class="input-group mb-3 w-100">
-                                <input type="text" class="form-control" name="cargo"
+                                <input type="text" class="form-control text-center" disabled name="cargo"
                                     id="id_cargo"
-                                    aria-describedby="basic-addon3"
-                                    placeholder="">
+                                    aria-describedby="basic-addon3" value="{{usuario.cargo}}">
                             </div>
                         </div>
-                
+
                         <div class="d-inline-block ms-1 me-5 w-100">
                             <label for="basic-url" class="form-label ps-2">FECHA
                                 DE REGISTRO</label>
                             <div class="input-group mb-3 w-100">
-                                <input id="id_fechaRegistro" type="date" class="form-control" name="fechaRegistro"
-                                    aria-describedby="basic-addon3"
-                                    placeholder="">
+                                <input type="text" class="form-control text-center" disabled name="cargo"
+                                    id="id_cargo"
+                                    aria-describedby="basic-addon3" value="{{usuario.fechaRegistro}}">
                             </div>
                         </div>
                 
+                        <!-- <div class="d-inline-block ms-1 me-5 w-100">
+                            <label for="basic-url" class="form-label ps-2">FECHA
+                                DE REGISTRO</label>
+                            <div class="input-group mb-3 w-100">
+                                <input id="id_fechaRegistro" type="date" class="form-control" name="fechaRegistro"
+                                    aria-describedby="basic-addon3" value="{{usuario.primerNombre}}">
+                            </div>
+                        </div> -->
+
                         <div class="d-inline-block ms-1 me-5 w-100">
+                            <label for="basic-url" class="form-label ps-2">TIPO DE USUARIO</label>
+                            <div class="input-group mb-3 w-100">
+                                <input type="text" class="form-control text-center" disabled name="cargo"
+                                    id="id_cargo"
+                                    aria-describedby="basic-addon3" value="{{usuario.tipoUsuario}}">
+                            </div>
+                        </div>
+                
+                        <!-- <div class="d-inline-block ms-1 me-5 w-100">
                             <label for="basic-url" class="form-label  ps-2">TIPO DE USUARIO</label>
                             <div class="input-group mb-3 w-100">
                                 <select id="id_tipoUsuario" class="form-select" name="tipoUsuario"
@@ -236,7 +265,7 @@ py-3 border-bottom">
                                 </select>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
 
                     <div class="modal-footer">
                         <button type="button" class="btn
