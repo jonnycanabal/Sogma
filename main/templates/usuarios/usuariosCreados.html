@@ -9,31 +9,78 @@
 {% endblock menu %}
 
 {% block contenido %}
-<div id="tabla-control-activos" class="overflow-auto
-height-config-tabla1 m-4">
-    <table class="table display nowrap">
-        <thead>
-            <th scope="col">Primer Nombre</th>
-            <th scope="col">Segundo Nombre</th>
-            <th scope="col">Primer Apellido</th>
-            <th scope="col">Segundo Apellido</th>
-            <th scope="col">Tipo de Documento</th>
-            <th scope="col">Número de Documento</th>
-            <th scope="col">Número de Teléfono</th>
-            <th scope="col">Ciudad de Residencia</th>
-            <th scope="col">Dirección de Residencia</th>
-            <th scope="col">Correo Electronico</th>
-            <th scope="col">Genero</th>
-            <th scope="col">Cargo</th>
-            <th scope="col">Fecha de Registro</th>
-            <th scope="col">Tipo de Usuario</th>
-            <th scope="col">Estado</th>
-        </thead>
-        <tbody>
-            
-            {% for usuario in usuarios %}
+<div class="d-flex justify-content-center mb-4 m-2 w-100 p-3">
+    <div class="overflow-auto shadow-lg p-4
+        height-config-tabla1 m-2 w-100" style="height: 300px;">
+        <table id="example5" class="table-striped display nowrap">
+            <thead>
+                <th>Acciones</th>
+                <th>Id</th>
+                <th>Foto</th>
+                <th >Primer Nombre</th>
+                <th >Segundo Nombre</th>
+                <th >Primer Apellido</th>
+                <th >Segundo Apellido</th>
+                <th >Tipo de Documento</th>
+                <th >Número de Documento</th>
+                <th >Número de Teléfono</th>
+                <th >Ciudad de Residencia</th>
+                <th >Dirección de Residencia</th>
+                <th >Correo Electronico</th>
+                <th >Genero</th>
+                <th >Cargo</th>
+                <th >Fecha de Registro</th>
+                <th >Tipo de Usuario</th>
+                <th >Estado</th>
+            </thead>
+            <tbody>
+
+                {% for usuario in usuarios %}
                 <tr>
-                    <th scope="row">{{usuario.primerNombre}}</th>
+                    <th>
+                        <form action="" method="POST" class="col-4">
+
+                            <!-- TOKEN DE SEGURIDAD -->
+                            {% csrf_token %}
+
+                            <!-- Botón del ojo para editar la información -->
+                            <input type="hidden" name="pk_usuario" value="{{usuario.id}}">
+                            <button class="btn btn-block fs-5 pe-1 ps-1" onClick="editarusuario()" name="editar-usuario">
+                                <i class="bi bi-eye-fill"></i>
+                            </button>
+
+                            <!-- Boton de eliminar integrado con un modal y un toastr de mensaje despues de aceptar -->
+                            <button type="button" class="btn fs-5 pe-1 ps-1" data-bs-toggle="modal" data-bs-target="#modal-eliminar-usuario"><i class="bi bi-trash3-fill"></i></a>
+                            </button>
+                            <!-- Modal -->
+                            <div class="modal fade" id="modal-eliminar-usuario" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                                aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="staticBackdropLabel">ALERTA DE
+                                                ELIMINACIÓN</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body text-start">
+                                            ¿Esta seguro que desea Eliminar El
+                                            usuario Seleccionado?.
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn
+                                                btn-secondary" data-bs-dismiss="modal">CANCELAR</button>
+                                            <input type="hidden" name="pk_usuario" value="{{usuario.id}}">
+                                            <a class="btn btn-block btn-success" onClick="eliminarUsuario()" name="eliminar-usuario" href="{% url 'eliminar-usuario' usuario.id %}">ACEPTAR</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </th>
+                    <th class="text-center">{{usuario.id}}</th>
+                    <th><img src="{{image_user}}" alt="" width="50"
+                        height="50" class="rounded-circle me-2 "></th>
+                    <th>{{usuario.primerNombre}}</th>
                     <th>{{usuario.segundoNombre}}</th>
                     <th>{{usuario.primerApellido}}</th>
                     <th>{{usuario.segundoApellido}}</th>
@@ -47,14 +94,442 @@ height-config-tabla1 m-4">
                     <th>{{usuario.cargo}}</th>
                     <th>{{usuario.fechaRegistro}}</th>
                     <th>{{usuario.tipoUsuario}}</th>
-                    <th>{{usuario.estado}}</th>
+                    <th>
+                        {% if usuario.estado == '1' %}
+                            Activo
+                        {% endif %}
+                    </th>
                 </tr>
-            {% endfor %}
-                
+                {% endfor %}
 
-        </tbody>
+            </tbody>
 
-    </table>
+        </table>
+    </div>
 </div>
 
+{% if usuario %}
+<h3 style="text-align: center;">Editando Usuario</h3>
+
+<div id="edit-usuario">
+
+<div id="editar-usuario" class="d-flex justify-content-center m-2 w-100 p-3 ps-5">
+    <!-- Botones para seleccionar o digiligenciar información -->
+    <form action="" method="POST" enctype="multipart/form-data" class="p-left pe-3 ps-3">
+
+    {% csrf_token %}
+
+        <div class="d-inline-block ms-1 me-5 width-28 ">
+            <label for="basic-url" class="form-label w-75 ps-2">ID USUARIO</label>
+            <div class="input-group mb-3 w-100">
+                <input type="hidden" name="pk_usuario" value="{{usuario.id}}">
+                <input type="text" class="form-control" disabled id="" name="" value="{{usuario.id}}" aria-describedby="basic-addon3">
+
+            </div>
+        </div>
+
+        <div class="d-inline-block ms-1 me-5 width-28 ">
+            <label for="basic-url" class="form-label w-75 ps-2">PRIMER
+                NOMBRE</label>
+            <div class="input-group mb-3 w-100">
+                <input type="text" class="form-control"
+                    name="primerNombre" id="id_primerNombre" value="{{usuario.primerNombre}}"
+                    aria-describedby="basic-addon3">
+            </div>
+        </div>
+
+        <div class="d-inline-block ms-1 me-5 width-28">
+            <label for="basic-url" class="form-label w-75 ps-2">SEGUNDO
+                NOMBRE</label>
+            <div class="input-group mb-3 w-100">
+                <input type="text" class="form-control"
+                    name="segundoNombre" id="id_segundoNombre" value="{{usuario.segundoNombre}}"
+                    aria-describedby="basic-addon3">
+            </div>
+        </div>
+
+        <div class="d-inline-block ms-1 me-5 width-28">
+            <label for="basic-url" class="form-label w-75 ps-2">PRIMER
+                APELLIDO</label>
+            <div class="input-group mb-3 w-100">
+                <input type="text" class="form-control"
+                    name="primerApellido" id="id_primerApellido" value="{{usuario.primerApellido}}"
+                    aria-describedby="basic-addon3"
+                    placeholder="">
+            </div>
+        </div>
+
+        <div class="d-inline-block ms-1 me-5 width-28">
+            <label for="basic-url" class="form-label w-75 ps-2">SEGUNDO
+                APELLIDO</label>
+            <div class="input-group mb-3 w-100">
+                <input type="text" class="form-control" name="segundoApellido" value="{{usuario.segundoApellido}}"
+                    id="id_segundoApellido"
+                    aria-describedby="basic-addon3"
+                    placeholder="">
+            </div>
+        </div>
+
+        <div class="d-inline-block ms-1 me-5 width-28">
+            <label for="basic-url" class="form-label w-75 ps-2">FOTO</label>
+            <div class="input-group mb-3 w-100">
+                <input  type="file" class="form-control" name="foto" value="{{image_user}}" 
+                    id="id_foto"
+                    aria-describedby="basic-addon3">
+            </div>
+        </div>
+
+        <div class="d-inline-block ms-1 me-5 width-28">
+            <label for="basic-url" class="form-label w-75 ps-2">TIPO
+                DE DOCUMENTO</label>
+            <div class="input-group mb-3 w-100">
+                <select id="id_tipoDocumento" class="form-select" name="tipoDocumento" value="{{usuario.tipoDocumento}}"
+                    aria-label="tipo-activo">
+                    <option selected>{{usuario.tipoDocumento}}</option>
+                    <option value="C.C.">Cédula de Ciudadania</option>
+                    <option value="C.E.">Cédula de Extranjería</option>
+                    <option value="PASS">Pasaporte</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="d-inline-block ms-1 me-5 width-28">
+            <label for="basic-url" class="form-label w-75 ps-2">NÚMERO
+                DE IDENTIFICACIÓN</label>
+            <div class="input-group mb-3 w-100">
+                <input type="text" class="form-control" name="numeroDocumento" value="{{usuario.numeroDocumento}}"
+                    id="id_numeroDocumento"
+                    aria-describedby="basic-addon3"
+                    placeholder="">
+            </div>
+        </div>
+
+        <div class="d-inline-block ms-1 me-5 width-28">
+            <label for="basic-url" class="form-label w-75 ps-2">NÚMERO DE
+                TELEFONO</label>
+            <div class="input-group mb-3 w-100">
+                <input type="text" class="form-control" name="numeroTelefono" value="{{usuario.numeroTelefono}}"
+                    id="id_numeroTelefono"
+                    aria-describedby="basic-addon3"
+                    placeholder="">
+            </div>
+        </div>
+
+        <div class="d-inline-block ms-1 me-5 width-28">
+            <label for="basic-url" class="form-label w-75 ps-2">CIUDAD DE
+                RESIDENCIA</label>
+            <div class="input-group mb-3 w-100">
+                <input type="text" class="form-control" name="ciudadResidencia" value="{{usuario.ciudadResidencia}}"
+                    id="id_ciudadResidencia"
+                    aria-describedby="basic-addon3"
+                    placeholder="">
+            </div>
+        </div>
+
+        <div class="d-inline-block ms-1 me-5 width-28">
+            <label for="basic-url" class="form-label w-75 ps-2">DIRECCIÓN DE
+                RESIDENCIA</label>
+            <div class="input-group mb-3 w-100">
+                <input type="text" class="form-control" name="direccionResidencia" value="{{usuario.direccionResidencia}}"
+                    id="id_direccionResidencia"
+                    aria-describedby="basic-addon3"
+                    placeholder="">
+            </div>
+        </div>
+
+        <div class="d-inline-block ms-1 me-5 width-28">
+            <label for="basic-url" class="form-label w-75 ps-2">CORRE
+                ELECTRONICO</label>
+            <div class="input-group mb-3 w-100">
+                <input type="text" class="form-control" name="correoElectronico" value="{{usuario.correoElectronico}}"
+                    id="id_correoElectronico"
+                    aria-describedby="basic-addon3"
+                    placeholder="">
+            </div>
+        </div>
+
+        <div class="d-inline-block ms-1 me-5 width-28">
+            <label for="basic-url" class="form-label w-75 ps-2">GENERO</label>
+            <div class="input-group mb-3 w-100">
+                <select id="id_genero" class="form-select" name="genero" value="{{usuario.genero}}"
+                    aria-label="tipo-activo">
+                    <option selected>{{usuario.genero}}</option>
+                    <option value="Masculino">Masculino</option>
+                    <option value="Femenino">Femenino</option>
+                    <option value="Otro">Otro</option>
+                    <option value="Prefiero No Decir">Prefiero No Decir</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="d-inline-block ms-1 me-5 width-28">
+            <label for="basic-url" class="form-label w-75 ps-2">CARGO</label>
+            <div class="input-group mb-3 w-100">
+                <input type="text" class="form-control" name="cargo" value="{{usuario.cargo}}"
+                    id="id_cargo"
+                    aria-describedby="basic-addon3"
+                    placeholder="">
+            </div>
+        </div>
+
+        <div class="d-inline-block ms-1 me-5 width-28">
+            <label for="basic-url" class="form-label w-75 ps-2">FECHA
+                DE REGISTRO</label>
+            <div class="input-group mb-3 w-100">
+                <input id="id_fechaRegistro" type="date" class="form-control" name="fechaRegistro" value="{{usuario.fechaRegistro | date:'Y-m-d'}}"
+                    aria-describedby="basic-addon3"
+                    placeholder="">
+            </div>
+        </div>
+
+        <div class="d-inline-block ms-1 me-5 width-28">
+            <label for="basic-url" class="form-label w-75 ps-2">TIPO DE USUARIO</label>
+            <div class="input-group mb-3 w-100">
+                <select id="id_tipoUsuario" class="form-select" name="tipoUsuario" value="{{usuario.tipoUsuario}}"
+                    aria-label="tipo-activo">
+                    <option selected >{{usuario.tipoUsuario}}</option>
+                    <option value="Funcionario">Funcionario</option>
+                    <option value="Conductor">Conductor</option>
+                    <option value="Administrador">Administrador</option>
+                </select>
+            </div>
+        </div>
+        <br>
+        <button type="button" class="btn btn-success fs-5 m-2 ms-2" data-bs-toggle="modal" data-bs-target="#modal-guardar-usuario">
+            EDITAR
+        </button>
+        <!-- Modal -->
+        <div class="modal fade" id="modal-guardar-usuario" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">VERIFICAR</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body text-start">
+                        Esta seguro que desea guardar los
+                        cambios.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn
+                            btn-secondary" data-bs-dismiss="modal">CANCELAR</button>
+                        <button data-bs-toggle="modal" data-bs-target=""
+                            data-bs-dismiss="modal" class="btn
+                            btn-primary" name="c-editar-usuario">ACEPTAR </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+</div>
+
+{% endif %}
+<div class="w-100" style="padding-left: 3%;">
+<button type="button" class="btn btn-secondary fs-5 m-2" data-bs-toggle="modal"
+data-bs-target="#modal-nuevo-usuario">
+REGISTRAR USUARIO
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="modal-nuevo-usuario" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">REGISTRAR USUARIO</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <form action="" method="POST">
+
+                <div class="modal-body text-start" id="form-nuevo-usuario">
+
+                    {% csrf_token %}
+
+                    <div class="d-inline-block w-100">
+                        <label for="basic-url" class="form-label ps-2">PRIMER
+                            NOMBRE</label>
+                        <div class="input-group mb-3 w-100">
+                            <input type="text" class="form-control"
+                                name="primerNombre" id="id_primerNombre"
+                                aria-describedby="basic-addon3"
+                                placeholder="">
+                        </div>
+                    </div>
+            
+                    <div class="d-inline-block w-100">
+                        <label for="basic-url" class="form-label ps-2">SEGUNDO
+                            NOMBRE</label>
+                        <div class="input-group mb-3 w-100">
+                            <input type="text" class="form-control"
+                                name="segundoNombre" id="id_segundoNombre"
+                                aria-describedby="basic-addon3"
+                                placeholder="">
+                        </div>
+                    </div>
+            
+                    <div class="d-inline-block w-100">
+                        <label for="basic-url" class="form-label ps-2">PRIMER
+                            APELLIDO</label>
+                        <div class="input-group mb-3 w-100">
+                            <input type="text" class="form-control"
+                                name="primerApellido" id="id_primerApellido"
+                                aria-describedby="basic-addon3"
+                                placeholder="">
+                        </div>
+                    </div>
+            
+                    <div class="d-inline-block w-100">
+                        <label for="basic-url" class="form-label ps-2">SEGUNDO
+                            APELLIDO</label>
+                        <div class="input-group mb-3 w-100">
+                            <input type="text" class="form-control" name="segundoApellido"
+                                id="id_segundoApellido"
+                                aria-describedby="basic-addon3"
+                                placeholder="">
+                        </div>
+                    </div>
+            
+                    <div class="d-inline-block w-100">
+                        <label for="basic-url" class="form-label ps-2">FOTO</label>
+                        <div class="input-group mb-3 w-100">
+                            <input type="file" class="form-control" name="foto"
+                                id="id_foto"
+                                aria-describedby="basic-addon3">
+                        </div>
+                    </div>
+            
+                    <div class="d-inline-block w-100">
+                        <label for="basic-url" class="form-label ps-2">TIPO
+                            DE DOCUMENTO</label>
+                        <div class="input-group mb-3 w-100">
+                            <select id="id_tipoDocumento" class="form-select" name="tipoDocumento"
+                                aria-label="tipo-activo">
+                                <option selected>--TIPO DOCUMENTO--</option>
+                                <option value="C.C.">Cédula de Ciudadania</option>
+                                <option value="C.E.">Cédula de Extranjería</option>
+                                <option value="PASS">Pasaporte</option>
+                            </select>
+                        </div>
+                    </div>
+            
+                    <div class="d-inline-block w-100">
+                        <label for="basic-url" class="form-label ps-2">NÚMERO
+                            DE IDENTIFICACIÓN</label>
+                        <div class="input-group mb-3 w-100">
+                            <input type="text" class="form-control" name="numeroDocumento"
+                                id="id_numeroDocumento"
+                                aria-describedby="basic-addon3"
+                                placeholder="">
+                        </div>
+                    </div>
+            
+                    <div class="d-inline-block w-100">
+                        <label for="basic-url" class="form-label ps-2">NÚMERO DE
+                            TELEFONO</label>
+                        <div class="input-group mb-3 w-100">
+                            <input type="text" class="form-control" name="numeroTelefono"
+                                id="id_numeroTelefono"
+                                aria-describedby="basic-addon3"
+                                placeholder="">
+                        </div>
+                    </div>
+            
+                    <div class="d-inline-block w-100">
+                        <label for="basic-url" class="form-label ps-2">CIUDAD DE
+                            RESIDENCIA</label>
+                        <div class="input-group mb-3 w-100">
+                            <input type="text" class="form-control" name="ciudadResidencia"
+                                id="id_ciudadResidencia"
+                                aria-describedby="basic-addon3"
+                                placeholder="">
+                        </div>
+                    </div>
+            
+                    <div class="d-inline-block w-100">
+                        <label for="basic-url" class="form-label ps-2">DIRECCIÓN DE
+                            RESIDENCIA</label>
+                        <div class="input-group mb-3 w-100">
+                            <input type="text" class="form-control" name="direccionResidencia"
+                                id="id_direccionResidencia"
+                                aria-describedby="basic-addon3"
+                                placeholder="">
+                        </div>
+                    </div>
+            
+                    <div class="d-inline-block w-100">
+                        <label for="basic-url" class="form-label ps-2">CORRE
+                            ELECTRONICO</label>
+                        <div class="input-group mb-3 w-100">
+                            <input type="text" class="form-control" name="correoElectronico"
+                                id="id_correoElectronico"
+                                aria-describedby="basic-addon3"
+                                placeholder="">
+                        </div>
+                    </div>
+            
+                    <div class="d-inline-block w-100">
+                        <label for="basic-url" class="form-label ps-2">GENERO</label>
+                        <div class="input-group mb-3 w-100">
+                            <select id="id_genero" class="form-select" name="genero"
+                                aria-label="tipo-activo">
+                                <option selected>--GENERO--</option>
+                                <option value="Masculino">Masculino</option>
+                                <option value="Femenino">Femenino</option>
+                                <option value="Otro">Otro</option>
+                                <option value="Prefiero No Decir">Prefiero No Decir</option>
+                            </select>
+                        </div>
+                    </div>
+            
+                    <div class="d-inline-block w-100">
+                        <label for="basic-url" class="form-label ps-2">CARGO</label>
+                        <div class="input-group mb-3 w-100">
+                            <input type="text" class="form-control" name="cargo"
+                                id="id_cargo"
+                                aria-describedby="basic-addon3"
+                                placeholder="">
+                        </div>
+                    </div>
+            
+                    <div class="d-inline-block w-100">
+                        <label for="basic-url" class="form-label ps-2">FECHA
+                            DE REGISTRO</label>
+                        <div class="input-group mb-3 w-100">
+                            <input id="id_fechaRegistro" type="date" class="form-control" name="fechaRegistro"
+                                aria-describedby="basic-addon3"
+                                placeholder="">
+                        </div>
+                    </div>
+            
+                    <div class="d-inline-block w-100">
+                        <label for="basic-url" class="form-label ps-2">TIPO DE USUARIO</label>
+                        <div class="input-group mb-3 w-100">
+                            <select id="id_tipoUsuario" class="form-select" name="tipoUsuario"
+                                aria-label="tipo-activo">
+                                <option selected>--TIPO DE USUARIO--</option>
+                                <option value="Funcionario">Funcionario</option>
+                                <option value="Conductor">Conductor</option>
+                                <option value="Administrador">Administrador</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- BOTON PARA GUARDAR LA INFORMACIÓN DIGITADA EN EL FORMULARIO DEL ACTIVO -->
+                    <div class="w-100 d-flex justify-content-center">
+                    <button class="btn btn-success
+                        fs-5 m-2" name="form-nuevo-usuario">GUARDAR</button>
+                    </div> 
+                    <div class="w-100 d-flex justify-content-center">
+                        <button type="button" class="btn
+                            btn-secondary" data-bs-dismiss="modal">CANCELAR</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
 {% endblock contenido %}

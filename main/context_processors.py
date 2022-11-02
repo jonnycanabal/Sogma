@@ -10,7 +10,7 @@ def sesion(request):
     context={
         'usuario_actual':usuario_actual,
         'image_user':image_user,
-        'usuario':usuario
+        # 'usuario':usuario
     }
 
     return context

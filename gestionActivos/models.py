@@ -11,8 +11,8 @@ from usuarios.models import Usuario
 # CREACIÓN DE LA TABLA (generarAlarma) DE NUESTRA MER DISEÑADO EN MYSQL WORKBENCH
 class GenerarAlarma(models.Model):
     # REVISAR ESTAR PARTE SI ESTA BIEN DECLARADA O LLAMADA LA FOREING KEY
-    fkIdExtintor=models.ForeignKey(ActivoExtintor, on_delete=models.CASCADE, verbose_name="Extintor")
-    fkIdEquipoOficina=models.ForeignKey(ActivoEquipoOficina, on_delete=models.CASCADE, verbose_name="Equipo de Oficina")
+    fkExtintor=models.ForeignKey(ActivoExtintor, on_delete=models.CASCADE, verbose_name="Extintor")
+    fkEquipoOficina=models.ForeignKey(ActivoEquipoOficina, on_delete=models.CASCADE, verbose_name="Equipo de Oficina")
     fkVehiculo=models.ForeignKey(ActivoVehiculo, on_delete=models.CASCADE, verbose_name="Vehículo")
     fechaMantenimiento=models.DateField(verbose_name="Fecha Mantenimiento", help_text="MM/DD/AAAA")
     class TipoMantenimiento(models.TextChoices):
@@ -88,7 +88,7 @@ class MantenimientoVehiculo(models.Model):
 # ###############################################################################################################################
 # CREACIÓN DE TABLA PARA REGISTRAR MANTENIMIENTO DE UN EXINTOR
 class MantenimientoExtintor(models.Model):
-    fkIdExtintor=models.ForeignKey(ActivoExtintor, on_delete=models.CASCADE, verbose_name="Extintor")
+    fkExtintor=models.ForeignKey(ActivoExtintor, on_delete=models.CASCADE, verbose_name="Extintor")
     class Usado(models.TextChoices):
         SI='SI', _("SI")
         NO='NO', _("NO")
@@ -98,7 +98,7 @@ class MantenimientoExtintor(models.Model):
 # ###############################################################################################################################
 # CREACIÓN DE TABLA PARA REGISTRAR MANTENIMIENTO DE UN EQUIPO DE OFICINA
 class MantenimientoEquipo(models.Model):
-    fkIdEquipoOficina=models.ForeignKey(ActivoEquipoOficina, on_delete=models.CASCADE, verbose_name="Equipo de Oficina")
+    fkEquipoOficina=models.ForeignKey(ActivoEquipoOficina, on_delete=models.CASCADE, verbose_name="Equipo de Oficina")
     fkRegistrarMantenimiento=models.ForeignKey(RegistrarMantenimiento, on_delete=models.CASCADE, verbose_name="mantenimiento")
 
 

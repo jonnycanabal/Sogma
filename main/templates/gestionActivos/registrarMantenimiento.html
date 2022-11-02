@@ -922,7 +922,7 @@
                                 data-bs-target="#modal-registrar-mantenimiento2"
                                 data-bs-dismiss="modal"
                                 class="btn
-                                btn-primary" value="ACEPTAR" name="r-mantenimiento-vehiculo">
+                                btn-primary" value="ACEPTAR" name="r-mantenimiento-extintor">
                         </div>
                     </div>
                 </div>
@@ -1086,7 +1086,7 @@
                                 data-bs-target="#modal-registrar-mantenimiento2"
                                 data-bs-dismiss="modal"
                                 class="btn
-                                btn-primary" value="ACEPTAR" name="r-mantenimiento-extintor">
+                                btn-primary" value="ACEPTAR" name="r-mantenimiento-equipo">
                         </div>
                     </div>
                 </div>
@@ -1100,9 +1100,7 @@
 
 {% endblock contenido %}
 
-<script>
-    // Script para visualizar el formulario de registro de un activo segun el que seleccione.
-    // Sí selecciona un formulario con esta funcion remueve los otros para que no cree conflicto.
+<!-- <script>
     function displayForm(c) {
         if (c.value == "vehiculo") {
             jQuery('#m-vehiculo').toggle('show');
@@ -1121,4 +1119,4 @@
             jQuery('#m-extintor').remove();
         }
     };  
-</script>
+</script> -->

@@ -3,17 +3,18 @@
 
 <!-- INICIO DEL HEADER-->
 <header id="bar-header"
-class="border-bottom border-3 border-dark d-flex flex-wrap
-align-items-center justify-content-center
-py-3 border-bottom">
+    class="border-bottom border-3 border-dark d-flex flex-wrap
+    align-items-center justify-content-center
+    py-3 border-bottom">
 
     <!-- Contenedor del logo de la Contraloria Departamental del Tolima -->
     <div class="d-flex align-items-center img-contraloria">
         <a href="" class="d-flex align-items-center mb-2 mb-md-0
             text-dark text-decoration-none">
-            <img class="w-50 ms-3" src="{% static 'img/logo_contraloria.png' %}" alt="">
+            <img class="w-50 ms-3" src="{% static 'img/logo_contraloria.png' %}"
+                alt="">
         </a>
-        
+
         <!-- Nombre del proyecto -->
         <h2 class="ps-1 fs-2">SOGMA</h2>
     </div>
@@ -28,20 +29,22 @@ py-3 border-bottom">
             text-decoration-none dropdown-toggle" id="dropdownUser2"
             data-bs-toggle="dropdown" aria-expanded="false">
             <div class="image">
-                <img src="{{MEDIA_URL}}{{image_user}}" alt="user Image" width="50"
+                <img src="{{MEDIA_URL}}{{image_user}}" alt="user Image"
+                    width="50"
                     height="50" class="rounded-circle me-2"> <!-- https://github.com/mdo.png -->
             </div>
 
             <div class="info text-black">
-                <strong>{{usuario_actual.first_name}} {{usuario_actual.last_name}}</strong>
+                <strong>{{usuario_actual.first_name}}
+                    {{usuario_actual.last_name}}</strong>
             </div>
 
         </a>
         <ul class="dropdown-menu text-small shadow"
             aria-labelledby="dropdownUser2">
             <li><a class="dropdown-item" href="#"
-                data-bs-toggle="modal"
-                data-bs-target="#perfil">Perfil</a></li>
+                    data-bs-toggle="modal"
+                    data-bs-target="#perfil">Perfil</a></li>
             <li><a class="dropdown-item" href="#">Copia de Seguridad</a></li>
             <li><hr class="dropdown-divider"></li>
 
@@ -53,7 +56,7 @@ py-3 border-bottom">
         </ul>
 
         <!-- ################################################################################################## -->
-        <!-- Modal perfil-->
+        <!-- Modal perfil--> 
         <div class="modal fade" id="perfil"
             data-bs-backdrop="static" data-bs-keyboard="false"
             tabindex="-1" aria-labelledby="staticBackdropLabel"
@@ -69,53 +72,59 @@ py-3 border-bottom">
                     </div>
 
                     <div class="modal-body text-start me-2">
-                
+
                         <div class="d-block ms-1 w-100">
-                            <div class="input-group mb-3 w-100 d-flex justify-content-center">
+                            <div class="input-group mb-3 w-100 d-flex
+                                justify-content-center">
                                 <img src="{{image_user}}" alt="" width="150"
-                                height="150" class="rounded-circle me-2 ">
+                                    height="150" class="rounded-circle me-2 ">
                             </div>
                         </div>
-                
+
                         <div class="d-inline-block ms-1 me-5 w-100">
                             <label for="basic-url" class="form-label ps-2">PRIMER
                                 NOMBRE</label>
                             <div class="input-group mb-3 w-100">
-                                <input type="text" class="form-control text-center" disabled
+                                <input type="text" class="form-control
+                                    text-center" disabled
                                     name="primerNombre" id="id_primerNombre"
                                     aria-describedby="basic-addon3"
-                                    value="{{usuario.primerNombre}}"> <!-- ESTE SI FUNCIONA-->
+                                    value="{{usuario.primerNombre}}">
                             </div>
                         </div>
-                
+
                         <div class="d-inline-block ms-1 me-5 w-100">
                             <label for="basic-url" class="form-label ps-2">SEGUNDO
                                 NOMBRE</label>
-                                <!-- <p>{{usuario.segundoNombre}}</p> TRABAJAR ESTA PARTE ------------------------ -->
                             <div class="input-group mb-3 w-100">
-                                <input type="text" class="form-control text-center" disabled
+                                <input type="text" class="form-control
+                                    text-center" disabled
                                     name="segundoNombre" id="id_segundoNombre"
-                                    aria-describedby="basic-addon3" value="{{usuario.segundoNombre}}">
+                                    aria-describedby="basic-addon3"
+                                    value="{{usuario.segundoNombre}}">
                             </div>
                         </div>
-                
+
                         <div class="d-inline-block ms-1 me-5 w-100">
                             <label for="basic-url" class="form-label ps-2">PRIMER
                                 APELLIDO</label>
                             <div class="input-group mb-3 w-100">
-                                <input type="text" class="form-control text-center" disabled
+                                <input type="text" class="form-control
+                                    text-center" disabled
                                     name="primerApellido" id="id_primerApellido"
-                                    value="{{usuario.primerApellido}}"> <!-- ESTE NO FUNCIONA-->
+                                    value="{{usuario.primerApellido}}">
                             </div>
                         </div>
-                
+
                         <div class="d-inline-block ms-1 me-5 w-100">
                             <label for="basic-url" class="form-label ps-2">SEGUNDO
                                 APELLIDO</label>
                             <div class="input-group mb-3 w-100">
-                                <input type="text" class="form-control text-center" disabled name="segundoApellido"
+                                <input type="text" class="form-control
+                                    text-center" disabled name="segundoApellido"
                                     id="id_segundoApellido"
-                                    aria-describedby="basic-addon3" value="{{usuario.segundoApellido}}">
+                                    aria-describedby="basic-addon3"
+                                    value="{{usuario.segundoApellido}}">
                             </div>
                         </div>
 
@@ -123,105 +132,99 @@ py-3 border-bottom">
                             <label for="basic-url" class="form-label ps-2">TIPO
                                 DE DOCUMENTO</label>
                             <div class="input-group mb-3 w-100">
-                                <input type="text" class="form-control text-center" disabled name="cargo"
+                                <input type="text" class="form-control
+                                    text-center" disabled name="cargo"
                                     id="id_cargo"
-                                    aria-describedby="basic-addon3" value="{{usuario.tipoDocumento}}">
+                                    aria-describedby="basic-addon3"
+                                    value="{{usuario.tipoDocumento}}">
                             </div>
                         </div>
-                
-                        <!-- <div class="d-inline-block ms-1 me-5 w-100">
-                            <label for="basic-url" class="form-label ps-2">TIPO
-                                DE DOCUMENTO</label>
-                            <div class="input-group mb-3 w-100">
-                                <select id="id_tipoDocumento" class="form-select" name="tipoDocumento"
-                                    aria-label="tipo-activo">
-                                    <option selected>--TIPO DOCUMENTO--</option>
-                                    <option value="C.C.">Cédula de Ciudadania</option>
-                                    <option value="C.E.">Cédula de Extranjería</option>
-                                    <option value="PASS">Pasaporte</option>
-                                </select>
-                            </div>
-                        </div> -->
-                
+
                         <div class="d-inline-block ms-1 me-5 w-100">
                             <label for="basic-url" class="form-label ps-2">NÚMERO
                                 DE IDENTIFICACIÓN</label>
                             <div class="input-group mb-3 w-100">
-                                <input type="text" class="form-control text-center" disabled name="numeroDocumento"
+                                <input type="text" class="form-control
+                                    text-center" disabled name="numeroDocumento"
                                     id="id_numeroDocumento"
-                                    aria-describedby="basic-addon3" value="{{usuario.numeroDocumento}}">
+                                    aria-describedby="basic-addon3"
+                                    value="{{usuario.numeroDocumento}}">
                             </div>
                         </div>
-                
+
                         <div class="d-inline-block ms-1 me-5 w-100">
-                            <label for="basic-url" class="form-label ps-2">NÚMERO DE
+                            <label for="basic-url" class="form-label ps-2">NÚMERO
+                                DE
                                 TELEFONO</label>
                             <div class="input-group mb-3 w-100">
-                                <input type="text" class="form-control text-center" disabled name="numeroTelefono"
+                                <input type="text" class="form-control
+                                    text-center" disabled name="numeroTelefono"
                                     id="id_numeroTelefono"
-                                    aria-describedby="basic-addon3" value="{{usuario.numeroTelefono}}">
+                                    aria-describedby="basic-addon3"
+                                    value="{{usuario.numeroTelefono}}">
                             </div>
                         </div>
-                
+
                         <div class="d-inline-block ms-1 me-5 w-100">
-                            <label for="basic-url" class="form-label ps-2">CIUDAD DE
+                            <label for="basic-url" class="form-label ps-2">CIUDAD
+                                DE
                                 RESIDENCIA</label>
                             <div class="input-group mb-3 w-100">
-                                <input type="text" class="form-control text-center" disabled name="ciudadResidencia"
+                                <input type="text" class="form-control
+                                    text-center" disabled
+                                    name="ciudadResidencia"
                                     id="id_ciudadResidencia"
-                                    aria-describedby="basic-addon3" value="{{usuario.ciudadResidencia}}">
+                                    aria-describedby="basic-addon3"
+                                    value="{{usuario.ciudadResidencia}}">
                             </div>
                         </div>
-                
+
                         <div class="d-inline-block ms-1 me-5 w-100">
-                            <label for="basic-url" class="form-label ps-2">DIRECCIÓN DE
+                            <label for="basic-url" class="form-label ps-2">DIRECCIÓN
+                                DE
                                 RESIDENCIA</label>
                             <div class="input-group mb-3 w-100">
-                                <input type="text" class="form-control text-center" disabled name="direccionResidencia"
+                                <input type="text" class="form-control
+                                    text-center" disabled
+                                    name="direccionResidencia"
                                     id="id_direccionResidencia"
-                                    aria-describedby="basic-addon3" value="{{usuario.direccionResidencia}}">
+                                    aria-describedby="basic-addon3"
+                                    value="{{usuario.direccionResidencia}}">
                             </div>
                         </div>
-                
+
                         <div class="d-inline-block ms-1 me-5 w-100">
                             <label for="basic-url" class="form-label ps-2">CORRE
                                 ELECTRONICO</label>
                             <div class="input-group mb-3 w-100">
-                                <input type="text" class="form-control text-center" disabled name="correoElectronico"
+                                <input type="text" class="form-control
+                                    text-center" disabled
+                                    name="correoElectronico"
                                     id="id_correoElectronico"
-                                    aria-describedby="basic-addon3" value="{{usuario.correoElectronico}}">
+                                    aria-describedby="basic-addon3"
+                                    value="{{usuario.correoElectronico}}">
                             </div>
                         </div>
 
                         <div class="d-inline-block ms-1 me-5 w-100">
                             <label for="basic-url" class="form-label ps-2">GENERO</label>
                             <div class="input-group mb-3 w-100">
-                                <input type="text" class="form-control text-center" disabled name="cargo"
+                                <input type="text" class="form-control
+                                    text-center" disabled name="cargo"
                                     id="id_cargo"
-                                    aria-describedby="basic-addon3" value="{{usuario.genero}}">
+                                    aria-describedby="basic-addon3"
+                                    value="{{usuario.genero}}">
                             </div>
                         </div>
-                
-                        <!-- <div class="d-inline-block ms-1 me-5 w-100">
-                            <label for="basic-url" class="form-label ps-2">GENERO</label>
-                            <div class="input-group mb-3 w-100">
-                                <select id="id_genero" class="form-select" name="genero"
-                                    aria-label="tipo-activo">
-                                    <option selected>--GENERO--</option>
-                                    <option value="Masculino">Masculino</option>
-                                    <option value="Femenino">Femenino</option>
-                                    <option value="Otro">Otro</option>
-                                    <option value="Prefiero No Decir">Prefiero No Decir</option>
-                                </select>
-                            </div>
-                        </div> -->
-                
+
                         <div class="d-inline-block ms-1 me-5 w-100">
                             <label for="basic-url" class="form-label ps-2">CARGO</label>
                             <div class="input-group mb-3 w-100">
-                                <input type="text" class="form-control text-center" disabled name="cargo"
+                                <input type="text" class="form-control
+                                    text-center" disabled name="cargo"
                                     id="id_cargo"
-                                    aria-describedby="basic-addon3" value="{{usuario.cargo}}">
+                                    aria-describedby="basic-addon3"
+                                    value="{{usuario.cargo}}">
                             </div>
                         </div>
 
@@ -229,54 +232,37 @@ py-3 border-bottom">
                             <label for="basic-url" class="form-label ps-2">FECHA
                                 DE REGISTRO</label>
                             <div class="input-group mb-3 w-100">
-                                <input type="text" class="form-control text-center" disabled name="cargo"
+                                <input type="text" class="form-control
+                                    text-center" disabled name="cargo"
                                     id="id_cargo"
-                                    aria-describedby="basic-addon3" value="{{usuario.fechaRegistro}}">
+                                    aria-describedby="basic-addon3"
+                                    value="{{usuario.fechaRegistro}}">
                             </div>
                         </div>
-                
-                        <!-- <div class="d-inline-block ms-1 me-5 w-100">
-                            <label for="basic-url" class="form-label ps-2">FECHA
-                                DE REGISTRO</label>
-                            <div class="input-group mb-3 w-100">
-                                <input id="id_fechaRegistro" type="date" class="form-control" name="fechaRegistro"
-                                    aria-describedby="basic-addon3" value="{{usuario.primerNombre}}">
-                            </div>
-                        </div> -->
 
                         <div class="d-inline-block ms-1 me-5 w-100">
-                            <label for="basic-url" class="form-label ps-2">TIPO DE USUARIO</label>
+                            <label for="basic-url" class="form-label ps-2">TIPO
+                                DE USUARIO</label>
                             <div class="input-group mb-3 w-100">
-                                <input type="text" class="form-control text-center" disabled name="cargo"
+                                <input type="text" class="form-control
+                                    text-center" disabled name="cargo"
                                     id="id_cargo"
-                                    aria-describedby="basic-addon3" value="{{usuario.tipoUsuario}}">
+                                    aria-describedby="basic-addon3"
+                                    value="{{usuario.tipoUsuario}}">
                             </div>
                         </div>
-                
-                        <!-- <div class="d-inline-block ms-1 me-5 w-100">
-                            <label for="basic-url" class="form-label  ps-2">TIPO DE USUARIO</label>
-                            <div class="input-group mb-3 w-100">
-                                <select id="id_tipoUsuario" class="form-select" name="tipoUsuario"
-                                    aria-label="tipo-activo">
-                                    <option selected>--TIPO DE USUARIO--</option>
-                                    <option value="Funcionario">Funcionario</option>
-                                    <option value="Conductor">Conductor</option>
-                                    <option value="Administrador">Administrador</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div> -->
 
-                    <div class="modal-footer">
-                        <button type="button" class="btn
-                            btn-secondary fs-5" data-bs-dismiss="modal">SALIR</button>
+                        <div class="modal-footer">
+                            <button type="button" class="btn
+                                btn-secondary fs-5" data-bs-dismiss="modal">SALIR</button>
+                        </div>
+
                     </div>
-                    
                 </div>
             </div>
         </div>
         <!-- Fin delmodal perfil con BOOTSTRAP 5-->
-
+        
         <!-- ################################################################################################## -->
         <!-- Modal cerrar sesión -->
         <div class="modal fade" id="cerrar-sesion"
@@ -301,7 +287,8 @@ py-3 border-bottom">
                         <button type="button" class="btn
                             btn-secondary" data-bs-dismiss="modal">CANCELAR</button>
                         <button type="submit" class="btn
-                            btn-primary"><a style="color: white; text-decoration: none;" href="{% url 'logout' %}">ACEPTAR</a></button>
+                            btn-primary"><a style="color: white;
+                                text-decoration: none;" href="{% url 'logout' %}">ACEPTAR</a></button>
                     </div>
                 </div>
             </div>
