@@ -162,6 +162,7 @@ def registrar_mantenimiento(request):
             print(registro)
             detalle=MantenimientoExtintor.objects.create(
                 fkExtintor=extintor,
+                usado=request.POST['usado'],
                 fkRegistrarMantenimiento=RegistrarMantenimiento.objects.get(id=registro.id)
             )
             messages.success(
@@ -181,8 +182,7 @@ def registrar_mantenimiento(request):
             registro=form.save()
             print(registro)
             detalle=MantenimientoEquipo.objects.create(
-                fkEquipo=equipo,
-                usado=request.POST['usado'],
+                fkEquipoOficina=equipo,
                 fkRegistrarMantenimiento=RegistrarMantenimiento.objects.get(id=registro.id)
             )
             messages.success(

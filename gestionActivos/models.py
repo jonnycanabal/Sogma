@@ -92,7 +92,7 @@ class MantenimientoExtintor(models.Model):
     class Usado(models.TextChoices):
         SI='SI', _("SI")
         NO='NO', _("NO")
-    usado=models.CharField(max_length=5, choices=Usado.choices, default=Usado.NO, verbose_name="¿Extintor usado?")
+    usado=models.CharField(max_length=5, choices=Usado.choices, default=Usado.NO, verbose_name="¿Extintor usado?", blank=True)
     fkRegistrarMantenimiento=models.ForeignKey(RegistrarMantenimiento, on_delete=models.CASCADE, verbose_name="mantenimiento")
 
 # ###############################################################################################################################

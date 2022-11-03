@@ -127,10 +127,11 @@
                                         </button>
 
                                         <!-- Boton de eliminar integrado con un modal y un toastr de mensaje despues de aceptar -->
-                                        <button type="button" class="btn fs-5 pe-1 ps-1" data-bs-toggle="modal" data-bs-target="#modal-eliminar-vehiculo"><i class="bi bi-trash3-fill"></i></a>
+                                        <button type="button" class="btn fs-5 pe-1 ps-1" data-bs-toggle="modal" data-bs-target="#modal-eliminar-vehiculo-{{vehiculo.id}}"><i class="bi bi-trash3-fill"></i></a>
                                         </button>
+
                                         <!-- Modal -->
-                                        <div class="modal fade" id="modal-eliminar-vehiculo" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                                        <div class="modal fade" id="modal-eliminar-vehiculo-{{vehiculo.id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
                                             aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
@@ -248,10 +249,10 @@
                                             </button>
 
                                             <!-- Boton de eliminar integrado con un modal y un toastr de mensaje despues de aceptar -->
-                                            <button type="button" class="btn fs-5 pe-1 ps-1" data-bs-toggle="modal" data-bs-target="#modal-eliminar-extintor"><i class="bi bi-trash3-fill"></i></a>
+                                            <button type="button" class="btn fs-5 pe-1 ps-1" data-bs-toggle="modal" data-bs-target="#modal-eliminar-extintor-{{extintor.id}}"><i class="bi bi-trash3-fill"></i></a>
                                             </button>
                                             <!-- Modal -->
-                                            <div class="modal fade" id="modal-eliminar-extintor" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                                            <div class="modal fade" id="modal-eliminar-extintor-{{extintor.id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
                                                 aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
@@ -356,10 +357,10 @@
                                             </button>
 
                                             <!-- Boton de eliminar integrado con un modal y un toastr de mensaje despues de aceptar -->
-                                            <button type="button" class="btn fs-5 pe-1 ps-1" data-bs-toggle="modal" data-bs-target="#modal-eliminar-equipo"><i class="bi bi-trash3-fill"></i></a>
+                                            <button type="button" class="btn fs-5 pe-1 ps-1" data-bs-toggle="modal" data-bs-target="#modal-eliminar-equipo-{{equipo.id}}"><i class="bi bi-trash3-fill"></i></a>
                                             </button>
                                             <!-- Modal -->
-                                            <div class="modal fade" id="modal-eliminar-equipo" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                                            <div class="modal fade" id="modal-eliminar-equipo-{{equipo.id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
                                                 aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">

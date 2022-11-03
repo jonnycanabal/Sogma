@@ -50,10 +50,10 @@
                             </button>
 
                             <!-- Boton de eliminar integrado con un modal y un toastr de mensaje despues de aceptar -->
-                            <button type="button" class="btn fs-5 pe-1 ps-1" data-bs-toggle="modal" data-bs-target="#modal-eliminar-usuario"><i class="bi bi-trash3-fill"></i></a>
+                            <button type="button" class="btn fs-5 pe-1 ps-1" data-bs-toggle="modal" data-bs-target="#modal-eliminar-usuario-{{usuario.id}}"><i class="bi bi-trash3-fill"></i></a>
                             </button>
                             <!-- Modal -->
-                            <div class="modal fade" id="modal-eliminar-usuario" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                            <div class="modal fade" id="modal-eliminar-usuario-{{usuario.id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
                                 aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
