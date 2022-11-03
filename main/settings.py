@@ -51,10 +51,6 @@ INSTALLED_APPS = [
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 
-# DATE_INPUT_FORMATS =[
-#     '%d/%m/%Y'
-# ]
-
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -78,6 +74,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'main.context_processors.sesion',
             ],
         },
     },
@@ -129,9 +126,6 @@ USE_TZ = True
 
 SHORT_DATE_FORMAT = "d/m/Y"
 
-# DATE_FORMAT = ['%d-%m-%Y']
-
-# DATE_INPUT_FORMATS = ['%d-%m-%Y']
 
 
 # Static files (CSS, JavaScript, Images)
@@ -144,14 +138,23 @@ SHORT_DATE_FORMAT = "d/m/Y"
 # ]
 # STATIC_ROOT= "/static"
 
-STATIC_URL = 'static/'
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
 STATIC_ROOT= "/static"
 
+# Lineas de codigo para la parte de la imagen del usuario
+MEDIA_URL= '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# fragmento de codigo para redireccionar a la página principal cuando un usuario se logea desde el login
+LOGIN_REDIRECT_URL='control-activos'
+
+# fragmento de codigo para redireccionar a la página de login o inicio de sesión cuando un ususario de deslogee o cierre sesión
+LOGOUT_REDIRECT_URL='login'

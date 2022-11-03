@@ -1,7 +1,9 @@
+from tabnanny import verbose
 from venv import create
 from django.utils.translation import gettext_lazy as _
 from enum import unique
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -11,6 +13,7 @@ class Usuario(models.Model):
     segundoNombre=models.CharField(max_length=50, verbose_name="Segundo Nombre", blank=True)
     primerApellido=models.CharField(max_length=50, verbose_name="Primer Apellido")
     segundoApellido=models.CharField(max_length=50, verbose_name="Segundo Apellido", blank=True)
+    foto=models.ImageField(upload_to='usuarios', blank=True, default='usuarios/default.jpg') # pip install pillow
     class TipoDocumento(models.TextChoices):
         CC='C.C.', _("Cédula de Ciudadania")
         CE='C.E.', _("Cédula de Extranjería")
@@ -20,7 +23,7 @@ class Usuario(models.Model):
     numeroTelefono=models.CharField(max_length=20, verbose_name="Número de Teléfono")
     ciudadResidencia=models.CharField(max_length=50, verbose_name="Ciudad de Residencia")
     direccionResidencia=models.CharField(max_length=100, verbose_name="Dirección de Residencia")
-    correoElectronico=models.CharField(max_length=100, verbose_name="Correo Electronico")
+    correoElectronico=models.EmailField(max_length=100, verbose_name="Correo Electronico")
     class Genero(models.TextChoices):
         MASCULINO='Masculino', _("Masculino")
         FEMENINO='Femenino', _("Femenino")
@@ -49,5 +52,8 @@ class Usuario(models.Model):
         ACTIVO='1', _("Activo")
         INACTIVO='0', _("Inactivo")
     estado=models.CharField(max_length=1, choices=Estado.choices, default=Estado.ACTIVO, verbose_name="Estado")
+    user=models.ForeignKey(User, on_delete=models.CASCADE)
+
+
     def __str__(self):
         return "%s %s" %(self.primerNombre, self.primerApellido)

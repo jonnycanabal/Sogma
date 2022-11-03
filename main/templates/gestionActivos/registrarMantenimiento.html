@@ -23,463 +23,928 @@
         <input type="submit" value="Registrar">
     </form>
 </div> -->
-
 <!-- Inicio del contenedor para la página registrar mantenimiento -->
 <div id="div-caja3" class="container p-3 pb-4 d-flex
     justify-content-center pe-4">
 
-    <form action="" method="POST" id="div-cajas" class="container p-3 my-4 mt-0 pb-0
+    <form action="" method="POST" id="div-cajas" class="container p-3 my-4 mt-0
+        pb-0
         border-start border-end border-dark">
-    {% csrf_token %}
-    <!-- Inicio del primer contenedor de la página-->
-    <div id="div-cajas" class="container p-3 my-4 pt-0">
+        {% csrf_token %}
+        <!-- Inicio del primer contenedor de la página-->
+        <div id="div-cajas" class="container p-3 my-4 pt-0">
 
-        <div class="text-center p-2 w-100">
-            <h2>Seleccione el Tipo de Activo</h2>
+            <div class="text-center p-2 w-100">
+                <h2>Seleccione el Tipo de Activo</h2>
+            </div>
+
+            <!-- Salto de línea -->
+            <br>
+
+            <!-- Botones para seleccionar el tipo de activo-->
+            <div class="text-center w-100">
+                <div class="d-inline-block width-20 ms-1 me-5">
+                    <div class="input-group mb-3 w-100">
+                        <button type="button" value="vehiculo"
+                            onclick="displayTable(this)" class="btn
+                            form-control
+                            width-20 m-2 border border-dark
+                            bg-white
+                            text-dark" style="cursor: pointer;">VEHÍCULO</button>
+                    </div>
+                </div>
+
+                <div class="d-inline-block width-20 ms-1 me-5">
+                    <div class="input-group mb-3 w-100">
+                        <button type="button" value="extintor"
+                            onclick="displayTable(this)" class="btn
+                            form-control
+                            width-20 m-2 border border-dark
+                            bg-white
+                            text-dark" style="cursor: pointer;">EXTINTOR</button>
+                    </div>
+                </div>
+
+                <div class="d-inline-block width-20 ms-1 me-5">
+                    <div class="input-group mb-3 w-100">
+                        <button type="button" value="oficina"
+                            onclick="displayTable(this)" class="btn
+                            form-control
+                            width-20 m-2 border border-dark
+                            bg-white
+                            text-dark" style="cursor: pointer;">EQUIPO
+                            OFICINA</button>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <!-- Salto de línea -->
-        <br>
+        <!-- VEHICULOS ------------------------------------------------------------------------------- -->
+        <div style="display: none;" id="table-vehiculo">
+            <div class="d-flex flex-column">
+                <div class="h3 ms-5">Vehículos</div>
+                <div class="d-flex justify-content-center pb-4 mb-4 m-2 w-100
+                    p-3">
+                    <!-- Inicio del segundo contenedor de la página-->
+                    <!-- Inicio de la Tabla usando (DataTable) -->
+                    <div class="overflow-auto shadow-lg p-4
+                        height-config-tabla1 m-2 w-100" style="height: 300px;">
+                        <table id="example" class="table-striped display
+                            nowrap">
 
-        <!-- Botones para seleccionar el tipo de activo-->
-        <div class="text-center w-100">
-            <div class="d-inline-block width-20 ms-1 me-5">
-                <div class="input-group mb-3 w-100">
-                    <button type="button" value="vehiculo" onclick="displayTable(this)" class="btn
-                        form-control
-                        width-20 m-2 border border-dark
-                        bg-white
-                        text-dark" style="cursor: pointer;">VEHÍCULO</button>
-                </div>
-            </div>
+                            <!-- Cabecera de la tabla (Donde estaran los enunciados principales)-->
+                            <thead>
+                                <tr>
+                                    <th>Acción</th>
+                                    <th>Id Activo</th>
+                                    <th>Marca del Vehículo</th>
+                                    <th>Modelo del Vehículo</th>
+                                    <th>Placa del Vehículo</th>
+                                    <th>Color del Vehículo</th>
+                                    <th>Serial del Vehiculo</th>
+                                    <th>Tipo de Combustible</th>
+                                    <th>Cantidad de Pasajeros</th>
+                                    <th>Persona a Cargo</th>
+                                    <th>Condición del Vehículo</th>
+                                    <th>Fecha de Ingreso</th>
+                                    <th>Fecha Inicio Soat</th>
+                                    <th>Fecha Vencimiento Soat</th>
+                                    <th>Fecha Inicio Tecnicomecanica</th>
+                                    <th>Fecha Vencimiento Tecnicomecanica</th>
+                                </tr>
+                            </thead>
 
-            <div class="d-inline-block width-20 ms-1 me-5">
-                <div class="input-group mb-3 w-100">
-                    <button type="button" value="extintor" onclick="displayTable(this)"  class="btn
-                        form-control
-                        width-20 m-2 border border-dark
-                        bg-white
-                        text-dark" style="cursor: pointer;">EXTINTOR</button>
-                </div>
-            </div>
+                            <!-- Cuerpo de la tabla (donde estara la informacion que se mostrara de los activos) -->
+                            <tbody>
 
-            <div class="d-inline-block width-20 ms-1 me-5">
-                <div class="input-group mb-3 w-100">
-                    <button type="button"  value="oficina" onclick="displayTable(this)"  class="btn
-                        form-control
-                        width-20 m-2 border border-dark
-                        bg-white
-                        text-dark" style="cursor: pointer;">EQUIPO
-                        OFICINA</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- VEHICULOS ------------------------------------------------------------------------------- -->
-
-    <div style="display: none;" id="table-vehiculo">
-        <div class="d-flex flex-column">
-            <div class="h3 ms-5">Vehículos</div>
-            <div class="d-flex justify-content-center pb-4 mb-4 m-2 w-100 p-3">
-                <!-- Inicio del segundo contenedor de la página-->
-                <!-- Inicio de la Tabla usando (DataTable) -->
-                <div class="overflow-auto shadow-lg p-4
-                    height-config-tabla1 m-2 w-100" style="height: 300px;">
-                    <table id="example" class="table-striped display nowrap">
-
-                        <!-- Cabecera de la tabla (Donde estaran los enunciados principales)-->
-                        <thead>
-                            <tr>
-                                <th>Acción</th>
-                                <th>Id Activo</th>
-                                <th>Marca del Vehículo</th>
-                                <th>Modelo del Vehículo</th>
-                                <th>Placa del Vehículo</th>
-                                <th>Color del Vehículo</th>
-                                <th>Serial del Vehiculo</th>
-                                <th>Tipo de Combustible</th>
-                                <th>Cantidad de Pasajeros</th>
-                                <th>Persona a Cargo</th>
-                                <th>Condición del Vehículo</th>
-                                <th>Fecha de Ingreso</th>
-                                <th>Fecha Inicio Soat</th>
-                                <th>Fecha Vencimiento Soat</th>
-                                <th>Fecha Inicio Tecnicomecanica</th>
-                                <th>Fecha Vencimiento Tecnicomecanica</th>
-                            </tr>
-                        </thead>
-
-                        <!-- Cuerpo de la tabla (donde estara la informacion que se mostrara de los activos) -->
-                        <tbody>
-
-                            {% for vehiculo in vehiculos %}
-                            <tr>
-                                <!-- Imagen de un ojo con el cual seleccionara el activo y mostrara en la parte de abajo toda la informacion
+                                {% for vehiculo in vehiculos %}
+                                <tr>
+                                    <!-- Imagen de un ojo con el cual seleccionara el activo y mostrara en la parte de abajo toda la informacion
                                 para editar, guardar o eliminar/desabilitar la información -->
-                                <td>
-                                    <form action="" method="POST" class="col-4">
-                                        {% csrf_token %}
-                                        <input type="hidden" name="pk_vehiculo" value="{{vehiculo.id}}">
-                                        <button class="btn btn-block" onClick="editarVehiculo()" name="editar-vehiculo">
-                                            <i class="bi bi-eye-fill"></i></button>
-                                    </form>
-                                </td>
-                                <td class="text-center">{{vehiculo.id}}</td>
-                                <td>{{vehiculo.marcaVehiculo}}</td>
-                                <td>{{vehiculo.modeloVehiculo}}</td>
-                                <td>{{vehiculo.placaVehiculo}}</td>
-                                <td>{{vehiculo.colorVehiculo}}</td>
-                                <td>{{vehiculo.serialVehiculo}}</td>
-                                <td>{{vehiculo.tipoCombustible}}</td>
-                                <td>{{vehiculo.cantidadPasajeros}}</td>
-                                <td>{{vehiculo.personaEncargadaVehiculo}}</td>
-                                <td>{{vehiculo.condicionVehiculo}}</td>
-                                <td>{{vehiculo.fechaIngresoVehiculo}}</td>
-                                <td>{{vehiculo.fechaInicioSoat}}</td>
-                                <td>{{vehiculo.fechaFinSoat}}</td>
-                                <td>{{vehiculo.fechaInicioTecnicomecanica}}</td>
-                                <td>{{vehiculo.fechaVencimientoTecnicomecanica}}</td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
+                                    <td>
+                                        <form action="" method="POST"
+                                            class="col-4">
+                                            {% csrf_token %}
+                                            <input type="hidden"
+                                                name="pk_vehiculo"
+                                                value="{{vehiculo.id}}">
+                                            <button class="btn btn-block"
+                                                onClick="editarVehiculo()"
+                                                name="editar-vehiculo">
+                                                <i class="bi bi-eye-fill"></i></button>
+                                        </form>
+                                    </td>
+                                    <td class="text-center">{{vehiculo.id}}</td>
+                                    <td>{{vehiculo.marcaVehiculo}}</td>
+                                    <td>{{vehiculo.modeloVehiculo}}</td>
+                                    <td>{{vehiculo.placaVehiculo}}</td>
+                                    <td>{{vehiculo.colorVehiculo}}</td>
+                                    <td>{{vehiculo.serialVehiculo}}</td>
+                                    <td>{{vehiculo.tipoCombustible}}</td>
+                                    <td>{{vehiculo.cantidadPasajeros}}</td>
+                                    <td>{{vehiculo.personaEncargadaVehiculo}}</td>
+                                    <td>{{vehiculo.condicionVehiculo}}</td>
+                                    <td>{{vehiculo.fechaIngresoVehiculo}}</td>
+                                    <td>{{vehiculo.fechaInicioSoat}}</td>
+                                    <td>{{vehiculo.fechaFinSoat}}</td>
+                                    <td>{{vehiculo.fechaInicioTecnicomecanica}}</td>
+                                    <td>{{vehiculo.fechaVencimientoTecnicomecanica}}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
 
-                        <!-- Footer de la tabla (Donde estaran los enunciados principales pero en la parte inferior) -->
-                        <tfoot>
-                            <tr>
-                                <th>Acción</th>
-                                <th>Id Activo</th>
-                                <th>Marca del Vehículo</th>
-                                <th>Modelo del Vehículo</th>
-                                <th>Placa del Vehículo</th>
-                                <th>Color del Vehículo</th>
-                                <th>Serial del Vehiculo</th>
-                                <th>Tipo de Combustible</th>
-                                <th>Cantidad de Pasajeros</th>
-                                <th>Persona a Cargo</th>
-                                <th>Condición del Vehículo</th>
-                                <th>Fecha de Ingreso</th>
-                                <th>Fecha Inicio Soat</th>
-                                <th>Fecha Vencimiento Soat</th>
-                                <th>Fecha Inicio Tecnicomecanica</th>
-                                <th>Fecha Vencimiento Tecnicomecanica</th>
-                            </tr>
-                        </tfoot>
-                    </table>
+                            <!-- Footer de la tabla (Donde estaran los enunciados principales pero en la parte inferior) -->
+                            <tfoot>
+                                <tr>
+                                    <th>Acción</th>
+                                    <th>Id Activo</th>
+                                    <th>Marca del Vehículo</th>
+                                    <th>Modelo del Vehículo</th>
+                                    <th>Placa del Vehículo</th>
+                                    <th>Color del Vehículo</th>
+                                    <th>Serial del Vehiculo</th>
+                                    <th>Tipo de Combustible</th>
+                                    <th>Cantidad de Pasajeros</th>
+                                    <th>Persona a Cargo</th>
+                                    <th>Condición del Vehículo</th>
+                                    <th>Fecha de Ingreso</th>
+                                    <th>Fecha Inicio Soat</th>
+                                    <th>Fecha Vencimiento Soat</th>
+                                    <th>Fecha Inicio Tecnicomecanica</th>
+                                    <th>Fecha Vencimiento Tecnicomecanica</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-<!-- EXTINTORES --------------------------------------------------------------------------------------------- -->
-    <div style="display: none;" id="table-extintor">
-        <div class="d-flex flex-column" >
-            <div class="h3 ms-5">Extintores</div>
-
+        <!-- EXTINTORES --------------------------------------------------------------------------------------------- -->
+        <div style="display: none;" id="table-extintor">
+            <div class="d-flex flex-column">
+                <div class="h3 ms-5">Extintores</div>
 
 
-            <div class="d-flex justify-content-center pb-4 mb-4 m-2 w-100 p-3">
-                <!-- Inicio del segundo contenedor de la página-->
-                <!-- Inicio de la Tabla usando (DataTable) -->
-                <div class="overflow-auto shadow-lg p-4
-            height-config-tabla1 m-2 w-100" style="height: 300px;">
-                    <table id="example2" class="table-striped display nowrap">
 
-                        <!-- Cabecera de la tabla (Donde estaran los enunciados principales)-->
-                        <thead>
-                            <tr>
-                                <th></th>
-                                <th>Id Activo</th>
-                                <th>Serial Extintor</th>
-                                <th>Color Extintor</th>
-                                <th>Ubicación del Extintor</th>
-                                <th>Tipo de Extintor</th>
-                                <th>Peso del Extintor</th>
-                            </tr>
-                        </thead>
+                <div class="d-flex justify-content-center pb-4 mb-4 m-2 w-100
+                    p-3">
+                    <!-- Inicio del segundo contenedor de la página-->
+                    <!-- Inicio de la Tabla usando (DataTable) -->
+                    <div class="overflow-auto shadow-lg p-4
+                        height-config-tabla1 m-2 w-100" style="height: 300px;">
+                        <table id="example2" class="table-striped display
+                            nowrap">
 
-                        <!-- Cuerpo de la tabla (donde estara la informacion que se mostrara de los activos) -->
-                        <tbody>
+                            <!-- Cabecera de la tabla (Donde estaran los enunciados principales)-->
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Id Activo</th>
+                                    <th>Serial Extintor</th>
+                                    <th>Color Extintor</th>
+                                    <th>Ubicación del Extintor</th>
+                                    <th>Tipo de Extintor</th>
+                                    <th>Peso del Extintor</th>
+                                </tr>
+                            </thead>
 
-                            {% for extintor in extintores %}
-                            <tr>
-                                <!-- Imagen de un ojo con el cual seleccionara el activo y mostrara en la parte de abajo toda la informacion
+                            <!-- Cuerpo de la tabla (donde estara la informacion que se mostrara de los activos) -->
+                            <tbody>
+
+                                {% for extintor in extintores %}
+                                <tr>
+                                    <!-- Imagen de un ojo con el cual seleccionara el activo y mostrara en la parte de abajo toda la informacion
                     para editar, guardar o eliminar/desabilitar la información -->
-                                <td>
-                                    <form action="" method="POST" class="col-4">
-                                        {% csrf_token %}
-                                        <input type="hidden" name="pk_extintor" value="{{extintor.id}}">
-                                        <button class="btn btn-block" onClick="editarExtintor()" name="editar-extintor">
-                                            <i class="bi bi-eye-fill"></i>
-                                        </button>
-                                    </form>
-                                </td>
-                                <td class="text-center">{{extintor.id}}</td>
-                                <td>{{extintor.serialExtintor}}</td>
-                                <td>{{extintor.colorExtintor}}</td>
-                                <td>{{extintor.ubicacionExtintor}}</td>
-                                <td>{{extintor.tipoExtintor}}</td>
-                                <td>{{extintor.pesoExtintor}}</td>
-                            </tr>
-                            {% endfor %}
+                                    <td>
+                                        <form action="" method="POST"
+                                            class="col-4">
+                                            {% csrf_token %}
+                                            <input type="hidden"
+                                                name="pk_extintor"
+                                                value="{{extintor.id}}">
+                                            <button class="btn btn-block"
+                                                onClick="editarExtintor()"
+                                                name="editar-extintor">
+                                                <i class="bi bi-eye-fill"></i>
+                                            </button>
+                                        </form>
+                                    </td>
+                                    <td class="text-center">{{extintor.id}}</td>
+                                    <td>{{extintor.serialExtintor}}</td>
+                                    <td>{{extintor.colorExtintor}}</td>
+                                    <td>{{extintor.ubicacionExtintor}}</td>
+                                    <td>{{extintor.tipoExtintor}}</td>
+                                    <td>{{extintor.pesoExtintor}}</td>
+                                </tr>
+                                {% endfor %}
 
 
-                        </tbody>
+                            </tbody>
 
-                        <!-- Footer de la tabla (Donde estaran los enunciados principales pero en la parte inferior) -->
-                        <tfoot>
-                            <tr>
-                                <th></th>
-                                <th>Id Activo</th>
-                                <th>Serial Extintor</th>
-                                <th>Color Extintor</th>
-                                <th>Ubicación del Extintor</th>
-                                <th>Tipo de Extintor</th>
-                                <th>Peso del Extintor</th>
-                            </tr>
-                        </tfoot>
-                    </table>
+                            <!-- Footer de la tabla (Donde estaran los enunciados principales pero en la parte inferior) -->
+                            <tfoot>
+                                <tr>
+                                    <th></th>
+                                    <th>Id Activo</th>
+                                    <th>Serial Extintor</th>
+                                    <th>Color Extintor</th>
+                                    <th>Ubicación del Extintor</th>
+                                    <th>Tipo de Extintor</th>
+                                    <th>Peso del Extintor</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- EQUIPOS DE OFICINA ------------------------------------------------------------------------------- -->
-    
-    <div style="display: none;" id="table-oficina">
-        <div class="d-flex flex-column" >
-            <div class="h3 ms-5">Equipos de Oficina</div>
-            <div class="d-flex justify-content-center pb-4 mb-4 m-2 w-100 p-3">
-                <!-- Inicio del segundo contenedor de la página-->
-                <!-- Inicio de la Tabla usando (DataTable) -->
-                <div class="overflow-auto shadow-lg p-4
-            height-config-tabla1 m-2 w-100" style="height: 300px;">
-                    <table id="example3" class="table-striped display nowrap">
+        <!-- EQUIPOS DE OFICINA ------------------------------------------------------------------------------- -->
+        <div style="display: none;" id="table-oficina">
+            <div class="d-flex flex-column">
+                <div class="h3 ms-5">Equipos de Oficina</div>
+                <div class="d-flex justify-content-center pb-4 mb-4 m-2 w-100
+                    p-3">
+                    <!-- Inicio del segundo contenedor de la página-->
+                    <!-- Inicio de la Tabla usando (DataTable) -->
+                    <div class="overflow-auto shadow-lg p-4
+                        height-config-tabla1 m-2 w-100" style="height: 300px;">
+                        <table id="example3" class="table-striped display
+                            nowrap">
 
-                        <!-- Cabecera de la tabla (Donde estaran los enunciados principales)-->
-                        <thead>
-                            <tr>
-                                <th></th>
-                                <th>Id Activo</th>
-                                <th>Serial Equipo</th>
-                                <th>Marca Equipo</th>
-                                <th>Color Equipo</th>
-                                <th>Sistema Operativo</th>
-                                <th>Ram del Equipo</th>
-                                <th>Memoria del Equipo</th>
-                                <th>Ubicación del Equipo</th>
-                                <th>Componentes del Equipo</th>
-                            </tr>
-                        </thead>
+                            <!-- Cabecera de la tabla (Donde estaran los enunciados principales)-->
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Id Activo</th>
+                                    <th>Serial Equipo</th>
+                                    <th>Marca Equipo</th>
+                                    <th>Color Equipo</th>
+                                    <th>Sistema Operativo</th>
+                                    <th>Ram del Equipo</th>
+                                    <th>Memoria del Equipo</th>
+                                    <th>Ubicación del Equipo</th>
+                                    <th>Componentes del Equipo</th>
+                                </tr>
+                            </thead>
 
-                        <!-- Cuerpo de la tabla (donde estara la informacion que se mostrara de los activos) -->
-                        <tbody>
+                            <!-- Cuerpo de la tabla (donde estara la informacion que se mostrara de los activos) -->
+                            <tbody>
 
-                            {% for equipo in equipos %}
-                            <tr>
-                                <!-- Imagen de un ojo con el cual seleccionara el activo y mostrara en la parte de abajo toda la informacion
+                                {% for equipo in equipos %}
+                                <tr>
+                                    <!-- Imagen de un ojo con el cual seleccionara el activo y mostrara en la parte de abajo toda la informacion
                     para editar, guardar o eliminar/desabilitar la información -->
-                                <td>
-                                    <form action="" method="POST" class="col-4">
-                                        {% csrf_token %}
-                                        <input type="hidden" name="pk_equipo" value="{{equipo.id}}">
-                                        <button class="btn btn-block" onClick="editarEquipo()" name="editar-equipo-oficina">
-                                            <i class="bi bi-eye-fill"></i></button>
-                                    </form>
-                                </td>
-                                <td class="text-center">{{equipo.id}}</td>
-                                <td>{{equipo.serialEquipo}}</td>
-                                <td>{{equipo.marcaEquipo}}</td>
-                                <td>{{equipo.colorEquipo}}</td>
-                                <td>{{equipo.sistemaOperativo}}</td>
-                                <td>{{equipo.ramEquipo}}</td>
-                                <td>{{equipo.memoriaEquipo}}</td>
-                                <td>{{equipo.ubicacionEquipo}}</td>
-                                <td>{{equipo.componentesAdicionales}}</td>
-                            </tr>
-                            {% endfor %}
+                                    <td>
+                                        <form action="" method="POST"
+                                            class="col-4">
+                                            {% csrf_token %}
+                                            <input type="hidden"
+                                                name="pk_equipo"
+                                                value="{{equipo.id}}">
+                                            <button class="btn btn-block"
+                                                onClick="editarEquipo()"
+                                                name="editar-equipo-oficina">
+                                                <i class="bi bi-eye-fill"></i></button>
+                                        </form>
+                                    </td>
+                                    <td class="text-center">{{equipo.id}}</td>
+                                    <td>{{equipo.serialEquipo}}</td>
+                                    <td>{{equipo.marcaEquipo}}</td>
+                                    <td>{{equipo.colorEquipo}}</td>
+                                    <td>{{equipo.sistemaOperativo}}</td>
+                                    <td>{{equipo.ramEquipo}}</td>
+                                    <td>{{equipo.memoriaEquipo}}</td>
+                                    <td>{{equipo.ubicacionEquipo}}</td>
+                                    <td>{{equipo.componentesAdicionales}}</td>
+                                </tr>
+                                {% endfor %}
 
 
-                        </tbody>
+                            </tbody>
 
-                        <!-- Footer de la tabla (Donde estaran los enunciados principales pero en la parte inferior) -->
-                        <tfoot>
-                            <tr>
-                                <th></th>
-                                <th>Id Activo</th>
-                                <th>Serial Equipo</th>
-                                <th>Marca Equipo</th>
-                                <th>Color Equipo</th>
-                                <th>Sistema Operativo</th>
-                                <th>Ram del Equipo</th>
-                                <th>Memoria del Equipo</th>
-                                <th>Ubicación del Equipo</th>
-                                <th>Componentes del Equipo</th>
-                            </tr>
-                        </tfoot>
-                    </table>
+                            <!-- Footer de la tabla (Donde estaran los enunciados principales pero en la parte inferior) -->
+                            <tfoot>
+                                <tr>
+                                    <th></th>
+                                    <th>Id Activo</th>
+                                    <th>Serial Equipo</th>
+                                    <th>Marca Equipo</th>
+                                    <th>Color Equipo</th>
+                                    <th>Sistema Operativo</th>
+                                    <th>Ram del Equipo</th>
+                                    <th>Memoria del Equipo</th>
+                                    <th>Ubicación del Equipo</th>
+                                    <th>Componentes del Equipo</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
         <!-- Contenedor donde apareceran los datos básicos del activo para confirmar que selecciono bien. -->
-<div class="border-bottom border-top border-dark mb-4 pb-5 w-100">
-
-    <!-- Titulo Activo Seleccionado -->
-    <div class="d-flex justify-content-center p-2
-        mb-4 w-100 pt-4 border-bottom border-dark">
-        <h2>Activo Seleccionado</h2>
-    </div>
+        <div class="border-bottom border-top border-dark mb-4 pb-5 w-100">
 
 
-    <!-- BOTONES PARA VEHICULO -->
-    <div id="div-cajas2" class="p-3 mt-5 border-dark">
-        <div class="d-inline-block width-20 ms-1 me-5">
-            <label for="basic-url" class="form-label w-75 p-2">Id Activo</label>
-            <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control" disabled id="" value="{{vehiculo.id}}" aria-describedby="basic-addon3">
+            {% if vehiculo %}
+
+
+
+            <!-- Titulo Activo Seleccionado -->
+            <div class="d-flex justify-content-center p-2
+                mb-4 w-100 pt-4 border-bottom border-dark">
+                <h2>Activo Seleccionado</h2>
             </div>
+
+
+            <!-- BOTONES PARA VEHICULO -->
+            <div id="div-cajas2" class="p-3 mt-5 border-dark">
+                <div class="d-inline-block width-20 ms-1 me-5">
+                    <label for="basic-url" class="form-label w-75 p-2">Id Activo</label>
+                    <div class="input-group mb-3 w-100">
+                        <input type="text" class="form-control" disabled id=""
+                            value="{{vehiculo.id}}"
+                            aria-describedby="basic-addon3">
+                    </div>
+                </div>
+
+                <div class="d-inline-block width-20 ms-1 me-5">
+                    <label for="basic-url" class="form-label w-75 p-2">Marca del
+                        Vehículo</label>
+                    <div class="input-group mb-3 w-100">
+                        <input type="text" class="form-control" disabled id=""
+                            value="{{vehiculo.marcaVehiculo}}"
+                            aria-describedby="basic-addon3">
+                    </div>
+                </div>
+
+                <div class="d-inline-block width-20 ms-1 me-5">
+                    <label for="basic-url" class="form-label w-75 p-2">Modelo
+                        del Vehículo</label>
+                    <div class="input-group mb-3 w-100">
+                        <input type="text" class="form-control" disabled id=""
+                            value="{{vehiculo.modeloVehiculo}}"
+                            aria-describedby="basic-addon3">
+                    </div>
+                </div>
+
+                <div class="d-inline-block width-20 ms-1 me-5">
+                    <label for="basic-url" class="form-label w-75 p-2">Placa del
+                        Vehículo</label>
+                    <div class="input-group mb-3 w-100">
+                        <input type="text" class="form-control" disabled id=""
+                            value="{{vehiculo.placaVehiculo}}"
+                            aria-describedby="basic-addon3">
+                    </div>
+                </div>
+
+                <div class="d-inline-block width-20 ms-1 me-5">
+                    <label for="basic-url" class="form-label w-75 p-2">Color del
+                        Vehículo</label>
+                    <div class="input-group mb-3 w-100">
+                        <input type="text" class="form-control" disabled id=""
+                            value="{{vehiculo.colorVehiculo}}"
+                            aria-describedby="basic-addon3">
+                    </div>
+                </div>
+
+                <div class="d-inline-block width-20 ms-1 me-5">
+                    <label for="basic-url" class="form-label w-75 p-2">Tipo de
+                        Combustible</label>
+                    <div class="input-group mb-3 w-100">
+                        <input type="text" class="form-control" disabled id=""
+                            value="{{vehiculo.tipoCombustible}}"
+                            aria-describedby="basic-addon3">
+                    </div>
+                </div>
+
+
+                <div class="d-inline-block width-20 ms-1 me-5">
+                    <label for="basic-url" class="form-label w-75 p-2">Persona a
+                        Cargo</label>
+                    <div class="input-group mb-3 w-100">
+                        <input type="text" class="form-control" disabled id=""
+                            value="{{vehiculo.personaEncargadaVehiculo}}"
+                            aria-describedby="basic-addon3">
+                    </div>
+                </div>
+            </div>
+
+            {% elif extintor %}
+
+            <!-- Titulo Activo Seleccionado -->
+            <div class="d-flex justify-content-center p-2
+                mb-4 w-100 pt-4 border-bottom border-dark">
+                <h2>Activo Seleccionado</h2>
+            </div>
+            <!-- BOTONES PARA EXTINTOR -->
+            <div id="div-cajas2" class="p-3 mt-5 border-top border-dark">
+                <div class="d-inline-block width-20 ms-1 me-5">
+                    <label for="basic-url" class="form-label w-75 p-2">Id Activo</label>
+                    <div class="input-group mb-3 w-100">
+                        <input type="text" class="form-control" disabled id=""
+                            value="{{extintor.id}}"
+                            aria-describedby="basic-addon3">
+                    </div>
+                </div>
+
+                <div class="d-inline-block width-20 ms-1 me-5">
+                    <label for="basic-url" class="form-label w-75 p-2">Serial
+                        del Extintor</label>
+                    <div class="input-group mb-3 w-100">
+                        <input type="text" class="form-control" disabled id=""
+                            value="{{extintor.serialExtintor}}"
+                            aria-describedby="basic-addon3">
+                    </div>
+                </div>
+
+                <div class="d-inline-block width-20 ms-1 me-5">
+                    <label for="basic-url" class="form-label w-75 p-2">Color del
+                        Extintor</label>
+                    <div class="input-group mb-3 w-100">
+                        <input type="text" class="form-control" disabled id=""
+                            value="{{extintor.colorExtintor}}"
+                            aria-describedby="basic-addon3">
+                    </div>
+                </div>
+
+                <div class="d-inline-block width-20 ms-1 me-5">
+                    <label for="basic-url" class="form-label w-75 p-2">Tipo de
+                        Extintor</label>
+                    <div class="input-group mb-3 w-100">
+                        <input type="text" class="form-control" disabled id=""
+                            value="{{extintor.tipoExtintor}}"
+                            aria-describedby="basic-addon3">
+                    </div>
+                </div>
+
+                <div class="d-inline-block width-20 ms-1 me-5">
+                    <label for="basic-url" class="form-label w-75 p-2">Peso del
+                        Extintor</label>
+                    <div class="input-group mb-3 w-100">
+                        <input type="text" class="form-control" disabled id=""
+                            value="{{extintor.pesoExtintor}}"
+                            aria-describedby="basic-addon3">
+                    </div>
+                </div>
+            </div>
+
+            {% elif equipo %}
+
+            <!-- Titulo Activo Seleccionado -->
+            <div class="d-flex justify-content-center p-2
+                mb-4 w-100 pt-4 border-bottom border-dark">
+                <h2>Activo Seleccionado</h2>
+            </div>
+
+            <!-- BOTONES PARA EQUIPOS DE OFICINA -->
+            <div id="div-cajas2" class="p-3 mt-5 border-top border-dark">
+                <div class="d-inline-block width-20 ms-1 me-5">
+                    <label for="basic-url" class="form-label w-75 p-2">Id Activo</label>
+                    <div class="input-group mb-3 w-100">
+                        <input type="text" class="form-control" disabled
+                            disabled id="" value="{{equipo.id}}"
+                            aria-describedby="basic-addon3">
+                    </div>
+                </div>
+
+                <div class="d-inline-block width-20 ms-1 me-5">
+                    <label for="basic-url" class="form-label w-75 p-2">Marca
+                        Equipo</label>
+                    <div class="input-group mb-3 w-100">
+                        <input type="text" class="form-control" disabled id=""
+                            value="{{equipo.marcaEquipo}}"
+                            aria-describedby="basic-addon3">
+                    </div>
+                </div>
+
+                <div class="d-inline-block width-20 ms-1 me-5">
+                    <label for="basic-url" class="form-label w-75 p-2">Color
+                        Equipo</label>
+                    <div class="input-group mb-3 w-100">
+                        <input type="text" class="form-control" disabled id=""
+                            value="{{equipo.colorEquipo}}"
+                            aria-describedby="basic-addon3">
+                    </div>
+                </div>
+
+                <div class="d-inline-block width-20 ms-1 me-5">
+                    <label for="basic-url" class="form-label w-75 p-2">Sistema
+                        Operativo</label>
+                    <div class="input-group mb-3 w-100">
+                        <input type="text" class="form-control" disabled id=""
+                            value="{{equipo.sistemaOperativo}}"
+                            aria-describedby="basic-addon3">
+                    </div>
+                </div>
+
+                <div class="d-inline-block width-20 ms-1 me-5">
+                    <label for="basic-url" class="form-label w-75 p-2">Ram del
+                        Equipo</label>
+                    <div class="input-group mb-3 w-100">
+                        <input type="text" class="form-control" disabled id=""
+                            value="{{equipo.ramEquipo}}"
+                            aria-describedby="basic-addon3">
+                    </div>
+                </div>
+
+                <div class="d-inline-block width-20 ms-1 me-5">
+                    <label for="basic-url" class="form-label w-75 p-2">Memoria
+                        del Equipo</label>
+                    <div class="input-group mb-3 w-100">
+                        <input type="text" class="form-control" disabled id=""
+                            value="{{equipo.memoriaEquipo}}"
+                            aria-describedby="basic-addon3">
+                    </div>
+                </div>
+
+                <div class="d-inline-block width-20 ms-1 me-5">
+                    <label for="basic-url" class="form-label w-75 p-2">Componentes
+                        del Equipo</label>
+                    <div class="input-group mb-3 w-100">
+                        <textarea type="text" class="form-control" disabled
+                            id="" value="{{equipo.componentesAdicionales}}"
+                            aria-describedby="basic-addon3"></textarea>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
         </div>
 
-        <div class="d-inline-block width-20 ms-1 me-5">
-            <label for="basic-url" class="form-label w-75 p-2">Marca del Vehículo</label>
-            <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control" disabled id="" value="{{vehiculo.marcaVehiculo}}" aria-describedby="basic-addon3">
+
+
+        {% if vehiculo %}
+
+        <div class="w-100">
+
+            <!-- Título Registrar Mantenimiento -->
+            <div class="text-center w-100">
+                <h2>Registrar Mantenimiento</h2>
             </div>
         </div>
+        <form action="" method="POST" enctype="multipart/form-data">
+            <input type="hidden" value="{{vehiculo.id}}" name="pk_vehiculo">
+            <div class="mt-4 border-dark pt-4 w-100" id="m-vehiculo">
 
-        <div class="d-inline-block width-20 ms-1 me-5">
-            <label for="basic-url" class="form-label w-75 p-2">Modelo del Vehículo</label>
-            <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control" disabled id="" value="{{vehiculo.modeloVehiculo}}" aria-describedby="basic-addon3">
+                {% csrf_token %}
+
+                <div class="d-inline-block width-20 ms-1
+                    me-5">
+                    <label for="basic-url" class="form-label
+                        w-75 ps-2">FECHA DEL MANTENIMIENTO</label>
+                    <div class="input-group mb-3 w-100">
+                        <input type="date" name="fechaMantenimiento"
+                            class="form-control"
+                            id="id_fechaMantenimiento"
+                            aria-describedby="basic-addon3">
+                    </div>
+                </div>
+
+                <div class="d-inline-block width-20 ms-1
+                    me-5">
+                    <label for="basic-url" class="form-label
+                        w-75 ps-2">LUGAR DEL MANTENIMIENTO</label>
+                    <div class="input-group mb-3 w-100">
+                        <input type="text" name="lugarMantenimiento"
+                            class="form-control"
+                            id="id_lugarMantenimiento"
+                            aria-describedby="basic-addon3">
+                    </div>
+                </div>
+
+                <div class="d-inline-block width-20 ms-1
+                    me-5">
+                    <label for="basic-url" class="form-label
+                        w-75 ps-2">CIUDAD DEL MANTENIMIENTO</label>
+                    <div class="input-group mb-3 w-100">
+                        <input type="text"
+                            class="form-control" name="ciudadMantenimiento"
+                            id="id_ciudadMantenimiento"
+                            aria-describedby="basic-addon3">
+                    </div>
+                </div>
+
+                <div class="d-inline-block width-20 ms-1
+                    me-5">
+                    <label for="basic-url" class="form-label
+                        w-75 ps-2">KILOMETRAJE DEL VEHÍCULO</label>
+                    <div class="input-group mb-3 w-100">
+                        <input type="text"
+                            class="form-control" name="kilometrajeMantenimiento"
+                            id="id_kilometrajeMantenimiento"
+                            aria-describedby="basic-addon3">
+                    </div>
+                </div>
+
+                <div class="d-inline-block width-20 ms-1
+                    me-5">
+                    <label for="basic-url" class="form-label
+                        w-75 ps-2">NUMERO DE FACTURA</label>
+                    <div class="input-group mb-3 w-100">
+                        <input type="text"
+                            class="form-control" name="numeroFactura"
+                            id="id_numeroFactura"
+                            aria-describedby="basic-addon3">
+                    </div>
+                </div>
+
+                <div class="d-inline-block width-20 ms-1
+                    me-5">
+                    <label for="basic-url" class="form-label
+                        w-75 ps-2">VALOR DEL MANTENIMIENTO</label>
+                    <div class="input-group mb-3 w-100">
+                        <input type="text"
+                            class="form-control" name="valorMantenimiento"
+                            id="id_valorMantenimiento"
+                            aria-describedby="basic-addon3">
+                    </div>
+                </div>
+
+                <!-- Cuadro de observaciones donde se diligenciara que mas se le hizo en el mantenimeinto al activo. -->
+                <div class="mt-5 pt-4 border-top border-dark w-100
+                    pe-3">
+                    <!-- OBSERVACIONES-->
+                    <div class="d-inline-block ms-1 me-5 w-100">
+                        <label for="basic-url" class="form-label
+                            ps-2 fs-4 w-100">DESCRIPCIÓN DEL
+                            MANTENIMIENTO</label>
+                        <div class="mb-3 w-100">
+                            <textarea id="id_descripcionMantenimiento"
+                                name="descripcionMantenimiento"
+                                class="form-control
+                                border
+                                border-dark w-100" style="height:
+                                200px; resize: none;"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <br>
+
+            <!-- Cuadro donde se adjuntara un archivo preferiblemente en pdf e la factura del mantenimiento. -->
+            <!-- ADJUNTAR ARCHIVO-->
+            <div class="w-100">
+                <label for="formFileLg"
+                    class="form-label ps-2 w-100">Adjuntar
+                    Archivo del Mantenimiento Realizado</label>
+                <input class="form-control w-75
+                    form-control-lg" style="font-size: 14px;"
+                    id="id_adjuntarArchivoMantenimiento"
+                    name="adjuntarArchivoMantenimiento"
+                    type="file">
+            </div>
+
+            <!-- Salto de línea -->
+            <br>
+            <br>
+
+            <!-- Botón de registrar el mantenimiento junto con su modal para validad el registro. -->
+            <div class="text-center w-100"> <!-- BOTON DE ACCIÓN-->
+                <!-- USO DE MODAL CON BOOTSTRAP 5 PARA EL BOTON GENERAR RUTA-->
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-success
+                    fs-5 btn-registrar-mantenimiento"
+                    data-bs-toggle="modal"
+                    data-bs-target="#modal-registrar-mantenimiento">
+                    REGISTRAR
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade"
+                    id="modal-registrar-mantenimiento"
+                    data-bs-backdrop="static"
+                    data-bs-keyboard="false"
+                    tabindex="-1"
+                    aria-labelledby="staticBackdropLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title"
+                                    id="staticBackdropLabel">REGISTRAR
+                                    MANTENIMIENTO</h5>
+                                <button type="button"
+                                    class="btn-close"
+                                    data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body
+                                text-start">
+                                El mantenimiento se
+                                registrara con los datos
+                                Ingresados con Anterioridad.
+                                ¿Esta seguro de hacer el
+                                registro?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button"
+                                    class="btn
+                                    btn-secondary"
+                                    data-bs-dismiss="modal">CANCELAR</button>
+                                <button
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#modal-registrar-mantenimiento2"
+                                    data-bs-dismiss="modal"
+                                    class="btn
+                                    btn-primary"
+                                    name="r-mantenimiento-vehiculo">ACEPTAR</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        {% elif extintor %}
+
+        <div class="w-100">
+
+            <!-- Título Registrar Mantenimiento -->
+            <div class="text-center w-100">
+                <h2>Registrar Mantenimiento</h2>
             </div>
         </div>
+        <form action="" method="POST" enctype="multipart/form-data">
+            <input type="hidden" value="{{extintor.id}}" name="pk_extintor">
+            <div class="mt-4 border-dark pt-4 w-100" id="m-extintor">
 
-        <div class="d-inline-block width-20 ms-1 me-5">
-            <label for="basic-url" class="form-label w-75 p-2">Placa del Vehículo</label>
-            <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control" disabled id="" value="{{vehiculo.placaVehiculo}}" aria-describedby="basic-addon3">
+                {% csrf_token %}
+                <div class="d-inline-block width-20 ms-1
+                    me-5">
+                    <label for="basic-url" class="form-label
+                        w-75 ps-2">FECHA DEL MANTENIMIENTO</label>
+                    <div class="input-group mb-3 w-100">
+                        <input type="date" name="fechaMantenimiento"
+                            class="form-control"
+                            id="id_fechaMantenimiento"
+                            aria-describedby="basic-addon3">
+                    </div>
+                </div>
+
+                <div class="d-inline-block width-20 ms-1
+                    me-5">
+                    <label for="basic-url" class="form-label
+                        w-75 ps-2">LUGAR DEL MANTENIMIENTO</label>
+                    <div class="input-group mb-3 w-100">
+                        <input type="text" name="lugarMantenimiento"
+                            class="form-control"
+                            id="id_lugarMantenimiento"
+                            aria-describedby="basic-addon3">
+                    </div>
+                </div>
+
+                <div class="d-inline-block width-20 ms-1
+                    me-5">
+                    <label for="basic-url" class="form-label
+                        w-75 ps-2">CIUDAD DEL MANTENIMIENTO</label>
+                    <div class="input-group mb-3 w-100">
+                        <input type="text"
+                            class="form-control" name="ciudadMantenimiento"
+                            id="id_ciudadMantenimiento"
+                            aria-describedby="basic-addon3">
+                    </div>
+                </div>
+
+                <div class="d-inline-block width-20 ms-1
+                    me-5">
+                    <label for="basic-url" class="form-label w-75 ps-2">¿Extintor
+                        usado?</label>
+                    <div class="input-group mb-3 w-100">
+                        <select id="id_usado" class="form-select" name="usado"
+                            aria-label="tipo-activo">
+                            <option selected disabled>¿Extintor usado?</option>
+                            <option value="SI">Si</option>
+                            <option value="NO">No</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="d-inline-block width-20 ms-1
+                    me-5">
+                    <label for="basic-url" class="form-label
+                        w-75 ps-2">NUMERO DE FACTURA</label>
+                    <div class="input-group mb-3 w-100">
+                        <input type="text"
+                            class="form-control" name="numeroFactura"
+                            id="id_numeroFactura"
+                            aria-describedby="basic-addon3">
+                    </div>
+                </div>
+
+                <div class="d-inline-block width-20 ms-1
+                    me-5">
+                    <label for="basic-url" class="form-label
+                        w-75 ps-2">VALOR DEL MANTENIMIENTO</label>
+                    <div class="input-group mb-3 w-100">
+                        <input type="text"
+                            class="form-control" name="valorMantenimiento"
+                            id="id_valorMantenimiento"
+                            aria-describedby="basic-addon3">
+                    </div>
+                </div>
+
+                <!-- Cuadro de observaciones donde se diligenciara que mas se le hizo en el mantenimeinto al activo. -->
+                <div class="mt-5 pt-4 border-top border-dark w-100
+                    pe-3">
+                    <!-- OBSERVACIONES-->
+                    <div class="d-inline-block ms-1 me-5 w-100">
+                        <label for="basic-url" class="form-label
+                            ps-2 fs-4 w-100">DESCRIPCIÓN DEL
+                            MANTENIMIENTO</label>
+                        <div class="mb-3 w-100">
+                            <textarea id="id_descripcionMantenimiento"
+                                name="descripcionMantenimiento"
+                                class="form-control
+                                border
+                                border-dark w-100" style="height:
+                                200px; resize: none;"></textarea>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
 
-        <div class="d-inline-block width-20 ms-1 me-5">
-            <label for="basic-url" class="form-label w-75 p-2">Color del Vehículo</label>
-            <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control" disabled id="" value="{{vehiculo.colorVehiculo}}" aria-describedby="basic-addon3">
+            <br>
+
+            <!-- Cuadro donde se adjuntara un archivo preferiblemente en pdf e la factura del mantenimiento. -->
+            <!-- ADJUNTAR ARCHIVO-->
+            <div class="w-100">
+                <label for="formFileLg"
+                    class="form-label ps-2 w-100">Adjuntar
+                    Archivo del Mantenimiento Realizado</label>
+                <input class="form-control w-75
+                    form-control-lg" style="font-size: 14px;"
+                    id="id_adjuntarArchivoMantenimiento"
+                    name="adjuntarArchivoMantenimiento"
+                    type="file">
             </div>
-        </div>
 
-        <div class="d-inline-block width-20 ms-1 me-5">
-            <label for="basic-url" class="form-label w-75 p-2">Tipo de Combustible</label>
-            <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control" disabled id="" value="{{vehiculo.tipoCombustible}}" aria-describedby="basic-addon3">
+            <!-- Salto de línea -->
+            <br>
+            <br>
+
+            <!-- Botón de registrar el mantenimiento junto con su modal para validad el registro. -->
+            <div class="text-center w-100"> <!-- BOTON DE ACCIÓN-->
+                <!-- USO DE MODAL CON BOOTSTRAP 5 PARA EL BOTON GENERAR RUTA-->
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-success
+                    fs-5 btn-registrar-mantenimiento"
+                    data-bs-toggle="modal"
+                    data-bs-target="#modal-registrar-mantenimiento">
+                    REGISTRAR
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade"
+                    id="modal-registrar-mantenimiento"
+                    data-bs-backdrop="static"
+                    data-bs-keyboard="false"
+                    tabindex="-1"
+                    aria-labelledby="staticBackdropLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title"
+                                    id="staticBackdropLabel">REGISTRAR
+                                    MANTENIMIENTO</h5>
+                                <button type="button"
+                                    class="btn-close"
+                                    data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body
+                                text-start">
+                                El mantenimiento se
+                                registrara con los datos
+                                Ingresados con Anterioridad.
+                                ¿Esta seguro de hacer el
+                                registro?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button"
+                                    class="btn
+                                    btn-secondary"
+                                    data-bs-dismiss="modal">CANCELAR</button>
+                                <button
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#modal-registrar-mantenimiento2"
+                                    data-bs-dismiss="modal"
+                                    class="btn
+                                    btn-primary"
+                                    name="r-mantenimiento-extintor">ACEPTAR</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
+        </form>
 
+        {% elif equipo %}
 
-        <div class="d-inline-block width-20 ms-1 me-5">
-            <label for="basic-url" class="form-label w-75 p-2">Persona a Cargo</label>
-            <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control" disabled id="" value="{{vehiculo.personaEncargadaVehiculo}}" aria-describedby="basic-addon3">
-            </div>
-        </div>
-    </div>
-
-
-    <!-- BOTONES PARA EXTINTOR -->
-    <div id="div-cajas2" class="p-3 mt-5 border-top border-dark">
-        <div class="d-inline-block width-20 ms-1 me-5">
-            <label for="basic-url" class="form-label w-75 p-2">Id Activo</label>
-            <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control" disabled id="" value="{{extintor.id}}" aria-describedby="basic-addon3">
-            </div>
-        </div>
-
-        <div class="d-inline-block width-20 ms-1 me-5">
-            <label for="basic-url" class="form-label w-75 p-2">Serial del Extintor</label>
-            <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control" disabled id="" value="{{extintor.serialExtintor}}" aria-describedby="basic-addon3">
-            </div>
-        </div>
-
-        <div class="d-inline-block width-20 ms-1 me-5">
-            <label for="basic-url" class="form-label w-75 p-2">Color del Extintor</label>
-            <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control" disabled id="" value="{{extintor.colorExtintor}}" aria-describedby="basic-addon3">
-            </div>
-        </div>
-
-        <div class="d-inline-block width-20 ms-1 me-5">
-            <label for="basic-url" class="form-label w-75 p-2">Tipo de Extintor</label>
-            <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control" disabled id="" value="{{extintor.tipoExtintor}}" aria-describedby="basic-addon3">
-            </div>
-        </div>
-
-        <div class="d-inline-block width-20 ms-1 me-5">
-            <label for="basic-url" class="form-label w-75 p-2">Peso del Extintor</label>
-            <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control" disabled id="" value="{{extintor.pesoExtintor}}" aria-describedby="basic-addon3">
-            </div>
-        </div>
-    </div>
-
-
-    <!-- BOTONES PARA EQUIPOS DE OFICINA -->
-    <div id="div-cajas2" class="p-3 mt-5 border-top border-dark">
-        <div class="d-inline-block width-20 ms-1 me-5">
-            <label for="basic-url" class="form-label w-75 p-2">Id Activo</label>
-            <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control" disabled disabled id="" value="{{equipo.id}}" aria-describedby="basic-addon3">
-            </div>
-        </div>
-
-        <div class="d-inline-block width-20 ms-1 me-5">
-            <label for="basic-url" class="form-label w-75 p-2">Marca Equipo</label>
-            <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control" disabled id="" value="{{equipo.marcaEquipo}}" aria-describedby="basic-addon3">
-            </div>
-        </div>
-
-        <div class="d-inline-block width-20 ms-1 me-5">
-            <label for="basic-url" class="form-label w-75 p-2">Color Equipo</label>
-            <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control" disabled id="" value="{{equipo.colorEquipo}}" aria-describedby="basic-addon3">
-            </div>
-        </div>
-
-        <div class="d-inline-block width-20 ms-1 me-5">
-            <label for="basic-url" class="form-label w-75 p-2">Sistema Operativo</label>
-            <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control" disabled id="" value="{{equipo.sistemaOperativo}}" aria-describedby="basic-addon3">
-            </div>
-        </div>
-
-        <div class="d-inline-block width-20 ms-1 me-5">
-            <label for="basic-url" class="form-label w-75 p-2">Ram del Equipo</label>
-            <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control" disabled id="" value="{{equipo.ramEquipo}}" aria-describedby="basic-addon3">
-            </div>
-        </div>
-
-        <div class="d-inline-block width-20 ms-1 me-5">
-            <label for="basic-url" class="form-label w-75 p-2">Memoria del Equipo</label>
-            <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control" disabled id="" value="{{equipo.memoriaEquipo}}" aria-describedby="basic-addon3">
-            </div>
-        </div>
-
-        <div class="d-inline-block width-20 ms-1 me-5">
-            <label for="basic-url" class="form-label w-75 p-2">Componentes del Equipo</label>
-            <div class="input-group mb-3 w-100">
-                <textarea type="text" class="form-control" disabled id="" value="{{equipo.componentesAdicionales}}" aria-describedby="basic-addon3"></textarea>
-            </div>
-        </div>
-    </div>
-</div>
-
-        <!-- Contenedor de checkbox tipo switch para seleccionar algunas opciones del mantenimiento del activo -->
         <div class="w-100">
 
             <!-- Título Registrar Mantenimiento -->
@@ -488,205 +953,191 @@
             </div>
         </div>
 
-        <!-- Cuadro donde se continuara con el registro del mantenimiento con informacion mas puntual -->
-        <div class="mt-4 border-dark pt-4 w-100">
-            <div class="d-inline-block width-20 ms-1
-                me-5">
-                <label for="basic-url" class="form-label
-                    w-75 ps-2">N° Mantenimiento</label>
-                <div class="input-group mb-3 w-100">
-                    <input type="text"
-                        class="form-control"
-                        id="numero-mantenimiento-registrar-mantenimiento"
-                        aria-describedby="basic-addon3"
-                        placeholder="001">
-                </div>
-            </div>
+        <form action="" method="POST" enctype="multipart/form-data">
+            <input type="hidden" value="{{equipo.id}}" name="pk_equipo">
+            <div class="mt-4 border-dark pt-4 w-100" id="m-equipo">
 
-            <div class="d-inline-block width-20 ms-1
-                me-5">
-                <label for="basic-url" class="form-label
-                    w-75 ps-2">FECHA DEL MANTENIMIENTO</label>
-                <div class="input-group mb-3 w-100">
-                    <input type="date" name="fechaMantenimiento"
-                        class="form-control"
-                        id="id_fechaMantenimiento"
-                        aria-describedby="basic-addon3">
-                </div>
-            </div>
+                {% csrf_token %}
 
-            <div class="d-inline-block width-20 ms-1
-                me-5">
-                <label for="basic-url" class="form-label
-                    w-75 ps-2">LUGAR DEL MANTENIMIENTO</label>
-                <div class="input-group mb-3 w-100">
-                    <input type="text" name="lugarMantenimiento"
-                        class="form-control"
-                        id="id_lugarMantenimiento"
-                        aria-describedby="basic-addon3">
-                </div>
-            </div>
-
-            <div class="d-inline-block width-20 ms-1
-                me-5">
-                <label for="basic-url" class="form-label
-                    w-75 ps-2">CIUDAD DEL MANTENIMIENTO</label>
-                <div class="input-group mb-3 w-100">
-                    <input type="text"
-                        class="form-control" name="ciudadMantenimiento"
-                        id="id_ciudadMantenimiento"
-                        aria-describedby="basic-addon3">
-                </div>
-            </div>
-
-            <div class="d-inline-block width-20 ms-1
-                me-5">
-                <label for="basic-url" class="form-label
-                    w-75 ps-2">KILOMETRAJE DEL VEHÍCULO</label>
-                <div class="input-group mb-3 w-100">
-                    <input type="text"
-                        class="form-control" name="kilometrajeMantenimiento"
-                        id="id_kilometrajeMantenimiento"
-                        aria-describedby="basic-addon3">
-                </div>
-            </div>
-
-            <div class="d-inline-block width-20 ms-1
-                me-5">
-                <label for="basic-url" class="form-label
-                    w-75 ps-2">NUMERO DE FACTURA</label>
-                <div class="input-group mb-3 w-100">
-                    <input type="text"
-                        class="form-control" name="numeroFactura"
-                        id="id_numeroFactura"
-                        aria-describedby="basic-addon3">
-                </div>
-            </div>
-
-            <div class="d-inline-block width-20 ms-1
-                me-5">
-                <label for="basic-url" class="form-label
-                    w-75 ps-2">VALOR DEL MANTENIMIENTO</label>
-                <div class="input-group mb-3 w-100">
-                    <input type="text"
-                        class="form-control" name="valorMantenimiento"
-                        id="id_valorMantenimiento"
-                        aria-describedby="basic-addon3">
-                </div>
-            </div>
-        
-            <!-- Cuadro de observaciones donde se diligenciara que mas se le hizo en el mantenimeinto al activo. -->
-            <div class="mt-5 pt-4 border-top border-dark w-100
-                pe-3">
-                <!-- OBSERVACIONES-->
-                <div class="d-inline-block ms-1 me-5 w-100">
+                <div class="d-inline-block width-20 ms-1
+                    me-5">
                     <label for="basic-url" class="form-label
-                        ps-2 fs-4 w-100">DESCRIPCIÓN DEL
-                        MANTENIMIENTO</label>
-                    <div class="mb-3 w-100">
-                        <textarea id="id_descripcionMantenimiento" name="descripcionMantenimiento" class="form-control border
-                            border-dark w-100" style="height:
-                            200px; resize: none;"></textarea>
+                        w-75 ps-2">FECHA DEL MANTENIMIENTO</label>
+                    <div class="input-group mb-3 w-100">
+                        <input type="date" name="fechaMantenimiento"
+                            class="form-control"
+                            id="id_fechaMantenimiento"
+                            aria-describedby="basic-addon3">
                     </div>
                 </div>
-            </div>
-        </div>
 
-        <br>
+                <div class="d-inline-block width-20 ms-1
+                    me-5">
+                    <label for="basic-url" class="form-label
+                        w-75 ps-2">LUGAR DEL MANTENIMIENTO</label>
+                    <div class="input-group mb-3 w-100">
+                        <input type="text" name="lugarMantenimiento"
+                            class="form-control"
+                            id="id_lugarMantenimiento"
+                            aria-describedby="basic-addon3">
+                    </div>
+                </div>
 
-        <!-- Cuadro donde se adjuntara un archivo preferiblemente en pdf e la factura del mantenimiento. -->
-        <!-- ADJUNTAR ARCHIVO-->
-        <div class="w-100">
-            <label for="formFileLg"
-                class="form-label ps-2 w-100">Adjuntar
-                Archivo del Mantenimiento Realizado</label>
-            <input class="form-control w-75
-                form-control-lg" style="font-size: 14px;"
-                id="adjuntar-archivo-registrar-mantenimiento"
-                type="file">
-        </div>
+                <div class="d-inline-block width-20 ms-1
+                    me-5">
+                    <label for="basic-url" class="form-label
+                        w-75 ps-2">CIUDAD DEL MANTENIMIENTO</label>
+                    <div class="input-group mb-3 w-100">
+                        <input type="text"
+                            class="form-control" name="ciudadMantenimiento"
+                            id="id_ciudadMantenimiento"
+                            aria-describedby="basic-addon3">
+                    </div>
+                </div>
 
-        <!-- Salto de línea -->
-        <br>
-        <br>
+                <div class="d-inline-block width-20 ms-1
+                    me-5">
+                    <label for="basic-url" class="form-label
+                        w-75 ps-2">NUMERO DE FACTURA</label>
+                    <div class="input-group mb-3 w-100">
+                        <input type="text"
+                            class="form-control" name="numeroFactura"
+                            id="id_numeroFactura"
+                            aria-describedby="basic-addon3">
+                    </div>
+                </div>
 
-        <!-- Botón de registrar el mantenimiento junto con su modal para validad el registro. -->
-        <div class="text-center w-100"> <!-- BOTON DE ACCIÓN-->
-            <!-- USO DE MODAL CON BOOTSTRAP 5 PARA EL BOTON GENERAR RUTA-->
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-success
-                fs-5 btn-registrar-mantenimiento"
-                data-bs-toggle="modal"
-                data-bs-target="#modal-registrar-mantenimiento">
-                REGISTRAR
-            </button>
+                <div class="d-inline-block width-20 ms-1
+                    me-5">
+                    <label for="basic-url" class="form-label
+                        w-75 ps-2">VALOR DEL MANTENIMIENTO</label>
+                    <div class="input-group mb-3 w-100">
+                        <input type="text"
+                            class="form-control" name="valorMantenimiento"
+                            id="id_valorMantenimiento"
+                            aria-describedby="basic-addon3">
+                    </div>
+                </div>
 
-            <!-- Modal -->
-            <div class="modal fade"
-                id="modal-registrar-mantenimiento"
-                data-bs-backdrop="static"
-                data-bs-keyboard="false"
-                tabindex="-1"
-                aria-labelledby="staticBackdropLabel"
-                aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title"
-                                id="staticBackdropLabel">REGISTRAR
-                                MANTENIMIENTO</h5>
-                            <button type="button"
-                                class="btn-close"
-                                data-bs-dismiss="modal"
-                                aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body
-                            text-start">
-                            El mantenimiento se
-                            registrara con los datos
-                            Ingresados con Anterioridad.
-                            ¿Esta seguro de hacer el
-                            registro?
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button"
-                                class="btn
-                                btn-secondary"
-                                data-bs-dismiss="modal">CANCELAR</button>
-                            <input type="submit"
-                                data-bs-toggle="modal"
-                                data-bs-target="#modal-registrar-mantenimiento2"
-                                data-bs-dismiss="modal"
-                                class="btn
-                                btn-primary" value="ACEPTAR">
+                <!-- Cuadro de observaciones donde se diligenciara que mas se le hizo en el mantenimeinto al activo. -->
+                <div class="mt-5 pt-4 border-top border-dark w-100
+                    pe-3">
+                    <!-- OBSERVACIONES-->
+                    <div class="d-inline-block ms-1 me-5 w-100">
+                        <label for="basic-url" class="form-label
+                            ps-2 fs-4 w-100">DESCRIPCIÓN DEL
+                            MANTENIMIENTO</label>
+                        <div class="mb-3 w-100">
+                            <textarea id="id_descripcionMantenimiento"
+                                name="descripcionMantenimiento"
+                                class="form-control
+                                border
+                                border-dark w-100" style="height:
+                                200px; resize: none;"></textarea>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- MODAL INTERNO AL OPRIMIR ACEPTAR EN EL MODAL ANTERIOR DE GUARDAR-->
-            <div class="modal"
-                id="modal-registrar-mantenimiento2">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header alert
-                            alert-success">
-                            <h5 class="modal-tittle">MANTENIMIENTO
-                                REGISTRADO</h5>
-                            <button class="btn-close"
-                                type="buttom"
-                                data-bs-dismiss="modal"></button>
-                        </div>
-                        <div class="modal-body
-                            text-start">
-                            Se registro el mantenimiento
-                            de forma exitosa.
+
+            <br>
+
+            <!-- Cuadro donde se adjuntara un archivo preferiblemente en pdf e la factura del mantenimiento. -->
+            <!-- ADJUNTAR ARCHIVO-->
+            <div class="w-100">
+                <label for="formFileLg"
+                    class="form-label ps-2 w-100">Adjuntar
+                    Archivo del Mantenimiento Realizado</label>
+                <input class="form-control w-75
+                    form-control-lg" style="font-size: 14px;"
+                    id="id_adjuntarArchivoMantenimiento"
+                    name="adjuntarArchivoMantenimiento"
+                    type="file">
+            </div>
+
+            <!-- Salto de línea -->
+            <br>
+            <br>
+
+            <!-- Botón de registrar el mantenimiento junto con su modal para validad el registro. -->
+            <div class="text-center w-100"> <!-- BOTON DE ACCIÓN-->
+                <!-- USO DE MODAL CON BOOTSTRAP 5 PARA EL BOTON GENERAR RUTA-->
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-success
+                    fs-5 btn-registrar-mantenimiento"
+                    data-bs-toggle="modal"
+                    data-bs-target="#modal-registrar-mantenimiento">
+                    REGISTRAR
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade"
+                    id="modal-registrar-mantenimiento"
+                    data-bs-backdrop="static"
+                    data-bs-keyboard="false"
+                    tabindex="-1"
+                    aria-labelledby="staticBackdropLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title"
+                                    id="staticBackdropLabel">REGISTRAR
+                                    MANTENIMIENTO</h5>
+                                <button type="button"
+                                    class="btn-close"
+                                    data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body
+                                text-start">
+                                El mantenimiento se
+                                registrara con los datos
+                                Ingresados con Anterioridad.
+                                ¿Esta seguro de hacer el
+                                registro?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button"
+                                    class="btn
+                                    btn-secondary"
+                                    data-bs-dismiss="modal">CANCELAR</button>
+                                <button
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#modal-registrar-mantenimiento2"
+                                    data-bs-dismiss="modal"
+                                    class="btn
+                                    btn-primary" name="r-mantenimiento-equipo">ACEPTAR</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
+
+        {% endif %}
+
     </form>
 </div>
 
 {% endblock contenido %}
 
+<!-- <script>
+    function displayForm(c) {
+        if (c.value == "vehiculo") {
+            jQuery('#m-vehiculo').toggle('show');
+            jQuery('#m-extintor').remove();
+            jQuery('#m-oficina').remove();
+        }
+        if (c.value == "extintor") {
+            jQuery('#m-extintor').toggle('show');
+            jQuery('#m-vehiculo').remove();
+            jQuery('#m-oficina').remove();
+
+        }
+        if (c.value == "equipo") {
+            jQuery('#m-oficina').toggle('show');
+            jQuery('#m-vehiculo').remove();
+            jQuery('#m-extintor').remove();
+        }
+    };  
+</script> -->
