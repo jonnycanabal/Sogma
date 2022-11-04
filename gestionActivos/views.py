@@ -1,8 +1,8 @@
 from multiprocessing import context
 from django.shortcuts import render,redirect
 from activos.models import ActivoEquipoOficina, ActivoExtintor, ActivoVehiculo
-from gestionActivos.models import GenerarRuta, MantenimientoEquipo, MantenimientoExtintor, MantenimientoVehiculo, Pasajero, RegistrarMantenimiento
-from gestionActivos.forms import GenerarAlarmaForm, GenerarRutaForm, PasajeroForm, RegistrarMantenimientoForm
+from gestionActivos.models import GenerarRuta, MantenimientoEquipo, MantenimientoExtintor, MantenimientoVehiculo, Pasajero, RegistrarMantenimiento, DetalleRuta
+from gestionActivos.forms import GenerarAlarmaForm, GenerarRutaForm, PasajeroForm, RegistrarMantenimientoForm,DetalleRutaForm
 from usuarios.models import Usuario
 from django.contrib import messages
 
@@ -29,24 +29,48 @@ def generar_alarma(request):
 # ##################################################################################################################################
 # FUNCION * GENERAR RUTA *
 @login_required(login_url='login')
-def generar_ruta(request):
+def generar_ruta(request,pk=None):
     titulo='Consultar-Ruta'
-    ruta=None
-    pasajeros= Pasajero.objects.all()
+    if pk==None:
+        ruta=None
+        detalles=None
+    else:
+        ruta= GenerarRuta.objects.get(id=pk)
+        detalles=DetalleRuta.objects.filter(fkRuta_id=pk)
 
+    pasajeros= Pasajero.objects.all()
+    form=None
     vehiculos=ActivoVehiculo.objects.all()
     usuarios=Usuario.objects.all()
     # BLoque para guardar el formulario de generar ruta
-    form=GenerarRutaForm(request.POST)
-    if form.is_valid():
-        form.save()
-        messages.success(
-            request,f"SE REGISTRO LA RUTA EXITOSAMENTE"
-        )
-        return redirect('agregar-ruta')
+    if request.method== 'POST' and 'generar' in request.POST:
+        form=GenerarRutaForm(request.POST)
 
-    if request.method== 'POST' and 'pasajero-buscar' in request.POST:
-        return redirect('agregar-ruta')
+        if form.is_valid():
+            aux=form.save()
+            messages.success(
+                request,f"SE REGISTRO LA RUTA EXITOSAMENTE"
+            )
+            return redirect('generar-ruta',pk=aux.id)
+        else:
+            form=GenerarRutaForm(request.POST)
+            messages.error(
+                request,f"Error al generar la ruta"
+            )
+
+    if request.method== 'POST' and 'pasajero' in request.POST:
+        form=DetalleRutaForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(
+                request,f"SE Agregó pasajero a LA RUTA EXITOSAMENTE"
+            )
+            return redirect('generar-ruta',pk)
+        else:
+            form=DetalleRutaForm(request.POST)
+            messages.error(
+                request,f"Error al agregar el pasajero a la ruta"
+            )
 
 
 
@@ -67,6 +91,7 @@ def generar_ruta(request):
 
 
     context={
+        'detalles':detalles,
         'titulo':titulo,
         'vehiculos':vehiculos,
         'usuarios':usuarios,
@@ -86,18 +111,18 @@ def registrar_pasajero(request):
 
 # ##################################################################################################################################
 # FUNCION * AGREGAR FUNCIONARIOS RUTA *
-@login_required(login_url='login')
-def agregar_funcionarios_ruta(request, pk):
-    titulo='Consultar-Ruta'
-    ruta= GenerarRuta.objects.get(id=pk)
-    # pasajeros= DetalleRuta.objects.filter(fkRuta_id=pk)
+# @login_required(login_url='login')
+# def agregar_funcionarios_ruta(request, pk):
+#     titulo='Consultar-Ruta'
+#     ruta= GenerarRuta.objects.get(id=pk)
+#     # pasajeros= DetalleRuta.objects.filter(fkRuta_id=pk)
 
-    context={
-        'titulo':titulo,
-        # 'vehiculos':vehiculos,
-        'ruta':ruta
-    }
-    return render (request, 'gestionActivos/generarRuta.html', context)
+#     context={
+#         'titulo':titulo,
+#         # 'vehiculos':vehiculos,
+#         'ruta':ruta
+#     }
+#     return render (request, 'gestionActivos/generarRuta.html', context)
 
 # def eliminar_pasajero(request):
 
