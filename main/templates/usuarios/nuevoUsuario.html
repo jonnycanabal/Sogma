@@ -28,7 +28,7 @@
     justify-content-center pt-0">
 
     <!-- Botones para seleccionar o digiligenciar información -->
-    <form action="" method="POST" class="p-left border-start border-end
+    <form action="" method="POST" enctype="multipart/form-data" class="p-left border-start border-end
         border-dark pe-3 ps-3" style="width: 85%;">
 
         {% csrf_token %}
@@ -82,6 +82,15 @@
                     id="id_segundoApellido"
                     aria-describedby="basic-addon3"
                     placeholder="">
+            </div>
+        </div>
+
+        <div class="d-inline-block ms-1 me-5 width-28">
+            <label for="basic-url" class="form-label w-75 ps-2">FOTO</label>
+            <div class="input-group mb-3 w-100">
+                <input type="file" class="form-control" name="foto"
+                    id="id_foto"
+                    aria-describedby="basic-addon3">
             </div>
         </div>
 

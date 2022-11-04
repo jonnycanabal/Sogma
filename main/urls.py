@@ -16,15 +16,26 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+# ---------------------------------------LOGIN------------------------------------------------------
+# from usuarios.views import loggedIn, logout 
+from django.contrib.auth.views import LoginView as login
+
 # Importar la funcion de cada path creado.
 from main.views import consultar_ruta, control_activos, generar_alarma, generar_ruta, inicio, nuevo_usuario, registrar_mantenimiento
+from usuarios.views import logout_user
+
+####### Importes para subir imágenes #######
+from django.conf import settings
+from django.conf.urls.static import static
+############################################
 
 urlpatterns = [
 
     path("select2/", include("django_select2.urls")),
 
     path('admin/', admin.site.urls),
-    path('', inicio, name='inicio'), # Inicio de sesión
+    path('', login.as_view(), name='login'),
+    # path('', inicio, name='inicio'), # Inicio de sesión
     # path('controlActivos/', control_activos, name='Control-Activos'), # Control de activos - página principal.
     # path('generar/alarma/', generar_alarma, name='Generar-Alarma'), # generar alarma de recordatorio de mantenimiento.
     # path('generar/ruta/',generar_ruta , name='Generar-Ruta'), # generar ruta realizada por un conductor y vehículo.
@@ -34,4 +45,8 @@ urlpatterns = [
     path('usuarios/', include('usuarios.urls')),
     path('gestionActivos/', include('gestionActivos.urls')),
     path('activos/', include('activos.urls')),
-]
+
+# --------------------------------------LOGIN--------------------------------------------
+    # path('loggedin', loggedIn, name="inicio-sesion")
+    path('logout', logout_user, name="logout")
+]+ static(settings.MEDIA_URL, document_root= settings.MEDIA_ROOT)

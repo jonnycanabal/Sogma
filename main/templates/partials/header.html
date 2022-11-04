@@ -3,17 +3,18 @@
 
 <!-- INICIO DEL HEADER-->
 <header id="bar-header"
-class="border-bottom border-3 border-dark d-flex flex-wrap
-align-items-center justify-content-center
-py-3 border-bottom">
+    class="border-bottom border-3 border-dark d-flex flex-wrap
+    align-items-center justify-content-center
+    py-3 border-bottom">
 
     <!-- Contenedor del logo de la Contraloria Departamental del Tolima -->
     <div class="d-flex align-items-center img-contraloria">
         <a href="" class="d-flex align-items-center mb-2 mb-md-0
             text-dark text-decoration-none">
-            <img class="w-50 ms-3" src="{% static 'img/logo_contraloria.png' %}" alt="">
+            <img class="w-50 ms-3" src="{% static 'img/logo_contraloria.png' %}"
+                alt="">
         </a>
-        
+
         <!-- Nombre del proyecto -->
         <h2 class="ps-1 fs-2">SOGMA</h2>
     </div>
@@ -27,13 +28,23 @@ py-3 border-bottom">
         <a href="#" class="d-flex align-items-center link-dark
             text-decoration-none dropdown-toggle" id="dropdownUser2"
             data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="https://github.com/mdo.png" alt="" width="50"
-                height="50" class="rounded-circle me-2">
-            <strong>Jmcanabal</strong>
+            <div class="image">
+                <img src="{{MEDIA_URL}}{{image_user}}" alt="user Image"
+                    width="50"
+                    height="50" class="rounded-circle me-2"> <!-- https://github.com/mdo.png -->
+            </div>
+
+            <div class="info text-black">
+                <strong>{{usuario_actual.first_name}}
+                    {{usuario_actual.last_name}}</strong>
+            </div>
+
         </a>
         <ul class="dropdown-menu text-small shadow"
             aria-labelledby="dropdownUser2">
-            <li><a class="dropdown-item" href="#">Perfil</a></li>
+            <li><a class="dropdown-item" href="#"
+                    data-bs-toggle="modal"
+                    data-bs-target="#perfil">Perfil</a></li>
             <li><a class="dropdown-item" href="#">Copia de Seguridad</a></li>
             <li><hr class="dropdown-divider"></li>
 
@@ -43,7 +54,217 @@ py-3 border-bottom">
                     data-bs-toggle="modal"
                     data-bs-target="#cerrar-sesion">Cerrar sesión</a></li>
         </ul>
-        <!-- Modal -->
+
+        <!-- ################################################################################################## -->
+        <!-- Modal perfil--> 
+        <div class="modal fade" id="perfil"
+            data-bs-backdrop="static" data-bs-keyboard="false"
+            tabindex="-1" aria-labelledby="staticBackdropLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title"
+                            id="staticBackdropLabel">PERFIL DE USUARIO</h5>
+                        <button type="button" class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+
+                    <div class="modal-body text-start me-2">
+
+                        <div class="d-block ms-1 w-100">
+                            <div class="input-group mb-3 w-100 d-flex
+                                justify-content-center">
+                                <img src="{{image_user}}" alt="" width="150"
+                                    height="150" class="rounded-circle me-2 ">
+                            </div>
+                        </div>
+
+                        <div class="d-inline-block ms-1 me-5 w-100">
+                            <label for="basic-url" class="form-label ps-2">PRIMER
+                                NOMBRE</label>
+                            <div class="input-group mb-3 w-100">
+                                <input type="text" class="form-control
+                                    text-center" disabled
+                                    name="primerNombre" id="id_primerNombre"
+                                    aria-describedby="basic-addon3"
+                                    value="{{usuario.primerNombre}}">
+                            </div>
+                        </div>
+
+                        <div class="d-inline-block ms-1 me-5 w-100">
+                            <label for="basic-url" class="form-label ps-2">SEGUNDO
+                                NOMBRE</label>
+                            <div class="input-group mb-3 w-100">
+                                <input type="text" class="form-control
+                                    text-center" disabled
+                                    name="segundoNombre" id="id_segundoNombre"
+                                    aria-describedby="basic-addon3"
+                                    value="{{usuario.segundoNombre}}">
+                            </div>
+                        </div>
+
+                        <div class="d-inline-block ms-1 me-5 w-100">
+                            <label for="basic-url" class="form-label ps-2">PRIMER
+                                APELLIDO</label>
+                            <div class="input-group mb-3 w-100">
+                                <input type="text" class="form-control
+                                    text-center" disabled
+                                    name="primerApellido" id="id_primerApellido"
+                                    value="{{usuario.primerApellido}}">
+                            </div>
+                        </div>
+
+                        <div class="d-inline-block ms-1 me-5 w-100">
+                            <label for="basic-url" class="form-label ps-2">SEGUNDO
+                                APELLIDO</label>
+                            <div class="input-group mb-3 w-100">
+                                <input type="text" class="form-control
+                                    text-center" disabled name="segundoApellido"
+                                    id="id_segundoApellido"
+                                    aria-describedby="basic-addon3"
+                                    value="{{usuario.segundoApellido}}">
+                            </div>
+                        </div>
+
+                        <div class="d-inline-block ms-1 me-5 w-100">
+                            <label for="basic-url" class="form-label ps-2">TIPO
+                                DE DOCUMENTO</label>
+                            <div class="input-group mb-3 w-100">
+                                <input type="text" class="form-control
+                                    text-center" disabled name="cargo"
+                                    id="id_cargo"
+                                    aria-describedby="basic-addon3"
+                                    value="{{usuario.tipoDocumento}}">
+                            </div>
+                        </div>
+
+                        <div class="d-inline-block ms-1 me-5 w-100">
+                            <label for="basic-url" class="form-label ps-2">NÚMERO
+                                DE IDENTIFICACIÓN</label>
+                            <div class="input-group mb-3 w-100">
+                                <input type="text" class="form-control
+                                    text-center" disabled name="numeroDocumento"
+                                    id="id_numeroDocumento"
+                                    aria-describedby="basic-addon3"
+                                    value="{{usuario.numeroDocumento}}">
+                            </div>
+                        </div>
+
+                        <div class="d-inline-block ms-1 me-5 w-100">
+                            <label for="basic-url" class="form-label ps-2">NÚMERO
+                                DE
+                                TELEFONO</label>
+                            <div class="input-group mb-3 w-100">
+                                <input type="text" class="form-control
+                                    text-center" disabled name="numeroTelefono"
+                                    id="id_numeroTelefono"
+                                    aria-describedby="basic-addon3"
+                                    value="{{usuario.numeroTelefono}}">
+                            </div>
+                        </div>
+
+                        <div class="d-inline-block ms-1 me-5 w-100">
+                            <label for="basic-url" class="form-label ps-2">CIUDAD
+                                DE
+                                RESIDENCIA</label>
+                            <div class="input-group mb-3 w-100">
+                                <input type="text" class="form-control
+                                    text-center" disabled
+                                    name="ciudadResidencia"
+                                    id="id_ciudadResidencia"
+                                    aria-describedby="basic-addon3"
+                                    value="{{usuario.ciudadResidencia}}">
+                            </div>
+                        </div>
+
+                        <div class="d-inline-block ms-1 me-5 w-100">
+                            <label for="basic-url" class="form-label ps-2">DIRECCIÓN
+                                DE
+                                RESIDENCIA</label>
+                            <div class="input-group mb-3 w-100">
+                                <input type="text" class="form-control
+                                    text-center" disabled
+                                    name="direccionResidencia"
+                                    id="id_direccionResidencia"
+                                    aria-describedby="basic-addon3"
+                                    value="{{usuario.direccionResidencia}}">
+                            </div>
+                        </div>
+
+                        <div class="d-inline-block ms-1 me-5 w-100">
+                            <label for="basic-url" class="form-label ps-2">CORRE
+                                ELECTRONICO</label>
+                            <div class="input-group mb-3 w-100">
+                                <input type="text" class="form-control
+                                    text-center" disabled
+                                    name="correoElectronico"
+                                    id="id_correoElectronico"
+                                    aria-describedby="basic-addon3"
+                                    value="{{usuario.correoElectronico}}">
+                            </div>
+                        </div>
+
+                        <div class="d-inline-block ms-1 me-5 w-100">
+                            <label for="basic-url" class="form-label ps-2">GENERO</label>
+                            <div class="input-group mb-3 w-100">
+                                <input type="text" class="form-control
+                                    text-center" disabled name="cargo"
+                                    id="id_cargo"
+                                    aria-describedby="basic-addon3"
+                                    value="{{usuario.genero}}">
+                            </div>
+                        </div>
+
+                        <div class="d-inline-block ms-1 me-5 w-100">
+                            <label for="basic-url" class="form-label ps-2">CARGO</label>
+                            <div class="input-group mb-3 w-100">
+                                <input type="text" class="form-control
+                                    text-center" disabled name="cargo"
+                                    id="id_cargo"
+                                    aria-describedby="basic-addon3"
+                                    value="{{usuario.cargo}}">
+                            </div>
+                        </div>
+
+                        <div class="d-inline-block ms-1 me-5 w-100">
+                            <label for="basic-url" class="form-label ps-2">FECHA
+                                DE REGISTRO</label>
+                            <div class="input-group mb-3 w-100">
+                                <input type="text" class="form-control
+                                    text-center" disabled name="cargo"
+                                    id="id_cargo"
+                                    aria-describedby="basic-addon3"
+                                    value="{{usuario.fechaRegistro}}">
+                            </div>
+                        </div>
+
+                        <div class="d-inline-block ms-1 me-5 w-100">
+                            <label for="basic-url" class="form-label ps-2">TIPO
+                                DE USUARIO</label>
+                            <div class="input-group mb-3 w-100">
+                                <input type="text" class="form-control
+                                    text-center" disabled name="cargo"
+                                    id="id_cargo"
+                                    aria-describedby="basic-addon3"
+                                    value="{{usuario.tipoUsuario}}">
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn
+                                btn-secondary fs-5" data-bs-dismiss="modal">SALIR</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Fin delmodal perfil con BOOTSTRAP 5-->
+        
+        <!-- ################################################################################################## -->
+        <!-- Modal cerrar sesión -->
         <div class="modal fade" id="cerrar-sesion"
             data-bs-backdrop="static" data-bs-keyboard="false"
             tabindex="-1" aria-labelledby="staticBackdropLabel"
@@ -66,12 +287,13 @@ py-3 border-bottom">
                         <button type="button" class="btn
                             btn-secondary" data-bs-dismiss="modal">CANCELAR</button>
                         <button type="submit" class="btn
-                            btn-primary"><a style="color: white; text-decoration: none;" href="{% url 'inicio' %}">ACEPTAR</a></button>
+                            btn-primary"><a style="color: white;
+                                text-decoration: none;" href="{% url 'logout' %}">ACEPTAR</a></button>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- Fin del MODAL con BOOTSTRAP 5-->
+        <!-- Fin del modal cerrar sesion con BOOTSTRAP 5-->
     </div>
 </header>
 <!-- FIN DEL HEADER-->
