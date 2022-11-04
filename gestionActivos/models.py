@@ -45,18 +45,17 @@ class Pasajero(models.Model):
 # CREACIÓN DE LA TABLA (generarRuta) DE NUESTRA MER DISEÑADO EN MYSQL WORKBENCH
 class GenerarRuta(models.Model):
     # FOREING KEY REREFENCIADA DEL MODELO ACTIVOS DE LAS CLASES REQUERIDAS VEHICULO, USUARIO Y PASAJERO.
-    fkVehiculo=models.ForeignKey(ActivoVehiculo, on_delete=models.CASCADE, verbose_name="Vehículo", blank=True)
-    fkUsuario=models.ForeignKey(Usuario, on_delete=models.CASCADE, verbose_name="Usuario", blank=True)
-    horaSalida=models.TimeField(verbose_name="Hora de Salida", help_text="HH:MM", blank=True)
-    horaRegreso=models.TimeField(verbose_name="Hora de Regreso", help_text="HH:MM")
-    fechaSalida=models.DateField(verbose_name="Fecha de Salida", help_text="MM/DD/AAAA", blank=True)
-    fechaRegreso=models.DateField(verbose_name="Fecha de Regreso", help_text="MM/DD/AAAA", blank=True)
-    lugarSalida=models.CharField(max_length=50, verbose_name="Lugar de Salida", blank=True)
-    lugarDestino=models.CharField(max_length=50, verbose_name="Lugar de Destino", blank=True)
-    kilometrajeFinalVehiculo=models.IntegerField(verbose_name="Kilometraje Final", blank=True)  # Valor numero (IntegerField) Para sumar Kilometraje!!!!!!
-    # fkDetalleRuta=models.ForeignKey(DetalleRuta, on_delete=models.CASCADE, verbose_name="Pasajero")
-    descripcionRuta=models.TextField(max_length=100, verbose_name="Descripción", blank=True)
-    observacionesRuta=models.TextField(max_length=100, verbose_name="Observaciones", blank=True)
+    fkVehiculo=models.ForeignKey(ActivoVehiculo, on_delete=models.CASCADE, verbose_name="Vehículo")
+    fkUsuario=models.ForeignKey(Usuario, on_delete=models.CASCADE, verbose_name="Usuario")
+    horaSalida=models.TimeField(verbose_name="Hora de Salida", help_text="HH:MM")
+    horaRegreso=models.TimeField(verbose_name="Hora de Regreso", help_text="HH:MM", blank=True, null=True)
+    fechaSalida=models.DateField(verbose_name="Fecha de Salida", help_text="MM/DD/AAAA")
+    fechaRegreso=models.DateField(verbose_name="Fecha de Regreso", help_text="MM/DD/AAAA")
+    lugarSalida=models.CharField(max_length=50, verbose_name="Lugar de Salida")
+    lugarDestino=models.CharField(max_length=50, verbose_name="Lugar de Destino")
+    kilometrajeFinalVehiculo=models.IntegerField(verbose_name="Kilometraje Final", blank=True, null=True)  # Valor numero (IntegerField) Para sumar Kilometraje!!!!!!
+    descripcionRuta=models.TextField(max_length=100, verbose_name="Descripción")
+    observacionesRuta=models.TextField(max_length=100, verbose_name="Observaciones", blank=True, null=True)
 
 
 # ###############################################################################################################################
