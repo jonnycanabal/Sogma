@@ -286,6 +286,8 @@
         </script> -->
     </form>
 </div>
+
+
 <!-- ########################################################################################################################### -->
 <!-- Parte donde se mostraran los funcionarios seleccionados, sus datos y si desea quitarlos de la ruta. -->
 <!-- Titulo funcionarios seleccionados -->
@@ -303,9 +305,13 @@
 
         {% for detalle in detalles %}
         <div class="form-check m-3 ms-3">
-            <i class="bi bi-trash3-fill"></i>
-            <label class="form-check-label" for="inlineCheckbox1">{{detalle.fkPasajero.primerNombrePasajero}}
-            </label>
+            <form action="" method="POST">
+                {% csrf_token %}
+                <button class="btn btn-block fs-5 pe-1 ps-1" name="eliminar-pasajero">
+                    <i class="bi bi-trash3-fill"></i>
+                    <label class="form-check-label" for="inlineCheckbox1">{{detalle.fkPasajero.primerNombrePasajero}} {{detalle.fkPasajero.primerApellidoPasajero}} / {{detalle.fkPasajero.direccionPasajero}} / {{detalle.fkPasajero.telefonoPasajero}}
+                    </label></button>
+            </form>
         </div>
         {% endfor %}
 
@@ -315,38 +321,49 @@
 
 <br>
 
-<div class="d-inline-block width-20  ms-5 me-5">
-    <label for="basic-url" class="form-label w-75 ps-2">HORA DE LLEGADA</label>
-    <div class="input-group mb-3 w-100">
-        <input type="time" class="form-control" name="horaRegreso" id="id_horaRegreso" aria-describedby="basic-addon3">
+<form action="" method="POST">
+    {% csrf_token %}
+    
+    <div class="d-inline-block width-20  ms-5 me-5">
+        <label for="basic-url" class="form-label w-75 ps-2">HORA DE LLEGADA</label>
+        <div class="input-group mb-3 w-100">
+            <input type="time" class="form-control" name="horaRegreso" id="id_horaRegreso" aria-describedby="basic-addon3">
+        </div>
     </div>
-</div>
 
-<div class="d-inline-block width-20  ms-2 me-5">
-    <label for="basic-url" class="form-label w-75 ps-2">KILOMETRAJE FINAL</label>
-    <div class="input-group mb-3 w-100">
-        <input type="text" class="form-control" name="kilometrajeFinalVehiculo" id="id_kilometrajeFinalVehiculo"
-            aria-describedby="basic-addon3">
+    <div class="d-inline-block width-20  ms-2 me-5">
+        <label for="basic-url" class="form-label w-75 ps-2">KILOMETRAJE FINAL</label>
+        <div class="input-group mb-3 w-100">
+            <input type="text" class="form-control" name="kilometrajeFinalVehiculo" id="id_kilometrajeFinalVehiculo"
+                aria-describedby="basic-addon3">
+        </div>
     </div>
-</div>
 
-<!-- salto de línea -->
-<br>
+    <!-- salto de línea -->
+    <br>
 
 
-<!-- Text Area para las observaciones de la ruta -->
-<div class="d-inline-block ms-4 me-5 ps-2
-            textarea-alarma">
-    <label for="basic-url" class="form-label
-                w-75 ps-2">OBSERVACIONES</label>
-    <div class="form-floating mb-3 w-100
-                height-textarea">
-        <textarea class="form-control border
-                    border-dark" style="height:
-                    150px; resize: none;" name="observacionesRuta" placeholder="Leave a comment here "
-            id="id_observacionesRuta"></textarea>
+    <!-- Text Area para las observaciones de la ruta -->
+    <div class="d-inline-block ms-4 me-5 ps-2
+                textarea-alarma">
+        <label for="basic-url" class="form-label
+                    w-75 ps-2">OBSERVACIONES</label>
+        <div class="form-floating mb-3 w-100
+                    height-textarea">
+            <textarea class="form-control border
+                        border-dark" style="height:
+                        150px; resize: none;" name="observacionesRuta" id="id_observacionesRuta"></textarea>
+        </div>
     </div>
-</div>
+
+        <button name="editar-ruta">EDITAR</button>
+
+</form>
+
+
+
+
+
 
 <!-- Salto de línea -->
 <br>
