@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'usuarios',
     'activos',
     'gestionActivos',
+    'autenticacion',
 ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
@@ -158,3 +159,11 @@ LOGIN_REDIRECT_URL='control-activos'
 
 # fragmento de codigo para redireccionar a la página de login o inicio de sesión cuando un ususario de deslogee o cierre sesión
 LOGOUT_REDIRECT_URL='login'
+
+# CONFIGURACION DEL EMAIL PARA EL REESTABLECIMIENTO DE CONTRASEÑA
+EMAIL_BACKEND= "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST= "smtp.gmail.com"
+EMAIL_USE_TLS= True
+EMAIL_PORT= 587
+EMAIL_HOST_USER= "jmcanabal7@misena.edu.co"
+EMAIL_HOST_PASSWORD= "1598753264"
