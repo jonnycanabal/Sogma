@@ -36,6 +36,11 @@ class Pasajero(models.Model):
     numeroDocumentoPasajero=models.CharField(max_length=50, unique=True, verbose_name="Número de Documento") #Tiene campo Único
     direccionPasajero=models.CharField(max_length=100, verbose_name="Dirección Residencia")
     telefonoPasajero=models.CharField(max_length=20, verbose_name="Teléfono")
+    class EstadoPasajero(models.TextChoices):
+        ACTIVO='1', _("Activo")
+        INACTIVO='0', _("Inactivo")
+    estadoPasajero=models.CharField(max_length=1, choices=EstadoPasajero.choices, default=EstadoPasajero.ACTIVO, verbose_name="Estado del pasajero")
+
     def __str__(self):
         return "%s %s"%(self.primerNombrePasajero,self.primerApellidoPasajero)
 

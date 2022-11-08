@@ -30,5 +30,5 @@ class RegistrarMantenimientoForm(forms.ModelForm):
 class PasajeroForm(forms.ModelForm):
     class Meta:
         model=Pasajero
-        fields='__all__'
+        exclude=['estadoPasajero']
 
