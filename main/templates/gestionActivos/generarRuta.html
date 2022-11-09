@@ -307,10 +307,9 @@
         <div class="form-check m-3 ms-3">
             <form action="" method="POST">
                 {% csrf_token %}
-                <button class="btn btn-block fs-5 pe-1 ps-1" name="eliminar-pasajero">
-                    <i class="bi bi-trash3-fill"></i>
+                <a href="{% url 'eliminar-pasajero' id=detalle.id %}"><i class="bi bi-trash3-fill"></i></a>
                     <label class="form-check-label" for="inlineCheckbox1">{{detalle.fkPasajero.primerNombrePasajero}} {{detalle.fkPasajero.primerApellidoPasajero}} / {{detalle.fkPasajero.direccionPasajero}} / {{detalle.fkPasajero.telefonoPasajero}}
-                    </label></button>
+                    </label>
             </form>
         </div>
         {% endfor %}
@@ -321,6 +320,8 @@
 
 <br>
 
+<!-- ############################################################################################################### -->
+<!--  TRABAJANDO EN EL EDITAR RUTA ------------------------------------------------------------------------------- -->
 <form action="" method="POST">
     {% csrf_token %}
     
@@ -342,7 +343,6 @@
     <!-- salto de línea -->
     <br>
 
-
     <!-- Text Area para las observaciones de la ruta -->
     <div class="d-inline-block ms-4 me-5 ps-2
                 textarea-alarma">
@@ -356,7 +356,7 @@
         </div>
     </div>
 
-        <button name="editar-ruta">EDITAR</button>
+    <button class="btn btn-success" name="editar-ruta">EDITAR</button>
 
 </form>
 

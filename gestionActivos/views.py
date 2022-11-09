@@ -2,7 +2,7 @@ from multiprocessing import context
 from django.shortcuts import render,redirect
 from activos.models import ActivoEquipoOficina, ActivoExtintor, ActivoVehiculo
 from gestionActivos.models import GenerarRuta, MantenimientoEquipo, MantenimientoExtintor, MantenimientoVehiculo, Pasajero, RegistrarMantenimiento, DetalleRuta
-from gestionActivos.forms import GenerarAlarmaForm, GenerarRutaForm, PasajeroForm, RegistrarMantenimientoForm,DetalleRutaForm
+from gestionActivos.forms import GenerarAlarmaForm, GenerarRutaForm, EditarGenerarRutaForm, PasajeroForm, RegistrarMantenimientoForm,DetalleRutaForm
 from usuarios.models import Usuario
 from django.contrib import messages
 
@@ -42,7 +42,9 @@ def generar_ruta(request,pk=None):
     form=None
     vehiculos=ActivoVehiculo.objects.all()
     usuarios=Usuario.objects.all()
-    # BLoque para guardar el formulario de generar ruta
+
+    # ############################################################################################
+    # Bloque para generar el formulario de la ruta.
     if request.method== 'POST' and 'generar' in request.POST:
         form=GenerarRutaForm(request.POST)
 
@@ -58,13 +60,38 @@ def generar_ruta(request,pk=None):
                 request,f"Error al generar la ruta"
             )
 
-    if request.method== 'POST' and 'pasajero' in request.POST:
-        form=DetalleRutaForm(request.POST)
+    # ############################################################################################
+    # Bloque para editar y terminar de registrar la ruta.
+    if request.method == 'POST' and 'editar-ruta' in request.POST:
+        ruta = GenerarRuta.objects.get(id=pk)
+        form = EditarGenerarRutaForm(request.POST, instance=ruta)
         if form.is_valid():
             form.save()
             messages.success(
-                request,f"SE Agregó pasajero a LA RUTA EXITOSAMENTE"
+                request,f"SE EDITO LA RUTA CORRECTAMENTE"
             )
+            return redirect('generar-ruta')
+        else:
+            form=EditarGenerarRutaForm(request.POST)
+            messages.error(
+                request,f"ERROR!!!, NO SE PUDO EDITAR LA RUTA."
+            )
+
+    # ############################################################################################
+    # Bloque para agregar el pasajero a la ruta.
+    if request.method== 'POST' and 'pasajero' in request.POST:
+        form=DetalleRutaForm(request.POST)
+        if form.is_valid():
+            pasajero=DetalleRuta.objects.filter(fkRuta_id=pk, fkPasajero_id=int(request.POST["fkPasajero"]))
+            if pasajero:
+                messages.warning(
+                request,f"EL PASAJERO YA SE ENCUENTRA AGREGADO A LA RUTA"
+                )
+            else:
+                form.save()
+                messages.success(
+                    request,f"SE Agregó pasajero a LA RUTA EXITOSAMENTE"
+                )
             return redirect('generar-ruta',pk)
         else:
             form=DetalleRutaForm(request.POST)
@@ -72,8 +99,8 @@ def generar_ruta(request,pk=None):
                 request,f"Error al agregar el pasajero a la ruta"
             )
 
-
-
+    # ############################################################################################
+    # Bloque para registrar un nuevo pasajero.
     if request.method == "POST" and 'form-pasajero' in request.POST:
         form=PasajeroForm(request.POST)
         if form.is_valid():
@@ -88,7 +115,6 @@ def generar_ruta(request,pk=None):
             messages.error(
             request,f"ERROR. NO SE PUDO REGISTRAR AL PASAJERO. INTENTELO DE NUEVO"
         )
-
 
     context={
         'detalles':detalles,
@@ -108,6 +134,16 @@ def registrar_pasajero(request):
     }
 
     return render (request, 'gestionActivos/generarRuta.html', context)
+
+
+# ####################################################################################################################
+# BLOQUE PARA ELIMINAR PASAJERO
+def eliminar_pasajero(request,id):
+    pasajero=DetalleRuta.objects.get(id=id)
+    ruta=pasajero.fkRuta
+    pasajero.delete()
+
+    return redirect('generar-ruta', ruta.id)
 
 # ##################################################################################################################################
 # FUNCION * AGREGAR FUNCIONARIOS RUTA *
