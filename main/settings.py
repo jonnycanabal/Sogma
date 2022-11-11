@@ -166,4 +166,4 @@ EMAIL_HOST= 'smtp.googlemail.com'
 EMAIL_USE_TLS= True
 EMAIL_PORT= 587
 EMAIL_HOST_USER= "jmcanabal7@misena.edu.co"
-EMAIL_HOST_PASSWORD= "1598753264"
+EMAIL_HOST_PASSWORD= "hshwdhivhhojjebq"
