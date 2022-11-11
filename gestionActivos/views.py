@@ -290,6 +290,7 @@ def consultar_ruta(request):
     extintores= ActivoExtintor.objects.all()
     vehiculos=ActivoVehiculo.objects.all()
     equipos=ActivoEquipoOficina.objects.all()
+    rutas=GenerarRuta.objects.all()
     vehiculo=None
 
     # Bloque de codigo para traer informacion de la tabla a los campos de la pagina html por medio de la Primary Key
@@ -301,8 +302,8 @@ def consultar_ruta(request):
         'extintores':extintores,
         'vehiculos':vehiculos,
         'vehiculo':vehiculo,
-        'equipos':equipos
-
+        'equipos':equipos,
+        'rutas':rutas,
     }
     return render (request, 'gestionActivos/consultarRuta.html', context)
 

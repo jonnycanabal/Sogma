@@ -30,79 +30,6 @@
         <!-- Salto de linea -->
         <br>
 
-        <!-- Botones para seleccionar o digiligenciar información
-        <div class="d-inline-block width-20 ms-1 me-5">
-            <label for="basic-url" class="form-label w-75
-                ps-2">ID
-                ACTIVO</label>
-            <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control"
-                    id="id-activo-consultar-ruta"
-                    aria-describedby="basic-addon3"
-                    placeholder="ID ACTIVO">
-            </div>
-        </div>
-
-        <div class="d-inline-block width-20 ms-1 me-5">
-            <label for="basic-url" class="form-label w-75
-                ps-2">MARCA</label>
-            <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control"
-                    id="marca-consultar-ruta"
-                    aria-describedby="basic-addon3"
-                    placeholder="MARCA">
-            </div>
-        </div>
-
-        <div class="d-inline-block width-20 ms-1 me-5">
-            <label for="basic-url" class="form-label w-75
-                ps-2">PLACA</label>
-            <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control"
-                    id="placa-consultar-ruta"
-                    aria-describedby="basic-addon3"
-                    placeholder="PLACA">
-            </div>
-        </div>
-
-        <div class="d-inline-block width-20 ms-1 me-5">
-            <label for="basic-url" class="form-label w-75
-                ps-2">PERSONA
-                A CARGO</label>
-            <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control"
-                    id="persona-encargada-consultar-ruta"
-                    aria-describedby="basic-addon3"
-                    placeholder="PERSONA A CARGO">
-            </div>
-        </div>
-
-        <div class="d-inline-block width-20 ms-1 me-5">
-            <label for="basic-url" class="form-label w-75
-                ps-2">FECHA
-                DE INGRESO</label>
-            <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control"
-                    id="fecha-ingreso-consultar-ruta"
-                    aria-describedby="basic-addon3"
-                    placeholder="FECHA DE INGRESO">
-            </div>
-        </div> -->
-
-        <!-- Saltos de línea -->
-        <!-- <br>
-        <br> -->
-
-        <!-- Botones de acción consultar y limpiar campos -->
-        <!-- <button type="button" class="btn btn-secondary m-2">CONSULTAR</button>
-        <button type="reset" class="btn btn-secondary m-2">LIMPIAR
-            CAMPOS</button> -->
-
-        <!-- Saltos de línea -->
-        <!-- <br>
-        <br>
-        <br> -->
-
         <div id="table-vehiculo">
             <div class="d-flex flex-column">
                 <div class="d-flex justify-content-center pb-4 mb-4 m-2 w-100 p-3">
@@ -265,7 +192,16 @@
                             </thead>
                             <tbody>
                                 
+                                
+                                <!-- Condiciones para cuando seleccione el vehiculo sea el mismo asociado a la ruta que tenga -->
+                                <!-- Tambien la segunda condición filtra si el usuario logeado corresponde al de la ruta
+                                para evitar que el conductor ingrese a otra ruta a la que no este relacionado. -->
                                 {% for ruta in rutas %}
+                                
+                                {% if vehiculo.id == ruta.fkVehiculo.id %}
+                                
+                                {% if usuario.id == ruta.fkUsuario.id%}
+                                
                                 <tr>
                                     <td class="text-center">{{ruta.id}}</td>
                                     <td>{{ruta.fechaSalida}}</td>
@@ -273,17 +209,24 @@
                                     <!-- Imagen de una lupa con la cual seleccionara la ruta y 
                                     te redireccionara a la página con la información de dicha rutay con algunos campos activos
                                     para editar, guardar o eliminar/desabilitar la información -->
-                                    <td>
+                                    <td class="d-flex justify-content-center">
                                         <form action="" method="POST" class="col-4">
                                             {% csrf_token %}
-                                            <input type="hidden" name="pk_extintor" value="{{extintor.id}}">
-                                            <button class="btn btn-block" onClick="editarExtintor()" name="editar-extintor">
-                                                <i class="bi bi-search"></i>
-                                            </button>
+                                            <!-- <input type="hidden" name="" value="{{ruta.id}}"> -->
+                                            <a class="bi bi-search btn fs-4" href="{% url 'generar-ruta' ruta.id %}"></a>
+                                            <!-- <button class="btn btn-block"  name="editar-extintor">
+                                                <i class="bi bi-search fs-4"></i>
+                                            </button> -->
                                         </form>
                                     </td>
                                 </tr>
+
+                                {% endif %}
+
+                                {% endif %}
+
                                 {% endfor %}
+                                
                             </tbody>
 
                             <!-- Footer de la tabla Historial (Donde estaran los enunciados principales pero en la parte inferior) -->
