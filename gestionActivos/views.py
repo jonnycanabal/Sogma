@@ -70,7 +70,8 @@ def generar_ruta(request,pk=None):
             messages.success(
                 request,f"SE EDITO LA RUTA CORRECTAMENTE"
             )
-            return redirect('generar-ruta')
+
+            return redirect('generar-ruta',pk)
         else:
             form=EditarGenerarRutaForm(request.POST)
             messages.error(
@@ -127,14 +128,24 @@ def generar_ruta(request,pk=None):
     }
     return render (request, 'gestionActivos/generarRuta.html', context)
 
-def registrar_pasajero(request):
+# ############################################################################################
+# Bloque para cerrar la ruta
+def cerrar_ruta(request,pk):
+    rutas=GenerarRuta.objects.all()
+    GenerarRuta.objects.filter(id=pk).update(
+        estadoRuta='Cerrada'
+    )
+    messages.success(
+        request,f"SE CERRO LA RUTA"
+        )
 
-    context={
+    return redirect('generar-ruta')
 
+    context ={
+        'rutas':rutas,
     }
 
     return render (request, 'gestionActivos/generarRuta.html', context)
-
 
 # ####################################################################################################################
 # BLOQUE PARA ELIMINAR PASAJERO

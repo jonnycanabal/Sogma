@@ -61,7 +61,10 @@ class GenerarRuta(models.Model):
     kilometrajeFinalVehiculo=models.IntegerField(verbose_name="Kilometraje Final", blank=True, null=True)  # Valor numero (IntegerField) Para sumar Kilometraje!!!!!!
     descripcionRuta=models.TextField(max_length=100, verbose_name="Descripción")
     observacionesRuta=models.TextField(max_length=100, verbose_name="Observaciones", blank=True, null=True)
-
+    class EstadoRuta(models.TextChoices):
+        AB='Abierta', _("Abierta")
+        CR='Cerrada', _("Cerrada")
+    estadoRuta=models.CharField(max_length=10, choices=EstadoRuta.choices, default=EstadoRuta.AB, verbose_name="Estado de la Ruta")
 
 # ###############################################################################################################################
 class DetalleRuta(models.Model):

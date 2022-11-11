@@ -10,7 +10,7 @@ class GenerarAlarmaForm(forms.ModelForm):
 class GenerarRutaForm(forms.ModelForm):
     class Meta:
         model=GenerarRuta
-        exclude=['horaRegreso','kilometrajeFinalVehiculo','observacionesRuta']
+        exclude=['horaRegreso','kilometrajeFinalVehiculo','observacionesRuta', 'estadoRuta']
 
 class EditarGenerarRutaForm(forms.ModelForm):
     class Meta:
