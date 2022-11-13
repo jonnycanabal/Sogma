@@ -15,12 +15,13 @@
             <a class="nav-link text-white"
                 href="{% url 'generar-alarma' %}">Generar Alarma</a>
         </li>
-
+        {% if perms.gestionactivos.view_generarruta %}
         <!-- Link que redirecciona a la pagina (Generar Ruta) -->
         <li class="nav-item">
             <a class="nav-link text-white"
                 href="{% url 'generar-ruta' %}">Generar Ruta</a>
         </li>
+        {% endif %}
 
         <!-- Link que redirecciona a la pagina (Consultar Ruta) -->
         <li class="nav-item">
@@ -28,19 +29,19 @@
                 href="{% url 'consultar-ruta' %}">Consultar Ruta</a>
         </li>
 
-
-
         <!-- Link que redirecciona a la pagina (Registrar Matenimiento) -->
         <li class="nav-item">
             <a class="nav-link text-white"
                 href="{% url 'registrar-mantenimiento' %}">Registrar Mantenimiento</a>
         </li>
 
-        <!-- Link que redirecciona a la pagina (Usuarios creados) ------------------------PROVISIONAL----------------------- --> 
+        <!-- Link que redirecciona a la pagina (Gestion Usuarios) -->
+        {% if perms.usuarios.view_usuario %}
         <li class="nav-item">
             <a class="nav-link text-white"
                 href="{% url 'gestion-usuarios' %}">Gestion Usuarios</a>
         </li>
+        {% endif %}
 
     </ul>
 </div>

@@ -50,9 +50,9 @@ urlpatterns = [
     # path('loggedin', loggedIn, name="inicio-sesion")
     path('logout', logout_user, name="logout"),
     # path para recuperar contraseña con Django
-    path('reset_password/', auth_views.PasswordResetView.as_view(), name='password_reset'),
-    path('reset_password_send/', auth_views.PasswordResetDoneView.as_view(), name='password_reset_done'),
-    path('reset/<uidb64>/<token>', auth_views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
-    path('reset_password_complete/', auth_views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
+    path('reiniciar/contraseña/', auth_views.PasswordResetView.as_view(template_name="contraseña/resetPassword.html"), name='password_reset'),
+    path('reiniciar/contraseña/enviar/', auth_views.PasswordResetDoneView.as_view(template_name="contraseña/resetPasswordSend.html"), name='password_reset_done'),
+    path('reiniciar/contraseña/confirmar/<uidb64>/<token>', auth_views.PasswordResetConfirmView.as_view(template_name="contraseña/resetPasswordConfirm.html"), name='password_reset_confirm'),
+    path('reiniciar/contraseña/completo/', auth_views.PasswordResetCompleteView.as_view(template_name="contraseña/resetPasswordComplete.html"), name='password_reset_complete'),
     # path('', include('django.contrib.auth.url')),
 ]+ static(settings.MEDIA_URL, document_root= settings.MEDIA_ROOT)

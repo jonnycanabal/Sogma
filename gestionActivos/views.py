@@ -7,7 +7,7 @@ from usuarios.models import Usuario
 from django.contrib import messages
 
 # Importe con el cual habilitamos el @login_required
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
 # Importe para logout en la funcion logout_user
 from django.contrib.auth import logout 
 
@@ -29,6 +29,7 @@ def generar_alarma(request):
 # ##################################################################################################################################
 # FUNCION * GENERAR RUTA *
 @login_required(login_url='login')
+@permission_required('gestionActivos.view_generarruta', 'gestionActivos.view_detalleruta')
 def generar_ruta(request,pk=None):
     titulo='Consultar-Ruta'
     if pk==None:
@@ -130,6 +131,7 @@ def generar_ruta(request,pk=None):
 
 # ############################################################################################
 # Bloque para cerrar la ruta
+
 def cerrar_ruta(request,pk):
     rutas=GenerarRuta.objects.all()
     GenerarRuta.objects.filter(id=pk).update(
@@ -149,6 +151,8 @@ def cerrar_ruta(request,pk):
 
 # ####################################################################################################################
 # BLOQUE PARA ELIMINAR PASAJERO
+@login_required(login_url='login')
+@permission_required('gestionActivos.view_pasajero')
 def eliminar_pasajero(request,id):
     pasajero=DetalleRuta.objects.get(id=id)
     ruta=pasajero.fkRuta
@@ -157,31 +161,9 @@ def eliminar_pasajero(request,id):
     return redirect('generar-ruta', ruta.id)
 
 # ##################################################################################################################################
-# FUNCION * AGREGAR FUNCIONARIOS RUTA *
-# @login_required(login_url='login')
-# def agregar_funcionarios_ruta(request, pk):
-#     titulo='Consultar-Ruta'
-#     ruta= GenerarRuta.objects.get(id=pk)
-#     # pasajeros= DetalleRuta.objects.filter(fkRuta_id=pk)
-
-#     context={
-#         'titulo':titulo,
-#         # 'vehiculos':vehiculos,
-#         'ruta':ruta
-#     }
-#     return render (request, 'gestionActivos/generarRuta.html', context)
-
-# def eliminar_pasajero(request):
-
-#     context={
-
-#     }
-
-#     return render (request, 'gestionActivos/generarRuta.html', context)
-
-# ##################################################################################################################################
 # FUNCION * REGISTRAR MANTENIMIENTO *
 @login_required(login_url='login')
+@permission_required('gestionActivos.view_registrarmantenimiento')
 def registrar_mantenimiento(request):
     titulo='Registrar-Mantenimiento'
     extintores= ActivoExtintor.objects.all()
@@ -285,6 +267,7 @@ def registrar_mantenimiento(request):
 # ##################################################################################################################################
 # FUNCION * CONSULTAR RUTA *
 @login_required(login_url='login')
+@permission_required('gestionActivos.view_detalleruta')
 def consultar_ruta(request):
     titulo='Consultar-Ruta'
     extintores= ActivoExtintor.objects.all()

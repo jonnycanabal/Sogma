@@ -38,6 +38,8 @@
 
         <!-- Botones para seleccionar el tipo de activo -->
         <div class="text-center w-100">
+
+            {% if perms.activos.view_activovehiculo %}
             <div class="d-inline-block width-20 ms-1 me-5">
                 <div class="input-group mb-3 w-100">
                     <button type="button" value="vehiculo" onclick="displayTable(this)" class="btn
@@ -47,7 +49,10 @@
                         text-dark" style="cursor: pointer;">VEHÍCULO</button>
                 </div>
             </div>
+            {% endif %}
 
+
+            {% if perms.activos.view_activoextintor %}
             <div class="d-inline-block width-20 ms-1 me-5">
                 <div class="input-group mb-3 w-100">
                     <button type="button" value="extintor" onclick="displayTable(this)" class="btn
@@ -57,7 +62,10 @@
                         text-dark" style="cursor: pointer;">EXTINTOR</button>
                 </div>
             </div>
-
+            {% endif %}
+            
+            
+            {% if perms.activos.view_activoequipooficina %}
             <div class="d-inline-block width-20 ms-1 me-5">
                 <div class="input-group mb-3 w-100">
                     <button type="button" value="oficina" onclick="displayTable(this)" class="btn
@@ -68,6 +76,7 @@
                         OFICINA</button>
                 </div>
             </div>
+            {% endif %}
         </div>
     </div>
 
@@ -126,10 +135,12 @@
                                             <i class="bi bi-eye-fill"></i>
                                         </button>
 
+                                        
+                                        {% if perms.activos.delete_activovehiculo %}
                                         <!-- Boton de eliminar integrado con un modal y un toastr de mensaje despues de aceptar -->
                                         <button type="button" class="btn fs-5 pe-1 ps-1" data-bs-toggle="modal" data-bs-target="#modal-eliminar-vehiculo-{{vehiculo.id}}"><i class="bi bi-trash3-fill"></i></a>
                                         </button>
-
+                                        {% endif %}
                                         <!-- Modal -->
                                         <div class="modal fade" id="modal-eliminar-vehiculo-{{vehiculo.id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
                                             aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -247,10 +258,11 @@
                                             <button class="btn btn-block fs-5 pe-1 ps-1" onClick="editarExtintor()" name="editar-extintor">
                                                 <i class="bi bi-eye-fill"></i>
                                             </button>
-
+                                            {% if perms.activos.delete_activoextintor %}
                                             <!-- Boton de eliminar integrado con un modal y un toastr de mensaje despues de aceptar -->
                                             <button type="button" class="btn fs-5 pe-1 ps-1" data-bs-toggle="modal" data-bs-target="#modal-eliminar-extintor-{{extintor.id}}"><i class="bi bi-trash3-fill"></i></a>
                                             </button>
+                                            {% endif %}
                                             <!-- Modal -->
                                             <div class="modal fade" id="modal-eliminar-extintor-{{extintor.id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
                                                 aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -356,9 +368,12 @@
                                                 <i class="bi bi-eye-fill"></i>
                                             </button>
 
+                                            {% if perms.activos.delete_activoequipooficina %}
                                             <!-- Boton de eliminar integrado con un modal y un toastr de mensaje despues de aceptar -->
                                             <button type="button" class="btn fs-5 pe-1 ps-1" data-bs-toggle="modal" data-bs-target="#modal-eliminar-equipo-{{equipo.id}}"><i class="bi bi-trash3-fill"></i></a>
                                             </button>
+                                            {% endif %}
+                                                
                                             <!-- Modal -->
                                             <div class="modal fade" id="modal-eliminar-equipo-{{equipo.id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
                                                 aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -544,9 +559,12 @@
 
             <!-- USO DE MODAL CON BOOTSTRAP 5 PARA EL BOTON GUARDAR-->
             <!-- Button trigger modal -->
+            
+            {% if perms.activos.change_activovehiculo %}
             <button type="button" class="btn btn-success fs-5 m-2 ms-3" data-bs-toggle="modal" data-bs-target="#modal-guardar-vehiculo">
                 GUARDAR
             </button>
+            {% endif %}
             <!-- Modal -->
             <div class="modal fade" id="modal-guardar-vehiculo" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
             aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -627,13 +645,17 @@
                         <input type="text" class="form-control" id="id_pesoExtintor" name="pesoExtintor" value="{{extintor.pesoExtintor}}" aria-describedby="basic-addon3">
                     </div>
                 </div>
+
+                </div>
             </div>
 
             <!-- USO DE MODAL CON BOOTSTRAP 5 PARA EL BOTON GUARDAR-->
             <!-- Button trigger modal -->
+            {% if perms.activos.change_activoextintor %}
             <button type="button" class="btn btn-success fs-5 m-2 ms-3" data-bs-toggle="modal" data-bs-target="#modal-guardar-extintor">
                 GUARDAR
             </button>
+            {% endif %}
             <!-- Modal -->
             <div class="modal fade" id="modal-guardar-extintor" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
                 aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -741,9 +763,11 @@
 
             <!-- USO DE MODAL CON BOOTSTRAP 5 PARA EL BOTON GUARDAR-->
             <!-- Button trigger modal -->
+            {% if perms.activos.change_activoequipooficina %}
             <button type="button" class="btn btn-success fs-5 m-2 ms-3" data-bs-toggle="modal" data-bs-target="#modal-guardar-equipo">
                 GUARDAR
             </button>
+            {% endif %}
             <!-- Modal -->
             <div class="modal fade" id="modal-guardar-equipo" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
                 aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -775,11 +799,14 @@
     <!-- USO DE MODAL CON BOOTSTRAP 5 PARA EL BOTON NUEVO ACTIVO -->
     <!-- Este modal se trabaja junto con el wizardForm.html para el registro de un nuevo activo -->
     <!-- Button trigger modal -->
+    
+    {% if perms.activos.add_activovehiculo %}
     <button type="button" class="btn btn-secondary fs-5 m-2 ms-3" data-bs-toggle="modal"
         data-bs-target="#modal-nuevo-activo">
         NUEVO
         ACTIVO
     </button>
+    {% endif %}
 
     <!-- Modal -->
     <div class="modal fade" id="modal-nuevo-activo" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"

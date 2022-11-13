@@ -2,7 +2,7 @@ from usuarios.models import Usuario
 
 def sesion(request):
     usuario_actual=request.user
-    image_user=r"media/usuarios/default.jpg"
+    image_user=r"media/usuarios/default.png"
     usuario=None
     if request.user.is_authenticated:
         if Usuario.objects.filter(user_id=usuario_actual.id):

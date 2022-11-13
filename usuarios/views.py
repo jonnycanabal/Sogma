@@ -13,12 +13,13 @@ from django.contrib.auth import logout
 # Importe con el cual habilitamos la función de make_password en nuestra contraseña que se crea por defecto.
 from django.contrib.auth.hashers import make_password
 # Importe con el cual habilitamos el @login_required
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
 
 # Create your views here.
 # @login_required pequeño fragmento de codigo con el cual hacemos necesario un inicio de sesion para ingresar a esta función y/o
 # página a la cual este asociada
 @login_required(login_url='login')
+@permission_required('usuarios.view_usuario')
 def usuarios_creados(request):
     titulo='Usuarios - Creados'
     usuarios = Usuario.objects.all()
@@ -36,9 +37,14 @@ def usuarios_creados(request):
     if request.method == "POST" and 'c-editar-usuario' in request.POST:
         print("######################", request.POST)
         usuario = Usuario.objects.get(id=int(request.POST['pk_usuario']))
+        user=User.objects.get(username=usuario.numeroDocumento)
         form=UsuarioForm(request.POST,instance=usuario)
         if form.is_valid():
             form.save()
+            user.email=request.POST['correoElectronico']
+            user.first_name=request.POST['primerNombre'].capitalize()
+            user.last_name=request.POST['primerApellido'].capitalize()
+            user.save()
             messages.success(
                 request,f"SE EDITO EL USUARIO CON ID # {usuario.id} EXITOSAMENTE"
             )
@@ -63,6 +69,10 @@ def usuarios_creados(request):
                 user.email=request.POST['correoElectronico']
                 user.password=make_password("@" + request.POST['primerNombre'][0] + request.POST['primerApellido'][0] + request.POST['numeroDocumento'][-4:])
                 user.save()
+                user_group= User
+                my_group= Group.object.get(usuario.tipoUsuario)
+                usuario.user.groups.clear()
+                my_group.user_set.add(usuario.user)
             else:
                 user=User.objects.get(username=request.POST['numeroDocumento'])
             usuario= Usuario.objects.create(
@@ -111,6 +121,7 @@ def usuarios_creados(request):
 # ###################################################################################################################################
 # ELIMINAR O DESABILITAR USUARIO
 @login_required(login_url='login')
+@permission_required('usuarios.view_usuario')
 def eliminar_usuario(request,pk):
     titulo = 'Usuarios'
     usuarios=Usuario.objects.all()

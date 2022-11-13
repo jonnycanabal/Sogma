@@ -32,6 +32,7 @@
                 <th >Fecha de Registro</th>
                 <th >Tipo de Usuario</th>
                 <th >Estado</th>
+                <th>rol</th>
             </thead>
             <tbody>
 
@@ -50,8 +51,11 @@
                             </button>
 
                             <!-- Boton de eliminar integrado con un modal y un toastr de mensaje despues de aceptar -->
-                            <button type="button" class="btn fs-5 pe-1 ps-1" data-bs-toggle="modal" data-bs-target="#modal-eliminar-usuario-{{usuario.id}}"><i class="bi bi-trash3-fill"></i></a>
+                            {% if perms.usuarios.delete_usuario %}
+                            <button type="button" class="btn fs-5 pe-1 ps-1" data-bs-toggle="modal"                     data-bs-target="#modal-eliminar-usuario-{{usuario.id}}"><i class="bi bi-trash3-fill"></i></a>
                             </button>
+                            {% endif %}
+
                             <!-- Modal -->
                             <div class="modal fade" id="modal-eliminar-usuario-{{usuario.id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
                                 aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -99,6 +103,7 @@
                             Activo
                         {% endif %}
                     </th>
+                    <th>{{usuario.user.groups.all.0}}</th>
                 </tr>
                 {% endfor %}
 
@@ -288,6 +293,19 @@
                 <select id="id_tipoUsuario" class="form-select" name="tipoUsuario" value="{{usuario.tipoUsuario}}"
                     aria-label="tipo-activo">
                     <option selected >{{usuario.tipoUsuario}}</option>
+                    <option value="Funcionario">Funcionario</option>
+                    <option value="Conductor">Conductor</option>
+                    <option value="Administrador">Administrador</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="d-inline-block ms-1 me-5 width-28">
+            <label for="basic-url" class="form-label w-75 ps-2">ROL</label>
+            <div class="input-group mb-3 w-100">
+                <select id="id_groups_from" class="form-select" name="groups_old" value="{{usuario.groups}}"
+                    aria-label="tipo-activo">
+                    <option selected >{{usuario.groups}}</option>
                     <option value="Funcionario">Funcionario</option>
                     <option value="Conductor">Conductor</option>
                     <option value="Administrador">Administrador</option>

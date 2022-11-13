@@ -24,15 +24,17 @@
     </form>
 </div> -->
 <!-- Inicio del contenedor para la página registrar mantenimiento -->
+
 <div id="div-caja3" class="container p-3 pb-4 d-flex
     justify-content-center pe-4">
-
     <form action="" method="POST" id="div-cajas" class="container p-3 my-4 mt-0
         pb-0
         border-start border-end border-dark">
         {% csrf_token %}
         <!-- Inicio del primer contenedor de la página-->
+        
         <div id="div-cajas" class="container p-3 my-4 pt-0">
+            
 
             <div class="text-center p-2 w-100">
                 <h2>Seleccione el Tipo de Activo</h2>
@@ -41,6 +43,7 @@
             <!-- Salto de línea -->
             <br>
 
+            {% if perms.activos.view_activovehiculo %}
             <!-- Botones para seleccionar el tipo de activo-->
             <div class="text-center w-100">
                 <div class="d-inline-block width-20 ms-1 me-5">
@@ -53,6 +56,9 @@
                             text-dark" style="cursor: pointer;">VEHÍCULO</button>
                     </div>
                 </div>
+            {% endif %}
+
+            {% if perms.activos.view_activoextintor %}
 
                 <div class="d-inline-block width-20 ms-1 me-5">
                     <div class="input-group mb-3 w-100">
@@ -64,7 +70,9 @@
                             text-dark" style="cursor: pointer;">EXTINTOR</button>
                     </div>
                 </div>
+            {% endif %}
 
+            {% if perms.activos.view_activoequipooficina %}
                 <div class="d-inline-block width-20 ms-1 me-5">
                     <div class="input-group mb-3 w-100">
                         <button type="button" value="oficina"
@@ -76,9 +84,11 @@
                             OFICINA</button>
                     </div>
                 </div>
+            {% endif %}
+
             </div>
         </div>
-
+        
         <!-- VEHICULOS ------------------------------------------------------------------------------- -->
         <div style="display: none;" id="table-vehiculo">
             <div class="d-flex flex-column">
