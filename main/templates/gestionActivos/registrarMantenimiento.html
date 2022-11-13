@@ -32,9 +32,9 @@
         border-start border-end border-dark">
         {% csrf_token %}
         <!-- Inicio del primer contenedor de la página-->
-        
+
         <div id="div-cajas" class="container p-3 my-4 pt-0">
-            
+
 
             <div class="text-center p-2 w-100">
                 <h2>Seleccione el Tipo de Activo</h2>
@@ -56,9 +56,9 @@
                             text-dark" style="cursor: pointer;">VEHÍCULO</button>
                     </div>
                 </div>
-            {% endif %}
+                {% endif %}
 
-            {% if perms.activos.view_activoextintor %}
+                {% if perms.activos.view_activoextintor %}
 
                 <div class="d-inline-block width-20 ms-1 me-5">
                     <div class="input-group mb-3 w-100">
@@ -70,9 +70,9 @@
                             text-dark" style="cursor: pointer;">EXTINTOR</button>
                     </div>
                 </div>
-            {% endif %}
+                {% endif %}
 
-            {% if perms.activos.view_activoequipooficina %}
+                {% if perms.activos.view_activoequipooficina %}
                 <div class="d-inline-block width-20 ms-1 me-5">
                     <div class="input-group mb-3 w-100">
                         <button type="button" value="oficina"
@@ -84,11 +84,11 @@
                             OFICINA</button>
                     </div>
                 </div>
-            {% endif %}
+                {% endif %}
 
             </div>
         </div>
-        
+
         <!-- VEHICULOS ------------------------------------------------------------------------------- -->
         <div style="display: none;" id="table-vehiculo">
             <div class="d-flex flex-column">
@@ -672,7 +672,31 @@
                             aria-describedby="basic-addon3">
                     </div>
                 </div>
+                <!-- ------------------------------TRABAJANDO ----------------------------------------------------------------------- -->
+                <div class="d-inline-block width-20 ms-1
+                    me-5">
+                    <label for="basic-url" class="form-label
+                        w-75 ps-2">FECHA PROXIMO MANTENIMIENTO</label>
+                    <div class="input-group mb-3 w-100">
+                        <input type="date"
+                            class="form-control" name=""
+                            id=""
+                            aria-describedby="basic-addon3">
+                    </div>
+                </div>
 
+                <div class="d-inline-block width-20 ms-1
+                    me-5">
+                    <label for="basic-url" class="form-label
+                        w-75 ps-2">KILOMETRAJE PROXIMO MANTENIMIENTO</label>
+                    <div class="input-group mb-3 w-100">
+                        <input type="number"
+                            class="form-control" name=""
+                            id=""
+                            aria-describedby="basic-addon3">
+                    </div>
+                </div>
+                <!-- ------------------------------TRABAJANDO ----------------------------------------------------------------------- -->
                 <!-- Cuadro de observaciones donde se diligenciara que mas se le hizo en el mantenimeinto al activo. -->
                 <div class="mt-5 pt-4 border-top border-dark w-100
                     pe-3">
@@ -857,6 +881,18 @@
                     </div>
                 </div>
 
+                <div class="d-inline-block width-20 ms-1
+                    me-5">
+                    <label for="basic-url" class="form-label
+                        w-75 ps-2">VFECHA PROXIMO MANTENIMIENTO</label>
+                    <div class="input-group mb-3 w-100">
+                        <input type="text"
+                            class="form-control" name=""
+                            id=""
+                            aria-describedby="basic-addon3">
+                    </div>
+                </div>
+
                 <!-- Cuadro de observaciones donde se diligenciara que mas se le hizo en el mantenimeinto al activo. -->
                 <div class="mt-5 pt-4 border-top border-dark w-100
                     pe-3">
@@ -1021,6 +1057,18 @@
                     me-5">
                     <label for="basic-url" class="form-label
                         w-75 ps-2">VALOR DEL MANTENIMIENTO</label>
+                    <div class="input-group mb-3 w-100">
+                        <input type="text"
+                            class="form-control" name="valorMantenimiento"
+                            id="id_valorMantenimiento"
+                            aria-describedby="basic-addon3">
+                    </div>
+                </div>
+
+                <div class="d-inline-block width-20 ms-1
+                    me-5">
+                    <label for="basic-url" class="form-label
+                        w-75 ps-2">FECHA PROXIMO MANTENIMIENTO</label>
                     <div class="input-group mb-3 w-100">
                         <input type="text"
                             class="form-control" name="valorMantenimiento"
