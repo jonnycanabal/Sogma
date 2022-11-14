@@ -1,4 +1,4 @@
-<!-- ConsultarActivos se extiende de body.html siendo este la clase hija. -->
+<!-- Consultar Ruta se extiende de body.html siendo este la clase hija. -->
 {% extends 'partials/body.html' %}
 
 <!-- Cargar la carpeta static -->
@@ -6,41 +6,46 @@
 
 {% load crispy_forms_tags %}
 
-<!-- Bloque que incluira el nav.html para que lo muestre en la página -->
+<!-- Bloque que incluirá el nav.html para que lo muestre en la página -->
 {% block menu %}
-    {% include 'partials/nav.html' %}
+{% include 'partials/nav.html' %}
 {% endblock menu %}
 
-<!-- Bloque de contenido el cual estara declarado en el body.html y sera lo que se vera dependiente de la página  -->
+<!-- Bloque de contenido el cual estará declarado en el body.html y será lo que se vera dependiente de la página  -->
 {% block contenido %}
 
 
 <!-- Inicio del contenedor para la página consultar ruta -->
-<div id="div-caja3" class="container p-3 my-4 pb-4 d-flex
+<div id="div-caja3" class="container p-3 d-flex
     justify-content-center pe-4 pt-0 mt-0">
 
-    <form action="" method="POST" id="div-cajas" class="container p-3 my-4 mt-0 pb-4">
+    <form action="" method="POST" id="div-cajas" class="container p-3 mt-0
+        pb-4">
         {% csrf_token %}
-        <!-- Enunciado o titulo de la página -->
-        <div class="w-100 text-center p-2 border-bottom
-            border-dark">
-            <h2>RUTA DE LOS VEHÍCULOS</h2>
-        </div>
 
-        <!-- Salto de linea -->
-        <br>
+        <div id="table-vehiculo" class="m-3 rounded-bottom" style="box-shadow:
+            0px 0px 5px 1px;">
 
-        <div id="table-vehiculo">
+            <!-- Enunciado o titulo de la página -->
+            <div style="box-shadow: 0px 0px 0px 1px; background-color: rgb(209,
+                208, 208);">
+                <h3 style="text-align: center;">RUTA DE LOS VEHÍCULOS</h3>
+            </div>
+
+            <!-- Salto de línea -->
+            <br>
+
             <div class="d-flex flex-column">
-                <div class="d-flex justify-content-center pb-4 mb-4 m-2 w-100 p-3">
-                    <!-- Inicio del segundo contenedor de la página-->
-    
-                    <!-- Inicio de la Tabla usando (DataTable) -->
+                <div class="d-flex justify-content-center pb-4 mb-4 m-2 w-100
+                    p-3">
+
+                    <!-- INICIO DE LAS TABLAS USANDO (DataTable) ---------------------------------------------------------------------------- -->
                     <div class="overflow-auto shadow-lg p-4
-                height-config-tabla1 m-2 w-100" style="height: 300px;">
-                        <table id="example" class="table-striped display nowrap">
-    
-                            <!-- Cabecera de la tabla (Donde estaran los enunciados principales)-->
+                        height-config-tabla1 m-2 w-100" style="height: 300px;">
+                        <table id="example" class="table-striped display
+                            nowrap">
+
+                            <!-- Cabecera de la tabla (Donde estarán  los enunciados principales)-->
                             <thead>
                                 <tr>
                                     <th></th>
@@ -49,31 +54,36 @@
                                     <th>Modelo del Vehículo</th>
                                     <th>Placa del Vehículo</th>
                                     <th>Color del Vehículo</th>
-                                    <th>Serial del Vehiculo</th>
+                                    <th>Serial del Vehículo</th>
                                     <th>Tipo de Combustible</th>
                                     <th>Cantidad de Pasajeros</th>
                                     <th>Persona a Cargo</th>
-                                    <th>Condicion del Vehículo</th>
+                                    <th>Condición del Vehículo</th>
                                     <th>Fecha de Ingreso</th>
                                     <th>Fecha Inicio Soat</th>
                                     <th>Fecha Vencimiento Soat</th>
-                                    <th>Fecha Inicio Tecnicomecanica</th>
-                                    <th>Fecha Vencimiento Tecnicomecanica</th>
+                                    <th>Fecha Inicio Técnico Mecánica</th>
+                                    <th>Fecha Vencimiento Técnico Mecánica</th>
                                 </tr>
                             </thead>
-    
-                            <!-- Cuerpo de la tabla (donde estara la informacion que se mostrara de los activos) -->
+
+                            <!-- Cuerpo de la tabla (donde estará la información que se mostrara de los activos) -->
                             <tbody>
-    
+
                                 {% for vehiculo in vehiculos %}
                                 <tr>
-                                    <!-- Imagen de un ojo con el cual seleccionara el activo y mostrara en la parte de abajo toda la informacion
-                        para editar, guardar o eliminar/desabilitar la información -->
+                                    <!-- Imagen de un ojo con el cual seleccionara el activo y mostrara en la parte de abajo toda la información
+                                    para editar, guardar o eliminar/desabilitar la información -->
                                     <td>
-                                        <form action="" method="POST" class="col-4">
+                                        <form action="" method="POST"
+                                            class="col-4">
                                             {% csrf_token %}
-                                            <input type="hidden" name="pk_vehiculo" value="{{vehiculo.id}}">
-                                            <button class="btn btn-block" onClick="editarVehiculo()" name="editar-vehiculo">
+                                            <input type="hidden"
+                                                name="pk_vehiculo"
+                                                value="{{vehiculo.id}}">
+                                            <button class="btn btn-block"
+                                                onClick="editarVehiculo()"
+                                                name="editar-vehiculo">
                                                 <i class="bi bi-eye-fill"></i>
                                             </button>
                                         </form>
@@ -95,11 +105,10 @@
                                     <td>{{vehiculo.fechaVencimientoTecnicomecanica}}</td>
                                 </tr>
                                 {% endfor %}
-    
-    
+
                             </tbody>
-    
-                            <!-- Footer de la tabla (Donde estaran los enunciados principales pero en la parte inferior) -->
+
+                            <!-- Footer de la tabla (Donde estarán los enunciados principales pero en la parte inferior) -->
                             <tfoot>
                                 <tr>
                                     <th></th>
@@ -108,16 +117,16 @@
                                     <th>Modelo del Vehículo</th>
                                     <th>Placa del Vehículo</th>
                                     <th>Color del Vehículo</th>
-                                    <th>Serial del Vehiculo</th>
+                                    <th>Serial del Vehículo</th>
                                     <th>Tipo de Combustible</th>
                                     <th>Cantidad de Pasajeros</th>
                                     <th>Persona a Cargo</th>
-                                    <th>Condicion del Vehículo</th>
+                                    <th>Condición del Vehículo</th>
                                     <th>Fecha de Ingreso</th>
                                     <th>Fecha Inicio Soat</th>
                                     <th>Fecha Vencimiento Soat</th>
-                                    <th>Fecha Inicio Tecnicomecanica</th>
-                                    <th>Fecha Vencimiento Tecnicomecanica</th>
+                                    <th>Fecha Inicio Técnico Mecánica</th>
+                                    <th>Fecha Vencimiento Técnico Mecánica</th>
                                 </tr>
                             </tfoot>
                         </table>
@@ -125,131 +134,148 @@
                 </div>
             </div>
         </div>
+
+        <br>
 
         <!-- Tabla Historial de Ruta (DataTable) -->
-        <div class="w-100">
-            <div class="w-100 text-center p-2 pt-2 border-bottom
-                border-dark mt-1 ">
-                <h2>HISTORIAL</h2>
-            </div>
-
-            <!-- Salto de línea -->
-            <br>
-
-            <!-- Los siguientes input deberan mostrar la informacion del activo que se seleccione previamente -->
+        <div class="m-3 rounded-bottom" style="box-shadow: 0px 0px 5px 1px;">
             <div class="w-100">
-                <div class="text-center w-100">
 
-                    <div class="d-inline-block width-20 ms-1 me-5">
-                        <label for="basic-url" class="form-label w-75 p-2">Id Activo</label>
-                        <div class="input-group mb-3 w-100">
-                            <input type="text" class="form-control" disabled id="" value="{{vehiculo.id}}" aria-describedby="basic-addon3">
-                        </div>
-                    </div>
-
-                    <div class="d-inline-block width-20 ms-1 me-5">
-                        <label for="basic-url" class="form-label w-75 p-2">Placa del Vehículo</label>
-                        <div class="input-group mb-3 w-100">
-                            <input type="text" class="form-control" disabled id="" value="{{vehiculo.placaVehiculo}}" aria-describedby="basic-addon3">
-                        </div>
-                    </div>
-
-                    <div class="d-inline-block width-20 ms-1 me-5">
-                        <label for="basic-url" class="form-label w-75 p-2">Modelo del Vehículo</label>
-                        <div class="input-group mb-3 w-100">
-                            <input type="text" class="form-control" disabled id="" value="{{vehiculo.modeloVehiculo}}" aria-describedby="basic-addon3">
-                        </div>
-                    </div>
-
-                    <div class="d-inline-block width-20 ms-1 me-5">
-                        <label for="basic-url" class="form-label w-75 p-2">Color del Vehículo</label>
-                        <div class="input-group mb-3 w-100">
-                            <input type="text" class="form-control" disabled id="" value="{{vehiculo.colorVehiculo}}" aria-describedby="basic-addon3">
-                        </div>
-                    </div>
+                <div style="box-shadow: 0px 0px 0px 1px; background-color:
+                    rgb(209, 208, 208);">
+                    <h3 style="text-align: center;">HISTORIAL</h3>
                 </div>
 
-                <!-- Salto de Línea -->
+                <!-- Salto de línea -->
                 <br>
 
-                <!-- Inicio de la Tabla Historial de Ruta (DataTable) -->
-                <div class="mt-2 w-100 d-flex
-                    justify-content-center">
-                    <div class="shadow-lg w-75 p-3
-                        overflow-auto" style="height:
-                        300px;">
-                        <!-- Inicio del tercer contenedor de la página-->
-                        <table id="example2" class="table
-                            table-striped">
-                            <thead>
-                                <tr>
-                                    <th class="text-center">ID
-                                        RUTA</th>
-                                    <th>FECHA</th>
-                                    <th>CONDUCTOR</th>
-                                    <th class="text-center">CONSULTAR</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                
-                                
-                                <!-- Condiciones para cuando seleccione el vehiculo sea el mismo asociado a la ruta que tenga -->
-                                <!-- Tambien la segunda condición filtra si el usuario logeado corresponde al de la ruta
+                <!-- Los siguientes input deberán mostrar la información del activo que se seleccione previamente -->
+                <div class="w-100">
+                    <div class="text-center w-100">
+
+                        <div class="d-inline-block width-20 ms-1 me-5">
+                            <label for="basic-url" class="form-label w-75 p-2">ID
+                                Activo</label>
+                            <div class="input-group mb-3 w-100">
+                                <input type="text" class="form-control text-center" disabled
+                                    id="" value="{{vehiculo.id}}"
+                                    aria-describedby="basic-addon3">
+                            </div>
+                        </div>
+
+                        <div class="d-inline-block width-20 ms-1 me-5">
+                            <label for="basic-url" class="form-label w-75 p-2">Placa
+                                del Vehículo</label>
+                            <div class="input-group mb-3 w-100">
+                                <input type="text" class="form-control text-center" disabled
+                                    id="" value="{{vehiculo.placaVehiculo}}"
+                                    aria-describedby="basic-addon3">
+                            </div>
+                        </div>
+
+                        <div class="d-inline-block width-20 ms-1 me-5">
+                            <label for="basic-url" class="form-label w-75 p-2">Modelo
+                                del Vehículo</label>
+                            <div class="input-group mb-3 w-100">
+                                <input type="text" class="form-control text-center" disabled
+                                    id="" value="{{vehiculo.modeloVehiculo}}"
+                                    aria-describedby="basic-addon3">
+                            </div>
+                        </div>
+
+                        <div class="d-inline-block width-20 ms-1 me-5">
+                            <label for="basic-url" class="form-label w-75 p-2">Color
+                                del Vehículo</label>
+                            <div class="input-group mb-3 w-100">
+                                <input type="text" class="form-control text-center" disabled
+                                    id="" value="{{vehiculo.colorVehiculo}}"
+                                    aria-describedby="basic-addon3">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Salto de Línea -->
+                    <br>
+
+                    <!-- Inicio de la Tabla Historial de Ruta (DataTable) -->
+                    <div class="mt-2 w-100 d-flex
+                        justify-content-center">
+                        <div class="shadow-lg w-75 p-3
+                            overflow-auto" style="height:
+                            300px;">
+                            <table id="example2" class="table
+                                table-striped">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">ID
+                                            Ruta</th>
+                                        <th>Fecha</th>
+                                        <th>Conductor</th>
+                                        <th class="text-center">Consultar</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <!-- Condiciones para cuando seleccione el vehiculo sea el mismo asociado a la ruta que tenga -->
+                                    <!-- Tambien la segunda condición filtra si el usuario logeado corresponde al de la ruta
                                 para evitar que el conductor ingrese a otra ruta a la que no este relacionado. -->
-                                {% for ruta in rutas %}
-                                
-                                {% if vehiculo.id == ruta.fkVehiculo.id %}
-                                
-                                {% if usuario.id == ruta.fkUsuario.id or usuario.tipoUsuario == 'Administrador'%}
-                                <tr>
-                                    <td class="text-center">{{ruta.id}}</td>
-                                    <td>{{ruta.fechaSalida}}</td>
-                                    <td>{{ruta.fkUsuario}}</td>
-                                    <!-- Imagen de una lupa con la cual seleccionara la ruta y 
-                                    te redireccionara a la página con la información de dicha rutay con algunos campos activos
-                                    para editar, guardar o eliminar/desabilitar la información -->
-                                    <td class="d-flex justify-content-center">
-                                        <form action="" method="POST" class="col-4">
-                                            {% csrf_token %}
-                                            <!-- <input type="hidden" name="" value="{{ruta.id}}"> -->
-                                            <a class="bi bi-search btn fs-4" href="{% url 'generar-ruta' ruta.id %}"></a>
-                                            <!-- <button class="btn btn-block"  name="editar-extintor">
+                                    {% for ruta in rutas %}
+
+                                    {% if vehiculo.id == ruta.fkVehiculo.id %}
+
+                                    {% if usuario.id == ruta.fkUsuario.id or usuario.tipoUsuario == 'Administrador'%}
+                                    <tr>
+                                        <td class="text-center">{{ruta.id}}</td>
+                                        <td>{{ruta.fechaSalida}}</td>
+                                        <td>{{ruta.fkUsuario}}</td>
+                                        <!-- Imagen de una lupa con la cual seleccionara la ruta y 
+                                        te redireccionara a la página con la información de dicha rutay con algunos campos activos
+                                        para editar, guardar o eliminar/desabilitar la información -->
+                                        <td class="d-flex
+                                            justify-content-center">
+                                            <form action="" method="POST"
+                                                class="col-4">
+                                                {% csrf_token %}
+                                                <!-- <input type="hidden" name="" value="{{ruta.id}}"> -->
+                                                <a class="bi bi-search btn fs-4"
+                                                    href="{% url 'generar-ruta' ruta.id %}"></a>
+                                                <!-- <button class="btn btn-block"  name="editar-extintor">
                                                 <i class="bi bi-search fs-4"></i>
                                             </button> -->
-                                        </form>
-                                    </td>
-                                </tr>
+                                            </form>
+                                        </td>
+                                    </tr>
 
-                                {% endif %}
+                                    {% endif %}
 
-                                {% endif %}
+                                    {% endif %}
 
-                                {% endfor %}
-                                
-                            </tbody>
+                                    {% endfor %}
 
-                            <!-- Footer de la tabla Historial (Donde estaran los enunciados principales pero en la parte inferior) -->
-                            <tfoot>
-                                <tr>
-                                    <th class="text-center">ID
-                                        RUTA</th>
-                                    <th>FECHA</th>
-                                    <th>CONDUCTOR</th>
-                                    <th class="text-center">CONSULTAR</th>
-                                </tr>
-                            </tfoot>
-                        </table>
-                        <!-- Fin de la Tabla Historial de Ruta (DataTable) -->
+                                </tbody>
 
+                                <!-- Footer de la tabla Historial (Donde estarán los enunciados principales pero en la parte inferior) -->
+                                <tfoot>
+                                    <tr>
+                                        <th class="text-center">ID
+                                            Ruta</th>
+                                        <th>Fecha</th>
+                                        <th>Conductor</th>
+                                        <th class="text-center">Consultar</th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                            <!-- Fin de la Tabla Historial de Ruta (DataTable) -->
+                        </div>
                     </div>
                 </div>
-
             </div>
 
-        </div>
+            <br>
+            <br>
 
+        </div>
     </form>
 </div>
 <!-- Fin del contenedor para la página consultar ruta -->
-
 {% endblock contenido %}
