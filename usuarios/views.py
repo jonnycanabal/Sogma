@@ -38,7 +38,7 @@ def usuarios_creados(request):
         print("######################", request.POST)
         usuario = Usuario.objects.get(id=int(request.POST['pk_usuario']))
         user=User.objects.get(username=usuario.numeroDocumento)
-        form=UsuarioForm(request.POST,instance=usuario)
+        form=UsuarioForm(request.POST, request.FILES, instance=usuario)
         if form.is_valid():
             form.save()
             user.email=request.POST['correoElectronico']

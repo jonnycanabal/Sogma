@@ -92,7 +92,20 @@
 
 /*----------- INICIO MODIFICACION DEL RESPONSIVE @MEDIA QUERY (No servia algunos responsive de Bootstrap 5) ------------*/
 /* -------------------------------------------------- */
+
+@media (max-width: 2600px){
+    .boton-secundario{
+        width: 20%;
+    }
+
+    .boton-primario{
+        width: 20%;
+        margin-left: 1%;
+    }
+}
+
 @media (max-width:1500px){
+    
     .boton-primario{
         width: 20%;
         margin-left: 1%;
