@@ -24,22 +24,23 @@
     </form>
 </div> -->
 <!-- Inicio del contenedor para la página generar ruta -->
-<div id="div-caja3" class="container p-3 pe-4 pt-0 mt-0">
+<!-- <div id="div-caja3" class="container mt-4 w-100"> -->
 
     {% if ruta == None %}
 
-    <div class="m-3 rounded-bottom" style="box-shadow: 0px
+    <div class="m-4 rounded-bottom mt-5" style="box-shadow: 0px
         0px 5px 1px;">
 
         <!-- Enunciado o título  de la página -->
-        <div style="box-shadow: 0px 0px 0px 1px; background-color: rgb(209,
+        <div class="w-100" style="box-shadow: 0px 0px 0px 1px; background-color: rgb(209,
             208, 208);">
             <h3 style="text-align: center;">GENERAR RUTA</h3>
         </div>
 
-        <form action="" method="POST" id="div-cajas" class="container p-3">
+        <form action="" method="POST" class="">
             {% csrf_token %}
-
+            
+            <div class="p-3 div-cajas2 w-100">
             <!-- Botones para seleccionar o diligenciar  información -->
             <div class="d-inline-block width-20 ms-1 me-5">
                 <label for="basic-url" class="form-label w-75 ps-2">Placa del
@@ -134,10 +135,10 @@
             <br>
             <!-- Text Área  para la descripción de la ruta -->
             <div class="d-inline-block me-5 ps-1
-                textarea-alarma">
+                textarea-alarma w-100">
                 <label for="basic-url" class="form-label
                     w-75 ps-2">DESCRIPCIÓN</label>
-                <div class="form-floating mb-3 w-100
+                <div class="form-floating mb-3 w-75
                     height-textarea">
                     <textarea class="form-control border
                         border-dark" name="descripcionRuta" style="height:
@@ -147,8 +148,10 @@
             </div>
 
             <br>
-
-            <button class="btn btn-success w-25 ms-1 fs-5 p-1" name="generar">Llenar</button>
+            <div class="w-100  pe-2">
+            <button class="btn btn-success fs-5 boton-primario" name="generar">Abrir Ruta</button>
+            </div>
+            </div>
         </form>
     </div>
 
@@ -156,11 +159,11 @@
 
     {% if ruta.estadoRuta == 'Abierta' %}
 
-    <div class="m-3 rounded-bottom" style="box-shadow:
+    <div class="m-4 rounded-bottom mt-5" style="box-shadow:
         0px
         0px 5px 1px;">
 
-        <div style="box-shadow: 0px 0px 0px 1px; background-color: rgb(209, 208,
+        <div class="w-100" style="box-shadow: 0px 0px 0px 1px; background-color: rgb(209, 208,
             208);">
             <div class="w-100 text-center">
                 <h2>Ruta # {{ruta.id}}</h2>
@@ -177,6 +180,7 @@
 
         <br>
 
+        <div class="p-3 div-cajas2 w-100">
         <input type="hidden" name="fkRuta" value="{{ruta.id}}">
         <div class="d-inline-block width-20 ms-1 me-5 ps-2">
             <label for="basic-url" class="form-label w-75 ps-2">ID Ruta</label>
@@ -297,11 +301,12 @@
                     id="id_descripcionRuta" disabled>{{ruta.descripcionRuta}}</textarea>
             </div>
         </div>
+        </div>
     </div>
     <!-- ################################################################################################################################## -->
     <!-- Parte para la selección y/o registro de funcionarios a transportar -->
     <!-- Título de selección de funcionarios -->
-    <div class="m-3 rounded-bottom" style="box-shadow: 0px
+    <div class="m-4 rounded-bottom" style="box-shadow: 0px
         0px 5px 1px;">
         <form method="POST">
             <div class=" mt-5">
@@ -315,7 +320,7 @@
 
                 <br>
 
-                <div class="w-100 text-center">
+                <div class="p-3 div-cajas2 w-100 text-center">
 
                     <div class="d-inline-block ms-1 me-5 width-28">
                         <input type="hidden" name="fkRuta" value="{{ruta.id}}">
@@ -335,27 +340,31 @@
 
                             </select>
 
-                            <button class="btn bi bi-person-check fs-3 "
-                                name="pasajero"></button>
-
-                            <!-- USO DE MODAL CON BOOTSTRAP 5 PARA EL BOTÓN NUEVO ACTIVO -->
-                            <!-- Este modal se trabaja junto con el wizardForm.html para el registro de un nuevo activo -->
-                            <!-- Button trigger modal -->
-
-                            <button type="button" class="btn fs-3"
-                                data-bs-toggle="modal"
-                                data-bs-target="#modal-registrar-pasajero"><i
-                                    class="bi bi-person-plus"></i>
-                            </button>
+                            <div>
+                                <button class="btn bi bi-person-check fs-3 "
+                                    name="pasajero"></button>
+    
+                                <!-- USO DE MODAL CON BOOTSTRAP 5 PARA EL BOTÓN NUEVO ACTIVO -->
+                                <!-- Este modal se trabaja junto con el wizardForm.html para el registro de un nuevo activo -->
+                                <!-- Button trigger modal -->
+    
+                                <button type="button" class="btn fs-3"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#modal-registrar-pasajero"><i
+                                        class="bi bi-person-plus"></i>
+                                </button>
+                            </div>
 
                         </div>
+
+                        
                     </div>
                 </div>
                 <br>
             </div>
         </form>
     </div>
-</div>
+<!-- </div> -->
 
 <!-- ########################################################################################################################### -->
 <!-- Parte donde se mostraran los funcionarios seleccionados, sus datos y si desea quitarlos de la ruta. -->
@@ -391,16 +400,17 @@
         <br>
     </div>
 </div> -->
-<div id="div-caja3" class="container p-3 pe-4 pt-0 mt-0">
+<!-- <div id="div-caja3" class="container p-3 pe-4 pt-0 mt-0"> -->
 
-    <div class="m-3 rounded-bottom" style="box-shadow: 0px
+    <div class="m-4 rounded-bottom" style="box-shadow: 0px
         0px 5px 1px;">
 
-        <div style="box-shadow: 0px 0px 0px 1px; background-color: rgb(209, 208,
+        <div class="w-100" style="box-shadow: 0px 0px 0px 1px; background-color: rgb(209, 208,
             208);">
             <h3 style="text-align: center;">FUNCIONARIOS SELECCIONADOS</h3>
         </div>
 
+        <div class="p-3 div-cajas2 w-100  overflow-auto">
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -429,13 +439,14 @@
                 {% endfor %}
             </tbody>
         </table>
+        </div>
         <!-- Información de los funcionarios agregados. -->
         <br>
     </div>
-</div>
+<!-- </div> -->
 
-<div id="div-caja3" class="container p-3 pe-4 pt-0 mt-0">
-    <div id="edit-vehiculo" class="m-3 rounded-bottom" style="box-shadow: 0px
+<!-- <div id="div-caja3" class="container p-3 pe-4 pt-0 mt-0"> -->
+    <div class="m-4 rounded-bottom" style="box-shadow: 0px
         0px
         5px 1px;">
         <form action="" method="POST">
@@ -449,7 +460,8 @@
 
             <br>
 
-            <div class="d-inline-block width-20 ms-4 me-5">
+            <div class="p-3 div-cajas2 w-100">
+            <div class="d-inline-block width-20 me-5">
                 <label for="basic-url" class="form-label w-75 ps-2">Hora de
                     Llegada</label>
                 <div class="input-group mb-3 w-100">
@@ -459,7 +471,7 @@
                 </div>
             </div>
 
-            <div class="d-inline-block width-20 ms-1 me-5">
+            <div class="d-inline-block width-20 me-5">
                 <label for="basic-url" class="form-label w-75 ps-2">Kilometraje
                     Final</label>
                 <div class="input-group mb-3 w-100">
@@ -475,7 +487,7 @@
             <br>
 
             <!-- Text Área  para las observaciones de la ruta -->
-            <div class="d-inline-block ms-4 me-5
+            <div class="d-inline-block me-5
                 textarea-alarma">
                 <label for="basic-url" class="form-label
                     w-75 ps-2">OBSERVACIONES</label>
@@ -491,18 +503,19 @@
             <br>
             <br>
 
-            <button class="btn btn-success ps-1 pe-1 ms-4 me-1"
-                name="editar-ruta" style="width: 10%;">Guardar</button>
+            <div class="w-100 ps-2 pe-2">
+            <button class="btn btn-success ps-1 pe-1 me-1 boton-secundario mb-2"
+                name="editar-ruta">Guardar</button>
             <!-- botón de imprimir el cual deberá enviar aun documentos en pdf para así imprimir la ruta. -->
-            <button class="btn btn-warning ps-1 pe-1 me-1" style="width: 10%;">Imprimir</button>
+            <button class="btn btn-warning ps-1 pe-1 me-1 boton-secundario mb-2">Imprimir</button>
             <!-- botón de imprimir el cual deberá enviar aun documentos en pdf para así imprimir la ruta. -->
-            <a class="btn btn-block btn-danger" style="width: 10%;" href="{% url 'cerrar-ruta' ruta.id %}">Cerrar
+            <a class="btn btn-block btn-danger boton-secundario mb-2" href="{% url 'cerrar-ruta' ruta.id %}">Cerrar
                 Ruta</a>
-
+            </div> 
+            </div>
         </form>
-        <br>
     </div>
-</div>
+<!-- </div> -->
 
 {% else %}
 
@@ -510,7 +523,8 @@
 
     <form action="" method="POST">
         {% csrf_token %}
-        <div class="m-3 rounded-bottom" style="box-shadow:
+
+        <div class="m-4 rounded-bottom mt-5" style="box-shadow:
             0px
             0px 5px 1px;">
 
@@ -538,8 +552,8 @@
                 </span>
             </div>
 
+            <div class="p-3 div-cajas2 w-100">
             <input type="hidden" name="fkRuta" value="{{GenerarRuta.id}}">
-
             <div class="d-inline-block width-20 ms-1 me-5 ps-2">
                 <label for="basic-url" class="form-label w-75 ps-2">ID Ruta</label>
                 <div class="input-group mb-3 w-100">
@@ -654,18 +668,19 @@
             <!-- Salto de línea -->
             <br>
             <!-- Text Área  para la descripción de la ruta -->
-            <div class="d-inline-block me-5 ps-3
+            <div class="d-inline-block me-5
                 textarea-alarma">
                 <label for="basic-url" class="form-label
                     w-75 ps-2">DESCRIPCIÓN</label>
                 <div class="form-floating mb-3 w-100
-                    height-textarea">
+                    height-textarea ps-1">
                     <textarea class="form-control border
                         border-dark" name="descripcionRuta" style="height:
                         150px; resize: none;" placeholder="Leave a comment here
                         "
                         id="id_descripcionRuta" disabled>{{ruta.descripcionRuta}}</textarea>
                 </div>
+            </div>
             </div>
 
         </div>
@@ -698,15 +713,16 @@
         </div> -->
         <br>
 
-        <div class="m-3 rounded-bottom" style="box-shadow: 0px
+        <div class="m-4 rounded-bottom" style="box-shadow: 0px
             0px 5px 1px;">
 
-            <div style="box-shadow: 0px 0px 0px 1px; background-color:
+            <div class="w-100" style="box-shadow: 0px 0px 0px 1px; background-color:
                 rgb(209, 208,
                 208);">
                 <h3 style="text-align: center;">FUNCIONARIOS SELECCIONADOS</h3>
             </div>
-
+            
+            <div class="p-3 div-cajas2 w-100  overflow-auto">
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -733,24 +749,26 @@
                     {% endfor %}
                 </tbody>
             </table>
+            </div>
             <!-- Información de los funcionarios agregados. -->
             <br>
         </div>
 
         <br>
 
-        <div id="edit-vehiculo" class="m-3 rounded-bottom" style="box-shadow:
+        <div class="m-4 rounded-bottom" style="box-shadow:
             0px
             0px
             5px 1px;">
 
-            <div style="box-shadow: 0px 0px 0px 1px; background-color: rgb(209,
+            <div class="w-100" style="box-shadow: 0px 0px 0px 1px; background-color: rgb(209,
                 208,
                 208);">
                 <h3 style="text-align: center;">INFORMACIÓN FINAL</h3>
             </div>
 
-            <div class="d-inline-block width-20 ms-4 me-5">
+            <div class="p-3 div-cajas2 w-100">
+            <div class="d-inline-block width-20 me-5">
                 <label for="basic-url" class="form-label w-75 ps-2">Hora de
                     llegada</label>
                 <div class="input-group mb-3 w-100">
@@ -761,7 +779,7 @@
                 </div>
             </div>
 
-            <div class="d-inline-block width-20 ms-1 me-5">
+            <div class="d-inline-block width-20 me-5">
                 <label for="basic-url" class="form-label w-75 ps-2">Kilometraje
                     Final</label>
                 <div class="input-group mb-3 w-100">
@@ -777,7 +795,7 @@
             <br>
 
             <!-- Text Área para las observaciones de la ruta -->
-            <div class="d-inline-block ms-4 me-5
+            <div class="d-inline-block me-5
                 textarea-alarma">
                 <label for="basic-url" class="form-label
                     w-75 ps-2">Observaciones</label>
@@ -788,6 +806,7 @@
                         150px; resize: none;" name="observacionesRuta"
                         id="id_observacionesRuta" disabled>{{ruta.observacionesRuta}}</textarea>
                 </div>
+            </div>
             </div>
         </div>
     </form>

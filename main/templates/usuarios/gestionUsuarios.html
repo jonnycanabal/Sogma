@@ -66,7 +66,7 @@
                                                 ELIMINACIÓN</h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
-                                        <div class="modal-body text-start fs-5">
+                                        <div class="modal-body text-start fs-5" style="font-weight: normal;">
                                             ¿Está seguro que desea Eliminar El
                                             usuario con ID # {{usuario.id}}?
                                             <br>
@@ -129,18 +129,17 @@
     <div style="box-shadow: 0px 0px 0px 1px; background-color: rgb(209, 208, 208);">
         <h3 style="text-align: center;">Editando al Usuario "{{usuario.primerNombre}} {{usuario.primerApellido}}"</h3>
     </div>
-<div id="editar-usuario" class="d-flex justify-content-center m-2 w-100 p-3 ps-5">
+<div id="editar-usuario" class="d-flex justify-content-center m-2 w-100 p-3 ">
     <!-- Botones para seleccionar o diligenciar información -->
     <form action="" method="POST" enctype="multipart/form-data" class="p-left pe-3 ps-3">
 
     {% csrf_token %}
-
-        <div class="d-inline-block ms-1 me-5 width-28 ">
+    <div class="p-3 div-cajas2">
+        <div class="d-inline-block width-20 ms-1 me-5">
             <label for="basic-url" class="form-label w-75 ps-2">ID Usuario</label>
             <div class="input-group mb-3 w-100">
                 <input type="hidden" name="pk_usuario" value="{{usuario.id}}">
                 <input type="text" class="form-control" disabled id="" name="" value="{{usuario.id}}" aria-describedby="basic-addon3">
-
             </div>
         </div>
 
@@ -314,9 +313,11 @@
         </div>
         <br>
         <br>
-        <button type="button" class="btn btn-success fs-5 m-2 ms-2" data-bs-toggle="modal" data-bs-target="#modal-guardar-usuario" style="width: 20%;">
+        <div class="w-100 ps-2 pe-2">
+        <button type="button" class="btn btn-success fs-5 boton-secundario" data-bs-toggle="modal" data-bs-target="#modal-guardar-usuario">
             Editar
         </button>
+        </div>
         <!-- Modal -->
         <div class="modal fade" id="modal-guardar-usuario" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -348,15 +349,16 @@
                 </div>
             </div>
         </div>
+    </div>
     </form>
 </div>
 </div>
 
 {% endif %}
-<div class="w-100" style="padding-left: 3%;">
-<button type="button" class="btn btn-secondary fs-5 m-2" data-bs-toggle="modal"
+<div class="w-100 ps-2 pe-3">
+<button type="button" class="btn btn-warning fs-5 boton-primario" data-bs-toggle="modal"
 data-bs-target="#modal-nuevo-usuario">
-Registrar Usuario
+REGISTRAR USUARIO
 </button>
 
 <!-- Modal -->

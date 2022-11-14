@@ -26,15 +26,10 @@
 <!-- ####################################################################################################################### -->
 <!-- Inicio del contenedor para la página registrar mantenimiento -->
 
-<div id="div-caja3" class="container p-3 pb-4 d-flex
-    justify-content-center pe-4">
-    <form action="" method="POST" id="div-cajas" class="container p-3 my-4 mt-0
-        pb-0">
+<div id="div-caja3" class="container p-3">
+    <form action="" method="POST" id="div-cajas" class="w-100">
         {% csrf_token %}
         <!-- Inicio del primer contenedor de la página-->
-
-        <div id="div-cajas" class="container p-3 pt-0">
-
 
             <div class="text-center p-2 w-100">
                 <h2>Seleccione el Activo</h2>
@@ -90,18 +85,19 @@
                 {% endif %}
 
             </div>
-        </div>
+
 
         <!-- VEHICULOS ---------------------------------------------------------------------------------------------------- -->
-        <div style="display: none;" id="table-vehiculo">
-            <div class="d-flex flex-column">
-                <div class="d-flex justify-content-center pb-4 mb-4 m-2 w-100
-                    p-3">
+        <div style="display: none;" id="table-vehiculo" class="w-100">
+            <div class="d-flex flex-column w-100" style="text-align: center;">
+
+                <div class="d-flex justify-content-center pb-4 mb-4 w-100 p-3">
                     <!-- INICIO DE LAS TABLAS USANDO (DataTable) ---------------------------------------------------------- -->
                     <!-- TABLA VEHÍCULOS. La tabla tiene un id="example", la cual se relaciona un javascript de DATATABLE -->
                     <!-- También en el partials/javascript.html se encuentran los script y links de referencias de CSS para su funcionamiento -->
                     <div class="overflow-auto shadow-lg p-4
                         height-config-tabla1 m-2 w-100" style="height: 300px;">
+
                         <table id="example" class="table-striped display
                             nowrap">
 
@@ -194,11 +190,9 @@
         </div>
 
         <!-- EXTINTORES ----------------------------------------------------------------------------------------------------- -->
-        <div style="display: none;" id="table-extintor">
-            <div class="d-flex flex-column">
-                <div class="d-flex justify-content-center pb-4 mb-4 m-2 w-100
-                    p-3">
-
+        <div style="display: none;" id="table-extintor" class="w-100">
+            <div class="d-flex flex-column w-100">
+                <div class="d-flex justify-content-center pb-4 mb-4 w-100 p-3">
                     <!-- TABLA EXTINTORES. La tabla tiene un id="example", la cual se relaciona un javascript de DATATABLE -->
                     <!-- También en el partials/javascript.html se encuentran los script y links de referencias  de CSS para su funcionamiento -->
                     <div class="overflow-auto shadow-lg p-4
@@ -270,12 +264,10 @@
         </div>
 
         <!-- EQUIPOS DE OFICINA ------------------------------------------------------------------------------------------- -->
-        <div style="display: none;" id="table-oficina">
-            <div class="d-flex flex-column">
+        <div style="display: none;" id="table-oficina" class="w-100">
+            <div class="d-flex flex-column w-100">
                 <div class="h3 ms-5">Equipos de Oficina</div>
-                <div class="d-flex justify-content-center pb-4 mb-4 m-2 w-100
-                    p-3">
-
+                <div class="d-flex justify-content-center pb-4 mb-4 w-100 p-3">
                     <!-- TABLA EQUIPOS DE OFICINA. La tabla tiene un id="example", la cual se relaciona un javascript de DATATABLE -->
                     <!-- También en el partials/javascript.html se encuentran los script y links de referencias  de CSS para su funcionamiento -->
                     <div class="overflow-auto shadow-lg p-4
@@ -356,20 +348,18 @@
         </div>
 
         <!-- Contenedor donde aparecen los datos básicos del activo para confirmar que selecciono bien. -->
-        <div class="mb-5 w-100">
-
             {% if vehiculo %}
 
-            <div class="m-3 rounded-bottom" style="box-shadow: 0px 0px 5px
+            <div class="rounded-bottom w-100" style="box-shadow: 0px 0px 5px
                 1px;">
                 <!-- Titulo Activo Seleccionado -->
-                <div style="box-shadow: 0px 0px 0px 1px; background-color:
+                <div class="w-100" style="box-shadow: 0px 0px 0px 1px; background-color:
                     rgb(209, 208, 208);">
                     <h3 style="text-align: center;">Activo Seleccionado</h3>
                 </div>
 
                 <!-- BOTONES PARA VEHÍCULO -->
-                <div id="div-cajas2" class="p-3">
+                <div class="p-3 div-cajas2 w-100">
                     <div class="d-inline-block width-20 ms-1 me-5">
                         <label for="basic-url" class="form-label w-75 p-2">Id
                             Activo</label>
@@ -455,16 +445,16 @@
             </div>
 
             {% elif extintor %}
-            <div class="m-3 rounded-bottom" style="box-shadow: 0px 0px 5px
+            <div  class="rounded-bottom w-100" style="box-shadow: 0px 0px 5px
                 1px;">
                 <!-- Titulo Activo Seleccionado -->
-                <div style="box-shadow: 0px 0px 0px 1px; background-color:
+                <div class="w-100" style="box-shadow: 0px 0px 0px 1px; background-color:
                     rgb(209, 208, 208);">
                     <h3 style="text-align: center;">Activo Seleccionado</h3>
                 </div>
 
                 <!-- BOTONES PARA EXTINTOR -->
-                <div id="div-cajas2" class="p-3">
+                <div class="p-3 div-cajas2 w-100">
                     <div class="d-inline-block width-20 ms-1 me-5">
                         <label for="basic-url" class="form-label w-75 p-2">Id
                             Activo</label>
@@ -526,17 +516,17 @@
             </div>
 
             {% elif equipo %}
-            <div class="m-3 rounded-bottom" style="box-shadow: 0px 0px 5px
+            <div  class="rounded-bottom w-100" style="box-shadow: 0px 0px 5px
                 1px;">
 
                 <!-- Titulo Activo Seleccionado -->
-                <div style="box-shadow: 0px 0px 0px 1px; background-color:
+                <div class="w-100" style="box-shadow: 0px 0px 0px 1px; background-color:
                     rgb(209, 208, 208);">
                     <h3 style="text-align: center;">Activo Seleccionado</h3>
                 </div>
 
                 <!-- BOTONES PARA EQUIPOS DE OFICINA -->
-                <div id="div-cajas2" class="p-3">
+                <div class="p-3 div-cajas2 w-100">
                     <div class="d-inline-block width-20 ms-1 me-5">
                         <label for="basic-url" class="form-label w-75 p-2">Id
                             Activo</label>
@@ -615,21 +605,22 @@
                 </div>
             </div>
             {% endif %}
-        </div>
+
+            <br>
+            <br>
 
         {% if vehiculo %}
 
-        <div id="edit-vehiculo" class="m-3 rounded-bottom" style="box-shadow:
-            0px 0px 5px 1px;">
-
-            <div style="box-shadow: 0px 0px 0px 1px; background-color: rgb(209,
-                208, 208);">
-                <h3 style="text-align: center;">Registrar Mantenimiento</h3>
+        <div class="rounded-bottom w-100" style="box-shadow: 0px 0px 5px
+        1px;">
+            <div class="w-100" style="box-shadow: 0px 0px 0px 1px; background-color:
+                rgb(209, 208, 208);">
+            <h3 style="text-align: center;">Registrar Mantenimiento</h3>
             </div>
 
             <form action="" method="POST" enctype="multipart/form-data">
                 <input type="hidden" value="{{vehiculo.id}}" name="pk_vehiculo">
-                <div class="pt-4 w-100 ms-3" id="m-vehiculo">
+                <div class="p-3 div-cajas2 w-100" id="m-vehiculo">
 
                     {% csrf_token %}
 
@@ -768,11 +759,11 @@
                 <br>
 
                 <!-- Botón de registrar el mantenimiento junto con su modal para validad el registro. -->
-                <div class="text-center w-100 pb-3"> <!-- BOTON DE ACCIÓN-->
+                <div class="text-center p-2 w-100"> <!-- BOTON DE ACCIÓN-->
                     <!-- USO DE MODAL CON BOOTSTRAP 5 PARA EL BOTÓN DE REGISTRAR MANTENIMIENTO-->
                     <!-- Button trigger modal -->
                     <button type="button" class="btn btn-success
-                        fs-5 btn-registrar-mantenimiento"
+                        fs-5 boton-secundario"
                         data-bs-toggle="modal"
                         data-bs-target="#modal-registrar-mantenimiento">
                         Registrar
@@ -827,17 +818,18 @@
 
         {% elif extintor %}
 
-        <div id="edit-vehiculo" class="m-3 rounded-bottom" style="box-shadow:
-            0px 0px 5px 1px;">
+        <div class="rounded-bottom w-100" style="box-shadow: 0px 0px 5px
+        1px;">
 
-            <div style="box-shadow: 0px 0px 0px 1px; background-color: rgb(209,
-                208, 208);">
+            <div class="w-100" style="box-shadow: 0px 0px 0px 1px; background-color:
+                rgb(209, 208, 208);">
+
                 <h3 style="text-align: center;">Registrar Mantenimiento</h3>
             </div>
 
             <form action="" method="POST" enctype="multipart/form-data">
                 <input type="hidden" value="{{extintor.id}}" name="pk_extintor">
-                <div class="pt-4 w-100 ms-3" id="m-extintor">
+                <div class="p-3 div-cajas2 w-100" id="m-extintor">
 
                     {% csrf_token %}
                     <div class="d-inline-block width-20 ms-1
@@ -965,11 +957,11 @@
                 <br>
 
                 <!-- Botón de registrar el mantenimiento junto con su modal para validad el registro. -->
-                <div class="text-center w-100 pb-3"> <!-- BOTON DE ACCIÓN-->
+                <div class="text-center p-2 w-100"> <!-- BOTON DE ACCIÓN-->
                     <!-- USO DE MODAL CON BOOTSTRAP 5 PARA EL BOTÓN DE REGISTRAR MANTENIMIENTO-->
                     <!-- Button trigger modal -->
                     <button type="button" class="btn btn-success
-                        fs-5 btn-registrar-mantenimiento"
+                        fs-5 boton-secundario"
                         data-bs-toggle="modal"
                         data-bs-target="#modal-registrar-mantenimiento">
                         Registrar
@@ -1024,17 +1016,16 @@
 
         {% elif equipo %}
 
-        <div id="edit-vehiculo" class="m-3 rounded-bottom" style="box-shadow:
-            0px 0px 5px 1px;">
-
-            <div style="box-shadow: 0px 0px 0px 1px; background-color: rgb(209,
+        <div class="rounded-bottom w-100" style="box-shadow: 0px 0px 5px
+        1px;">
+            <div class="w-100" style="box-shadow: 0px 0px 0px 1px; background-color: rgb(209,
                 208, 208);">
                 <h3 style="text-align: center;">Registrar Mantenimiento</h3>
             </div>
 
             <form action="" method="POST" enctype="multipart/form-data">
                 <input type="hidden" value="{{equipo.id}}" name="pk_equipo">
-                <div class="pt-4 w-100 ms-3" id="m-equipo">
+                <div class="p-3 div-cajas2 w-100" id="m-equipo">
 
                     {% csrf_token %}
 
@@ -1148,11 +1139,11 @@
                 <br>
 
                 <!-- Botón de registrar el mantenimiento junto con su modal para validad el registro. -->
-                <div class="text-center w-100 pb-3"> <!-- BOTON DE ACCIÓN-->
+                <div class="text-center p-2 w-100"> <!-- BOTON DE ACCIÓN-->
                     <!-- USO DE MODAL CON BOOTSTRAP 5 PARA EL BOTÓN DE REGISTRAR MANTENIMIENTO-->
                     <!-- Button trigger modal -->
                     <button type="button" class="btn btn-success
-                        fs-5 btn-registrar-mantenimiento"
+                        fs-5 boton-secundario"
                         data-bs-toggle="modal"
                         data-bs-target="#modal-registrar-mantenimiento">
                         REGISTRAR

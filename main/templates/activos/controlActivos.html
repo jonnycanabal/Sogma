@@ -81,6 +81,7 @@
             <div class="d-flex justify-content-center pb-4 mb-4 m-2 w-100 p-3">
                 <div class="overflow-auto shadow-lg p-4
                     height-config-tabla1 m-2 w-100" style="height: 300px;">
+                    
                     <table id="example" class="table-striped display nowrap">
 
                         <!-- Cabecera de la tabla (Donde estarán los enunciados principales)-->
@@ -569,14 +570,15 @@
             <!-- Button trigger modal -->
             
             {% if perms.activos.change_activovehiculo %}
-            <div>
-            <button type="button" class="btn btn-success fs-5 m-2 ms-3 p-1" data-bs-toggle="modal" data-bs-target="#modal-guardar-vehiculo" style="width: 20%;">
+            
+            <div class="w-100 ps-2 pe-2">
+            <button type="button" class="btn btn-success fs-5 boton-secundario mb-2" data-bs-toggle="modal" data-bs-target="#modal-guardar-vehiculo">
                 Editar
             </button>
 
             <!-- Este botÓn o link cuando se oprime deberá redireccionar a un archivo en pdf o excel donde mostrar el reporte del activo -->
             <a href="generar-reporte.html" class="btn btn-secondary fs-5
-            m-2 p-1" style="width: 20%;">GENERAR
+            boton-secundario mb-2">GENERAR
             REPORTE</a>
             </div>
             {% endif %}
@@ -855,11 +857,13 @@
     <!-- Este modal se trabaja junto con el wizardForm.html para el registro de un nuevo activo -->
     <!-- Button trigger modal -->
     {% if perms.activos.add_activovehiculo %}
-    <button type="button" class="btn btn-warning fs-5 m-2 ms-3 p-1" data-bs-toggle="modal"
+    <div class="w-100 ps-2 pe-2">
+    <button type="button" class="btn btn-warning fs-5 boton-primario" data-bs-toggle="modal"
         data-bs-target="#modal-nuevo-activo">
         NUEVO
         ACTIVO
     </button>
+    </div>  
     {% endif %}
 
     <!-- Modal -->
