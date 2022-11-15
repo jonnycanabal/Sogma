@@ -31,10 +31,10 @@ def alarma (request):
     for vehiculo in vehiculos:
         print(vehiculos)
 
-    for vehiculo in vehiculos:
+    for extintor in extintores:
         print(extintores)
 
-    for vehiculo in vehiculos:
+    for equipo in equipos:
         print(equipos)
 
     context={
