@@ -1,6 +1,7 @@
 from django.utils.translation import gettext_lazy as _
 from enum import unique
 from django.db import models
+# from datetime import date
 
 # Create your models here.
 
@@ -17,10 +18,14 @@ class ActivoExtintor(models.Model):
         D='D', _("Tipo C")
     tipoExtintor=models.CharField(max_length=5, choices=TipoExtintor.choices, default=TipoExtintor.A, verbose_name="Tipo de Extintor")
     pesoExtintor=models.CharField(max_length=10, verbose_name="Peso del Extintor")
+    # fechaUltimaRecarga=models.DateField(verbose_name="Fecha Ultima Recarga", help_text="DD/MM/AAAA", default=date.today)
+    # fechaProximaRecarga=models.DateField(verbose_name="Fecha Proxima Recarga", help_text="DD/MM/AAAA", default=date.today)
     class EstadoExtintor(models.TextChoices):
         ACTIVO='Activo', _("Activo")
         INACTIVO='Inactivo', _("Inactivo")
     estadoExtintor=models.CharField(max_length=10, choices=EstadoExtintor.choices, default=EstadoExtintor.ACTIVO, verbose_name="Estado")
+    def __str__(self):
+        return "%s" %(self.serialExtintor)
 
 # CREACIÓN DE LA TABLA (activoEquipoOficina) DE NUESTRA MER DISEÑADO EN MYSQL WORKBENCH
 class ActivoEquipoOficina(models.Model):
@@ -32,11 +37,14 @@ class ActivoEquipoOficina(models.Model):
     ramEquipo=models.CharField(max_length=20, verbose_name="Ram del Equipo", blank=True)
     memoriaEquipo=models.CharField(max_length=20, verbose_name="Memoria del Equipo", blank=True)
     ubicacionEquipo=models.CharField(max_length=50, verbose_name="Ubicación del Equipo")
+    # fechaProximaRevision=models.DateField(verbose_name="Fecha Proxima Revisión", help_text="DD/MM/AAAA", default=date.today)
     componentesAdicionales=models.TextField(max_length=100, verbose_name="Componentes del Equipo", blank=True)
     class EstadoEquipo(models.TextChoices):
         ACTIVO='Activo', _("Activo")
         INACTIVO='Inactivo', _("Inactivo")
     estadoEquipo=models.CharField(max_length=10, choices=EstadoEquipo.choices, default=EstadoEquipo.ACTIVO, verbose_name="Estado")
+    def __str__(self):
+        return "%s" %(self.marcaEquipo)
 
 # CREACIÓN DE LA TABLA (activoVehiculo) DE NUESTRA MER DISEÑADO EN MYSQL WORKBENCH
 class ActivoVehiculo(models.Model):
@@ -58,6 +66,7 @@ class ActivoVehiculo(models.Model):
     fechaFinSoat=models.DateField(verbose_name="Fecha Vencimiento Soat", help_text="DD/MM/AAAA")
     fechaInicioTecnicomecanica=models.DateField(verbose_name="Fecha Inicio Tecnicomecanica", help_text="DD/MM/AAAA")
     fechaVencimientoTecnicomecanica=models.DateField(verbose_name="Fecha Vencimiento Tecnicomecanica", help_text="DD/MM/AAAA")
+    # fechaProximoMantenimiento=models.DateField(verbose_name="Fecha Proximo Mantenimiento", help_text="DD/MM/AAAA", default=date.today)
     class EstadoVehiculo(models.TextChoices):
         ACTIVO='Activo', _("Activo")
         INACTIVO='Inactivo', _("Inactivo")

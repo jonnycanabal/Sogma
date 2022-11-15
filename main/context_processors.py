@@ -1,4 +1,7 @@
 from usuarios.models import Usuario
+from gestionActivos.models import MantenimientoVehiculo, MantenimientoExtintor, MantenimientoEquipo
+from datetime import datetime, timedelta
+
 
 def sesion(request):
     usuario_actual=request.user
@@ -14,4 +17,29 @@ def sesion(request):
         'usuario':usuario
     }
 
+    return context
+
+
+def alarma (request):
+    start_date= datetime.today() - timedelta(days=32)
+    end_date= datetime.today() + timedelta(days=3) - timedelta(days=30)
+    # vehiculos=MantenimientoVehiculo.objects.filter(fkRegistrarMantenimiento__fechaMantenimiento__range=(start_date, end_date))
+    vehiculos=MantenimientoVehiculo.objects.filter(fkRegistrarMantenimiento__fechaMantenimiento__gte= start_date, fkRegistrarMantenimiento__fechaMantenimiento__lte= end_date)
+    extintores=MantenimientoExtintor.objects.filter(fkRegistrarMantenimiento__fechaMantenimiento__gte= start_date, fkRegistrarMantenimiento__fechaMantenimiento__lte= end_date)
+    equipos=MantenimientoEquipo.objects.filter(fkRegistrarMantenimiento__fechaMantenimiento__gte= start_date, fkRegistrarMantenimiento__fechaMantenimiento__lte= end_date)
+
+    for vehiculo in vehiculos:
+        print(vehiculos)
+
+    for vehiculo in vehiculos:
+        print(extintores)
+
+    for vehiculo in vehiculos:
+        print(equipos)
+
+    context={
+        'vehiculos':vehiculos,
+        'extintores':extintores,
+        'equipos':equipos
+    }
     return context

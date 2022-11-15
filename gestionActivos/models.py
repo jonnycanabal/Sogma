@@ -90,7 +90,8 @@ class MantenimientoVehiculo(models.Model):
     fkVehiculo=models.ForeignKey(ActivoVehiculo, on_delete=models.CASCADE, verbose_name="Vehículo")
     kilometrajeMantenimiento=models.IntegerField(verbose_name="Kilometraje del Vehículo") # Valor numero (IntegerField) Para sumar Kilometraje!!!!!!
     fkRegistrarMantenimiento=models.ForeignKey(RegistrarMantenimiento, on_delete=models.CASCADE, verbose_name="mantenimiento")
-
+    def __str__(self):
+        return f'{self.fkVehiculo}'
 
 # ###############################################################################################################################
 # CREACIÓN DE TABLA PARA REGISTRAR MANTENIMIENTO DE UN EXINTOR
@@ -101,11 +102,14 @@ class MantenimientoExtintor(models.Model):
         NO='NO', _("NO")
     usado=models.CharField(max_length=5, choices=Usado.choices, default=Usado.NO, verbose_name="¿Extintor usado?", blank=True)
     fkRegistrarMantenimiento=models.ForeignKey(RegistrarMantenimiento, on_delete=models.CASCADE, verbose_name="mantenimiento")
-
+    def __str__(self):
+        return f'{self.fkExtintor}'
+        
 # ###############################################################################################################################
 # CREACIÓN DE TABLA PARA REGISTRAR MANTENIMIENTO DE UN EQUIPO DE OFICINA
 class MantenimientoEquipo(models.Model):
     fkEquipoOficina=models.ForeignKey(ActivoEquipoOficina, on_delete=models.CASCADE, verbose_name="Equipo de Oficina")
     fkRegistrarMantenimiento=models.ForeignKey(RegistrarMantenimiento, on_delete=models.CASCADE, verbose_name="mantenimiento")
-
+    def __str__(self):
+        return f'{self.fkEquipoOficina}'
 

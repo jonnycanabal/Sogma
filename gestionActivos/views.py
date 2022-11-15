@@ -17,14 +17,14 @@ from django.contrib.auth import logout
 # ##################################################################################################################################
 # FUNCION * GENERAR ALARMA *
 @login_required(login_url='login')
-def generar_alarma(request):
-    titulo='Generar-Alarma'
+def consultar_alarma(request):
+    titulo='Alarmas'
     form=GenerarAlarmaForm()
     context={
         'titulo':titulo,
         'form':form
     }
-    return render (request, 'gestionActivos/generarAlarma.html', context)
+    return render (request, 'gestionActivos/Alarmas.html', context)
 
 # ##################################################################################################################################
 # FUNCION * GENERAR RUTA *

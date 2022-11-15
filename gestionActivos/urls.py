@@ -1,10 +1,10 @@
 from django.urls import path
 
-from gestionActivos.views import consultar_ruta, generar_alarma, generar_ruta, registrar_mantenimiento, eliminar_pasajero, cerrar_ruta
+from gestionActivos.views import consultar_ruta, consultar_alarma, generar_ruta, registrar_mantenimiento, eliminar_pasajero, cerrar_ruta
 
 
 urlpatterns = [
-    path('generar/alarma/', generar_alarma, name="generar-alarma"),
+    path('alarmas/', consultar_alarma, name="Alarmas"),
     path('generar/ruta/', generar_ruta, name="generar-ruta"),
     path('generar/ruta/<int:pk>/', generar_ruta, name="generar-ruta"),
     path('registrarMantenimiento/', registrar_mantenimiento, name="registrar-mantenimiento"),

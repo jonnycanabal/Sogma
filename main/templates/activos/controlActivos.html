@@ -164,7 +164,7 @@
                                     </form>
                                 </td>
                                 <td class="text-center">{{vehiculo.id}}</td>
-                                <td><img src="{{vehiculo.fotoVehiculo}}" alt="" width="50"
+                                <td><img src="{{ MEDIA_URL }}{{vehiculo.fotoVehiculo.url}}" alt="" width="50"
                                     height="50" class="rounded-circle me-2 "></td>
                                 <td>{{vehiculo.marcaVehiculo}}</td>
                                 <td>{{vehiculo.modeloVehiculo}}</td>
@@ -291,7 +291,7 @@
                                         </form>
                                     </td>
                                     <td class="text-center">{{extintor.id}}</td>
-                                    <td><img src="{{extintor.fotoExtintor}}" alt="" width="50"
+                                    <td><img src="{{ MEDIA_URL }}{{extintor.fotoExtintor.url}}" alt="" width="50"
                                         height="50" class="rounded-circle me-2 "></td>
                                     <td>{{extintor.serialExtintor}}</td>
                                     <td>{{extintor.colorExtintor}}</td>
@@ -409,7 +409,7 @@
                                         </form>
                                     </td>
                                     <td class="text-center">{{equipo.id}}</td>
-                                    <td><img src="{{equipo.fotoEquipo}}" alt="" width="50"
+                                    <td><img src="{{ MEDIA_URL }}{{equipo.fotoEquipo.url}}" alt="" width="50"
                                         height="50" class="rounded-circle me-2 "></td>    
                                     <td>{{equipo.serialEquipo}}</td>
                                     <td>{{equipo.marcaEquipo}}</td>
@@ -474,7 +474,7 @@
                 <div class="d-inline-block width-20 ms-1 me-5">
                     <label for="basic-url" class="form-label w-75 ps-2">Foto del Vehículo</label>
                     <div class="input-group mb-3 w-100">
-                        <input  type="file" class="form-control" name="fotoVehiculo"
+                        <input  type="file" class="form-control" name="fotoVehiculo" value="{{ MEDIA_URL }}{{vehiculo.fotoVehiculo.url}}"
                             id="id_fotoVehiculo"
                             aria-describedby="basic-addon3">
                     </div>
@@ -578,12 +578,12 @@
                     </div>
                 </div>
 
-                <div class="d-inline-block width-20 ms-1 me-5">
+                <!-- <div class="d-inline-block width-20 ms-1 me-5">
                     <label for="basic-url" class="form-label w-75 p-2">Fecha próximo Mantenimiento</label>
                     <div class="input-group mb-3 w-100">
-                        <input type="date" class="form-control" id="" name="" value="" aria-describedby="basic-addon3">
+                        <input type="date" class="form-control" id="id_fechaProximoMantenimiento" name="fechaProximoMantenimiento" value="{{vehiculo.fechaProximoMantenimiento | date:'Y-m-d'}}" aria-describedby="basic-addon3">
                     </div>
-                </div>
+                </div> -->
             </div>
 
             <br>
@@ -655,7 +655,7 @@
                 <div class="d-inline-block width-20 ms-1 me-5">
                     <label for="basic-url" class="form-label w-75 ps-2">Foto del Extintor</label>
                     <div class="input-group mb-3 w-100">
-                        <input  type="file" class="form-control" name="fotoExtintor"
+                        <input  type="file" class="form-control" name="fotoExtintor" value="{{ MEDIA_URL }}{{extintor.fotoExtintor.url}}"
                             id="id_fotoExtintor"
                             aria-describedby="basic-addon3">
                     </div>
@@ -699,16 +699,16 @@
                 <div class="d-inline-block width-20 ms-1 me-5">
                     <label for="basic-url" class="form-label w-75 p-2">Fecha Ultima Recarga</label>
                     <div class="input-group mb-3 w-100">
-                        <input type="date" class="form-control" id="" name="" value="" aria-describedby="basic-addon3">
+                        <input type="date" class="form-control" id="id_fechaUltimaRecarga" name="fechaUltimaRecarga" value="{{extintor.fechaUltimaRecarga | date:'Y-m-d'}}" aria-describedby="basic-addon3">
                     </div>
                 </div>
 
-                <div class="d-inline-block width-20 ms-1 me-5">
+                <!-- <div class="d-inline-block width-20 ms-1 me-5">
                     <label for="basic-url" class="form-label w-75 p-2">Fecha Próxima Recarga</label>
                     <div class="input-group mb-3 w-100">
-                        <input type="date" class="form-control" id="" name="" value="" aria-describedby="basic-addon3">
+                        <input type="date" class="form-control" id="id_fechaProximaRecarga" name="fechaProximaRecarga" value="{{extintor.fechaProximaRecarga | date:'Y-m-d'}}" aria-describedby="basic-addon3">
                     </div>
-                </div>
+                </div> -->
             </div>
 
             <!-- USO DE MODAL CON BOOTSTRAP 5 PARA EL BOTÓN GUARDAR-->
@@ -780,7 +780,7 @@
                 <div class="d-inline-block width-20 ms-1 me-5">
                     <label for="basic-url" class="form-label w-75 ps-2">Foto del Equipo</label>
                     <div class="input-group mb-3 w-100">
-                        <input  type="file" class="form-control" name="fotoEquipo"
+                        <input  type="file" class="form-control" name="fotoEquipo" value="{{ MEDIA_URL }}{{equipo.fotoEquipo.url}}"
                             id="id_fotoEquipo"
                             aria-describedby="basic-addon3">
                     </div>
@@ -835,12 +835,12 @@
                     </div>
                 </div>
 
-                <div class="d-inline-block width-20 ms-1 me-5">
-                    <label for="basic-url" class="form-label w-75 p-2">Fecha Próximo Mantenimiento</label>
+                <!-- <div class="d-inline-block width-20 ms-1 me-5">
+                    <label for="basic-url" class="form-label w-75 p-2">Fecha Próxima Revisión</label>
                     <div class="input-group mb-3 w-100">
-                        <input type="date" class="form-control" id="" name="" value="" aria-describedby="basic-addon3">
+                        <input type="date" class="form-control" id="id_fechaProximaRevision" name="fechaProximaRevision" value="{{equipo.fechaProximaRevision | date:'Y-m-d'}}" aria-describedby="basic-addon3">
                     </div>
-                </div>
+                </div> -->
 
                 <div class="d-inline-block width-20 ms-1 me-5">
                     <label for="basic-url" class="form-label w-75 p-2">Componentes del Equipo</label>
