@@ -13,7 +13,7 @@
         <div class="">
 
             <!-- FORM PARA EL REGISTRO DE USUARIO -->
-            <form id="regForm" action="" method="POST">
+            <form id="regForm" action="" method="POST" enctype="multipart/form-data">
 
                 <!-- TOKEN DE SEGURIDAD -->
                 {% csrf_token %}
@@ -55,6 +55,9 @@
                     <!-- CAMPOS PARA REGISTRAR LOS VEHÍCULOS ################################################################## -->
                     <div id="form-vehiculo" style="display: none;">
                         <h2 style="text-align: center;">Vehículo</h2>
+                        <p><label class="w-75 mb-0 fs-5">Foto del Vehículo</label><input type="file"
+                            id="id_fotoVehiculo" class="input-wizard"
+                            name="fotoVehiculo"></p>
                         <p><label class="w-75 mb-0 fs-5">Marca del Vehículo</label><input
                                 id="id_marcaVehiculo" class="input-wizard"
                                 name="marcaVehiculo"></p>
@@ -123,6 +126,9 @@
                     <!-- CAMPOS PARA REGISTRAR LOS EXTINTORES ################################################################## -->
                     <div id="form-extintor" style="display: none;">
                         <h2 style="text-align: center;">Extintor</h2>
+                        <p><label class="w-75 mb-0 fs-5">Foto del Extintor</label><input type="file"
+                            id="id_fotoExtintor" class="input-wizard"
+                            name="fotoExtintor"></p>
                         <p><label class="w-75 mb-0 fs-5">Serial
                                 Extintor</label><input type="text"
                                 id="id_serialExtintor"
@@ -176,6 +182,9 @@
                     <!-- CAMPOS PARA REGISTRAR LOS EQUIPOS DE OFICINA ############################################################## -->
                     <div id="form-oficina" style="display: none;">
                         <h2 style="text-align: center;">Equipo De Oficina</h2>
+                        <p><label class="w-75 mb-0 fs-5">Foto del Equipo</label><input type="file"
+                            id="id_fotoEquipo" class="input-wizard"
+                            name="fotoEquipo"></p>
                         <p><label class="w-75 mb-0 fs-5">Serial Equipo</label><input
                                 id="id_serialEquipo" class="input-wizard"
                                 name="serialEquipo"></p>

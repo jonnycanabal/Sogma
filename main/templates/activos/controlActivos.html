@@ -89,6 +89,7 @@
                             <tr>
                                 <th>Acción</th>
                                 <th>Id Activo</th>
+                                <th>Foto</th>
                                 <th>Marca del Vehículo</th>
                                 <th>Modelo del Vehículo</th>
                                 <th>Placa del Vehículo</th>
@@ -163,6 +164,8 @@
                                     </form>
                                 </td>
                                 <td class="text-center">{{vehiculo.id}}</td>
+                                <td><img src="{{vehiculo.fotoVehiculo}}" alt="" width="50"
+                                    height="50" class="rounded-circle me-2 "></td>
                                 <td>{{vehiculo.marcaVehiculo}}</td>
                                 <td>{{vehiculo.modeloVehiculo}}</td>
                                 <td>{{vehiculo.placaVehiculo}}</td>
@@ -186,6 +189,7 @@
                             <tr>
                                 <th>Acción</th>
                                 <th>Id Activo</th>
+                                <th>Foto</th>
                                 <th>Marca del Vehículo</th>
                                 <th>Modelo del Vehículo</th>
                                 <th>Placa del Vehículo</th>
@@ -224,6 +228,7 @@
                             <tr>
                                 <th>Acción</th>
                                 <th>Id Activo</th>
+                                <th>Foto</th>
                                 <th>Serial Extintor</th>
                                 <th>Color Extintor</th>
                                 <th>Ubicación del Extintor</th>
@@ -286,6 +291,8 @@
                                         </form>
                                     </td>
                                     <td class="text-center">{{extintor.id}}</td>
+                                    <td><img src="{{extintor.fotoExtintor}}" alt="" width="50"
+                                        height="50" class="rounded-circle me-2 "></td>
                                     <td>{{extintor.serialExtintor}}</td>
                                     <td>{{extintor.colorExtintor}}</td>
                                     <td>{{extintor.ubicacionExtintor}}</td>
@@ -301,6 +308,7 @@
                             <tr>
                                 <th>Acción</th>
                                 <th>Id Activo</th>
+                                <th>Foto</th>
                                 <th>Serial Extintor</th>
                                 <th>Color Extintor</th>
                                 <th>Ubicación del Extintor</th>
@@ -331,6 +339,7 @@
                             <tr>
                                 <th>Acción</th>
                                 <th>Id Activo</th>
+                                <th>Foto</th>
                                 <th>Serial Equipo</th>
                                 <th>Marca Equipo</th>
                                 <th>Color Equipo</th>
@@ -400,6 +409,8 @@
                                         </form>
                                     </td>
                                     <td class="text-center">{{equipo.id}}</td>
+                                    <td><img src="{{equipo.fotoEquipo}}" alt="" width="50"
+                                        height="50" class="rounded-circle me-2 "></td>    
                                     <td>{{equipo.serialEquipo}}</td>
                                     <td>{{equipo.marcaEquipo}}</td>
                                     <td>{{equipo.colorEquipo}}</td>
@@ -417,6 +428,7 @@
                             <tr>
                                 <th>Acción</th>
                                 <th>Id Activo</th>
+                                <th>Foto</th>
                                 <th>Serial Equipo</th>
                                 <th>Marca Equipo</th>
                                 <th>Color Equipo</th>
@@ -441,7 +453,7 @@
 
     <div id="edit-vehiculo" class="m-3 rounded-bottom" style="box-shadow: 0px 0px 5px 1px;">
 
-        <form action="" method="POST">
+        <form action="" method="POST" enctype="multipart/form-data">
 
             <!-- TOKEN DE SEGURIDAD -->
             {% csrf_token %}
@@ -456,6 +468,15 @@
                     <div class="input-group mb-3 w-100">
                         <input type="hidden" name="pk_vehiculo" value="{{vehiculo.id}}">
                         <input type="text" class="form-control" disabled id="" name="" value="{{vehiculo.id}}" aria-describedby="basic-addon3">
+                    </div>
+                </div>
+
+                <div class="d-inline-block width-20 ms-1 me-5">
+                    <label for="basic-url" class="form-label w-75 ps-2">Foto del Vehículo</label>
+                    <div class="input-group mb-3 w-100">
+                        <input  type="file" class="form-control" name="fotoVehiculo"
+                            id="id_fotoVehiculo"
+                            aria-describedby="basic-addon3">
                     </div>
                 </div>
 
@@ -613,7 +634,7 @@
 
     <div id="edit-extintor" class="m-3 rounded-bottom" style="box-shadow: 0px 0px 5px 1px;">
 
-        <form action="" method="POST">
+        <form action="" method="POST" enctype="multipart/form-data">
 
             <!-- TOKEN DE SEGURIDAD -->
             {% csrf_token %}
@@ -628,6 +649,15 @@
                     <div class="input-group mb-3 w-100">
                         <input type="hidden" name="pk_extintor" value="{{extintor.id}}">
                         <input type="text" class="form-control" disabled id="" name="" value="{{extintor.id}}" aria-describedby="basic-addon3">
+                    </div>
+                </div>
+
+                <div class="d-inline-block width-20 ms-1 me-5">
+                    <label for="basic-url" class="form-label w-75 ps-2">Foto del Extintor</label>
+                    <div class="input-group mb-3 w-100">
+                        <input  type="file" class="form-control" name="fotoExtintor"
+                            id="id_fotoExtintor"
+                            aria-describedby="basic-addon3">
                     </div>
                 </div>
 
@@ -729,7 +759,7 @@
 
     <div id="edit-oficina" class="m-3 rounded-bottom" style="box-shadow: 0px 0px 5px 1px;">
 
-        <form action="" method="POST">
+        <form action="" method="POST" enctype="multipart/form-data">
 
             <!-- TOKEN DE SEGURIDAD -->
             {% csrf_token %}
@@ -744,6 +774,15 @@
                     <div class="input-group mb-3 w-100">
                         <input type="hidden" name="pk_equipo" value="{{equipo.id}}">
                         <input type="text" class="form-control" disabled id="" name="" value="{{equipo.id}}" aria-describedby="basic-addon3">
+                    </div>
+                </div>
+
+                <div class="d-inline-block width-20 ms-1 me-5">
+                    <label for="basic-url" class="form-label w-75 ps-2">Foto del Equipo</label>
+                    <div class="input-group mb-3 w-100">
+                        <input  type="file" class="form-control" name="fotoEquipo"
+                            id="id_fotoEquipo"
+                            aria-describedby="basic-addon3">
                     </div>
                 </div>
 

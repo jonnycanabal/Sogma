@@ -43,7 +43,7 @@ def control_activos(request):
     if request.method == "POST" and 'c-editar-vehiculo' in request.POST:
         print("######################", request.POST)
         vehiculo = ActivoVehiculo.objects.get(id=int(request.POST['pk_vehiculo']))
-        form=ActivoVehiculoForm(request.POST,instance=vehiculo)
+        form=ActivoVehiculoForm(request.POST, request.FILES, instance=vehiculo)
         if form.is_valid():
             form.save()
             messages.success(
@@ -58,7 +58,7 @@ def control_activos(request):
     if request.method == "POST" and 'c-editar-extintor' in request.POST:
         print("######################", request.POST)
         extintor = ActivoExtintor.objects.get(id=int(request.POST['pk_extintor']))
-        form=ActivoExtintorForm(request.POST,instance=extintor)
+        form=ActivoExtintorForm(request.POST, request.FILES, instance=extintor)
         if form.is_valid():
             form.save()
             messages.success(
@@ -71,7 +71,7 @@ def control_activos(request):
     if request.method == "POST" and 'c-editar-equipo' in request.POST:
         print("######################", request.POST)
         equipo = ActivoEquipoOficina.objects.get(id=int(request.POST['pk_equipo']))
-        form=ActivoEquipoOficinaForm(request.POST,instance=equipo)
+        form=ActivoEquipoOficinaForm(request.POST, request.FILES, instance=equipo)
         if form.is_valid():
             form.save()
             messages.success(
@@ -84,7 +84,7 @@ def control_activos(request):
 # ###################################################################################################################################
     # CAPTURAR INFORMACION EN EL WIZARD PARA REGISTRAR ACTIVOS.
     if request.method == "POST" and 'form-extintor' in request.POST:
-        form=ActivoExtintorForm(request.POST)
+        form=ActivoExtintorForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             print('###################################### EXTINTOR CREADO')
@@ -96,7 +96,7 @@ def control_activos(request):
             print('###################################### EXTINTOR ERROR')
 
     if request.method == "POST" and 'form-oficina' in request.POST:
-        form=ActivoEquipoOficinaForm(request.POST)
+        form=ActivoEquipoOficinaForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             print('###################################### EQUIPO CREADO')
@@ -108,7 +108,7 @@ def control_activos(request):
             print('###################################### EQUIPO ERROR')
 
     if request.method == "POST" and 'form-vehiculo' in request.POST:
-        form=ActivoVehiculoForm(request.POST)
+        form=ActivoVehiculoForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             print('###################################### VEHICULO CREADO')

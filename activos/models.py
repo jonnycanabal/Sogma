@@ -6,6 +6,7 @@ from django.db import models
 
 # CREACIÓN DE LA TABLA (activoExtintor) DE NUESTRA MER DISEÑADO EN MYSQL WORKBENCH
 class ActivoExtintor(models.Model):
+    fotoExtintor=models.ImageField(upload_to='extintores', blank=True, default='extintores/extintores_default.jpg') # pip install pillow
     serialExtintor=models.CharField(max_length=50, verbose_name="Serial Extintor")
     colorExtintor=models.CharField(max_length=20, verbose_name="Color Extintor")
     ubicacionExtintor=models.CharField(max_length=50, verbose_name="Ubicación del Extintor")
@@ -23,6 +24,7 @@ class ActivoExtintor(models.Model):
 
 # CREACIÓN DE LA TABLA (activoEquipoOficina) DE NUESTRA MER DISEÑADO EN MYSQL WORKBENCH
 class ActivoEquipoOficina(models.Model):
+    fotoEquipo=models.ImageField(upload_to='equipos', blank=True, default='equipos/equipo_default.jpg') # pip install pillow
     serialEquipo=models.CharField(max_length=50, verbose_name="Serial Equipo")
     marcaEquipo=models.CharField(max_length=20, verbose_name="Marca Equipo")
     colorEquipo=models.CharField(max_length=20, verbose_name="Color Equipo")
@@ -38,6 +40,7 @@ class ActivoEquipoOficina(models.Model):
 
 # CREACIÓN DE LA TABLA (activoVehiculo) DE NUESTRA MER DISEÑADO EN MYSQL WORKBENCH
 class ActivoVehiculo(models.Model):
+    fotoVehiculo=models.ImageField(upload_to='vehiculos', blank=True, default='vehiculos/vehiculo_default.jpg') # pip install pillow
     marcaVehiculo=models.CharField(max_length=20, verbose_name="Marca del Vehículo")
     modeloVehiculo=models.CharField(max_length=10, verbose_name="Modelo del Vehículo")
     placaVehiculo=models.CharField(max_length=10, unique=True, verbose_name="Placa del Vehículo") #Tiene campo Único
