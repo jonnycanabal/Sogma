@@ -19,7 +19,7 @@ def sesion(request):
 
     return context
 
-
+# Bloque de código con la función para dar aviso de activos que esten proximos a un mantenimiento.
 def alarma (request):
     start_date= datetime.today() - timedelta(days=32)
     end_date= datetime.today() + timedelta(days=3) - timedelta(days=30)

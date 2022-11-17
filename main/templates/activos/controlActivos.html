@@ -598,7 +598,7 @@
             </button>
 
             <!-- Este botÓn o link cuando se oprime deberá redireccionar a un archivo en pdf o excel donde mostrar el reporte del activo -->
-            <a href="generar-reporte.html" class="btn btn-secondary fs-5
+            <a href="{% url 'reporte-vehiculo' vehiculo.id %}" class="btn btn-secondary fs-5
             boton-secundario mb-2">GENERAR
             REPORTE</a>
             </div>
@@ -721,7 +721,7 @@
             </button>
 
             <!-- Este botÓn o link cuando se oprime deberá redireccionar a un archivo en pdf o excel donde mostrar el reporte del activo -->
-            <a href="generar-reporte.html" class="btn btn-secondary fs-5
+            <a href="{% url 'reporte-extintor' extintor.id %}" class="btn btn-secondary fs-5
             m-2 p-1" style="width: 20%;">GENERAR
             REPORTE</a>
             </div>
@@ -859,7 +859,7 @@
             </button>
 
             <!-- Este botÓn o link cuando se oprime deberá redireccionar a un archivo en pdf o excel donde mostrar el reporte del activo -->
-            <a href="generar-reporte.html" class="btn btn-secondary fs-5
+            <a href="{% url 'reporte-equipo' equipo.id %}" class="btn btn-secondary fs-5
             m-2 p-1" style="width: 20%;">GENERAR
             REPORTE</a>
             </div>

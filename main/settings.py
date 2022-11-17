@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'crispy_forms', # pip install django-crispy-forms
     'crispy_bootstrap5', # pip install crispy-bootstrap5
     'django_select2', # pip install django-select2
+    # pip install xhtml2pdf
     'usuarios',
     'activos',
     'gestionActivos',

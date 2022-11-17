@@ -21,7 +21,7 @@ from django.urls import path, include
 
 
 # Importar la funcion de cada path creado.
-from main.views import consultar_ruta, control_activos, generar_alarma, generar_ruta, inicio, nuevo_usuario, registrar_mantenimiento
+from main.views import consultar_ruta, reporte_vehiculo, reporte_extintor, reporte_equipo,  control_activos, generar_alarma, generar_ruta, inicio, nuevo_usuario, registrar_mantenimiento
 from usuarios.views import logout_user
 
 ####### Importes para subir imágenes #######
@@ -56,4 +56,9 @@ urlpatterns = [
     path('reiniciar/contraseña/confirmar/<uidb64>/<token>', auth_views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
     path('reiniciar/contraseña/completo/', auth_views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
     path('', include('django.contrib.auth.urls')),
+    # ------------------------------------------------------------------------
+    path('reporte/vehiculo/<int:pk>/', reporte_vehiculo , name='reporte-vehiculo'),
+    path('reporte/extintor/<int:pk>/', reporte_extintor , name='reporte-extintor'),
+    path('reporte/equipo/<int:pk>/', reporte_equipo , name='reporte-equipo'),
+
 ]+ static(settings.MEDIA_URL, document_root= settings.MEDIA_ROOT)

@@ -1,7 +1,7 @@
 from django.utils.translation import gettext_lazy as _
 from enum import unique
 from django.db import models
-# from datetime import date
+from datetime import date
 
 # Create your models here.
 
@@ -18,7 +18,7 @@ class ActivoExtintor(models.Model):
         D='D', _("Tipo C")
     tipoExtintor=models.CharField(max_length=5, choices=TipoExtintor.choices, default=TipoExtintor.A, verbose_name="Tipo de Extintor")
     pesoExtintor=models.CharField(max_length=10, verbose_name="Peso del Extintor")
-    # fechaUltimaRecarga=models.DateField(verbose_name="Fecha Ultima Recarga", help_text="DD/MM/AAAA", default=date.today)
+    fechaUltimaRecarga=models.DateField(verbose_name="Fecha Ultima Recarga", help_text="DD/MM/AAAA", default=date.today)
     # fechaProximaRecarga=models.DateField(verbose_name="Fecha Proxima Recarga", help_text="DD/MM/AAAA", default=date.today)
     class EstadoExtintor(models.TextChoices):
         ACTIVO='Activo', _("Activo")
