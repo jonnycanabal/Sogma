@@ -59,8 +59,8 @@ class GenerarRuta(models.Model):
     lugarSalida=models.CharField(max_length=50, verbose_name="Lugar de Salida")
     lugarDestino=models.CharField(max_length=50, verbose_name="Lugar de Destino")
     kilometrajeFinalVehiculo=models.IntegerField(verbose_name="Kilometraje Final", default=0)  # Valor numero (IntegerField) Para sumar Kilometraje!!!!!!
-    descripcionRuta=models.TextField(max_length=100, verbose_name="Descripción")
-    observacionesRuta=models.TextField(max_length=100, verbose_name="Observaciones", blank=True, null=True)
+    descripcionRuta=models.TextField(max_length=500, verbose_name="Descripción")
+    observacionesRuta=models.TextField(max_length=500, verbose_name="Observaciones", blank=True, null=True)
     class EstadoRuta(models.TextChoices):
         AB='Abierta', _("Abierta")
         CR='Cerrada', _("Cerrada")
@@ -80,7 +80,7 @@ class RegistrarMantenimiento(models.Model):
     ciudadMantenimiento=models.CharField(max_length=20, verbose_name="Lugar del Mantenimiento")
     numeroFactura=models.CharField(max_length=10, verbose_name="Número de Factura")
     valorMantenimiento=models.IntegerField(verbose_name="Valor del Mantenimiento") # Valor numero (IntegerField)!!!!!!
-    descripcionMantenimiento=models.TextField(max_length=200, verbose_name="Descripción")   
+    descripcionMantenimiento=models.TextField(max_length=500, verbose_name="Descripción")   
     adjuntarArchivoMantenimiento=models.FileField(upload_to='uploads', blank=True)
 
 

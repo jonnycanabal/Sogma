@@ -131,7 +131,7 @@
     </div>
 <div id="editar-usuario" class="d-flex justify-content-center m-2 w-100 p-3 ">
     <!-- Botones para seleccionar o diligenciar información -->
-    <form action="" method="POST" enctype="multipart/form-data" class="p-left pe-3 ps-3">
+    <form id="f_editar" action="" method="POST" enctype="multipart/form-data" class="p-left pe-3 ps-3">
 
     {% csrf_token %}
     <div class="p-3 div-cajas2">
@@ -280,7 +280,7 @@
         <div class="d-inline-block ms-1 me-5 width-28">
             <label for="basic-url" class="form-label w-75 ps-2">Fecha de registro</label>
             <div class="input-group mb-3 w-100">
-                <input id="id_fechaRegistro" type="date" class="form-control" name="fechaRegistro" value="{{usuario.fechaRegistro | date:'Y-m-d'}}"
+                <input disabled id="id_fechaRegistro" type="date" class="form-control" name="fechaRegistro" value="{{usuario.fechaRegistro | date:'Y-m-d'}}"
                     aria-describedby="basic-addon3"
                     placeholder="">
             </div>
@@ -371,7 +371,7 @@ REGISTRAR USUARIO
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
-            <form action="" method="POST">
+            <form id="f_usuario" action="" method="POST" enctype="multipart/form-data">
 
                 <div class="modal-body text-start" id="form-nuevo-usuario">
 
@@ -380,10 +380,10 @@ REGISTRAR USUARIO
                     <div class="d-inline-block w-100">
                         <label for="basic-url" class="form-label ps-2">Primer Nombre</label>
                         <div class="input-group mb-3 w-100">
-                            <input required type="text" class="form-control"
+                            <input type="text" class="form-control"
                                 name="primerNombre" id="id_primerNombre"
-                                aria-describedby="basic-addon3"
-                                placeholder="">
+                                aria-describedby="basic-addon3" required minlength="1"
+                                maxlength="50">
                         </div>
                     </div>
             
@@ -392,18 +392,17 @@ REGISTRAR USUARIO
                         <div class="input-group mb-3 w-100">
                             <input type="text" class="form-control"
                                 name="segundoNombre" id="id_segundoNombre"
-                                aria-describedby="basic-addon3"
-                                placeholder="">
+                                aria-describedby="basic-addon3">
                         </div>
                     </div>
             
                     <div class="d-inline-block w-100">
                         <label for="basic-url" class="form-label ps-2">Primer Apellido</label>
                         <div class="input-group mb-3 w-100">
-                            <input required type="text" class="form-control"
+                            <input type="text" class="form-control"
                                 name="primerApellido" id="id_primerApellido"
-                                aria-describedby="basic-addon3"
-                                placeholder="">
+                                aria-describedby="basic-addon3" required minlength="1"
+                                maxlength="50">
                         </div>
                     </div>
             
@@ -412,8 +411,7 @@ REGISTRAR USUARIO
                         <div class="input-group mb-3 w-100">
                             <input type="text" class="form-control" name="segundoApellido"
                                 id="id_segundoApellido"
-                                aria-describedby="basic-addon3"
-                                placeholder="">
+                                aria-describedby="basic-addon3">
                         </div>
                     </div>
             
@@ -429,8 +427,8 @@ REGISTRAR USUARIO
                     <div class="d-inline-block w-100">
                         <label for="basic-url" class="form-label ps-2">Tipo de Documento</label>
                         <div class="input-group mb-3 w-100">
-                            <select required id="id_tipoDocumento" class="form-select" name="tipoDocumento"
-                                aria-label="tipo-activo">
+                            <select id="id_tipoDocumento" class="form-select" name="tipoDocumento"
+                                aria-label="tipo-activo" required>
                                 <option selected disabled>------</option>
                                 <option value="C.C.">Cédula de Ciudadania</option>
                                 <option value="C.E.">Cédula de Extranjería</option>
@@ -442,45 +440,50 @@ REGISTRAR USUARIO
                     <div class="d-inline-block w-100">
                         <label for="basic-url" class="form-label ps-2">Número de Identificación</label>
                         <div class="input-group mb-3 w-100">
-                            <input required type="text" class="form-control" name="numeroDocumento"
+                            <input type="text" class="form-control" name="numeroDocumento"
                                 id="id_numeroDocumento"
-                                aria-describedby="basic-addon3">
+                                aria-describedby="basic-addon3" required minlength="1"
+                                maxlength="50">
                         </div>
                     </div>
             
                     <div class="d-inline-block w-100">
                         <label for="basic-url" class="form-label ps-2">Número de Telefono</label>
                         <div class="input-group mb-3 w-100">
-                            <input required type="text" class="form-control" name="numeroTelefono"
+                            <input type="text" class="form-control" name="numeroTelefono"
                                 id="id_numeroTelefono"
-                                aria-describedby="basic-addon3">
+                                aria-describedby="basic-addon3" required minlength="1"
+                                maxlength="20">
                         </div>
                     </div>
             
                     <div class="d-inline-block w-100">
                         <label for="basic-url" class="form-label ps-2">Ciudad de Residencia</label>
                         <div class="input-group mb-3 w-100">
-                            <input required type="text" class="form-control" name="ciudadResidencia"
+                            <input type="text" class="form-control" name="ciudadResidencia"
                                 id="id_ciudadResidencia"
-                                aria-describedby="basic-addon3">
+                                aria-describedby="basic-addon3" required minlength="1"
+                                maxlength="50">
                         </div>
                     </div>
             
                     <div class="d-inline-block w-100">
                         <label for="basic-url" class="form-label ps-2">Dirección de Residencia</label>
                         <div class="input-group mb-3 w-100">
-                            <input required type="text" class="form-control" name="direccionResidencia"
+                            <input type="text" class="form-control" name="direccionResidencia"
                                 id="id_direccionResidencia"
-                                aria-describedby="basic-addon3">
+                                aria-describedby="basic-addon3" required minlength="1"
+                                maxlength="100">
                         </div>
                     </div>
             
                     <div class="d-inline-block w-100">
                         <label for="basic-url" class="form-label ps-2">Correo Electrónico</label>
                         <div class="input-group mb-3 w-100">
-                            <input required type="text" class="form-control" name="correoElectronico"
+                            <input type="email" class="form-control" name="correoElectronico"
                                 id="id_correoElectronico"
-                                aria-describedby="basic-addon3">
+                                aria-describedby="basic-addon3" required minlength="1"
+                                maxlength="100">
                         </div>
                     </div>
             
@@ -501,17 +504,18 @@ REGISTRAR USUARIO
                     <div class="d-inline-block w-100">
                         <label for="basic-url" class="form-label ps-2">Cargo</label>
                         <div class="input-group mb-3 w-100">
-                            <input required type="text" class="form-control" name="cargo"
+                            <input type="text" class="form-control" name="cargo"
                                 id="id_cargo"
-                                aria-describedby="basic-addon3">
+                                aria-describedby="basic-addon3" required minlength="1"
+                                maxlength="30">
                         </div>
                     </div>
             
                     <div class="d-inline-block w-100">
                         <label for="basic-url" class="form-label ps-2">Fecha de Registro</label>
                         <div class="input-group mb-3 w-100">
-                            <input required id="id_fechaRegistro" type="date" class="form-control" name="fechaRegistro"
-                                aria-describedby="basic-addon3">
+                            <input id="id_fechaRegistro" type="date" class="form-control" name="fechaRegistro"
+                                aria-describedby="basic-addon3" required>
                         </div>
                     </div>
             
@@ -519,7 +523,7 @@ REGISTRAR USUARIO
                         <label for="basic-url" class="form-label ps-2">Tipo de Usuario</label>
                         <div class="input-group mb-3 w-100">
                             <select required id="id_tipoUsuario" class="form-select" name="tipoUsuario"
-                                aria-label="tipo-activo">
+                                aria-label="tipo-activo" required>
                                 <option selected disabled>------</option>
                                 <option value="Funcionario">Funcionario</option>
                                 <option value="Conductor">Conductor</option>
@@ -543,4 +547,22 @@ REGISTRAR USUARIO
     </div>
 </div>
 </div>
+<!-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+<script>
+    const $f_usuario = document.getElementById('f_usuario');
+    const $id_primerNombre = document.getElementById('id_primerNombre');
+    const $id_primerApellido = document.getElementById('id_primerApellido');
+    
+    (function(){
+        $f_usuario.addEventListener('submit', function(a){
+            let primerNombre=String($id_primerNombre.value).trim();
+            let primerApellido=String($id_primerApellido.value).trim();
+            if (primerNombre === "" || primerApellido === ""){
+                alert("El dato no puede ir vacio o solo con espacios en blanco");
+                a.preventDefault();
+            }
+        });
+    })();
+</script> -->
 {% endblock contenido %}

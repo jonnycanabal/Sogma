@@ -70,10 +70,10 @@ def usuarios_creados(request):
                 # user.groups=request.POST['tipoUsuario']
                 user.password=make_password("@" + request.POST['primerNombre'][0] + request.POST['primerApellido'][0] + request.POST['numeroDocumento'][-4:])
                 user.save()
-                user_group= User
-                my_group= Group.object.get(usuario.tipoUsuario)
-                usuario.user.groups.clear()
-                my_group.user_set.add(usuario.user)
+                # user_group= User
+                # my_group= Group.object.get(usuario.tipoUsuario)
+                # usuario.user.groups.clear()
+                # my_group.user_set.add(usuario.user)
             else:
                 user=User.objects.get(username=request.POST['numeroDocumento'])
             usuario= Usuario.objects.create(
@@ -106,7 +106,7 @@ def usuarios_creados(request):
 
             print('###################################### ERROR')
             messages.error(
-            request,f"NO SE REGISTRO EL USUARIO"
+            request,f"NO SE REGISTRO EL USUARIO. ASEGURECE DE DIGITAR CORRECTAMENTE LOS CAMPOS Y QUE ESTOS NO CONTENGAS SOLO ESPACIOS EN BLANCO"
             )
     else:
         form=UsuarioForm()

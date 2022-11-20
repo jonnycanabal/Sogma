@@ -78,7 +78,7 @@ def control_activos(request):
             )
         else:
             messages.error(
-                request,f"ERROR NO SE EDITO EL VEHÍCULO CON ID # {vehiculo.id} " # EL ERROR ES POR EL FORMATO DE LA FECHA PERO NO SE LOGRA CAMBIAR
+                request,f"ERROR NO SE EDITO EL VEHÍCULO CON ID # {vehiculo.id} "
             )
 
     # EDITAR EXTINTOR
@@ -92,6 +92,9 @@ def control_activos(request):
                 request,f"SE EDITO EL EXTINTOR CON ID # {extintor.id} EXITOSAMENTE"
             )
         else:
+            messages.error(
+                request,f"ERROR NO SE EDITO EL EXTINTOR CON ID # {extintor.id} "
+            )
             print("error editar extintor")
 
     # EDITAR EQUIPO DE OFICINA
@@ -105,6 +108,9 @@ def control_activos(request):
                 request,f"SE EDITO EL EQUIPO DE OFICINA CON ID # {equipo.id} EXITOSAMENTE"
             )
         else:
+            messages.error(
+                request,f"ERROR NO SE EDITO EL EQUIPO DE OFICINA CON ID # {equipo.id} "
+            )
             print("error editar equipo de oficina")
 
 

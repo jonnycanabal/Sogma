@@ -21,7 +21,7 @@ from django.urls import path, include
 
 
 # Importar la funcion de cada path creado.
-from main.views import consultar_ruta, reporte_vehiculo, reporte_extintor, reporte_equipo,  control_activos, generar_alarma, generar_ruta, inicio, nuevo_usuario, registrar_mantenimiento
+from main.views import error_404, error_500, consultar_ruta, reporte_vehiculo, reporte_extintor, reporte_equipo,  control_activos, generar_alarma, generar_ruta, inicio, nuevo_usuario, registrar_mantenimiento
 from usuarios.views import logout_user
 
 ####### Importes para subir imágenes #######
@@ -32,6 +32,10 @@ from django.conf.urls.static import static
 # Importe para cambar la contraseña
 from django.contrib.auth import views as auth_views
 
+from django.conf.urls import handler404, handler500
+
+handler404 = error_404
+handler500 = error_500
 urlpatterns = [
     path("select2/", include("django_select2.urls")),
     path('admin/', admin.site.urls),
@@ -60,5 +64,7 @@ urlpatterns = [
     path('reporte/vehiculo/<int:pk>/', reporte_vehiculo , name='reporte-vehiculo'),
     path('reporte/extintor/<int:pk>/', reporte_extintor , name='reporte-extintor'),
     path('reporte/equipo/<int:pk>/', reporte_equipo , name='reporte-equipo'),
+    # ------------------------------------------------------------------------
+    
 
 ]+ static(settings.MEDIA_URL, document_root= settings.MEDIA_ROOT)

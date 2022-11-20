@@ -19,6 +19,8 @@ import time
 
 from datetime import datetime
 
+from django.views.defaults import page_not_found
+
 # views de la pagina de Inicio - Index
 
 
@@ -76,6 +78,14 @@ def reporte_equipo (request, pk):
 
         return render (request, 'reportes/reporte_equipo.html', context)
 
+
+def error_404(request, exception):
+    return page_not_found(request, '404.html')
+
+
+
+def error_500(request):
+    return render (request, '500.html')
 
 
 # send_mail(

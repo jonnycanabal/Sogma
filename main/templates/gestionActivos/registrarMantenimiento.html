@@ -618,7 +618,7 @@
             <h3 style="text-align: center;">Registrar Mantenimiento</h3>
             </div>
 
-            <form action="" method="POST" enctype="multipart/form-data">
+            <form id="m_vehiculo" action="" method="POST" enctype="multipart/form-data">
                 <input type="hidden" value="{{vehiculo.id}}" name="pk_vehiculo">
                 <div class="p-3 div-cajas2 w-100" id="m-vehiculo">
 
@@ -632,7 +632,7 @@
                             <input type="date" name="fechaMantenimiento"
                                 class="form-control"
                                 id="id_fechaMantenimiento"
-                                aria-describedby="basic-addon3">
+                                aria-describedby="basic-addon3" required>
                         </div>
                     </div>
 
@@ -644,7 +644,7 @@
                             <input type="text" name="lugarMantenimiento"
                                 class="form-control"
                                 id="id_lugarMantenimiento"
-                                aria-describedby="basic-addon3">
+                                aria-describedby="basic-addon3" required minlength="1" maxlength="50">
                         </div>
                     </div>
 
@@ -656,7 +656,7 @@
                             <input type="text"
                                 class="form-control" name="ciudadMantenimiento"
                                 id="id_ciudadMantenimiento"
-                                aria-describedby="basic-addon3">
+                                aria-describedby="basic-addon3" required minlength="1" maxlength="20">
                         </div>
                     </div>
 
@@ -665,11 +665,11 @@
                         <label for="basic-url" class="form-label
                             w-75 ps-2">Kilometraje del Vehículo</label>
                         <div class="input-group mb-3 w-100">
-                            <input type="text"
+                            <input type="number"
                                 class="form-control"
                                 name="kilometrajeMantenimiento"
                                 id="id_kilometrajeMantenimiento"
-                                aria-describedby="basic-addon3">
+                                aria-describedby="basic-addon3" required>
                         </div>
                     </div>
 
@@ -681,7 +681,7 @@
                             <input type="text"
                                 class="form-control" name="numeroFactura"
                                 id="id_numeroFactura"
-                                aria-describedby="basic-addon3">
+                                aria-describedby="basic-addon3" required  minlength="1" maxlength="10">
                         </div>
                     </div>
 
@@ -690,38 +690,14 @@
                         <label for="basic-url" class="form-label
                             w-75 ps-2">Valor del Mantenimiento</label>
                         <div class="input-group mb-3 w-100">
-                            <input type="text"
+                            <input type="number"
                                 class="form-control" name="valorMantenimiento"
                                 id="id_valorMantenimiento"
-                                aria-describedby="basic-addon3">
+                                aria-describedby="basic-addon3" required>
                         </div>
                     </div>
                     
-                    <!-- ------------------------------TRABAJANDO ----------------------------------------------------------------------- -->
-                    <!-- <div class="d-inline-block width-20 ms-1
-                        me-5">
-                        <label for="basic-url" class="form-label
-                            w-75 ps-2">Fecha Próximo Mantenimiento</label>
-                        <div class="input-group mb-3 w-100">
-                            <input type="date"
-                                class="form-control" name=""
-                                id=""
-                                aria-describedby="basic-addon3">
-                        </div>
-                    </div>
 
-                    <div class="d-inline-block width-20 ms-1
-                        me-5">
-                        <label for="basic-url" class="form-label
-                            w-75 ps-2">Kilometraje Próximo Mantenimiento</label>
-                        <div class="input-group mb-3 w-100">
-                            <input type="number"
-                                class="form-control" name=""
-                                id=""
-                                aria-describedby="basic-addon3">
-                        </div>
-                    </div> -->
-                    <!-- ------------------------------TRABAJANDO ----------------------------------------------------------------------- -->
                     <!-- Cuadro de la descripción donde se diligenciara que mas se le hizo en el mantenimiento al activo -->
                     <div class="w-100 pe-3">
                         <!-- DESCRIPCIÓN DEL MANTENIMIENTO-->
@@ -734,7 +710,7 @@
                                     class="form-control
                                     border
                                     border-dark" style="height:
-                                    200px; width: 95%; resize: none;"></textarea>
+                                    200px; width: 95%; resize: none;" required  minlength="1" maxlength="500"></textarea>
                             </div>
                         </div>
                     </div>
@@ -828,7 +804,7 @@
                 <h3 style="text-align: center;">Registrar Mantenimiento</h3>
             </div>
 
-            <form action="" method="POST" enctype="multipart/form-data">
+            <form id="m_extintor" action="" method="POST" enctype="multipart/form-data">
                 <input type="hidden" value="{{extintor.id}}" name="pk_extintor">
                 <div class="p-3 div-cajas2 w-100" id="m-extintor">
 
@@ -841,7 +817,7 @@
                             <input type="date" name="fechaMantenimiento"
                                 class="form-control"
                                 id="id_fechaMantenimiento"
-                                aria-describedby="basic-addon3">
+                                aria-describedby="basic-addon3" required>
                         </div>
                     </div>
 
@@ -853,7 +829,7 @@
                             <input type="text" name="lugarMantenimiento"
                                 class="form-control"
                                 id="id_lugarMantenimiento"
-                                aria-describedby="basic-addon3">
+                                aria-describedby="basic-addon3" required minlength="1" maxlength="50">
                         </div>
                     </div>
 
@@ -865,7 +841,7 @@
                             <input type="text"
                                 class="form-control" name="ciudadMantenimiento"
                                 id="id_ciudadMantenimiento"
-                                aria-describedby="basic-addon3">
+                                aria-describedby="basic-addon3" required minlength="1" maxlength="20">
                         </div>
                     </div>
 
@@ -876,7 +852,7 @@
                         <div class="input-group mb-3 w-100">
                             <select id="id_usado" class="form-select"
                                 name="usado"
-                                aria-label="tipo-activo">
+                                aria-label="tipo-activo" required>
                                 <option selected disabled>------</option>
                                 <option value="SI">Si</option>
                                 <option value="NO">No</option>
@@ -892,7 +868,7 @@
                             <input type="text"
                                 class="form-control" name="numeroFactura"
                                 id="id_numeroFactura"
-                                aria-describedby="basic-addon3">
+                                aria-describedby="basic-addon3" required  minlength="1" maxlength="10">
                         </div>
                     </div>
 
@@ -901,24 +877,12 @@
                         <label for="basic-url" class="form-label
                             w-75 ps-2">Valor del Mantenimiento</label>
                         <div class="input-group mb-3 w-100">
-                            <input type="text"
+                            <input type="number"
                                 class="form-control" name="valorMantenimiento"
                                 id="id_valorMantenimiento"
-                                aria-describedby="basic-addon3">
+                                aria-describedby="basic-addon3" required>
                         </div>
                     </div>
-
-                    <!-- <div class="d-inline-block width-20 ms-1
-                        me-5">
-                        <label for="basic-url" class="form-label
-                            w-75 ps-2">Fecha Próximo Mantenimiento</label>
-                        <div class="input-group mb-3 w-100">
-                            <input type="text"
-                                class="form-control" name=""
-                                id=""
-                                aria-describedby="basic-addon3">
-                        </div>
-                    </div> -->
 
                     <!-- Cuadro de la descripción donde se diligenciara que mas se le hizo en el mantenimiento  al activo. -->
                     <div class=" w-100 pe-3">
@@ -932,7 +896,7 @@
                                     class="form-control
                                     border
                                     border-dark" style="height:
-                                    200px; width: 95%; resize: none;"></textarea>
+                                    200px; width: 95%; resize: none;" required  minlength="1" maxlength="500"></textarea></textarea>
                             </div>
                         </div>
                     </div>
@@ -1024,7 +988,7 @@
                 <h3 style="text-align: center;">Registrar Mantenimiento</h3>
             </div>
 
-            <form action="" method="POST" enctype="multipart/form-data">
+            <form id="m_equipo" action="" method="POST" enctype="multipart/form-data">
                 <input type="hidden" value="{{equipo.id}}" name="pk_equipo">
                 <div class="p-3 div-cajas2 w-100" id="m-equipo">
 
@@ -1038,7 +1002,7 @@
                             <input type="date" name="fechaMantenimiento"
                                 class="form-control"
                                 id="id_fechaMantenimiento"
-                                aria-describedby="basic-addon3">
+                                aria-describedby="basic-addon3" required>
                         </div>
                     </div>
 
@@ -1050,7 +1014,7 @@
                             <input type="text" name="lugarMantenimiento"
                                 class="form-control"
                                 id="id_lugarMantenimiento"
-                                aria-describedby="basic-addon3">
+                                aria-describedby="basic-addon3"  required minlength="1" maxlength="50">
                         </div>
                     </div>
 
@@ -1062,7 +1026,7 @@
                             <input type="text"
                                 class="form-control" name="ciudadMantenimiento"
                                 id="id_ciudadMantenimiento"
-                                aria-describedby="basic-addon3">
+                                aria-describedby="basic-addon3" required minlength="1" maxlength="20">
                         </div>
                     </div>
 
@@ -1074,7 +1038,7 @@
                             <input type="text"
                                 class="form-control" name="numeroFactura"
                                 id="id_numeroFactura"
-                                aria-describedby="basic-addon3">
+                                aria-describedby="basic-addon3" required  minlength="1" maxlength="10">
                         </div>
                     </div>
 
@@ -1083,24 +1047,12 @@
                         <label for="basic-url" class="form-label
                             w-75 ps-2">Valor del Mantenimiento</label>
                         <div class="input-group mb-3 w-100">
-                            <input type="text"
+                            <input type="number"
                                 class="form-control" name="valorMantenimiento"
                                 id="id_valorMantenimiento"
-                                aria-describedby="basic-addon3">
+                                aria-describedby="basic-addon3" required>
                         </div>
                     </div>
-
-                    <!-- <div class="d-inline-block width-20 ms-1
-                        me-5">
-                        <label for="basic-url" class="form-label
-                            w-75 ps-2">Fecha Próximo Mantenimiento</label>
-                        <div class="input-group mb-3 w-100">
-                            <input type="text"
-                                class="form-control" name="valorMantenimiento"
-                                id="id_valorMantenimiento"
-                                aria-describedby="basic-addon3">
-                        </div>
-                    </div> -->
 
                     <!-- Cuadro de la descripción donde se diligenciara que mas se le hizo en el mantenimiento al activo -->
                     <div class="w-100 pe-3">
@@ -1114,7 +1066,7 @@
                                     class="form-control
                                     border
                                     border-dark" style="height:
-                                    200px; width: 95%; resize: none;"></textarea>
+                                    200px; width: 95%; resize: none;" required  minlength="1" maxlength="500"></textarea>
                             </div>
                         </div>
                     </div>
@@ -1201,6 +1153,69 @@
 
     </form>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+
+<script>
+    // Bloque para no permitir espacios en blanco en el formulario de registrar un nuevo extintor, equipo y vehículo
+    const $m_extintor = document.getElementById('m_extintor');
+    const $id_lugarMantenimiento = document.getElementById('id_lugarMantenimiento');
+    const $id_ciudadMantenimiento = document.getElementById('id_ciudadMantenimiento');
+    const $id_numeroFactura = document.getElementById('id_numeroFactura');
+    const $id_descripcionMantenimiento = document.getElementById('id_descripcionMantenimiento');
+    
+    // Bloque para no permitir espacios en blanco en el formulario de registrar un nuevo extintor
+    const $m_equipo = document.getElementById('m_equipo');
+
+    // Bloque para no permitir espacios en blanco en el formulario de registrar un nuevo extintor
+    const $m_vehiculo = document.getElementById('m_vehiculo');
+
+    // continuación del Bloque para no permitir espacios en blanco en el formulario de registrar un nuevo vehículo
+    (function(){
+        $m_vehiculo.addEventListener('submit', function(m){
+            let lugarMantenimientoE=String($id_lugarMantenimiento.value).trim();
+            let ciudadMantenimientoE=String($id_ciudadMantenimiento.value).trim();
+            let numeroFacturaE=String($id_numeroFactura.value).trim();
+            let descripcionMantenimientoE=String($id_descripcionMantenimiento.value).trim();
+
+            if (lugarMantenimientoE.length === 0 || ciudadMantenimientoE === "" || numeroFacturaE === "" || descripcionMantenimientoE === ""){
+                alert("El dato no puede ir vacio o solo con espacios en blanco");
+                m.preventDefault();
+            }
+        });
+    })();
+
+    // continuación del Bloque para no permitir espacios en blanco en el formulario de registrar un nuevo equipo
+    (function(){
+        $m_equipo.addEventListener('submit', function(m){
+            let lugarMantenimientoE=String($id_lugarMantenimiento.value).trim();
+            let ciudadMantenimientoE=String($id_ciudadMantenimiento.value).trim();
+            let numeroFacturaE=String($id_numeroFactura.value).trim();
+            let descripcionMantenimientoE=String($id_descripcionMantenimiento.value).trim();
+
+            if (lugarMantenimientoE.length === 0 || ciudadMantenimientoE === "" || numeroFacturaE === "" || descripcionMantenimientoE === ""){
+                alert("El dato no puede ir vacio o solo con espacios en blanco");
+                m.preventDefault();
+            }
+        });
+    })();
+
+    // continuación del Bloque para no permitir espacios en blanco en el formulario de registrar un nuevo extintor
+    (function(){
+        $m_extintor.addEventListener('submit', function(m){
+            let lugarMantenimientoE=String($id_lugarMantenimiento.value).trim();
+            let ciudadMantenimientoE=String($id_ciudadMantenimiento.value).trim();
+            let numeroFacturaE=String($id_numeroFactura.value).trim();
+            let descripcionMantenimientoE=String($id_descripcionMantenimiento.value).trim();
+
+            if (lugarMantenimientoE.length === "" || ciudadMantenimientoE === "" || numeroFacturaE === "" || descripcionMantenimientoE === ""){
+                alert("El dato no puede ir vacio o solo con espacios en blanco");
+                m.preventDefault();
+            }
+        });
+    })();
+</script>
 
 {% endblock contenido %}
 

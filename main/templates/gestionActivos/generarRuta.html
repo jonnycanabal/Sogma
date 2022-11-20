@@ -47,7 +47,7 @@
                     Vehiculo</label>
                 <div class="input-group mb-3 w-100">
                     <select class="form-control form-select" name="fkVehiculo"
-                        id="id_fkVehiculo">
+                        id="id_fkVehiculo" required>
                         <option selected disabled>Seleccione el Vehículo</option>
                         {% for vehiculo in vehiculos %}
                         <option value='{{vehiculo.id}}'>{{vehiculo.placaVehiculo}}
@@ -64,7 +64,7 @@
                     Conductor</label>
                 <div class="input-group mb-3 w-100">
                     <select class="form-control form-select" name="fkUsuario"
-                        id="id_fkUsuario">
+                        id="id_fkUsuario" required>
                         <option selected disabled>Seleccione el Documento</option>
                         {% for usuario in usuarios %}
 
@@ -87,7 +87,7 @@
                 <div class="input-group mb-3 w-100">
                     <input type="time" class="form-control horaMinimo" name="horaSalida"
                         id="id_horaSalida" onblur="checktimeval()"
-                        aria-describedby="basic-addon3">
+                        aria-describedby="basic-addon3" required>
                 </div>
             </div>
 
@@ -97,7 +97,7 @@
                 <div class="input-group mb-3 w-100">
                     <input type="date" class="form-control minimo" name="fechaSalida"
                         id="id_fechaSalida"
-                        aria-describedby="basic-addon3">
+                        aria-describedby="basic-addon3" required>
                 </div>
             </div>
 
@@ -107,7 +107,7 @@
                 <div class="input-group mb-3 w-100">
                     <input type="date" class="form-control minimo" name="fechaRegreso"
                         id="id_fechaRegreso"
-                        aria-describedby="basic-addon3">
+                        aria-describedby="basic-addon3" required>
                 </div>
             </div>
 
@@ -117,7 +117,7 @@
                 <div class="input-group mb-3 w-100">
                     <input type="text" class="form-control" name="lugarSalida"
                         id="id_lugarSalida"
-                        aria-describedby="basic-addon3">
+                        aria-describedby="basic-addon3" required minlength="1" maxlength="50">
                 </div>
             </div>
 
@@ -127,7 +127,7 @@
                 <div class="input-group mb-3 w-100">
                     <input type="text" class="form-control" name="lugarDestino"
                         id="id_lugarDestino"
-                        aria-describedby="basic-addon3">
+                        aria-describedby="basic-addon3" required minlength="1" maxlength="50">
                 </div>
             </div>
 
@@ -143,7 +143,7 @@
                     <textarea class="form-control border
                         border-dark" name="descripcionRuta" style="height:
                         150px; resize: none;"
-                        id="id_descripcionRuta"></textarea>
+                        id="id_descripcionRuta"  required minlength="1" maxlength="500"></textarea>
                 </div>
             </div>
 
@@ -365,41 +365,7 @@
         </form>
     </div>
 <!-- </div> -->
-
-<!-- ########################################################################################################################### -->
-<!-- Parte donde se mostraran los funcionarios seleccionados, sus datos y si desea quitarlos de la ruta. -->
-<!-- Titulo funcionarios seleccionados -->
-<!-- <div id="div-caja3" class="container p-3 pe-4 pt-0 mt-0">
-
-    <div class="m-3 rounded-bottom" style="box-shadow: 0px
-        0px 5px 1px;">
-
-        <div style="box-shadow: 0px 0px 0px 1px; background-color: rgb(209, 208,
-            208);">
-            <h3 style="text-align: center;">FUNCIONARIOS SELECCIONADOS</h3>
-        </div>
-
-        <div class="w-100 pe-3">
-
-            {% for detalle in detalles %}
-            <div class="form-check m-3 ms-3">
-                <form action="" method="POST">
-                    {% csrf_token %}
-                    <a href="{% url 'eliminar-pasajero' id=detalle.id %}"><i
-                            class="bi bi-trash3-fill"></i></a>
-                    <label class="form-check-label" for="inlineCheckbox1">{{detalle.fkPasajero.primerNombrePasajero}}
-                        {{detalle.fkPasajero.primerApellidoPasajero}} /
-                        {{detalle.fkPasajero.direccionPasajero}} /
-                        {{detalle.fkPasajero.telefonoPasajero}}
-                    </label>
-                </form>
-            </div>
-            {% endfor %}
-
-        </div>
-        <br>
-    </div>
-</div> -->
+<!-- </div> -->
 <!-- <div id="div-caja3" class="container p-3 pe-4 pt-0 mt-0"> -->
 
     <div class="m-4 rounded-bottom" style="box-shadow: 0px
@@ -467,7 +433,7 @@
                 <div class="input-group mb-3 w-100">
                     <input type="time" class="form-control" name="horaRegreso"
                         id="id_horaRegreso" aria-describedby="basic-addon3"
-                        value="{{ruta.horaRegreso}}">
+                        value="{{ruta.horaRegreso}}" required>
                 </div>
             </div>
             
@@ -481,7 +447,7 @@
                     <input type="text" class="form-control"
                         name="kilometrajeFinalVehiculo"
                         id="id_kilometrajeFinalVehiculo"
-                        aria-describedby="basic-addon3"
+                        aria-describedby="basic-addon3" required
                         value="{{ruta.kilometrajeFinalVehiculo}}">
                 </div>
             </div>
@@ -499,7 +465,7 @@
                     <textarea class="form-control border
                         border-dark" style="height:
                         150px; resize: none;" name="observacionesRuta"
-                        id="id_observacionesRuta">{{ruta.observacionesRuta}}</textarea>
+                        id="id_observacionesRuta" maxlength="500">{{ruta.observacionesRuta}}</textarea>
                 </div>
             </div>
 
@@ -688,32 +654,6 @@
 
         </div>
 
-        <!-- <div class="w-100">
-            <div class="w-100">
-                <h3 class="text-center border-top
-                    border-dark">FUNCIONARIOS SELECCIONADOS</h3>
-            </div>
-
-            <div class="border-top border-bottom
-                border-dark
-                w-100 pe-3">
-
-                {% for detalle in detalles %}
-                <div class="form-check m-3 ms-3">
-                    <form action="" method="POST">
-                        {% csrf_token %}
-                        <label class="form-check-label"
-                            for="inlineCheckbox1">{{detalle.fkPasajero.primerNombrePasajero}}
-                            {{detalle.fkPasajero.primerApellidoPasajero}} /
-                            {{detalle.fkPasajero.direccionPasajero}} /
-                            {{detalle.fkPasajero.telefonoPasajero}}
-                        </label>
-                    </form>
-                </div>
-                {% endfor %}
-
-            </div>
-        </div> -->
         <br>
 
         <div class="m-4 rounded-bottom" style="box-shadow: 0px
@@ -834,7 +774,7 @@
                     aria-label="Close"></button>
             </div>
 
-            <form action="" method="POST">
+            <form id="f_pasajero" action="" method="POST">
 
                 <div class="modal-body text-start" id="form-pasajero">
 
@@ -844,15 +784,15 @@
                             type="text"
                             id="id_primerNombrePasajero"
                             class="form-control"
-                            name="primerNombrePasajero"></p>
+                            name="primerNombrePasajero" required minlength="1" maxlength="50"></p>
                     <p><label class="w-75 mb-0 fs-5">Primer Apellido</label><input
                             type="text"
                             id="id_primerApellidoPasajero"
                             class="form-control"
-                            name="primerApellidoPasajero"></p>
+                            name="primerApellidoPasajero" required minlength="1" maxlength="50"></p>
                     <p><label class="w-75 mb-0 fs-5">Tipo de Documento</label><select
                             id="id_tipoDocumento" class="form-select
-                            form-select" name="tipoDocumento">
+                            form-select" name="tipoDocumento" required>
                             <option selected disabled>------</option>
                             <option value="C.C.">Cédula de Ciudadania</option>
                             <option value="C.E.">Cédula de Extranjería</option>
@@ -862,16 +802,16 @@
                             type="text"
                             id="id_numeroDocumentoPasajero"
                             class="form-control"
-                            name="numeroDocumentoPasajero">
+                            name="numeroDocumentoPasajero" required minlength="1" maxlength="50">
                     </p>
                     <p><label class="w-75 mb-0 fs-5">Dirección</label><input
                             type="text" id="id_direccionPasajero"
                             class="form-control"
-                            name="direccionPasajero"></p>
+                            name="direccionPasajero" required minlength="1" maxlength="100"></p>
                     <p><label class="w-75 mb-0 fs-5">Telefono</label><input
                             type="text" id="id_telefonoPasajero"
                             class="form-control"
-                            name="telefonoPasajero"></p>
+                            name="telefonoPasajero" required minlength="1" maxlength="20"></p>
 
                     <!-- BOTÓN PARA GUARDAR LA INFORMACIÓN DIGITADA EN EL FORMULARIO DEL ACTIVO -->
                     <div class="w-100 d-flex justify-content-center">
@@ -915,6 +855,29 @@ function checktimeval(){
     alert('Seleccione una hora mayor a la actual');
     }
 }
+</script>
+
+<script>
+    const $f_pasajero = document.getElementById('f_pasajero');
+    const $id_primerNombrePasajero = document.getElementById('id_primerNombrePasajero');
+    const $id_primerApellidoPasajero = document.getElementById('id_primerApellidoPasajero');
+    const $id_numeroDocumentoPasajero = document.getElementById('id_numeroDocumentoPasajero');
+    const $id_direccionPasajero = document.getElementById('id_direccionPasajero');
+    const $id_telefonoPasajero = document.getElementById('id_telefonoPasajero');
+
+    (function(){
+        $f_pasajero.addEventListener('submit', function(p){
+            let primerNombrePasajero=String($id_primerNombrePasajero.value).trim();
+            let primerApellidoPasajero=String($id_primerApellidoPasajero.value).trim();
+            let numeroDocumentoPasajero=String($id_numeroDocumentoPasajero.value).trim();
+            let direccionPasajero=String($id_direccionPasajero.value).trim();
+            let telefonoPasajero=String($id_telefonoPasajero.value).trim();
+            if (primerNombrePasajero === "" || primerApellidoPasajero === "" || numeroDocumentoPasajero === "" || direccionPasajero === "" || telefonoPasajero === ""){
+                alert("El dato no puede ir vacio o solo con espacios en blanco");
+                p.preventDefault();
+            }
+        });
+    })();
 </script>
 
 
