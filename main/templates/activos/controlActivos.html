@@ -546,7 +546,7 @@
                 <div class="d-inline-block width-20 ms-1 me-5">
                     <label for="basic-url" class="form-label w-75 p-2">Fecha de Ingreso</label>
                     <div class="input-group mb-3 w-100">
-                        <input type="date" class="form-control" id="id_fechaIngresoVehiculo" name="fechaIngresoVehiculo" value="{{vehiculo.fechaIngresoVehiculo | date:'Y-m-d'}}" aria-describedby="basic-addon3">
+                        <input disabled type="date" class="form-control" id="id_fechaIngresoVehiculo" name="fechaIngresoVehiculo" value="{{vehiculo.fechaIngresoVehiculo | date:'Y-m-d'}}" aria-describedby="basic-addon3">
                     </div>
                 </div>
 
@@ -706,6 +706,13 @@
                 </div>
 
                 <div class="d-inline-block width-20 ms-1 me-5">
+                    <label for="basic-url" class="form-label w-75 p-2">Fecha de Ingreso</label>
+                    <div class="input-group mb-3 w-100">
+                        <input disabled type="date" class="form-control" id="id_fechaIngresoExtintor" name="fechaIngresoExtintor" value="{{extintor.fechaIngresoExtintor | date:'Y-m-d'}}" aria-describedby="basic-addon3">
+                    </div>
+                </div>
+
+                <div class="d-inline-block width-20 ms-1 me-5">
                     <label for="basic-url" class="form-label w-75 p-2">Fecha Ultima Recarga</label>
                     <div class="input-group mb-3 w-100">
                         <input type="date" class="form-control" id="id_fechaUltimaRecarga" name="fechaUltimaRecarga" value="{{extintor.fechaUltimaRecarga | date:'Y-m-d'}}" aria-describedby="basic-addon3">
@@ -848,6 +855,13 @@
                     <label for="basic-url" class="form-label w-75 p-2">Ubicación del Equipo</label>
                     <div class="input-group mb-3 w-100">
                         <input type="text" class="form-control" id="id_ubicacionEquipo" name="ubicacionEquipo" value="{{equipo.ubicacionEquipo}}" aria-describedby="basic-addon3">
+                    </div>
+                </div>
+
+                <div class="d-inline-block width-20 ms-1 me-5">
+                    <label for="basic-url" class="form-label w-75 p-2">Fecha de Ingreso</label>
+                    <div class="input-group mb-3 w-100">
+                        <input disabled type="date" class="form-control" id="id_fechaIngresoEquipo" name="fechaIngresoEquipo" value="{{equipo.fechaIngresoEquipo | date:'Y-m-d'}}" aria-describedby="basic-addon3">
                     </div>
                 </div>
 

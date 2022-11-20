@@ -88,7 +88,7 @@ class RegistrarMantenimiento(models.Model):
 # CREACIÓN DE TABLA PARA REGISTRAR MANTENIMIENTO DE UN VEHICULO
 class MantenimientoVehiculo(models.Model):
     fkVehiculo=models.ForeignKey(ActivoVehiculo, on_delete=models.CASCADE, verbose_name="Vehículo")
-    kilometrajeMantenimiento=models.IntegerField(verbose_name="Kilometraje del Vehículo") # Valor numero (IntegerField) Para sumar Kilometraje!!!!!!
+    kilometrajeMantenimiento=models.IntegerField(verbose_name="Kilometraje del Vehículo")
     fkRegistrarMantenimiento=models.ForeignKey(RegistrarMantenimiento, on_delete=models.CASCADE, verbose_name="mantenimiento")
     def __str__(self):
         return f'{self.fkVehiculo}'

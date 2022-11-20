@@ -49,7 +49,12 @@ def control_activos(request):
             ultimoMantenimientoVehiculo = ultimoMantenimientoVehiculo[0]
         else:
             ultimoMantenimientoVehiculo = None
-        kilometraje=GenerarRuta.objects.filter(fkVehiculo=vehiculo).order_by('-fechaRegreso', '-horaRegreso')[0]
+        
+        kilometraje=GenerarRuta.objects.filter(fkVehiculo=vehiculo).order_by('-fechaRegreso', '-horaRegreso')
+        if kilometraje:
+            kilometraje=kilometraje[0]
+        else:
+            kilometraje = None
 
     if request.method == "POST" and 'editar-equipo-oficina' in request.POST:
         equipo = ActivoEquipoOficina.objects.get(id=int(request.POST['pk_equipo']))

@@ -13,8 +13,8 @@
         <div class="">
 
             <!-- FORM PARA EL REGISTRO DE USUARIO -->
-            <form id="regForm" action="" method="POST" enctype="multipart/form-data">
-
+            <!-- <form id="regForm" action="" method="POST" enctype="multipart/form-data"> -->
+            <div class="me-3 pe-3">
                 <!-- TOKEN DE SEGURIDAD -->
                 {% csrf_token %}
 
@@ -53,184 +53,219 @@
                 <!-- SEGUNDA PARTE DONDE DEPENDIENDO DEL ACTIVO QUE SE SELECCIONE APARECE EL FORMULARIO PARA SU REGISTRO -->
                 <div class="tab">
                     <!-- CAMPOS PARA REGISTRAR LOS VEHÍCULOS ################################################################## -->
-                    <div id="form-vehiculo" style="display: none;">
-                        <h2 style="text-align: center;">Vehículo</h2>
-                        <p><label class="w-75 mb-0 fs-5">Foto del Vehículo</label><input type="file"
-                            id="id_fotoVehiculo" class="input-wizard"
-                            name="fotoVehiculo"></p>
-                        <p><label class="w-75 mb-0 fs-5">Marca del Vehículo</label><input
-                                id="id_marcaVehiculo" class="input-wizard"
-                                name="marcaVehiculo"></p>
-                        <p><label class="w-75 mb-0 fs-5">Modelo del Vehículo</label><input
-                                id="id_modeloVehiculo" class="input-wizard"
-                                name="modeloVehiculo"></p>
-                        <p><label class="w-75 mb-0 fs-5">Placa del Vehículo</label><input
-                                id="id_placaVehiculo" class="input-wizard"
-                                name="placaVehiculo"></p>
-                        <p><label class="w-75 mb-0 fs-5">Color del Vehículo</label><input
-                                id="id_colorVehiculo" class="input-wizard"
-                                name="colorVehiculo"></p>
-                        <p><label class="w-75 mb-0 fs-5">Serial del Vehiculo</label><input
-                                id="id_serialVehiculo" class="input-wizard"
-                                name="serialVehiculo"></p>
-                        <p><label class="w-75 mb-0 fs-5">Tipo de Combustible</label><input
-                                id="id_tipoCombustible" class="input-wizard"
-                                name="tipoCombustible"></p>
-                        <p><label class="w-75 mb-0 fs-5">Cantidad de Pasajeros</label><input
-                                id="id_cantidadPasajeros" class="input-wizard"
-                                name="cantidadPasajeros"></p>
-                        <p><label class="w-75 mb-0 fs-5">Persona a Cargo</label><input
-                                id="id_personaEncargadaVehiculo"
-                                class="input-wizard"
-                                name="personaEncargadaVehiculo"></p>
-                        <p><label class="w-75 mb-0 fs-5">Condición Del Vehículo</label><select
-                                id="id_condicionVehiculo" class="form-select
-                                input-wizard" name="condicionVehiculo">
-                                <option selected disabled>------</option>
-                                <option value="Nuevo">Nuevo</option>
-                                <option value="Usado">Usado</option>
-                            </select></p>
-                        <p><label class="w-75 mb-0 fs-5">Fecha de
-                                Ingreso</label><input type="date"
-                                id="id_fechaIngresoVehiculo"
-                                class="input-wizard"
-                                name="fechaIngresoVehiculo"></p>
-                        <p><label class="w-75 mb-0 fs-5">Fecha Inicio Soa</label><input
-                                type="date" id="id_fechaInicioSoat"
-                                class="input-wizard"
-                                name="fechaInicioSoat"></p>
-                        <p><label class="w-75 mb-0 fs-5">Fecha Vencimiento Soat</label><input
-                                type="date" id="id_fechaFinSoat"
-                                class="input-wizard"
-                                name="fechaFinSoat"></p>
-                        <p><label class="w-75 mb-0 fs-5">Fecha Inicio
-                                Técnico Mecánica</label><input type="date"
-                                id="id_fechaInicioTecnicomecanica"
-                                class="input-wizard"
-                                name="fechaInicioTecnicomecanica"></p>
-                        <p><label class="w-75 mb-0 fs-5">Fecha Vencimiento
-                                Técnico Mecánica</label><input type="date"
-                                id="id_fechaVencimientoTecnicomecanica"
-                                class="input-wizard"
-                                name="fechaVencimientoTecnicomecanica">
-                        </p>
-                        <!-- <p><label class="w-75 mb-0 fs-5">Fecha próximo Mantenimiento</label><input type="date"
-                            id="id_fechaProximoMantenimiento"
-                            class="input-wizard"
-                            name="fechaProximoMantenimiento">
-                        </p> -->
+                    <form id="f_vehiculo" action="" method="POST"
+                        enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div id="form-vehiculo" style="display: none;">
+                            <h2 style="text-align: center;">Vehículo</h2>
+                            <p><label class="w-75 mb-0 fs-5">Foto del Vehículo</label><input
+                                    type="file"
+                                    id="id_fotoVehiculo" class="input-wizard"
+                                    name="fotoVehiculo"></p>
+                            <p><label class="w-75 mb-0 fs-5">Marca del Vehículo</label><input
+                                    id="id_marcaVehiculo" class="input-wizard "
+                                    name="marcaVehiculo" required minlength="1"
+                                    maxlength="20"></p>
+                            <p><label class="w-75 mb-0 fs-5">Modelo del Vehículo</label><input
+                                    id="id_modeloVehiculo" class="input-wizard"
+                                    name="modeloVehiculo" required minlength="1"
+                                    maxlength="10"></p>
+                            <p><label class="w-75 mb-0 fs-5">Placa del Vehículo</label><input
+                                    id="id_placaVehiculo" class="input-wizard"
+                                    name="placaVehiculo" required minlength="1"
+                                    maxlength="10"></p>
+                            <p><label class="w-75 mb-0 fs-5">Color del Vehículo</label><input
+                                    id="id_colorVehiculo" class="input-wizard"
+                                    name="colorVehiculo" required minlength="1"
+                                    maxlength="20"></p>
+                            <p><label class="w-75 mb-0 fs-5">Serial del Vehiculo</label><input
+                                    id="id_serialVehiculo" class="input-wizard"
+                                    name="serialVehiculo" required minlength="1"
+                                    maxlength="50"></p>
+                            <p><label class="w-75 mb-0 fs-5">Tipo de Combustible</label><input
+                                    id="id_tipoCombustible" class="input-wizard"
+                                    name="tipoCombustible" required
+                                    minlength="1" maxlength="20"></p>
+                            <p><label class="w-75 mb-0 fs-5">Cantidad de
+                                    Pasajeros</label><input
+                                    id="id_cantidadPasajeros"
+                                    class="input-wizard"
+                                    name="cantidadPasajeros" required
+                                    minlength="1" maxlength="5"></p>
+                            <p><label class="w-75 mb-0 fs-5">Persona a Cargo</label><input
+                                    id="id_personaEncargadaVehiculo"
+                                    class="input-wizard"
+                                    name="personaEncargadaVehiculo" required
+                                    minlength="1" maxlength="50"></p>
+                            <p><label class="w-75 mb-0 fs-5">Condición Del
+                                    Vehículo</label><select
+                                    id="id_condicionVehiculo" class="form-select
+                                    input-wizard" name="condicionVehiculo"
+                                    required>
+                                    <option selected disabled>------</option>
+                                    <option value="Nuevo">Nuevo</option>
+                                    <option value="Usado">Usado</option>
+                                </select></p>
+                            <p><label class="w-75 mb-0 fs-5">Fecha de
+                                    Ingreso</label><input type="date"
+                                    id="id_fechaIngresoVehiculo"
+                                    class="input-wizard"
+                                    name="fechaIngresoVehiculo" required></p>
+                            <p><label class="w-75 mb-0 fs-5">Fecha Inicio Soa</label><input
+                                    type="date" id="id_fechaInicioSoat"
+                                    class="input-wizard"
+                                    name="fechaInicioSoat" required></p>
+                            <p><label class="w-75 mb-0 fs-5">Fecha Vencimiento
+                                    Soat</label><input
+                                    type="date" id="id_fechaFinSoat"
+                                    class="input-wizard"
+                                    name="fechaFinSoat" required></p>
+                            <p><label class="w-75 mb-0 fs-5">Fecha Inicio
+                                    Técnico Mecánica</label><input type="date"
+                                    id="id_fechaInicioTecnicomecanica"
+                                    class="input-wizard"
+                                    name="fechaInicioTecnicomecanica" required></p>
+                            <p><label class="w-75 mb-0 fs-5">Fecha Vencimiento
+                                    Técnico Mecánica</label><input type="date"
+                                    id="id_fechaVencimientoTecnicomecanica"
+                                    class="input-wizard"
+                                    name="fechaVencimientoTecnicomecanica"
+                                    required>
+                            </p>
 
-                        <!-- BOTÓN PARA GUARDAR LA INFORMACIÓN DIGITADA EN EL FORMULARIO DEL ACTIVO -->
-                        <div class="mt-5 w-100 d-flex
-                            justify-content-center">
-                            <button class="btn btn-success
-                                fs-5 m-2" name="form-vehiculo">GUARDAR</button>
+                            <!-- BOTÓN PARA GUARDAR LA INFORMACIÓN DIGITADA EN EL FORMULARIO DEL ACTIVO -->
+                            <div class="mt-5 w-100 d-flex
+                                justify-content-center">
+                                <button class="btn btn-success
+                                    fs-5 m-2" name="form-vehiculo">GUARDAR</button>
+                            </div>
                         </div>
-                    </div>
+                    </form>
 
                     <!-- CAMPOS PARA REGISTRAR LOS EXTINTORES ################################################################## -->
-                    <div id="form-extintor" style="display: none;">
-                        <h2 style="text-align: center;">Extintor</h2>
-                        <p><label class="w-75 mb-0 fs-5">Foto del Extintor</label><input type="file"
-                            id="id_fotoExtintor" class="input-wizard"
-                            name="fotoExtintor"></p>
-                        <p><label class="w-75 mb-0 fs-5">Serial
-                                Extintor</label><input type="text"
-                                id="id_serialExtintor"
+                    <form id="f_extintor" action="" method="POST"
+                        enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div id="form-extintor" style="display: none;">
+                            <h2 style="text-align: center;">Extintor</h2>
+                            <p><label class="w-75 mb-0 fs-5">Foto del Extintor</label><input
+                                    type="file"
+                                    id="id_fotoExtintor" class="input-wizard"
+                                    name="fotoExtintor"></p>
+                            <p><label class="w-75 mb-0 fs-5">Serial
+                                    Extintor</label><input type="text"
+                                    id="id_serialExtintor"
+                                    class="input-wizard"
+                                    name="serialExtintor" required minlength="1"
+                                    maxlength="50"></p>
+                            <p><label class="w-75 mb-0 fs-5">Color
+                                    Extintor</label><input type="text"
+                                    id="id_colorExtintor"
+                                    class="input-wizard"
+                                    name="colorExtintor" required minlength="1"
+                                    maxlength="20"></p>
+                            <p><label class="w-75 mb-0 fs-5">Ubicación del
+                                    Extintor</label><input type="text"
+                                    id="id_ubicacionExtintor"
+                                    class="input-wizard"
+                                    name="ubicacionExtintor" required
+                                    minlength="1" maxlength="50"></p>
+                            <p><label class="w-75 mb-0 fs-5">Tipo de Extintor</label><select
+                                    id="id_tipoExtintor" class="form-select
+                                    input-wizard" name="tipoExtintor" required>
+                                    <option selected disabled>------</option>
+                                    <option value="A">Tipo A</option>
+                                    <option value="B">Tipo B</option>
+                                    <option value="C">Tipo C</option>
+                                    <option value="D">Tipo D</option>
+                                </select></p>
+                            <p><label class="w-75 mb-0 fs-5">Peso del
+                                    Extintor (Kg)</label><input type="text"
+                                    id="id_pesoExtintor"
+                                    class="input-wizard"
+                                    name="pesoExtintor" required minlength="1"
+                                    maxlength="3"></p>
+                            
+                            <p><label class="w-75 mb-0 fs-5">Fecha de
+                                Ingreso</label><input type="date"
+                                id="id_fechaIngresoExtintor"
                                 class="input-wizard"
-                                name="serialExtintor"></p>
-                        <p><label class="w-75 mb-0 fs-5">Color
-                                Extintor</label><input type="text"
-                                id="id_colorExtintor"
-                                class="input-wizard"
-                                name="colorExtintor"></p>
-                        <p><label class="w-75 mb-0 fs-5">Ubicación del
-                                Extintor</label><input type="text"
-                                id="id_ubicacionExtintor"
-                                class="input-wizard"
-                                name="ubicacionExtintor"></p>
-                        <p><label class="w-75 mb-0 fs-5">Tipo de Extintor</label><select
-                                id="id_tipoExtintor" class="form-select
-                                input-wizard" name="tipoExtintor">
-                                <option selected disabled>------</option>
-                                <option value="A">Tipo A</option>
-                                <option value="B">Tipo B</option>
-                                <option value="C">Tipo C</option>
-                                <option value="D">Tipo D</option>
-                            </select></p>
-                        <p><label class="w-75 mb-0 fs-5">Peso del
-                                Extintor (Kg)</label><input type="text"
-                                id="id_pesoExtintor"
-                                class="input-wizard"
-                                name="pesoExtintor"></p>
+                                name="fechaIngresoExtintor" required></p>
 
-                        <p><label class="w-75 mb-0 fs-5">Fecha Ultima Recarga</label><input
-                                type="date"
-                                id="id_fechaUltimaRecarga"
-                                class="input-wizard"
-                                name="fechaUltimaRecarga"></p>
+                            <p><label class="w-75 mb-0 fs-5">Fecha Ultima
+                                    Recarga</label><input
+                                    type="date"
+                                    id="id_fechaUltimaRecarga"
+                                    class="input-wizard"
+                                    name="fechaUltimaRecarga" required></p>
 
-                        <!-- <p><label class="w-75 mb-0 fs-5">Fecha Próxima Recarga</label><input
-                                type="date"
-                                id="id_fechaProximaRecarga"
-                                class="input-wizard"
-                                name="fechaProximaRecarga"></p> -->
-
-                        <!-- BOTON PARA GUARDAR LA INFORMACIÓN DIGITADA EN EL FORMULARIO DEL ACTIVO -->
-                        <div class="mt-5 w-100 d-flex
-                            justify-content-center">
-                            <button class="btn btn-success
-                                fs-5 m-2" name="form-extintor">GUARDAR</button>
+                            <!-- BOTON PARA GUARDAR LA INFORMACIÓN DIGITADA EN EL FORMULARIO DEL ACTIVO -->
+                            <div class="mt-5 w-100 d-flex
+                                justify-content-center">
+                                <button class="btn btn-success
+                                    fs-5 m-2" name="form-extintor">GUARDAR</button>
+                            </div>
                         </div>
-                    </div>
+                    </form>
 
                     <!-- CAMPOS PARA REGISTRAR LOS EQUIPOS DE OFICINA ############################################################## -->
-                    <div id="form-oficina" style="display: none;">
-                        <h2 style="text-align: center;">Equipo De Oficina</h2>
-                        <p><label class="w-75 mb-0 fs-5">Foto del Equipo</label><input type="file"
-                            id="id_fotoEquipo" class="input-wizard"
-                            name="fotoEquipo"></p>
-                        <p><label class="w-75 mb-0 fs-5">Serial Equipo</label><input
-                                id="id_serialEquipo" class="input-wizard"
-                                name="serialEquipo"></p>
-                        <p><label class="w-75 mb-0 fs-5">Marca del Equipo</label><input
-                                id="id_marcaEquipo" class="input-wizard"
-                                name="marcaEquipo"></p>
-                        <p><label class="w-75 mb-0 fs-5">Color del Equipo</label><input
-                                id="id_colorEquipo" class="input-wizard"
-                                name="colorEquipo"></p>
-                        <p><label class="w-75 mb-0 fs-5">Sistema Operativo</label><input
-                                id="id_sistemaOperativo" class="input-wizard"
-                                name="sistemaOperativo"></p>
-                        <p><label class="w-75 mb-0 fs-5">RAM del Equipo</label><input
-                                id="id_ramEquipo" class="input-wizard"
-                                name="ramEquipo"></p>
-                        <p><label class="w-75 mb-0 fs-5">Memoria del Equipo</label><input
-                                id="id_memoriaEquipo" class="input-wizard"
-                                name="memoriaEquipo"></p>
-                        <p><label class="w-75 mb-0 fs-5">Ubicación del Equipo</label><input
-                                id="id_ubicacionEquipo" class="input-wizard"
-                                name="ubicacionEquipo"></p>
-                        <!-- <p><label class="w-75 mb-0 fs-5">Fecha Próxima Revisión</label><input type="date"
-                            id="id_fechaProximoMantenimiento"
-                            class="input-wizard"
-                            name="fechaProximoMantenimiento">
-                        </p> -->
-                        <p><label class="w-75 mb-0 fs-5">Componentes
-                                del Equipo</label><textarea
-                                id="id_componentesAdicionales"
-                                class="input-wizard"
-                                name="componentesAdicionales" style="resize:
-                                none; height: 100px;"></textarea></p>
+                    <form id="f_equipo" action="" method="POST"
+                        enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div id="form-oficina" style="display: none;">
+                            <h2 style="text-align: center;">Equipo De Oficina</h2>
+                            <p><label class="w-75 mb-0 fs-5">Foto del Equipo</label><input
+                                    type="file"
+                                    id="id_fotoEquipo" class="input-wizard"
+                                    name="fotoEquipo"></p>
+                            <p><label class="w-75 mb-0 fs-5">Serial Equipo</label><input
+                                    id="id_serialEquipo" class="input-wizard"
+                                    name="serialEquipo" required minlength="1"
+                                    maxlength="50"></p>
+                            <p><label class="w-75 mb-0 fs-5">Marca del Equipo</label><input
+                                    id="id_marcaEquipo" class="input-wizard"
+                                    name="marcaEquipo" required minlength="1"
+                                    maxlength="20"></p>
+                            <p><label class="w-75 mb-0 fs-5">Color del Equipo</label><input
+                                    id="id_colorEquipo" class="input-wizard"
+                                    name="colorEquipo" required minlength="1"
+                                    maxlength="20"></p>
+                            <p><label class="w-75 mb-0 fs-5">Sistema Operativo</label><input
+                                    id="id_sistemaOperativo"
+                                    class="input-wizard"
+                                    name="sistemaOperativo"></p>
+                            <p><label class="w-75 mb-0 fs-5">RAM del Equipo</label><input
+                                    id="id_ramEquipo" class="input-wizard"
+                                    name="ramEquipo"></p>
+                            <p><label class="w-75 mb-0 fs-5">Memoria del Equipo</label><input
+                                    id="id_memoriaEquipo" class="input-wizard"
+                                    name="memoriaEquipo"></p>
+                            <p><label class="w-75 mb-0 fs-5">Ubicación del
+                                    Equipo</label><input
+                                    id="id_ubicacionEquipo" class="input-wizard"
+                                    name="ubicacionEquipo" required required
+                                    minlength="1" maxlength="50"></p>
+                            <p><label class="w-75 mb-0 fs-5">Fecha de
+                                    Ingreso</label><input type="date"
+                                    id="id_fechaIngresoEquipo"
+                                    class="input-wizard"
+                                    name="fechaIngresoEquipo" required></p>
+                            <p><label class="w-75 mb-0 fs-5">Componentes
+                                    del Equipo</label><textarea
+                                    id="id_componentesAdicionales"
+                                    class="input-wizard"
+                                    name="componentesAdicionales" style="resize:
+                                    none; height: 100px;"></textarea></p>
 
-                        <!-- BOTÓN PARA GUARDAR LA INFORMACIÓN DIGITADA EN EL FORMULARIO DEL ACTIVO -->
-                        <div class="w-100 d-flex
-                            justify-content-center">
-                            <button class="btn btn-success
-                                m-2" style="font-size: 20px;"
-                                name="form-oficina">GUARDAR</button>
+                            <!-- BOTÓN PARA GUARDAR LA INFORMACIÓN DIGITADA EN EL FORMULARIO DEL ACTIVO -->
+                            <div class="w-100 d-flex
+                                justify-content-center">
+                                <button class="btn btn-success
+                                    m-2" style="font-size: 20px;"
+                                    name="form-oficina">GUARDAR</button>
+                            </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
 
                 <!-- <div class="thanks-message text-center" id="text-message"> <img
@@ -254,11 +289,85 @@
                             id="nextBtn" name="" onclick="nextPrev(1)">Registrar</button>
                     </div>
                 </div>
-            </form>
+            </div>
+            <!-- </form> -->
         </div>
     </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 
+<script>
+    // Bloque para no permitir espacios en blanco en el formulario de registrar un nuevo extintor
+    const $f_extintor = document.getElementById('f_extintor');
+    const $id_serialExtintor = document.getElementById('id_serialExtintor');
+    const $id_colorExtintor = document.getElementById('id_colorExtintor');
+    const $id_ubicacionExtintor = document.getElementById('id_ubicacionExtintor');
+    const $id_pesoExtintor = document.getElementById('id_pesoExtintor');
+
+    // Bloque para no permitir espacios en blanco en el formulario de registrar un nuevo equipo
+    const $f_equipo = document.getElementById('f_equipo');
+    const $id_serialEquipo = document.getElementById('id_serialEquipo');
+    const $id_marcaEquipo = document.getElementById('id_marcaEquipo');
+    const $id_colorEquipo = document.getElementById('id_colorEquipo');
+    const $id_ubicacionEquipo = document.getElementById('id_ubicacionEquipo');
+
+    // Bloque para no permitir espacios en blanco en el formulario de registrar un nuevo vehículo
+    const $f_vehiculo = document.getElementById('f_vehiculo');
+    const $id_marcaVehiculo = document.getElementById('id_marcaVehiculo');
+    const $id_modeloVehiculo = document.getElementById('id_modeloVehiculo');
+    const $id_placaVehiculo = document.getElementById('id_placaVehiculo');
+    const $id_colorVehiculo = document.getElementById('id_colorVehiculo');
+    const $id_serialVehiculo = document.getElementById('id_serialVehiculo');
+    const $id_tipoCombustible = document.getElementById('id_tipoCombustible');
+    const $id_cantidadPasajeros = document.getElementById('id_cantidadPasajeros');
+    const $id_personaEncargadaVehiculo = document.getElementById('id_personaEncargadaVehiculo');
+
+    // continuación del Bloque para no permitir espacios en blanco en el formulario de registrar un nuevo vehículo
+    (function(){
+        $f_vehiculo.addEventListener('submit', function(e){
+            let marcaVehiculo=String($id_marcaVehiculo.value).trim();
+            let modeloVehiculo=String($id_modeloVehiculo.value).trim();
+            let placaVehiculo=String($id_placaVehiculo.value).trim();
+            let colorVehiculo=String($id_colorVehiculo.value).trim();
+            let serialVehiculo=String($id_serialVehiculo.value).trim();
+            let tipoCombustible=String($id_tipoCombustible.value).trim();
+            let cantidadPasajeros=String($id_cantidadPasajeros.value).trim();
+            let personaEncargadaVehiculo=String($id_personaEncargadaVehiculo.value).trim();
+            if (marcaVehiculo.length === 0 || modeloVehiculo.length === 0 || placaVehiculo.length === 0 || colorVehiculo.length === 0 || serialVehiculo.length === 0 || tipoCombustible.length === 0 || cantidadPasajeros.length === 0 || personaEncargadaVehiculo.length === 0){
+                alert("El dato no puede ir vacio o solo con espacios en blanco");
+                e.preventDefault();
+            }
+        });
+    })();
+
+    // continuación del Bloque para no permitir espacios en blanco en el formulario de registrar un nuevo extintor
+    (function(){
+        $f_extintor.addEventListener('submit', function(e){
+            let serialExtintor=String($id_serialExtintor.value).trim();
+            let colorExtintor=String($id_colorExtintor.value).trim();
+            let ubicacionExtintor=String($id_ubicacionExtintor.value).trim();
+            let pesoExtintor=String($id_pesoExtintor.value).trim();
+            if (serialExtintor.length === 0 || colorExtintor.length === 0 || ubicacionExtintor.length === 0 || pesoExtintor.length === 0){
+                alert("El dato no puede ir vacio o solo con espacios en blanco");
+                e.preventDefault();
+            }
+        });
+    })();
+
+    // continuación del Bloque para no permitir espacios en blanco en el formulario de registrar un nuevo equipo
+    (function(){
+        $f_equipo.addEventListener('submit', function(e){
+            let serialEquipo=String($id_serialEquipo.value).trim();
+            let marcaEquipo=String($id_marcaEquipo.value).trim();
+            let colorEquipo=String($id_colorEquipo.value).trim();
+            let ubicacionEquipo=String($id_ubicacionEquipo.value).trim();
+            if (serialEquipo.length === 0 || marcaEquipo.length === 0 || colorEquipo.length === 0 || ubicacionEquipo.length === 0){
+                alert("El dato no puede ir vacio o solo con espacios en blanco");
+                e.preventDefault();
+            }
+        });
+    })();
+</script>
 {% block javascriptwizard %}
 <!-- SCRIPTS PARA MENEJAR LOS FORMULARIOS Y TABLAS DE CONTROL ACTIVOS -->
 <!-- <script>
