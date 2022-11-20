@@ -3,6 +3,7 @@ from multiprocessing import context
 from django.shortcuts import redirect, render
 from activos.models import ActivoEquipoOficina, ActivoExtintor, ActivoVehiculo
 from activos.forms import ActivoEquipoOficinaForm, ActivoExtintorForm, ActivoVehiculoForm
+from gestionActivos.models import MantenimientoVehiculo, GenerarRuta, MantenimientoExtintor, MantenimientoEquipo
 from django.contrib import messages
 
 # Importe con el cual habilitamos el @login_required
@@ -18,6 +19,10 @@ def control_activos(request):
     extintores= ActivoExtintor.objects.filter(estadoExtintor="Activo")
     vehiculos=ActivoVehiculo.objects.filter(estadoVehiculo="Activo")
     equipos=ActivoEquipoOficina.objects.filter(estadoEquipo="Activo")
+    ultimoMantenimientoVehiculo=None
+    ultimoMantenimientoExtintor=None
+    ultimoMantenimientoEquipo=None
+    kilometraje=None
     # form=ActivoExtintorForm()
     # form=ActivoVehiculoForm()
     # form=ActivoEquipoOficinaForm()
@@ -26,16 +31,33 @@ def control_activos(request):
     equipo=None
 
 
+
 # ###################################################################################################################################
     # Bloque de codigo para traer informacion de la tabla a los campos de la pagina html por medio de la Primary Key
     if request.method == "POST" and 'editar-extintor' in request.POST:
         extintor = ActivoExtintor.objects.get(id=int(request.POST['pk_extintor']))
+        ultimoMantenimientoExtintor=MantenimientoExtintor.objects.filter(fkExtintor=extintor).order_by('-fkRegistrarMantenimiento__fechaMantenimiento')
+        if ultimoMantenimientoExtintor:
+            ultimoMantenimientoExtintor = ultimoMantenimientoExtintor[0]
+        else:
+            ultimoMantenimientoExtintor = None
 
     if request.method == "POST" and 'editar-vehiculo' in request.POST:
         vehiculo = ActivoVehiculo.objects.get(id=int(request.POST['pk_vehiculo']))
+        ultimoMantenimientoVehiculo=MantenimientoVehiculo.objects.filter(fkVehiculo=vehiculo).order_by('-fkRegistrarMantenimiento__fechaMantenimiento')
+        if ultimoMantenimientoVehiculo:
+            ultimoMantenimientoVehiculo = ultimoMantenimientoVehiculo[0]
+        else:
+            ultimoMantenimientoVehiculo = None
+        kilometraje=GenerarRuta.objects.filter(fkVehiculo=vehiculo).order_by('-fechaRegreso', '-horaRegreso')[0]
 
     if request.method == "POST" and 'editar-equipo-oficina' in request.POST:
         equipo = ActivoEquipoOficina.objects.get(id=int(request.POST['pk_equipo']))
+        ultimoMantenimientoEquipo=MantenimientoEquipo.objects.filter(fkEquipoOficina=equipo).order_by('-fkRegistrarMantenimiento__fechaMantenimiento')
+        if ultimoMantenimientoEquipo:
+            ultimoMantenimientoEquipo = ultimoMantenimientoEquipo[0]
+        else:
+            ultimoMantenimientoEquipo = None
 
 # ###################################################################################################################################
     # Bloque de codigo para editar los activos Extintor - Vehiculos - Equipos de Oficina
@@ -127,31 +149,15 @@ def control_activos(request):
         'vehiculo':vehiculo,
         'equipos':equipos,
         'equipo':equipo,
+        'ultimoMantenimientoVehiculo':ultimoMantenimientoVehiculo,
+        'ultimoMantenimientoExtintor':ultimoMantenimientoExtintor,
+        'ultimoMantenimientoEquipo':ultimoMantenimientoEquipo,
+        'kilometraje':kilometraje,
         # 'form':form 
     }
     return render (request, 'activos/controlActivos.html', context)
 
-# def crear_equipo(request):
-#     if request.method == "POST" and 'form-oficina' in request.POST:
-#         form=ActivoEquipoOficinaForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             print('###################################### EQUIPO CREADO')
-#             messages.success(
-#             request,f"SE REGISTRO EL EQUIPO DE OFICINA EXITOSAMENTE"
-#         )
-#         else:
-#             form=ActivoEquipoOficinaForm(request.POST)
-#             print('###################################### EQUIPO ERROR')
-#     else:
-#         form=ActivoEquipoOficinaForm()
 
-#     return redirect('control-activos')
-        
-#     context={
-#             'form':form
-#         }
-#     return render (request, 'activos/controlActivos.html', context)
 # ###################################################################################################################################
 # FUNCIONES PARA ELIMINAR O INHABILITAR LOS VEHICULOS
 @login_required(login_url='login')
@@ -225,31 +231,3 @@ def control_activos_eliminar_equipo(request,pk):
 def logout_user(request):
     logout(request)
     return redirect("login")
-
-# def control_activos_eliminar_vehiculo(request,pk):
-#     titulo = 'control-activos'
-#     extintores= ActivoExtintor.objects.all()
-#     vehiculos=ActivoVehiculo.objects.all()
-#     equipos=ActivoEquipoOficina.objects.all()
-
-#     # Bloque de codigo para ELIMINAR O DESACTIVAR UN ACTIVO
-#     ActivoExtintor.objects.filter(id=pk).update(
-#         estadoExtintor='Inactivo'
-#     )
-
-#     ActivoVehiculo.objects.filter(id=pk).update(
-#         estadoVehiculo='Inactivo'
-#     )
-
-#     ActivoEquipoOficina.objects.filter(id=pk).update(
-#         estadoEquipo='Inactivo'
-#     )
-
-#     context ={
-#         'titulo':titulo,
-#         'extintores':extintores,
-#         'vehiculos':vehiculos,
-#         'equipos':equipos
-#     }
-
-#     return render (request, 'activos/controlActivos.html', context)

@@ -5,12 +5,12 @@ from gestionActivos.models import GenerarRuta, MantenimientoEquipo, Mantenimient
 from gestionActivos.forms import GenerarAlarmaForm, GenerarRutaForm, EditarGenerarRutaForm, PasajeroForm, RegistrarMantenimientoForm,DetalleRutaForm
 from usuarios.models import Usuario
 from django.contrib import messages
+from datetime import datetime
 
 # Importe con el cual habilitamos el @login_required
 from django.contrib.auth.decorators import login_required, permission_required
 # Importe para logout en la funcion logout_user
 from django.contrib.auth import logout 
-
 
 # Create your views here.
 
@@ -20,6 +20,7 @@ from django.contrib.auth import logout
 def consultar_alarma(request):
     titulo='Alarmas'
     form=GenerarAlarmaForm()
+
     context={
         'titulo':titulo,
         'form':form
@@ -50,16 +51,23 @@ def generar_ruta(request,pk=None):
         form=GenerarRutaForm(request.POST)
 
         if form.is_valid():
-            aux=form.save()
-            messages.success(
-                request,f"SE REGISTRO LA RUTA EXITOSAMENTE"
-            )
-            return redirect('generar-ruta',pk=aux.id)
+            if int(request.POST['horaSalida'][:1]) > datetime.now().hour:
+                aux=form.save()
+                messages.success(
+                    request,f"SE REGISTRO LA RUTA EXITOSAMENTE"
+                )
+                return redirect('generar-ruta',pk=aux.id)
+            else:
+                form=GenerarRutaForm(request.POST)
+                messages.warning(
+                    request,f"Error, La hora no debe ser menor a la actual"
+                )
         else:
             form=GenerarRutaForm(request.POST)
             messages.error(
                 request,f"Error al generar la ruta"
             )
+
 
     # ############################################################################################
     # Bloque para editar y terminar de registrar la ruta.
@@ -67,12 +75,23 @@ def generar_ruta(request,pk=None):
         ruta = GenerarRuta.objects.get(id=pk)
         form = EditarGenerarRutaForm(request.POST, instance=ruta)
         if form.is_valid():
-            form.save()
-            messages.success(
-                request,f"SE EDITO LA RUTA CORRECTAMENTE"
-            )
+            kilometraje=GenerarRuta.objects.filter(fkVehiculo=ruta.fkVehiculo, kilometrajeFinalVehiculo__gt=0).order_by('-fechaRegreso', '-horaRegreso')[0]
+            print("#########################################", kilometraje)
 
-            return redirect('generar-ruta',pk)
+            if kilometraje.kilometrajeFinalVehiculo < int(request.POST['kilometrajeFinalVehiculo']):
+                form.save()
+                messages.success(
+                    request,f"SE EDITO LA RUTA CORRECTAMENTE"
+                )
+
+                return redirect('generar-ruta',pk)
+
+            else:
+                form=EditarGenerarRutaForm(request.POST)
+                messages.warning(
+                    request,f"EL KILOMETRAJE NO PUEDE SER MENOR AL ULTIMO REGISTRADO"
+                )
+
         else:
             form=EditarGenerarRutaForm(request.POST)
             messages.error(
@@ -169,6 +188,7 @@ def registrar_mantenimiento(request):
     extintores= ActivoExtintor.objects.all()
     vehiculos=ActivoVehiculo.objects.all()
     equipos=ActivoEquipoOficina.objects.all()
+    
     extintor=None
     vehiculo=None
     equipo=None

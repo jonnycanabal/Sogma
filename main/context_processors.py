@@ -21,21 +21,27 @@ def sesion(request):
 
 # Bloque de código con la función para dar aviso de activos que esten proximos a un mantenimiento.
 def alarma (request):
-    start_date= datetime.today() - timedelta(days=32)
-    end_date= datetime.today() + timedelta(days=3) - timedelta(days=30)
+    start_date_vehiculo= datetime.today() - timedelta(days=32)
+    end_date_vehiculo= datetime.today() + timedelta(days=3) - timedelta(days=30)
+
+    start_date_extintor= datetime.today() - timedelta(days=368)
+    end_date_extintor= datetime.today() + timedelta(days=3) - timedelta(days=365)
+
+    start_date_equipo= datetime.today() - timedelta(days=368)
+    end_date_equipo= datetime.today() + timedelta(days=3) - timedelta(days=365)
     # vehiculos=MantenimientoVehiculo.objects.filter(fkRegistrarMantenimiento__fechaMantenimiento__range=(start_date, end_date))
-    vehiculos=MantenimientoVehiculo.objects.filter(fkRegistrarMantenimiento__fechaMantenimiento__gte= start_date, fkRegistrarMantenimiento__fechaMantenimiento__lte= end_date)
-    extintores=MantenimientoExtintor.objects.filter(fkRegistrarMantenimiento__fechaMantenimiento__gte= start_date, fkRegistrarMantenimiento__fechaMantenimiento__lte= end_date)
-    equipos=MantenimientoEquipo.objects.filter(fkRegistrarMantenimiento__fechaMantenimiento__gte= start_date, fkRegistrarMantenimiento__fechaMantenimiento__lte= end_date)
+    vehiculos=MantenimientoVehiculo.objects.filter(fkRegistrarMantenimiento__fechaMantenimiento__gte= start_date_vehiculo, fkRegistrarMantenimiento__fechaMantenimiento__lte= end_date_vehiculo)
+    extintores=MantenimientoExtintor.objects.filter(fkRegistrarMantenimiento__fechaMantenimiento__gte= start_date_extintor, fkRegistrarMantenimiento__fechaMantenimiento__lte= end_date_extintor)
+    equipos=MantenimientoEquipo.objects.filter(fkRegistrarMantenimiento__fechaMantenimiento__gte= start_date_equipo, fkRegistrarMantenimiento__fechaMantenimiento__lte= end_date_equipo)
 
-    for vehiculo in vehiculos:
-        print(vehiculos)
+    # for vehiculo in vehiculos:
+    #     print(vehiculos)
 
-    for extintor in extintores:
-        print(extintores)
+    # for extintor in extintores:
+    #     print(extintores)
 
-    for equipo in equipos:
-        print(equipos)
+    # for equipo in equipos:
+    #     print(equipos)
 
     context={
         'vehiculos':vehiculos,

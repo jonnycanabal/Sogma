@@ -67,6 +67,7 @@ def usuarios_creados(request):
                 user.first_name=request.POST['primerNombre'].capitalize()
                 user.last_name=request.POST['primerApellido'].capitalize()
                 user.email=request.POST['correoElectronico']
+                # user.groups=request.POST['tipoUsuario']
                 user.password=make_password("@" + request.POST['primerNombre'][0] + request.POST['primerApellido'][0] + request.POST['numeroDocumento'][-4:])
                 user.save()
                 user_group= User

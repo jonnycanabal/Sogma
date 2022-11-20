@@ -58,7 +58,7 @@ class GenerarRuta(models.Model):
     fechaRegreso=models.DateField(verbose_name="Fecha de Regreso", help_text="MM/DD/AAAA")
     lugarSalida=models.CharField(max_length=50, verbose_name="Lugar de Salida")
     lugarDestino=models.CharField(max_length=50, verbose_name="Lugar de Destino")
-    kilometrajeFinalVehiculo=models.IntegerField(verbose_name="Kilometraje Final", blank=True, null=True)  # Valor numero (IntegerField) Para sumar Kilometraje!!!!!!
+    kilometrajeFinalVehiculo=models.IntegerField(verbose_name="Kilometraje Final", default=0)  # Valor numero (IntegerField) Para sumar Kilometraje!!!!!!
     descripcionRuta=models.TextField(max_length=100, verbose_name="Descripción")
     observacionesRuta=models.TextField(max_length=100, verbose_name="Observaciones", blank=True, null=True)
     class EstadoRuta(models.TextChoices):

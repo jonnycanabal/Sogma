@@ -26,6 +26,7 @@
 <!-- Inicio del contenedor para la página generar alarma -->
 <div id="div-caja3" class="container p-3 my-4 pb-4 pe-4 pt-0 mt-0">
 
+    {% if perms.activos.view_activovehiculo %}
     <div id="div-cajas" class="container p-3 my-4 mt-0
         pb-4 w-100">
         <!-- ############################################################################################################### -->
@@ -37,7 +38,7 @@
                 background-color:
                 rgb(209,
                 208, 208);">
-                <h3 style="text-align: center;">MANTENIMIENTO VEHÍCULOS</h3>
+                <h3 style="text-align: center;">MANTENIMIENTO PENDIENTE VEHÍCULOS</h3>
             </div>
 
             <!-- Salto de línea -->
@@ -56,6 +57,7 @@
                             <!-- Cabecera de la tabla (Donde estarán  los enunciados principales)-->
                             <thead>
                                 <tr>
+                                    <th>Ultimo Mantenimiento</th>
                                     <th>Id Activo</th>
                                     <th>Marca del Vehículo</th>
                                     <th>Modelo del Vehículo</th>
@@ -79,7 +81,8 @@
 
                                 {% for vehiculo in vehiculos %}
                                 <tr>
-                                    <td class="text-center">{{vehiculo.id}}</td>
+                                    <td>{{vehiculo.fkRegistrarMantenimiento.fechaMantenimiento | date:'Y-m-d'}}</td>
+                                    <td class="text-center">{{vehiculo.fkVehiculo.id}}</td>
                                     <td>{{vehiculo.fkVehiculo.marcaVehiculo}}</td>
                                     <td>{{vehiculo.fkVehiculo.modeloVehiculo}}</td>
                                     <td>{{vehiculo.fkVehiculo.placaVehiculo}}</td>
@@ -89,11 +92,11 @@
                                     <td>{{vehiculo.fkVehiculo.cantidadPasajeros}}</td>
                                     <td>{{vehiculo.fkVehiculo.personaEncargadaVehiculo}}</td>
                                     <td>{{vehiculo.fkVehiculo.condicionVehiculo}}</td>
-                                    <td class="text-center">{{vehiculo.fechaIngresoVehiculo | date:"d/m/Y"}}</td>
-                                    <td class="text-center">{{vehiculo.fechaInicioSoat | date:"d/m/Y"}}</td>
-                                    <td class="text-center">{{vehiculo.fechaFinSoat | date:"d/m/Y"}}</td>
-                                    <td class="text-center">{{vehiculo.fechaInicioTecnicomecanica | date:"d/m/Y"}}</td>
-                                    <td class="text-center">{{vehiculo.fechaVencimientoTecnicomecanica | date:"d/m/Y"}}</td>
+                                    <td class="text-center">{{vehiculo.fkVehiculo.fechaIngresoVehiculo | date:"d/m/Y"}}</td>
+                                    <td class="text-center">{{vehiculo.fkVehiculo.fechaInicioSoat | date:"d/m/Y"}}</td>
+                                    <td class="text-center">{{vehiculo.fkVehiculo.fechaFinSoat | date:"d/m/Y"}}</td>
+                                    <td class="text-center">{{vehiculo.fkVehiculo.fechaInicioTecnicomecanica | date:"d/m/Y"}}</td>
+                                    <td class="text-center">{{vehiculo.fkVehiculo.fechaVencimientoTecnicomecanica | date:"d/m/Y"}}</td>
                                 </tr>
                                 {% endfor %}
 
@@ -102,6 +105,7 @@
                             <!-- Footer de la tabla (Donde estarán los enunciados principales pero en la parte inferior) -->
                             <tfoot>
                                 <tr>
+                                    <th>Ultimo Mantenimiento</th>
                                     <th>Id Activo</th>
                                     <th>Marca del Vehículo</th>
                                     <th>Modelo del Vehículo</th>
@@ -125,8 +129,11 @@
             </div>
         </div>
     </div>
+    {% endif %}
 
     <br>
+
+    {% if perms.activos.view_activoextintor %}
     <div id="div-cajas" class="container p-3 my-4 mt-0
         pb-4 w-100">
 
@@ -139,7 +146,7 @@
                 background-color:
                 rgb(209,
                 208, 208);">
-                <h3 style="text-align: center;">MANTENIMIENTO EXTINTORES</h3>
+                <h3 style="text-align: center;">MANTENIMIENTO PENDIENTE EXTINTORES</h3>
             </div>
 
             <!-- Salto de línea -->
@@ -158,6 +165,7 @@
                             <!-- Cabecera de la tabla (Donde estarán  los enunciados principales)-->
                             <thead>
                                 <tr>
+                                    <th>Ultimo Mantenimiento</th>
                                     <th>Id Activo</th>
                                     <th>Serial Extintor</th>
                                     <th>Color Extintor</th>
@@ -172,7 +180,8 @@
 
                                 {% for extintor in extintores %}
                                 <tr>
-                                    <td class="text-center">{{extintor.id}}</td>
+                                    <td>{{extintor.fkRegistrarMantenimiento.fechaMantenimiento | date:'Y-m-d'}}</td>
+                                    <td class="text-center">{{extintor.fkExtintor.id}}</td>
                                     <td>{{extintor.fkExtintor.serialExtintor}}</td>
                                     <td>{{extintor.fkExtintor.colorExtintor}}</td>
                                     <td>{{extintor.fkExtintor.ubicacionExtintor}}</td>
@@ -186,6 +195,7 @@
                             <!-- Footer de la tabla (Donde estarán los enunciados principales pero en la parte inferior) -->
                             <tfoot>
                                 <tr>
+                                    <th>Ultimo Mantenimiento</th>
                                     <th>Id Activo</th>
                                     <th>Serial Extintor</th>
                                     <th>Color Extintor</th>
@@ -200,9 +210,11 @@
             </div>
         </div>
     </div>
+    {% endif %}
 
 
     <br>
+    {% if perms.activos.view_activoequipooficina %}
     <div id="div-cajas" class="container p-3 my-4 mt-0
         pb-4 w-100">
 
@@ -215,7 +227,7 @@
                 background-color:
                 rgb(209,
                 208, 208);">
-                <h3 style="text-align: center;">MANTENIMIENTO EQUIPOS DE OFICINA</h3>
+                <h3 style="text-align: center;">MANTENIMIENTO PENDIENTE EQUIPOS DE OFICINA</h3>
             </div>
 
             <!-- Salto de línea -->
@@ -234,6 +246,7 @@
                             <!-- Cabecera de la tabla (Donde estarán  los enunciados principales)-->
                             <thead>
                                 <tr>
+                                    <th>Ultimo Mantenimiento</th>
                                     <th>Id Activo</th>
                                     <th>Serial Equipo</th>
                                     <th>Marca Equipo</th>
@@ -251,7 +264,8 @@
 
                                 {% for equipo in equipos %}
                                 <tr>
-                                    <td class="text-center">{{equipo.id}}</td>
+                                    <td>{{equipo.fkRegistrarMantenimiento.fechaMantenimiento | date:'Y-m-d'}}</td>
+                                    <td class="text-center">{{equipo.fkEquipoOficina.id}}</td>
                                     <td>{{equipo.fkEquipoOficina.serialEquipo}}</td>
                                     <td>{{equipo.fkEquipoOficina.marcaEquipo}}</td>
                                     <td>{{equipo.fkEquipoOficina.colorEquipo}}</td>
@@ -268,6 +282,7 @@
                             <!-- Footer de la tabla (Donde estarán los enunciados principales pero en la parte inferior) -->
                             <tfoot>
                                 <tr>
+                                    <th>Ultimo Mantenimiento</th>
                                     <th>Id Activo</th>
                                     <th>Serial Equipo</th>
                                     <th>Marca Equipo</th>
@@ -285,23 +300,8 @@
             </div>
         </div>
     </div>
+    {% endif %}
 
 </div>
-
-
-{% for vehiculo in vehiculos %}
-<h3>{{vehiculo}}</h3>
-{% endfor %}
-
-
-{% for extintor in extintores %}
-<h3>{{extintor}}</h3>
-{% endfor %}
-
-
-{% for equipo in equipos %}
-<h3>{{equipo}}</h3>
-<h3></h3>
-{% endfor %}
 
 {% endblock contenido %}

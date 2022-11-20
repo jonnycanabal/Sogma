@@ -578,13 +578,22 @@
                     </div>
                 </div>
 
-                <!-- <div class="d-inline-block width-20 ms-1 me-5">
-                    <label for="basic-url" class="form-label w-75 p-2">Fecha próximo Mantenimiento</label>
+                <div class="d-inline-block width-20 ms-1 me-5">
+                    <label for="basic-url" class="form-label w-75 p-2">Fecha ultimo Mantenimiento</label>
                     <div class="input-group mb-3 w-100">
-                        <input type="date" class="form-control" id="id_fechaProximoMantenimiento" name="fechaProximoMantenimiento" value="{{vehiculo.fechaProximoMantenimiento | date:'Y-m-d'}}" aria-describedby="basic-addon3">
+                        <input disabled type="date" class="form-control" id="id_fechaMantenimiento" name="fechaMantenimiento" value="{{ultimoMantenimientoVehiculo.fkRegistrarMantenimiento.fechaMantenimiento | date:'Y-m-d'}}" aria-describedby="basic-addon3">
                     </div>
-                </div> -->
+                </div>
+
+                <div class="d-inline-block width-20 ms-1 me-5">
+                    <label for="basic-url" class="form-label w-75 p-2">Kilometraje del Vehículo</label>
+                    <div class="input-group mb-3 w-100">
+                        <input disabled type="number" class="form-control" id="" name="" value="{{kilometraje.kilometrajeFinalVehiculo}}" aria-describedby="basic-addon3">
+                    </div>
+                </div>
             </div>
+
+
 
             <br>
             <!-- USO DE MODAL CON BOOTSTRAP 5 PARA EL BOTÓN GUARDAR-->
@@ -700,6 +709,13 @@
                     <label for="basic-url" class="form-label w-75 p-2">Fecha Ultima Recarga</label>
                     <div class="input-group mb-3 w-100">
                         <input type="date" class="form-control" id="id_fechaUltimaRecarga" name="fechaUltimaRecarga" value="{{extintor.fechaUltimaRecarga | date:'Y-m-d'}}" aria-describedby="basic-addon3">
+                    </div>
+                </div>
+
+                <div class="d-inline-block width-20 ms-1 me-5">
+                    <label for="basic-url" class="form-label w-75 p-2">Fecha ultimo Mantenimiento</label>
+                    <div class="input-group mb-3 w-100">
+                        <input disabled type="date" class="form-control" id="id_fechaMantenimiento" name="fechaMantenimiento" value="{{ultimoMantenimientoExtintor.fkRegistrarMantenimiento.fechaMantenimiento | date:'Y-m-d'}}" aria-describedby="basic-addon3">
                     </div>
                 </div>
 
@@ -835,12 +851,12 @@
                     </div>
                 </div>
 
-                <!-- <div class="d-inline-block width-20 ms-1 me-5">
-                    <label for="basic-url" class="form-label w-75 p-2">Fecha Próxima Revisión</label>
+                <div class="d-inline-block width-20 ms-1 me-5">
+                    <label for="basic-url" class="form-label w-75 p-2">Fecha ultimo Mantenimiento</label>
                     <div class="input-group mb-3 w-100">
-                        <input type="date" class="form-control" id="id_fechaProximaRevision" name="fechaProximaRevision" value="{{equipo.fechaProximaRevision | date:'Y-m-d'}}" aria-describedby="basic-addon3">
+                        <input disabled type="date" class="form-control" id="id_fechaMantenimiento" name="fechaMantenimiento" value="{{ultimoMantenimientoEquipo.fkRegistrarMantenimiento.fechaMantenimiento | date:'Y-m-d'}}" aria-describedby="basic-addon3">
                     </div>
-                </div> -->
+                </div>
 
                 <div class="d-inline-block width-20 ms-1 me-5">
                     <label for="basic-url" class="form-label w-75 p-2">Componentes del Equipo</label>

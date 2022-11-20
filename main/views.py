@@ -11,6 +11,14 @@ from xhtml2pdf import pisa
 from django.contrib.staticfiles import finders
 from io import BytesIO
 
+
+from django.conf import settings
+from django.core.mail import send_mail
+import threading
+import time
+
+from datetime import datetime
+
 # views de la pagina de Inicio - Index
 
 
@@ -67,6 +75,49 @@ def reporte_equipo (request, pk):
             }
 
         return render (request, 'reportes/reporte_equipo.html', context)
+
+
+
+# send_mail(
+#     'Título del correo',
+#     'Hola, este correo es enviado desde un post en PyWombat. 🐍',
+#     settings.EMAIL_HOST_USER,
+#     ['jonny.canabal@gmail.com'],
+#     fail_silently=False
+# )
+
+
+
+# hora = str(datetime.now().hour) + ":" + str(datetime.now().minute) + ":" + str(datetime.now().second)
+# print(hora)
+# if hora == '13:25:30':
+#     print("funciona")
+#     send_mail(
+#         'Título del correo',
+#         'Hola, este correo es enviado desde un post en PyWombat. 🐍',
+#         settings.EMAIL_HOST_USER,
+#         ['jonny.canabal@gmail.com'],
+#         fail_silently=False
+#     )
+# else:
+#     print("no funciona")
+
+
+
+
+# Tarea a ejecutarse cada determinado tiempo.
+# def timer():
+#     while True:
+
+
+        # time.sleep(59)   
+        # 3 segundos.
+# Iniciar la ejecución en segundo plano.
+# t = threading.Thread(target=timer)
+# t.start()
+
+
+
 
 
 

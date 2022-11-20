@@ -6,19 +6,38 @@
 
 {% block contenido %}
 <section class="container sombra-caja p-0 ">
-    <div class="d-flex align-content-end">
-    <p class="me-3 ms-4" id="current_date"></p>
-    <p id="display-time"></p>
+
+    <div class="border-bottom border-3 border-dark d-flex flex-wrap
+    align-items-center justify-content-center
+    py-3 border-bottom">
+        <div class="d-flex justify-content-center align-items-center img-contraloria">
+            <a href="" class="d-flex align-items-center mb-2 mb-md-0
+                text-dark text-decoration-none">
+                <img class="w-50 ms-3" src="{% static 'img/logo_contraloria.png' %}"
+                    alt="">
+            </a>
+        </div>
+
+        <div>
+            <!-- Slogan o Mensaje de la Contraloria -->
+            <span class="slogan d-flex">.:: Vigilemos lo que es de Todos ::.</span>
+        </div>
+
     </div>
-    
+
+        <div class="d-flex justify-content-sm-start">
+        <p class="me-3 ms-4" id="current_date"></p>
+        <p class="me-3 ms-4" id="display-time"></p>
+        </div>
+        
     <!-- INICIO DEL MAIN-->
     <main class="bg-light">
 
         <div id="div-caja3" class="p-3 pb-1 pe-4 pt-0 mt-0">
             
-            <div class="d-flex justify-content-center w-100 mb-2">
+            <!-- <div class="d-flex justify-content-center w-100 mb-2">
                 <h3 class="text-center border-bottom border-dark">VEHÍCULO N° {{vehiculo.id}}</h3>
-            </div>
+            </div> -->
 
             <div class="d-flex justify-content-center mb-4">
                 <img class="radio-img-reporte" style="width: 40%; border-radius: 4%;"
@@ -27,7 +46,7 @@
             </div>
 
             <div class="d-flex flex-wrap border-bottom border-dark
-                pb-2">
+                pb-5">
 
                 <div class="input-group mb-3 w-50">
                     <span class="input-group-text"
@@ -42,7 +61,7 @@
                 <div class="input-group mb-3 w-50">
                     <span class="input-group-text"
                         id="basic-addon1">Marca</span>
-                    <input type="text" class="form-control"
+                    <input disabled type="text" class="form-control"
                         id="id_marcaVehiculo" name="marcaVehiculo"
                         value="{{vehiculo.marcaVehiculo}}"
                         aria-describedby="basic-addon3">
@@ -51,7 +70,7 @@
                 <div class="input-group mb-3 w-50">
                     <span class="input-group-text"
                         id="basic-addon1">Modelo</span>
-                    <input type="text" class="form-control"
+                    <input disabled type="text" class="form-control"
                         id="id_modeloVehiculo" name="modeloVehiculo"
                         value="{{vehiculo.modeloVehiculo}}"
                         aria-describedby="basic-addon3">
@@ -60,7 +79,7 @@
                 <div class="input-group mb-3 w-50">
                     <span class="input-group-text"
                         id="basic-addon1">Placa</span>
-                    <input type="text" class="form-control"
+                    <input disabled type="text" class="form-control"
                         id="id_placaVehiculo" name="placaVehiculo"
                         value="{{vehiculo.placaVehiculo}}"
                         aria-describedby="basic-addon3">
@@ -69,7 +88,7 @@
                 <div class="input-group mb-3 w-50">
                     <span class="input-group-text"
                         id="basic-addon1">Color</span>
-                    <input type="text" class="form-control"
+                    <input disabled type="text" class="form-control"
                         id="id_colorVehiculo" name="colorVehiculo"
                         value="{{vehiculo.colorVehiculo}}"
                         aria-describedby="basic-addon3">
@@ -78,7 +97,7 @@
                 <div class="input-group mb-3 w-50">
                     <span class="input-group-text"
                         id="basic-addon1">Capacidad Pasajeros</span>
-                    <input type="text" class="form-control"
+                    <input disabled type="text" class="form-control"
                         id="id_cantidadPasajeros" name="cantidadPasajeros"
                         value="{{vehiculo.cantidadPasajeros}}"
                         aria-describedby="basic-addon3">
@@ -87,7 +106,7 @@
                 <div class="input-group mb-3 w-50">
                     <span class="input-group-text"
                         id="basic-addon1">Combustible</span>
-                    <input type="text" class="form-control"
+                    <input disabled type="text" class="form-control"
                         id="id_tipoCombustible" name="tipoCombustible"
                         value="{{vehiculo.tipoCombustible}}"
                         aria-describedby="basic-addon3">
@@ -96,16 +115,16 @@
                 <div class="input-group mb-3 w-50">
                     <span class="input-group-text"
                         id="basic-addon1">Kilometraje</span>
-                    <input type="text" class="form-control"
+                    <input disabled type="text" class="form-control"
                         id="" name=""
-                        value=""
-                        aria-describedby="basic-addon3" placeholder="80000">
+                        value="{{kilometraje.kilometrajeFinalVehiculo}}"
+                        aria-describedby="basic-addon3">
                 </div>
 
                 <div class="input-group mb-3 w-50">
                     <span class="input-group-text"
                         id="basic-addon1">Serial del Vehículo</span>
-                    <input type="text" class="form-control"
+                    <input disabled type="text" class="form-control"
                         id="id_serialVehiculo" name="serialVehiculo"
                         value="{{vehiculo.serialVehiculo}}"
                         aria-describedby="basic-addon3">
@@ -114,7 +133,7 @@
                 <div class="input-group mb-3 w-50">
                     <span class="input-group-text"
                         id="basic-addon1">Persona a Cargo</span>
-                    <input type="text" class="form-control"
+                    <input disabled type="text" class="form-control"
                         id="id_personaEncargadaVehiculo"
                         name="personaEncargadaVehiculo"
                         value="{{vehiculo.personaEncargadaVehiculo}}"
@@ -124,7 +143,7 @@
                 <div class="input-group mb-3 w-50">
                     <span class="input-group-text"
                         id="basic-addon1">Fecha de Ingreso</span>
-                    <input type="date" class="form-control"
+                    <input disabled type="date" class="form-control"
                         id="id_fechaIngresoVehiculo" name="fechaIngresoVehiculo"
                         value="{{vehiculo.fechaIngresoVehiculo | date:'Y-m-d'}}"
                         aria-describedby="basic-addon3">
@@ -133,7 +152,7 @@
                 <div class="input-group mb-3 w-50">
                     <span class="input-group-text"
                         id="basic-addon1">Fecha Inicio Soat</span>
-                    <input type="date" class="form-control"
+                    <input disabled type="date" class="form-control"
                         id="id_fechaInicioSoat" name="fechaInicioSoat"
                         value="{{vehiculo.fechaInicioSoat | date:'Y-m-d'}}"
                         aria-describedby="basic-addon3">
@@ -143,14 +162,14 @@
                 <div class="input-group mb-3 w-50">
                     <span class="input-group-text"
                         id="basic-addon1">Fecha Fin Soat</span>
-                    <input type="date" class="form-control" id="id_fechaFinSoat"
+                    <input disabled type="date" class="form-control" id="id_fechaFinSoat"
                         name="fechaFinSoat" value="{{vehiculo.fechaFinSoat | date:'Y-m-d'}}" aria-describedby="basic-addon3">
                 </div>
 
                 <div class="input-group mb-3 w-50">
                     <span class="input-group-text"
                         id="basic-addon1">Inicio Técnico Mecánica</span>
-                    <input type="date" class="form-control"
+                    <input disabled type="date" class="form-control"
                         id="id_fechaInicioTecnicomecanica"
                         name="fechaInicioTecnicomecanica"
                         value="{{vehiculo.fechaInicioTecnicomecanica | date:'Y-m-d'}}" aria-describedby="basic-addon3">
@@ -159,13 +178,28 @@
                 <div class="input-group mb-3 w-50">
                     <span class="input-group-text"
                         id="basic-addon1">Fin Técnico Mecánica</span>
-                    <input type="date" class="form-control"
+                    <input disabled type="date" class="form-control"
                         id="id_fechaVencimientoTecnicomecanica"
                         name="fechaVencimientoTecnicomecanica"
                         value="{{vehiculo.fechaVencimientoTecnicomecanica | date:'Y-m-d'}}" aria-describedby="basic-addon3">
                 </div>
+
+                <div class="input-group mb-3 w-50">
+                    <span class="input-group-text"
+                        id="basic-addon1">Ultimo Mantenimiento</span>
+                    <input disabled type="date" class="form-control"
+                        id=""
+                        name=""
+                        value="{{ultimoMantenimientoVehiculo.fkRegistrarMantenimiento.fechaMantenimiento | date:'Y-m-d'}}" aria-describedby="basic-addon3">
+                </div>
+
             </div>
 
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
             <br>
 
             <div class="d-flex justify-content-center mb-3">

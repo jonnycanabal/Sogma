@@ -6,19 +6,37 @@
 
 {% block contenido %}
 <section class="container sombra-caja p-0 ">
-    <div class="d-flex align-content-end">
-    <p class="me-3 ms-4" id="current_date"></p>
-    <p id="display-time"></p>
+    <div class="border-bottom border-3 border-dark d-flex flex-wrap
+    align-items-center justify-content-center
+    py-3 border-bottom">
+        <div class="d-flex justify-content-center align-items-center img-contraloria">
+            <a href="" class="d-flex align-items-center mb-2 mb-md-0
+                text-dark text-decoration-none">
+                <img class="w-50 ms-3" src="{% static 'img/logo_contraloria.png' %}"
+                    alt="">
+            </a>
+        </div>
+
+        <div>
+            <!-- Slogan o Mensaje de la Contraloria -->
+            <span class="slogan d-flex">.:: Vigilemos lo que es de Todos ::.</span>
+        </div>
+
     </div>
+
+        <div class="d-flex justify-content-sm-start">
+        <p class="me-3 ms-4" id="current_date"></p>
+        <p class="me-3 ms-4" id="display-time"></p>
+        </div>
     
     <!-- INICIO DEL MAIN-->
     <main class="bg-light">
 
         <div id="div-caja3" class="p-3 pb-1 pe-4 pt-0 mt-0">
             
-            <div class="d-flex justify-content-center w-100 mb-2">
+            <!-- <div class="d-flex justify-content-center w-100 mb-2">
                 <h3 class="text-center border-bottom border-dark">EXTINTOR N° {{extintor.id}}</h3>
-            </div>
+            </div> -->
 
             <div class="d-flex justify-content-center mb-4">
                 <img class="radio-img-reporte" style="width: 40%; border-radius: 4%;"
@@ -34,7 +52,7 @@
                         id="basic-addon1">Id Extintor</span>
                     <input type="hidden" name="pk_extintor"
                         value="{{extintor.id}}">
-                    <input type="text" class="form-control" disabled id=""
+                    <input disabled type="text" class="form-control" disabled id=""
                         name="" value="{{extintor.id}}"
                         aria-describedby="basic-addon3">
                 </div>
@@ -42,7 +60,7 @@
                 <div class="input-group mb-3 w-50">
                     <span class="input-group-text"
                         id="basic-addon1">Serial del Extintor</span>
-                    <input type="text" class="form-control"
+                    <input disabled type="text" class="form-control"
                         id="id_serialExtintor" name="serialExtintor"
                         value="{{extintor.serialExtintor}}"
                         aria-describedby="basic-addon3">
@@ -51,7 +69,7 @@
                 <div class="input-group mb-3 w-50">
                     <span class="input-group-text"
                         id="basic-addon1">Color del Extintor</span>
-                    <input type="text" class="form-control"
+                    <input disabled type="text" class="form-control"
                         id="id_colorExtintor" name="colorExtintor"
                         value="{{extintor.colorExtintor}}"
                         aria-describedby="basic-addon3">
@@ -60,7 +78,7 @@
                 <div class="input-group mb-3 w-50">
                     <span class="input-group-text"
                         id="basic-addon1">Ubicación del Extintor</span>
-                    <input type="text" class="form-control"
+                    <input disabled type="text" class="form-control"
                         id="id_ubicacionExtintor" name="ubicacionExtintor"
                         value="{{extintor.ubicacionExtintor}}"
                         aria-describedby="basic-addon3">
@@ -69,7 +87,7 @@
                 <div class="input-group mb-3 w-50">
                     <span class="input-group-text"
                         id="basic-addon1">Tipo de Extintor</span>
-                    <input type="text" class="form-control"
+                    <input disabled type="text" class="form-control"
                         id="id_tipoExtintor" name="tipoExtintor"
                         value="{{extintor.tipoExtintor}}"
                         aria-describedby="basic-addon3">
@@ -78,19 +96,28 @@
                 <div class="input-group mb-3 w-50">
                     <span class="input-group-text"
                         id="basic-addon1">Peso del Extintor</span>
-                    <input type="text" class="form-control"
+                    <input disabled type="text" class="form-control"
                         id="id_pesoExtintor" name="pesoExtintor"
                         value="{{extintor.pesoExtintor}} Kg"
                         aria-describedby="basic-addon3">
                 </div>
 
-                <div class="input-group mb-3 w-50">
+                <!-- <div class="input-group mb-3 w-50">
                     <span class="input-group-text"
                         id="basic-addon1">Fecha Ultima Recarga</span>
                     <input type="text" class="form-control"
                         id="id_fechaUltimaRecarga" name="fechaUltimaRecarga"
                         value="{{extintor.fechaUltimaRecarga | date:'Y-m-d'}}"
                         aria-describedby="basic-addon3">
+                </div> -->
+
+                <div class="input-group mb-3 w-50">
+                    <span class="input-group-text"
+                        id="basic-addon1">Ultimo Mantenimiento</span>
+                    <input disabled type="date" class="form-control"
+                        id="id_fechaMantenimiento"
+                        name="fechaMantenimiento"
+                        value="{{ultimoMantenimientoExtintor.fkRegistrarMantenimiento.fechaMantenimiento | date:'Y-m-d'}}" aria-describedby="basic-addon3">
                 </div>
             </div>
 

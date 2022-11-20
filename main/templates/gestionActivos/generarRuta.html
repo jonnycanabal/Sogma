@@ -85,8 +85,8 @@
                 <label for="basic-url" class="form-label w-75 ps-2">Hora de
                     Salida</label>
                 <div class="input-group mb-3 w-100">
-                    <input type="time" class="form-control" name="horaSalida"
-                        id="id_horaSalida"
+                    <input type="time" class="form-control horaMinimo" name="horaSalida"
+                        id="id_horaSalida" onblur="checktimeval()"
                         aria-describedby="basic-addon3">
                 </div>
             </div>
@@ -95,7 +95,7 @@
                 <label for="basic-url" class="form-label w-75 ps-2">Fecha de
                     Salida</label>
                 <div class="input-group mb-3 w-100">
-                    <input type="date" class="form-control" name="fechaSalida"
+                    <input type="date" class="form-control minimo" name="fechaSalida"
                         id="id_fechaSalida"
                         aria-describedby="basic-addon3">
                 </div>
@@ -105,7 +105,7 @@
                 <label for="basic-url" class="form-label w-75 ps-2">Fecha de
                     Regreso</label>
                 <div class="input-group mb-3 w-100">
-                    <input type="date" class="form-control" name="fechaRegreso"
+                    <input type="date" class="form-control minimo" name="fechaRegreso"
                         id="id_fechaRegreso"
                         aria-describedby="basic-addon3">
                 </div>
@@ -470,6 +470,9 @@
                         value="{{ruta.horaRegreso}}">
                 </div>
             </div>
+            
+            <!-- <input type="hidden" value="{{ruta.fkVehiculo.id}}">
+            <input type="hidden" value="{{ruta.fkVehiculo.kilometraje}}"> -->
 
             <div class="d-inline-block width-20 me-5">
                 <label for="basic-url" class="form-label w-75 ps-2">Kilometraje
@@ -885,5 +888,36 @@
     </div>
 </div>
 <!-- Fin del contenedor para la página generar ruta -->
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script>
+$(document).ready(function () {
+    const fecha = new Date();
+    let day = fecha.getDate();
+    let month = fecha.getMonth() +1;
+    let year = fecha.getFullYear();
+    let actual = year + '-' + month + '-' + day
+    $('.minimo').attr('min', actual )
+
+    let hora = fecha.getHours();
+    let minuto = fecha.getMinutes();
+    let horaActual= hora + ':' + minuto + ':00' 
+    $('.horaMinimo').attr('min', horaActual)
+});
+
+
+function checktimeval(){
+    var timeval=document.getElementById("id_horaSalida").value.substr(0,2);
+    // alert(timeval.substr(0,2));
+    const fecha = new Date();
+    let hora = fecha.getHours();
+    let minuto = fecha.getMinutes();
+    if(timeval < hora){
+    alert('Seleccione una hora mayor a la actual');
+    }
+}
+</script>
+
+
+
 
 {% endblock contenido %}
