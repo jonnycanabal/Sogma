@@ -27,10 +27,24 @@ from django.views.defaults import page_not_found
 # Bloque de código con la función para generar el reporte de los vehículos por medio de una página en html
 def reporte_vehiculo (request, pk):
         vehiculo = ActivoVehiculo.objects.get(id=pk)
+        ultimoMantenimientoVehiculo=MantenimientoVehiculo.objects.filter(fkVehiculo=vehiculo).order_by('-fkRegistrarMantenimiento__fechaMantenimiento')
+        if ultimoMantenimientoVehiculo:
+            ultimoMantenimientoVehiculo = ultimoMantenimientoVehiculo[0]
+        else:
+            ultimoMantenimientoVehiculo = None
+        
+        kilometraje=GenerarRuta.objects.filter(fkVehiculo=vehiculo).order_by('-fechaRegreso', '-horaRegreso')
+        if kilometraje:
+            kilometraje=kilometraje[0]
+        else:
+            kilometraje = None
+
         # template = get_template('reportes/reporte_vehiculo.html')
         context = {
             'title': 'Reporte Vehiculo',
             'vehiculo':vehiculo,
+            'ultimoMantenimientoVehiculo':ultimoMantenimientoVehiculo,
+            'kilometraje':kilometraje,
             # 'vehiculo': ActivoVehiculo.objects.get(id=pk),
             'mantenimientos': MantenimientoVehiculo.objects.filter(fkVehiculo=vehiculo)
             
@@ -52,11 +66,16 @@ def reporte_vehiculo (request, pk):
 # Bloque de código con la función para generar el reporte de los extintores por medio de una página en html
 def reporte_extintor (request, pk):
         extintor = ActivoExtintor.objects.get(id=pk)
+        ultimoMantenimientoExtintor=MantenimientoExtintor.objects.filter(fkExtintor=extintor).order_by('-fkRegistrarMantenimiento__fechaMantenimiento')
+        if ultimoMantenimientoExtintor:
+            ultimoMantenimientoExtintor = ultimoMantenimientoExtintor[0]
+        else:
+            ultimoMantenimientoExtintor = None
         # template = get_template('reportes/reporte_vehiculo.html')
         context = {
             'title': 'Reporte Vehiculo',
             'extintor':extintor,
-            # 'vehiculo': ActivoVehiculo.objects.get(id=pk),
+            'ultimoMantenimientoExtintor':ultimoMantenimientoExtintor,
             'mantenimientos': MantenimientoExtintor.objects.filter(fkExtintor=extintor)
             
             }
@@ -67,11 +86,16 @@ def reporte_extintor (request, pk):
 # Bloque de código con la función para generar el reporte de los equipos de oficina por medio de una página en html
 def reporte_equipo (request, pk):
         equipo = ActivoEquipoOficina.objects.get(id=pk)
+        ultimoMantenimientoEquipo=MantenimientoEquipo.objects.filter(fkEquipoOficina=equipo).order_by('-fkRegistrarMantenimiento__fechaMantenimiento')
+        if ultimoMantenimientoEquipo:
+            ultimoMantenimientoEquipo = ultimoMantenimientoEquipo[0]
+        else:
+            ultimoMantenimientoEquipo = None
         # template = get_template('reportes/reporte_vehiculo.html')
         context = {
             'title': 'Reporte Vehiculo',
             'equipo':equipo,
-            # 'vehiculo': ActivoVehiculo.objects.get(id=pk),
+            'ultimoMantenimientoEquipo':ultimoMantenimientoEquipo,
             'mantenimientos': MantenimientoEquipo.objects.filter(fkEquipoOficina=equipo)
             
             }

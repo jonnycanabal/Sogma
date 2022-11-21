@@ -1,10 +1,10 @@
 from dataclasses import field
 from django import forms
-from gestionActivos.models import GenerarAlarma, GenerarRuta, Pasajero, RegistrarMantenimiento, DetalleRuta
+from gestionActivos.models import Alarmas, GenerarRuta, Pasajero, RegistrarMantenimiento, DetalleRuta
 
-class GenerarAlarmaForm(forms.ModelForm):
+class AlarmasForm(forms.ModelForm):
     class Meta:
-        model=GenerarAlarma
+        model=Alarmas
         fields='__all__'
 
 class GenerarRutaForm(forms.ModelForm):

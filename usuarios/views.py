@@ -1,7 +1,7 @@
 from multiprocessing import context
 from django.shortcuts import redirect, render
 
-from usuarios.forms import UsuarioForm
+from usuarios.forms import UsuarioForm, UsuarioEditarForm
 from usuarios.models import Usuario
 from django.contrib import messages
 
@@ -38,7 +38,7 @@ def usuarios_creados(request):
         print("######################", request.POST)
         usuario = Usuario.objects.get(id=int(request.POST['pk_usuario']))
         user=User.objects.get(username=usuario.numeroDocumento)
-        form=UsuarioForm(request.POST, request.FILES, instance=usuario)
+        form=UsuarioEditarForm(request.POST, request.FILES, instance=usuario)
         if form.is_valid():
             form.save()
             user.email=request.POST['correoElectronico']

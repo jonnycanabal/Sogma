@@ -2,7 +2,7 @@ from multiprocessing import context
 from django.shortcuts import render,redirect
 from activos.models import ActivoEquipoOficina, ActivoExtintor, ActivoVehiculo
 from gestionActivos.models import GenerarRuta, MantenimientoEquipo, MantenimientoExtintor, MantenimientoVehiculo, Pasajero, RegistrarMantenimiento, DetalleRuta
-from gestionActivos.forms import GenerarAlarmaForm, GenerarRutaForm, EditarGenerarRutaForm, PasajeroForm, RegistrarMantenimientoForm,DetalleRutaForm
+from gestionActivos.forms import AlarmasForm, GenerarRutaForm, EditarGenerarRutaForm, PasajeroForm, RegistrarMantenimientoForm,DetalleRutaForm
 from usuarios.models import Usuario
 from django.contrib import messages
 from datetime import datetime
@@ -19,7 +19,7 @@ from django.contrib.auth import logout
 @login_required(login_url='login')
 def consultar_alarma(request):
     titulo='Alarmas'
-    form=GenerarAlarmaForm()
+    form=AlarmasForm()
 
     context={
         'titulo':titulo,
@@ -36,9 +36,23 @@ def generar_ruta(request,pk=None):
     if pk==None:
         ruta=None
         detalles=None
+        kilometraje= None
     else:
         ruta= GenerarRuta.objects.get(id=pk)
-        detalles=DetalleRuta.objects.filter(fkRuta_id=pk)
+        usuario=Usuario.objects.get(user_id=request.user.id)
+
+        if ruta.fkUsuario == usuario:
+            detalles=DetalleRuta.objects.filter(fkRuta_id=pk)
+            kilometraje=GenerarRuta.objects.filter(fkVehiculo=ruta.fkVehiculo, kilometrajeFinalVehiculo__gt=0).order_by('-fechaRegreso', '-horaRegreso')
+            if kilometraje:
+                kilometraje=kilometraje[0]
+            else:
+                kilometraje = None
+        else:
+            messages.warning(
+                request,f"ESTA INTENTANDO INGRESAR A UNA RUTA NO ASOCIADA"
+            )
+            return redirect('generar-ruta')
 
     pasajeros= Pasajero.objects.all()
     form=None
@@ -51,7 +65,7 @@ def generar_ruta(request,pk=None):
         form=GenerarRutaForm(request.POST)
 
         if form.is_valid():
-            if int(request.POST['horaSalida'][:1]) > datetime.now().hour:
+            if int(request.POST['horaSalida'][:2]) >= datetime.now().hour:
                 aux=form.save()
                 messages.success(
                     request,f"SE REGISTRO LA RUTA EXITOSAMENTE"
@@ -73,24 +87,37 @@ def generar_ruta(request,pk=None):
     # Bloque para editar y terminar de registrar la ruta.
     if request.method == 'POST' and 'editar-ruta' in request.POST:
         ruta = GenerarRuta.objects.get(id=pk)
+        
         form = EditarGenerarRutaForm(request.POST, instance=ruta)
         if form.is_valid():
-            kilometraje=GenerarRuta.objects.filter(fkVehiculo=ruta.fkVehiculo, kilometrajeFinalVehiculo__gt=0).order_by('-fechaRegreso', '-horaRegreso')[0]
-            print("#########################################", kilometraje)
+            # kilometraje=GenerarRuta.objects.filter(fkVehiculo=ruta.fkVehiculo, kilometrajeFinalVehiculo__gt=0).order_by('-fechaRegreso', '-horaRegreso')[0]
+            # print("#########################################", kilometraje)
 
-            if kilometraje.kilometrajeFinalVehiculo < int(request.POST['kilometrajeFinalVehiculo']):
-                form.save()
-                messages.success(
-                    request,f"SE EDITO LA RUTA CORRECTAMENTE"
-                )
+            if kilometraje:
+                if kilometraje.kilometrajeFinalVehiculo < int(request.POST['kilometrajeFinalVehiculo']):
+                    form.save()
+                    messages.success(
+                        request,f"SE EDITO LA RUTA CORRECTAMENTE"
+                    )
 
-                return redirect('generar-ruta',pk)
+                else:
+                    form=EditarGenerarRutaForm(request.POST)
+                    messages.warning(
+                        request,f"EL KILOMETRAJE NO PUEDE SER MENOR AL ULTIMO REGISTRADO"
+                    )
 
             else:
-                form=EditarGenerarRutaForm(request.POST)
-                messages.warning(
-                    request,f"EL KILOMETRAJE NO PUEDE SER MENOR AL ULTIMO REGISTRADO"
-                )
+                if int(request.POST['kilometrajeFinalVehiculo']) == 0:
+                    messages.warning(
+                        request,f"EL KILOMETRAJE NO PUEDE SER IGUAL A 0"
+                    )
+                else:
+                    form.save()
+                    messages.success(
+                        request,f"SE EDITO LA RUTA CORRECTAMENTE"
+                    )
+
+            return redirect('generar-ruta',pk)
 
         else:
             form=EditarGenerarRutaForm(request.POST)
@@ -145,6 +172,7 @@ def generar_ruta(request,pk=None):
         'form':form,
         'ruta':ruta,
         'pasajeros':pasajeros,
+        'kilometraje':kilometraje,
     }
     return render (request, 'gestionActivos/generarRuta.html', context)
 

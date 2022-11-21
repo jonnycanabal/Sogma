@@ -2,7 +2,7 @@ from email import message
 from multiprocessing import context
 from django.shortcuts import redirect, render
 from activos.models import ActivoEquipoOficina, ActivoExtintor, ActivoVehiculo
-from activos.forms import ActivoEquipoOficinaForm, ActivoExtintorForm, ActivoVehiculoForm
+from activos.forms import ActivoEquipoOficinaForm, ActivoExtintorForm, ActivoVehiculoForm, ActivoVehiculoEditarForm, ActivoExtintorEditarForm, ActivoEquipoOficinaEditarForm
 from gestionActivos.models import MantenimientoVehiculo, GenerarRuta, MantenimientoExtintor, MantenimientoEquipo
 from django.contrib import messages
 
@@ -52,7 +52,7 @@ def control_activos(request):
         
         kilometraje=GenerarRuta.objects.filter(fkVehiculo=vehiculo).order_by('-fechaRegreso', '-horaRegreso')
         if kilometraje:
-            kilometraje=kilometraje[0]
+            kilometraje = kilometraje[0]
         else:
             kilometraje = None
 
@@ -70,13 +70,15 @@ def control_activos(request):
     if request.method == "POST" and 'c-editar-vehiculo' in request.POST:
         print("######################", request.POST)
         vehiculo = ActivoVehiculo.objects.get(id=int(request.POST['pk_vehiculo']))
-        form=ActivoVehiculoForm(request.POST, request.FILES, instance=vehiculo)
+        form=ActivoVehiculoEditarForm(request.POST, request.FILES, instance=vehiculo)
         if form.is_valid():
             form.save()
             messages.success(
                 request,f"SE EDITO EL VEHÍCULO CON ID # {vehiculo.id} EXITOSAMENTE"
             )
         else:
+            # form=ActivoVehiculoEditarForm(request.POST, request.FILES, instance=vehiculo)
+            # print (form.errors)
             messages.error(
                 request,f"ERROR NO SE EDITO EL VEHÍCULO CON ID # {vehiculo.id} "
             )
@@ -85,7 +87,7 @@ def control_activos(request):
     if request.method == "POST" and 'c-editar-extintor' in request.POST:
         print("######################", request.POST)
         extintor = ActivoExtintor.objects.get(id=int(request.POST['pk_extintor']))
-        form=ActivoExtintorForm(request.POST, request.FILES, instance=extintor)
+        form=ActivoExtintorEditarForm(request.POST, request.FILES, instance=extintor)
         if form.is_valid():
             form.save()
             messages.success(
@@ -101,7 +103,7 @@ def control_activos(request):
     if request.method == "POST" and 'c-editar-equipo' in request.POST:
         print("######################", request.POST)
         equipo = ActivoEquipoOficina.objects.get(id=int(request.POST['pk_equipo']))
-        form=ActivoEquipoOficinaForm(request.POST, request.FILES, instance=equipo)
+        form=ActivoEquipoOficinaEditarForm(request.POST, request.FILES, instance=equipo)
         if form.is_valid():
             form.save()
             messages.success(

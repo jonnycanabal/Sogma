@@ -23,6 +23,7 @@
 
     <!-- Icono y nombre de usuario-->
     <!-- Union de dropdown junto con el modal de cerrar sesión -->
+    {% if user.is_authenticated %}
 
     <div class="dropdown d-flex align-items-end ms-5 me-4 ps-5
         icono-login">
@@ -30,9 +31,12 @@
             text-decoration-none dropdown-toggle" id="dropdownUser2"
             data-bs-toggle="dropdown" aria-expanded="false">
             <div class="image">
-                <img src="{{MEDIA_URL}}{{image_user}}" alt="user Image"
+                
+                    <img src="{{MEDIA_URL}}{{image_user}}" alt="user Image"
                     width="50"
                     height="50" class="rounded-circle me-2"> <!-- https://github.com/mdo.png -->
+                
+                    
             </div>
 
             <div class="info text-black">
@@ -296,5 +300,6 @@
         </div>
         <!-- Fin del modal cerrar sesion con BOOTSTRAP 5-->
     </div>
+    {% endif %}
 </header>
 <!-- FIN DEL HEADER-->

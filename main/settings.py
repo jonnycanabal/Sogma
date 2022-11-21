@@ -176,3 +176,8 @@ EMAIL_USE_TLS= True
 EMAIL_PORT= 587
 EMAIL_HOST_USER= "jmcanabal7@misena.edu.co"
 EMAIL_HOST_PASSWORD= "hshwdhivhhojjebq"
+
+
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+SESSION_COOKIE_AGE = 50000 # 5 segundos para prueba
+SESSION_SAVE_EVERY_REQUEST = True

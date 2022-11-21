@@ -9,18 +9,18 @@ from usuarios.models import Usuario
 
 # ###############################################################################################################################
 # CREACIÓN DE LA TABLA (generarAlarma) DE NUESTRA MER DISEÑADO EN MYSQL WORKBENCH
-class GenerarAlarma(models.Model):
+class Alarmas(models.Model):
     # REVISAR ESTAR PARTE SI ESTA BIEN DECLARADA O LLAMADA LA FOREING KEY
     fkExtintor=models.ForeignKey(ActivoExtintor, on_delete=models.CASCADE, verbose_name="Extintor")
     fkEquipoOficina=models.ForeignKey(ActivoEquipoOficina, on_delete=models.CASCADE, verbose_name="Equipo de Oficina")
     fkVehiculo=models.ForeignKey(ActivoVehiculo, on_delete=models.CASCADE, verbose_name="Vehículo")
-    fechaMantenimiento=models.DateField(verbose_name="Fecha Mantenimiento", help_text="MM/DD/AAAA")
-    class TipoMantenimiento(models.TextChoices):
-        PERIODICO='Periodico', _("Periodico")
-        PREVENTIVO='Preventivo', _("Preventivo")
-        KILOMETRAJE='Kilometraje', _("Kilometraje")
-    tipoMantenimiento=models.CharField(max_length=15, choices=TipoMantenimiento.choices, default=TipoMantenimiento.PREVENTIVO, verbose_name="Tipo de Mantenimiento")
-    descripcionMantenimiento=models.TextField(max_length=100, verbose_name="Descripción del Mantenimiento")
+    # fechaMantenimiento=models.DateField(verbose_name="Fecha Mantenimiento", help_text="MM/DD/AAAA")
+    # class TipoMantenimiento(models.TextChoices):
+    #     PERIODICO='Periodico', _("Periodico")
+    #     PREVENTIVO='Preventivo', _("Preventivo")
+    #     KILOMETRAJE='Kilometraje', _("Kilometraje")
+    # tipoMantenimiento=models.CharField(max_length=15, choices=TipoMantenimiento.choices, default=TipoMantenimiento.PREVENTIVO, verbose_name="Tipo de Mantenimiento")
+    # descripcionMantenimiento=models.TextField(max_length=100, verbose_name="Descripción del Mantenimiento")
 
 
 # ###############################################################################################################################
