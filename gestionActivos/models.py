@@ -9,18 +9,18 @@ from usuarios.models import Usuario
 
 # ###############################################################################################################################
 # CREACIÓN DE LA TABLA (generarAlarma) DE NUESTRA MER DISEÑADO EN MYSQL WORKBENCH
-class GenerarAlarma(models.Model):
+class Alarmas(models.Model):
     # REVISAR ESTAR PARTE SI ESTA BIEN DECLARADA O LLAMADA LA FOREING KEY
     fkExtintor=models.ForeignKey(ActivoExtintor, on_delete=models.CASCADE, verbose_name="Extintor")
     fkEquipoOficina=models.ForeignKey(ActivoEquipoOficina, on_delete=models.CASCADE, verbose_name="Equipo de Oficina")
     fkVehiculo=models.ForeignKey(ActivoVehiculo, on_delete=models.CASCADE, verbose_name="Vehículo")
-    fechaMantenimiento=models.DateField(verbose_name="Fecha Mantenimiento", help_text="MM/DD/AAAA")
-    class TipoMantenimiento(models.TextChoices):
-        PERIODICO='Periodico', _("Periodico")
-        PREVENTIVO='Preventivo', _("Preventivo")
-        KILOMETRAJE='Kilometraje', _("Kilometraje")
-    tipoMantenimiento=models.CharField(max_length=15, choices=TipoMantenimiento.choices, default=TipoMantenimiento.PREVENTIVO, verbose_name="Tipo de Mantenimiento")
-    descripcionMantenimiento=models.TextField(max_length=100, verbose_name="Descripción del Mantenimiento")
+    # fechaMantenimiento=models.DateField(verbose_name="Fecha Mantenimiento", help_text="MM/DD/AAAA")
+    # class TipoMantenimiento(models.TextChoices):
+    #     PERIODICO='Periodico', _("Periodico")
+    #     PREVENTIVO='Preventivo', _("Preventivo")
+    #     KILOMETRAJE='Kilometraje', _("Kilometraje")
+    # tipoMantenimiento=models.CharField(max_length=15, choices=TipoMantenimiento.choices, default=TipoMantenimiento.PREVENTIVO, verbose_name="Tipo de Mantenimiento")
+    # descripcionMantenimiento=models.TextField(max_length=100, verbose_name="Descripción del Mantenimiento")
 
 
 # ###############################################################################################################################
@@ -36,6 +36,11 @@ class Pasajero(models.Model):
     numeroDocumentoPasajero=models.CharField(max_length=50, unique=True, verbose_name="Número de Documento") #Tiene campo Único
     direccionPasajero=models.CharField(max_length=100, verbose_name="Dirección Residencia")
     telefonoPasajero=models.CharField(max_length=20, verbose_name="Teléfono")
+    class EstadoPasajero(models.TextChoices):
+        ACTIVO='1', _("Activo")
+        INACTIVO='0', _("Inactivo")
+    estadoPasajero=models.CharField(max_length=1, choices=EstadoPasajero.choices, default=EstadoPasajero.ACTIVO, verbose_name="Estado del pasajero")
+
     def __str__(self):
         return "%s %s"%(self.primerNombrePasajero,self.primerApellidoPasajero)
 
@@ -45,19 +50,21 @@ class Pasajero(models.Model):
 # CREACIÓN DE LA TABLA (generarRuta) DE NUESTRA MER DISEÑADO EN MYSQL WORKBENCH
 class GenerarRuta(models.Model):
     # FOREING KEY REREFENCIADA DEL MODELO ACTIVOS DE LAS CLASES REQUERIDAS VEHICULO, USUARIO Y PASAJERO.
-    fkVehiculo=models.ForeignKey(ActivoVehiculo, on_delete=models.CASCADE, verbose_name="Vehículo", blank=True)
-    fkUsuario=models.ForeignKey(Usuario, on_delete=models.CASCADE, verbose_name="Usuario", blank=True)
-    horaSalida=models.TimeField(verbose_name="Hora de Salida", help_text="HH:MM", blank=True)
-    horaRegreso=models.TimeField(verbose_name="Hora de Regreso", help_text="HH:MM")
-    fechaSalida=models.DateField(verbose_name="Fecha de Salida", help_text="MM/DD/AAAA", blank=True)
-    fechaRegreso=models.DateField(verbose_name="Fecha de Regreso", help_text="MM/DD/AAAA", blank=True)
-    lugarSalida=models.CharField(max_length=50, verbose_name="Lugar de Salida", blank=True)
-    lugarDestino=models.CharField(max_length=50, verbose_name="Lugar de Destino", blank=True)
-    kilometrajeFinalVehiculo=models.IntegerField(verbose_name="Kilometraje Final", blank=True)  # Valor numero (IntegerField) Para sumar Kilometraje!!!!!!
-    # fkDetalleRuta=models.ForeignKey(DetalleRuta, on_delete=models.CASCADE, verbose_name="Pasajero")
-    descripcionRuta=models.TextField(max_length=100, verbose_name="Descripción", blank=True)
-    observacionesRuta=models.TextField(max_length=100, verbose_name="Observaciones", blank=True)
-
+    fkVehiculo=models.ForeignKey(ActivoVehiculo, on_delete=models.CASCADE, verbose_name="Vehículo")
+    fkUsuario=models.ForeignKey(Usuario, on_delete=models.CASCADE, verbose_name="Usuario")
+    horaSalida=models.TimeField(verbose_name="Hora de Salida", help_text="HH:MM")
+    horaRegreso=models.TimeField(verbose_name="Hora de Regreso", help_text="HH:MM", blank=True, null=True)
+    fechaSalida=models.DateField(verbose_name="Fecha de Salida", help_text="MM/DD/AAAA")
+    fechaRegreso=models.DateField(verbose_name="Fecha de Regreso", help_text="MM/DD/AAAA")
+    lugarSalida=models.CharField(max_length=50, verbose_name="Lugar de Salida")
+    lugarDestino=models.CharField(max_length=50, verbose_name="Lugar de Destino")
+    kilometrajeFinalVehiculo=models.IntegerField(verbose_name="Kilometraje Final", default=0)  # Valor numero (IntegerField) Para sumar Kilometraje!!!!!!
+    descripcionRuta=models.TextField(max_length=500, verbose_name="Descripción")
+    observacionesRuta=models.TextField(max_length=500, verbose_name="Observaciones", blank=True, null=True)
+    class EstadoRuta(models.TextChoices):
+        AB='Abierta', _("Abierta")
+        CR='Cerrada', _("Cerrada")
+    estadoRuta=models.CharField(max_length=10, choices=EstadoRuta.choices, default=EstadoRuta.AB, verbose_name="Estado de la Ruta")
 
 # ###############################################################################################################################
 class DetalleRuta(models.Model):
@@ -73,7 +80,7 @@ class RegistrarMantenimiento(models.Model):
     ciudadMantenimiento=models.CharField(max_length=20, verbose_name="Lugar del Mantenimiento")
     numeroFactura=models.CharField(max_length=10, verbose_name="Número de Factura")
     valorMantenimiento=models.IntegerField(verbose_name="Valor del Mantenimiento") # Valor numero (IntegerField)!!!!!!
-    descripcionMantenimiento=models.TextField(max_length=200, verbose_name="Descripción")   
+    descripcionMantenimiento=models.TextField(max_length=500, verbose_name="Descripción")   
     adjuntarArchivoMantenimiento=models.FileField(upload_to='uploads', blank=True)
 
 
@@ -81,9 +88,10 @@ class RegistrarMantenimiento(models.Model):
 # CREACIÓN DE TABLA PARA REGISTRAR MANTENIMIENTO DE UN VEHICULO
 class MantenimientoVehiculo(models.Model):
     fkVehiculo=models.ForeignKey(ActivoVehiculo, on_delete=models.CASCADE, verbose_name="Vehículo")
-    kilometrajeMantenimiento=models.IntegerField(verbose_name="Kilometraje del Vehículo") # Valor numero (IntegerField) Para sumar Kilometraje!!!!!!
+    kilometrajeMantenimiento=models.IntegerField(verbose_name="Kilometraje del Vehículo")
     fkRegistrarMantenimiento=models.ForeignKey(RegistrarMantenimiento, on_delete=models.CASCADE, verbose_name="mantenimiento")
-
+    def __str__(self):
+        return f'{self.fkVehiculo}'
 
 # ###############################################################################################################################
 # CREACIÓN DE TABLA PARA REGISTRAR MANTENIMIENTO DE UN EXINTOR
@@ -94,11 +102,14 @@ class MantenimientoExtintor(models.Model):
         NO='NO', _("NO")
     usado=models.CharField(max_length=5, choices=Usado.choices, default=Usado.NO, verbose_name="¿Extintor usado?", blank=True)
     fkRegistrarMantenimiento=models.ForeignKey(RegistrarMantenimiento, on_delete=models.CASCADE, verbose_name="mantenimiento")
-
+    def __str__(self):
+        return f'{self.fkExtintor}'
+        
 # ###############################################################################################################################
 # CREACIÓN DE TABLA PARA REGISTRAR MANTENIMIENTO DE UN EQUIPO DE OFICINA
 class MantenimientoEquipo(models.Model):
     fkEquipoOficina=models.ForeignKey(ActivoEquipoOficina, on_delete=models.CASCADE, verbose_name="Equipo de Oficina")
     fkRegistrarMantenimiento=models.ForeignKey(RegistrarMantenimiento, on_delete=models.CASCADE, verbose_name="mantenimiento")
-
+    def __str__(self):
+        return f'{self.fkEquipoOficina}'
 

@@ -14,6 +14,7 @@ from ctypes.wintypes import SHORT
 import os #Aqui se importa el os requerido en las lineas de mas abajo donde esta el codigo de static
 from pathlib import Path
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -27,12 +28,14 @@ SECRET_KEY = 'django-insecure-+)agrfjt_2g(+28s&3jimntop*_vziktiu261nat%@u%q$7mry
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
+
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'whitenoise.runserver_nostatic',#  pip install whitenoise
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -43,9 +46,14 @@ INSTALLED_APPS = [
     'crispy_forms', # pip install django-crispy-forms
     'crispy_bootstrap5', # pip install crispy-bootstrap5
     'django_select2', # pip install django-select2
+    # pip install xhtml2pdf
+    # pip install celery
+    # pip install redis
+    'celery',
     'usuarios',
     'activos',
     'gestionActivos',
+    'autenticacion',
 ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
@@ -53,6 +61,7 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware', #  pip install whitenoise
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -75,6 +84,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'main.context_processors.sesion',
+                'main.context_processors.alarma',
             ],
         },
     },
@@ -158,3 +168,16 @@ LOGIN_REDIRECT_URL='control-activos'
 
 # fragmento de codigo para redireccionar a la página de login o inicio de sesión cuando un ususario de deslogee o cierre sesión
 LOGOUT_REDIRECT_URL='login'
+
+# CONFIGURACION DEL EMAIL PARA EL REESTABLECIMIENTO DE CONTRASEÑA
+EMAIL_BACKEND= "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST= 'smtp.googlemail.com'
+EMAIL_USE_TLS= True
+EMAIL_PORT= 587
+EMAIL_HOST_USER= "jmcanabal7@misena.edu.co"
+EMAIL_HOST_PASSWORD= "hshwdhivhhojjebq"
+
+
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+SESSION_COOKIE_AGE = 50000 # 5 segundos para prueba
+SESSION_SAVE_EVERY_REQUEST = True

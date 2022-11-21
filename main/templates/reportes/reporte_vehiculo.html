@@ -1,0 +1,300 @@
+<!-- Consultar activos se extiende de body.html siendo este la clase hija. -->
+{% extends 'partials/reportes.html' %}
+
+<!-- Cargar la carpeta static -->
+{% load static %}
+
+{% block contenido %}
+<section class="container sombra-caja p-0 ">
+
+    <div class="border-bottom border-3 border-dark d-flex flex-wrap
+    align-items-center justify-content-center
+    py-3 border-bottom">
+        <div class="d-flex justify-content-center align-items-center img-contraloria">
+            <a href="" class="d-flex align-items-center mb-2 mb-md-0
+                text-dark text-decoration-none">
+                <img class="w-50 ms-3" src="{% static 'img/logo_contraloria.png' %}"
+                    alt="">
+            </a>
+        </div>
+
+        <div>
+            <!-- Slogan o Mensaje de la Contraloria -->
+            <span class="slogan d-flex">.:: Vigilemos lo que es de Todos ::.</span>
+        </div>
+
+    </div>
+
+        <div class="d-flex justify-content-sm-start">
+        <p class="me-3 ms-4" id="current_date"></p>
+        <p class="me-3 ms-4" id="display-time"></p>
+        </div>
+        
+    <!-- INICIO DEL MAIN-->
+    <main class="bg-light">
+
+        <div id="div-caja3" class="p-3 pb-1 pe-4 pt-0 mt-0">
+            
+            <!-- <div class="d-flex justify-content-center w-100 mb-2">
+                <h3 class="text-center border-bottom border-dark">VEHÍCULO N° {{vehiculo.id}}</h3>
+            </div> -->
+
+            <div class="d-flex justify-content-center mb-4">
+                <img class="radio-img-reporte" style="width: 40%; border-radius: 4%;"
+                    src="{{ MEDIA_URL }}{{vehiculo.fotoVehiculo.url}}"
+                    alt="Imagen-reporte">
+            </div>
+
+            <div class="d-flex flex-wrap border-bottom border-dark
+                pb-5">
+
+                <div class="input-group mb-3 w-50">
+                    <span class="input-group-text"
+                        id="basic-addon1">Id Vehículo</span>
+                    <input type="hidden" name="pk_vehiculo"
+                        value="{{vehiculo.id}}">
+                    <input type="text" class="form-control" disabled id=""
+                        name="" value="{{vehiculo.id}}"
+                        aria-describedby="basic-addon3">
+                </div>
+
+                <div class="input-group mb-3 w-50">
+                    <span class="input-group-text"
+                        id="basic-addon1">Marca</span>
+                    <input disabled type="text" class="form-control"
+                        id="id_marcaVehiculo" name="marcaVehiculo"
+                        value="{{vehiculo.marcaVehiculo}}"
+                        aria-describedby="basic-addon3">
+                </div>
+
+                <div class="input-group mb-3 w-50">
+                    <span class="input-group-text"
+                        id="basic-addon1">Modelo</span>
+                    <input disabled type="text" class="form-control"
+                        id="id_modeloVehiculo" name="modeloVehiculo"
+                        value="{{vehiculo.modeloVehiculo}}"
+                        aria-describedby="basic-addon3">
+                </div>
+
+                <div class="input-group mb-3 w-50">
+                    <span class="input-group-text"
+                        id="basic-addon1">Placa</span>
+                    <input disabled type="text" class="form-control"
+                        id="id_placaVehiculo" name="placaVehiculo"
+                        value="{{vehiculo.placaVehiculo}}"
+                        aria-describedby="basic-addon3">
+                </div>
+
+                <div class="input-group mb-3 w-50">
+                    <span class="input-group-text"
+                        id="basic-addon1">Color</span>
+                    <input disabled type="text" class="form-control"
+                        id="id_colorVehiculo" name="colorVehiculo"
+                        value="{{vehiculo.colorVehiculo}}"
+                        aria-describedby="basic-addon3">
+                </div>
+
+                <div class="input-group mb-3 w-50">
+                    <span class="input-group-text"
+                        id="basic-addon1">Capacidad Pasajeros</span>
+                    <input disabled type="text" class="form-control"
+                        id="id_cantidadPasajeros" name="cantidadPasajeros"
+                        value="{{vehiculo.cantidadPasajeros}}"
+                        aria-describedby="basic-addon3">
+                </div>
+
+                <div class="input-group mb-3 w-50">
+                    <span class="input-group-text"
+                        id="basic-addon1">Combustible</span>
+                    <input disabled type="text" class="form-control"
+                        id="id_tipoCombustible" name="tipoCombustible"
+                        value="{{vehiculo.tipoCombustible}}"
+                        aria-describedby="basic-addon3">
+                </div>
+
+                <div class="input-group mb-3 w-50">
+                    <span class="input-group-text"
+                        id="basic-addon1">Kilometraje</span>
+                    <input disabled type="text" class="form-control"
+                        id="" name=""
+                        value="{{kilometraje.kilometrajeFinalVehiculo}}"
+                        aria-describedby="basic-addon3">
+                </div>
+
+                <div class="input-group mb-3 w-50">
+                    <span class="input-group-text"
+                        id="basic-addon1">Serial del Vehículo</span>
+                    <input disabled type="text" class="form-control"
+                        id="id_serialVehiculo" name="serialVehiculo"
+                        value="{{vehiculo.serialVehiculo}}"
+                        aria-describedby="basic-addon3">
+                </div>
+
+                <div class="input-group mb-3 w-50">
+                    <span class="input-group-text"
+                        id="basic-addon1">Persona a Cargo</span>
+                    <input disabled type="text" class="form-control"
+                        id="id_personaEncargadaVehiculo"
+                        name="personaEncargadaVehiculo"
+                        value="{{vehiculo.personaEncargadaVehiculo}}"
+                        aria-describedby="basic-addon3">
+                </div>
+
+                <div class="input-group mb-3 w-50">
+                    <span class="input-group-text"
+                        id="basic-addon1">Fecha de Ingreso</span>
+                    <input disabled type="date" class="form-control"
+                        id="id_fechaIngresoVehiculo" name="fechaIngresoVehiculo"
+                        value="{{vehiculo.fechaIngresoVehiculo | date:'Y-m-d'}}"
+                        aria-describedby="basic-addon3">
+                </div>
+
+                <div class="input-group mb-3 w-50">
+                    <span class="input-group-text"
+                        id="basic-addon1">Fecha Inicio Soat</span>
+                    <input disabled type="date" class="form-control"
+                        id="id_fechaInicioSoat" name="fechaInicioSoat"
+                        value="{{vehiculo.fechaInicioSoat | date:'Y-m-d'}}"
+                        aria-describedby="basic-addon3">
+                </div>
+
+
+                <div class="input-group mb-3 w-50">
+                    <span class="input-group-text"
+                        id="basic-addon1">Fecha Fin Soat</span>
+                    <input disabled type="date" class="form-control" id="id_fechaFinSoat"
+                        name="fechaFinSoat" value="{{vehiculo.fechaFinSoat | date:'Y-m-d'}}" aria-describedby="basic-addon3">
+                </div>
+
+                <div class="input-group mb-3 w-50">
+                    <span class="input-group-text"
+                        id="basic-addon1">Inicio Técnico Mecánica</span>
+                    <input disabled type="date" class="form-control"
+                        id="id_fechaInicioTecnicomecanica"
+                        name="fechaInicioTecnicomecanica"
+                        value="{{vehiculo.fechaInicioTecnicomecanica | date:'Y-m-d'}}" aria-describedby="basic-addon3">
+                </div>
+
+                <div class="input-group mb-3 w-50">
+                    <span class="input-group-text"
+                        id="basic-addon1">Fin Técnico Mecánica</span>
+                    <input disabled type="date" class="form-control"
+                        id="id_fechaVencimientoTecnicomecanica"
+                        name="fechaVencimientoTecnicomecanica"
+                        value="{{vehiculo.fechaVencimientoTecnicomecanica | date:'Y-m-d'}}" aria-describedby="basic-addon3">
+                </div>
+
+                <div class="input-group mb-3 w-50">
+                    <span class="input-group-text"
+                        id="basic-addon1">Ultimo Mantenimiento</span>
+                    <input disabled type="date" class="form-control"
+                        id="id_fechaMantenimiento"
+                        name="fechaMantenimiento"
+                        value="{{ultimoMantenimientoVehiculo.fkRegistrarMantenimiento.fechaMantenimiento | date:'Y-m-d'}}" aria-describedby="basic-addon3">
+                </div>
+
+            </div>
+
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+
+            <div class="d-flex justify-content-center mb-3">
+                <h3 class="border-bottom border-dark">
+                    MANTENIMIENTOS</h3>
+            </div>
+            {% for mantenimiento in mantenimientos %}
+            <table class="table border
+                border-dark table-bordered border-primar w-100">
+                <thead class="border-start border-dark">
+                    <tr>
+                        <th scope="col" class="text-center" style="width: 50px">ID</th>
+                        <th scope="col" class="text-center" style="width: 100px">Fecha</th>
+                        <th scope="col" class="text-center" style="width: 100px">Lugar</th>
+                        <th scope="col" class="text-center" style="width: 100px">Ciudad</th>
+                        <th scope="col" class="text-center" >Kilometraje</th>
+                        <th scope="col" class="text-center" style="width: 100px">N° Factura</th>
+                        <th scope="col" class="text-center" style="width: 100px">Valor</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td scope="row" class="text-center">{{mantenimiento.fkRegistrarMantenimiento.id}}</td>
+                        <td>{{mantenimiento.fkRegistrarMantenimiento.fechaMantenimiento | date:'Y-m-d'}}</td>
+                        <td>{{mantenimiento.fkRegistrarMantenimiento.lugarMantenimiento}}</td>
+                        <td>{{mantenimiento.fkRegistrarMantenimiento.ciudadMantenimiento}}</td>
+                        <td>{{mantenimiento.kilometrajeMantenimiento}}</td>
+                        <td>{{mantenimiento.fkRegistrarMantenimiento.numeroFactura}}</td>
+                        <td>$ {{mantenimiento.fkRegistrarMantenimiento.valorMantenimiento}}</td>
+                    </tr>
+                </tbody>
+                <tbody>
+                    <tr>
+                        <td colspan="2" style="font-size: 15px;" class="text-black"><b>Descripción</b></td>
+                        <td colspan="6" class="text-break">{{mantenimiento.fkRegistrarMantenimiento.descripcionMantenimiento}}</td>
+                    </tr>
+                </tbody>
+
+            </table>
+            {% endfor %}
+
+        </div>
+    </main>
+
+</section>
+
+<!-- LIBRERIAS Y SCRIPT PARA GENERAR EL REPORTE -->
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+    // html2canvas(document.body,{
+    // onrendered:function(canvas){
+
+    // var img=canvas.toDataURL("image/png");
+    // var doc = new jsPDF();
+    // doc.addImage(img,'JPEG',20,20);
+    // doc.save('test.pdf');
+    // }
+
+    // });
+    window.print()
+    });
+</script>
+<!-- <script>
+    $(document).ready(function(){
+        window.jsPDF = window.jspdf.jsPDF
+        var doc = new jsPDF();
+        var cuerpo = document.querySelector('#cuerpo')
+        doc.fromHTML(cuerpo)
+        doc.save('prueba.pdf')
+    });
+</script> -->
+
+<!-- FECHA -->
+<script>
+    date = new Date();
+    year = date.getFullYear();
+    month = date.getMonth() + 1;
+    day = date.getDate();
+    document.getElementById("current_date").innerHTML = day + "/" + month + "/" + year;
+</script>
+
+<!-- HORA -->
+<script>
+function myFunc()  {
+	var now = new Date();
+	var time = now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds();
+	document.getElementById('display-time').innerHTML= time;
+}
+myFunc();
+setInterval(myFunc, 1000);
+</script>
+
+{% endblock contenido %}
