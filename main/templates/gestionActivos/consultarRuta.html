@@ -43,7 +43,7 @@
                     <div class="overflow-auto shadow-lg p-4
                         height-config-tabla1 m-2 w-100" style="height: 300px;">
                         <table id="example" class="table-striped display
-                            nowrap">
+                            nowrap mitexto" style="font-size: 18px;">
 
                             <!-- Cabecera de la tabla (Donde estarán  los enunciados principales)-->
                             <thead>
@@ -157,7 +157,7 @@
                             <label for="basic-url" class="form-label w-75 p-2">ID
                                 Activo</label>
                             <div class="input-group mb-3 w-100">
-                                <input type="text" class="form-control text-center" disabled
+                                <input type="text" class="form-control text-center mitexto" style="font-size: 18px;" disabled
                                     id="" value="{{vehiculo.id}}"
                                     aria-describedby="basic-addon3">
                             </div>
@@ -167,7 +167,7 @@
                             <label for="basic-url" class="form-label w-75 p-2">Placa
                                 del Vehículo</label>
                             <div class="input-group mb-3 w-100">
-                                <input type="text" class="form-control text-center" disabled
+                                <input type="text" class="form-control text-center mitexto" style="font-size: 18px;" disabled
                                     id="" value="{{vehiculo.placaVehiculo}}"
                                     aria-describedby="basic-addon3">
                             </div>
@@ -177,7 +177,7 @@
                             <label for="basic-url" class="form-label w-75 p-2">Modelo
                                 del Vehículo</label>
                             <div class="input-group mb-3 w-100">
-                                <input type="text" class="form-control text-center" disabled
+                                <input type="text" class="form-control text-center mitexto" style="font-size: 18px;" disabled
                                     id="" value="{{vehiculo.modeloVehiculo}}"
                                     aria-describedby="basic-addon3">
                             </div>
@@ -187,7 +187,7 @@
                             <label for="basic-url" class="form-label w-75 p-2">Color
                                 del Vehículo</label>
                             <div class="input-group mb-3 w-100">
-                                <input type="text" class="form-control text-center" disabled
+                                <input type="text" class="form-control text-center mitexto" style="font-size: 18px;" disabled
                                     id="" value="{{vehiculo.colorVehiculo}}"
                                     aria-describedby="basic-addon3">
                             </div>
@@ -204,7 +204,7 @@
                             overflow-auto" style="height:
                             300px;">
                             <table id="example2" class="table
-                                table-striped">
+                                table-striped mitexto" style="font-size: 18px;">
                                 <thead>
                                     <tr>
                                         <th class="text-center">ID
@@ -275,4 +275,7 @@
     </form>
 </div>
 <!-- Fin del contenedor para la página consultar ruta -->
+
+{% include 'partials/tamañoLetra.html' %}
+
 {% endblock contenido %}

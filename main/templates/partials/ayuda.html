@@ -23,50 +23,83 @@
         aria-labelledby="dropdownUser2">
         <!-- Disminuir tamaño de letra -->
         <div class="d-flex align-items-center ms-2 me-0">
-            <img src="{% static 'img/zoom-out.png' %}" alt="zoom-out" width="20"
-                height="20"><li><a class="dropdown-item" href="#">Disminuir
-                    Tamaño de
-                    Letra</a></li>
+            <button type="button" class="disminuir dropdown-item "><i class="bi bi-zoom-out me-3 fs-5"></i>Disminuir
+                Tamaño de
+                Letra</button>
         </div>
 
         <!-- Aumentar tamaño de letra -->
         <div class="d-flex align-items-center ms-2 me-0">
-            <img src="{% static 'img/zoom-in.png' %}" alt="zoom-in" width="20"
-                height="20"><li><a class="dropdown-item" href="#">Aumentar
-                    Tamaño de
-                    Letra</a></li>
+            <button type="button" class="aumentar dropdown-item "><i class="bi bi-zoom-in me-3 fs-5"></i>Aumentar 
+                Tamaño de 
+                Letra</button>
         </div>
 
         <!-- Restablecer tamaño de letra -->
         <div class="d-flex align-items-center ms-2 me-0">
-            <img src="{% static 'img/refresh.png' %}" alt="refresh-zoom" width="20"
-                height="20"><li><a class="dropdown-item" href="#">Restablecer
-                    Tamaño
-                    Letra</a></li>
+            <button type="button" class="restablecer dropdown-item"><i class="bi bi-arrow-repeat me-3 fs-5"></i>Restablecer
+                Tamaño
+                Letra</button>
         </div>
 
         <!-- Contraste brillante -->
-        <div class="d-flex align-items-center ms-2 me-0">
+        <!-- <div class="d-flex align-items-center ms-2 me-0">
             <img src="{% static 'img/sun.png' %}" alt="sun" width="20"
                 height="20"><li><a class="dropdown-item" href="#">Contraste
                     Brillante</a></li>
-        </div>
+        </div> -->
 
         <!-- Contraste oscuro -->
-        <div class="d-flex align-items-center ms-2 me-0">
+        <!-- <div class="d-flex align-items-center ms-2 me-0">
             <img src="{% static 'img/moon.png' %}" alt="moon" width="20"
                 height="20"><li><a class="dropdown-item" href="#">Contraste
                     Oscuro</a></li>
-        </div>
+        </div> -->
 
         <!-- Restablecer contraste -->
-        <div class="d-flex align-items-center ms-2 me-0">
+        <!-- <div class="d-flex align-items-center ms-2 me-0">
             <img src="{% static 'img/refresh.png' %}" alt="refresh-sun-moon"
                 width="20"
                 height="20"><li><a class="dropdown-item" href="#">Restablecer
                     Contraste</a></li>
-        </div>
+        </div> -->
         <li><hr class="dropdown-divider"></li>
     </ul>
 </div>
 <!-- FIN BOTONES DE AYUDA-->
+
+{% include 'partials/tamañoLetra.html' %}
+
+
+<!-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+<script>
+    // function tamañoLetra(){
+    //     size = $('.mitexto').css('font-size');
+    //     size = parseInt(size, 10);
+    //     $( ".tamaño-actual" ).text(size);
+    // }
+
+    // tamañoLetra();
+
+    $(".aumentar").on("click", function(){
+        if((size + 2) <= 30){
+            $(".mitexto").css("font-size", "+=2");
+            $(".tamaño-actual").text(size +=1);
+        }
+    });
+
+    $(".disminuir").on("click", function() {
+        if ((size - 2) >= 13) {
+            $(".mitexto").css("font-size", "-=2");
+            $(".tamaño-actual").text(size -= 1);
+        }
+    });
+
+    $(".restablecer").on("click", function() {
+        $(".mitexto").css("font-size", "initial");
+        size = $(".mitexto" ).css("font-size");
+        size = parseInt(size, 10);
+        $( ".tamaño-actual" ).text(size);
+    });
+</script> -->

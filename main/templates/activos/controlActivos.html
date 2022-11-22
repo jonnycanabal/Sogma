@@ -38,7 +38,7 @@
                         form-control
                         width-20 m-2 border border-dark
                         bg-white
-                        text-dark" style="cursor: pointer; font-weight: 700;">VEHÍCULO</button>
+                        text-dark mitexto" style="cursor: pointer; font-weight: 700; font-size: 18px;">VEHÍCULO</button>
                 </div>
             </div>
             {% endif %}
@@ -51,7 +51,7 @@
                         form-control
                         width-20 m-2 border border-dark
                         bg-white
-                        text-dark" style="cursor: pointer; font-weight: 700;">EXTINTOR</button>
+                        text-dark mitexto" style="cursor: pointer; font-weight: 700; font-size: 18px;">EXTINTOR</button>
                 </div>
             </div>
             {% endif %}
@@ -64,7 +64,7 @@
                         form-control
                         width-20 m-2 border border-dark
                         bg-white
-                        text-dark" style="cursor: pointer; font-weight: 700;">EQUIPO DE
+                        text-dark mitexto" style="cursor: pointer; font-weight: 700; font-size: 18px;">EQUIPO DE
                         OFICINA</button>
                 </div>
             </div>
@@ -82,7 +82,7 @@
                 <div class="overflow-auto shadow-lg p-4
                     height-config-tabla1 m-2 w-100" style="height: 300px;">
                     
-                    <table id="example" class="table-striped display nowrap">
+                    <table id="example" class="table-striped display nowrap mitexto" style="font-size: 18px;">
 
                         <!-- Cabecera de la tabla (Donde estarán los enunciados principales)-->
                         <thead>
@@ -221,7 +221,7 @@
             <div class="d-flex justify-content-center pb-4 mb-4 m-2 w-100 p-3">
                 <div class="overflow-auto shadow-lg p-4
                     height-config-tabla1 m-2 w-100" style="height: 300px;">
-                    <table id="example2" class="table-striped display nowrap">
+                    <table id="example2" class="table-striped display nowrap mitexto" style="font-size: 18px;">
 
                         <!-- Cabecera de la tabla (Donde estarán los enunciados principales)-->
                         <thead>
@@ -332,7 +332,7 @@
             <div class="d-flex justify-content-center pb-4 mb-4 m-2 w-100 p-3">
                 <div class="overflow-auto shadow-lg p-4
                     height-config-tabla1 m-2 w-100" style="height: 300px;">
-                    <table id="example3" class="table-striped display nowrap">
+                    <table id="example3" class="table-striped display nowrap mitexto" style="font-size: 18px;">
 
                         <!-- Cabecera de la tabla (Donde estarán los enunciados principales)-->
                         <thead>
@@ -451,7 +451,7 @@
     <!-- BOTONES DONDE SE TRAE LA INFORMACIÓN PARA VISUALIZAR Y EDITAR DEL ACTIVO VEHÍCULO -->
     {% if vehiculo %}
 
-    <div id="edit-vehiculo" class="m-3 rounded-bottom" style="box-shadow: 0px 0px 5px 1px;">
+    <div id="edit-vehiculo" class="m-3 rounded-bottom mitexto" style="box-shadow: 0px 0px 5px 1px; font-size: 18px;">
 
         <form action="" method="POST" enctype="multipart/form-data">
 
@@ -467,14 +467,14 @@
                     <label for="basic-url" class="form-label w-75 p-2">Id Activo</label>
                     <div class="input-group mb-3 w-100">
                         <input type="hidden" name="pk_vehiculo" value="{{vehiculo.id}}">
-                        <input type="text" class="form-control" disabled id="" name="" value="{{vehiculo.id}}" aria-describedby="basic-addon3">
+                        <input type="text" class="form-control mitexto" style="font-size: 18px;" disabled id="" name="" value="{{vehiculo.id}}" aria-describedby="basic-addon3">
                     </div>
                 </div>
 
                 <div class="d-inline-block width-20 ms-1 me-5">
                     <label for="basic-url" class="form-label w-75 ps-2">Foto del Vehículo</label>
                     <div class="input-group mb-3 w-100">
-                        <input  type="file" class="form-control" name="fotoVehiculo" value="{{ MEDIA_URL }}{{vehiculo.fotoVehiculo.url}}"
+                        <input  type="file" class="form-control mitexto" style="font-size: 18px;" name="fotoVehiculo" value="{{ MEDIA_URL }}{{vehiculo.fotoVehiculo.url}}"
                             id="id_fotoVehiculo"
                             aria-describedby="basic-addon3">
                     </div>
@@ -483,112 +483,112 @@
                 <div class="d-inline-block width-20 ms-1 me-5">
                     <label for="basic-url" class="form-label w-75 p-2">Marca del Vehículo</label>
                     <div class="input-group mb-3 w-100">
-                        <input type="text" class="form-control" id="id_marcaVehiculo" name="marcaVehiculo" value="{{vehiculo.marcaVehiculo}}" aria-describedby="basic-addon3">
+                        <input type="text" class="form-control mitexto" style="font-size: 18px;" id="id_marcaVehiculo" name="marcaVehiculo" value="{{vehiculo.marcaVehiculo}}" aria-describedby="basic-addon3">
                     </div>
                 </div>
 
                 <div class="d-inline-block width-20 ms-1 me-5">
                     <label for="basic-url" class="form-label w-75 p-2">Modelo del Vehículo</label>
                     <div class="input-group mb-3 w-100">
-                        <input type="text" class="form-control" id="id_modeloVehiculo" name="modeloVehiculo" value="{{vehiculo.modeloVehiculo}}" aria-describedby="basic-addon3">
+                        <input type="text" class="form-control mitexto" style="font-size: 18px;" id="id_modeloVehiculo" name="modeloVehiculo" value="{{vehiculo.modeloVehiculo}}" aria-describedby="basic-addon3">
                     </div>
                 </div>
 
                 <div class="d-inline-block width-20 ms-1 me-5">
                     <label for="basic-url" class="form-label w-75 p-2">Placa del Vehículo</label>
                     <div class="input-group mb-3 w-100">
-                        <input type="text" class="form-control" id="id_placaVehiculo" name="placaVehiculo" value="{{vehiculo.placaVehiculo}}" aria-describedby="basic-addon3">
+                        <input type="text" class="form-control mitexto" style="font-size: 18px;" id="id_placaVehiculo" name="placaVehiculo" value="{{vehiculo.placaVehiculo}}" aria-describedby="basic-addon3">
                     </div>
                 </div>
 
                 <div class="d-inline-block width-20 ms-1 me-5">
                     <label for="basic-url" class="form-label w-75 p-2">Color del Vehículo</label>
                     <div class="input-group mb-3 w-100">
-                        <input type="text" class="form-control" id="id_colorVehiculo" name="colorVehiculo" value="{{vehiculo.colorVehiculo}}" aria-describedby="basic-addon3">
+                        <input type="text" class="form-control mitexto" style="font-size: 18px;" id="id_colorVehiculo" name="colorVehiculo" value="{{vehiculo.colorVehiculo}}" aria-describedby="basic-addon3">
                     </div>
                 </div>
 
                 <div class="d-inline-block width-20 ms-1 me-5">
                     <label for="basic-url" class="form-label w-75 p-2">Serial del Vehiculo</label>
                     <div class="input-group mb-3 w-100">
-                        <input type="text" class="form-control" id="id_serialVehiculo" name="serialVehiculo" value="{{vehiculo.serialVehiculo}}" aria-describedby="basic-addon3">
+                        <input type="text" class="form-control mitexto" style="font-size: 18px;" id="id_serialVehiculo" name="serialVehiculo" value="{{vehiculo.serialVehiculo}}" aria-describedby="basic-addon3">
                     </div>
                 </div>
 
                 <div class="d-inline-block width-20 ms-1 me-5">
                     <label for="basic-url" class="form-label w-75 p-2">Tipo de Combustible</label>
                     <div class="input-group mb-3 w-100">
-                        <input type="text" class="form-control" id="id_tipoCombustible" name="tipoCombustible" value="{{vehiculo.tipoCombustible}}" aria-describedby="basic-addon3">
+                        <input type="text" class="form-control mitexto" style="font-size: 18px;" id="id_tipoCombustible" name="tipoCombustible" value="{{vehiculo.tipoCombustible}}" aria-describedby="basic-addon3">
                     </div>
                 </div>
 
                 <div class="d-inline-block width-20 ms-1 me-5">
-                    <label for="basic-url" class="form-label w-75 p-2">Cantidad de Pasajeros</label>
+                    <label for="basic-url" class="form-label w-75 p-2">N° de Pasajeros</label>
                     <div class="input-group mb-3 w-100">
-                        <input type="text" class="form-control" id="id_cantidadPasajeros" name="cantidadPasajeros" value="{{vehiculo.cantidadPasajeros}}" aria-describedby="basic-addon3">
+                        <input type="text" class="form-control mitexto" style="font-size: 18px;" id="id_cantidadPasajeros" name="cantidadPasajeros" value="{{vehiculo.cantidadPasajeros}}" aria-describedby="basic-addon3">
                     </div>
                 </div>
 
                 <div class="d-inline-block width-20 ms-1 me-5">
                     <label for="basic-url" class="form-label w-75 p-2">Persona a Cargo</label>
                     <div class="input-group mb-3 w-100">
-                        <input type="text" class="form-control" id="id_personaEncargadaVehiculo" name="personaEncargadaVehiculo" value="{{vehiculo.personaEncargadaVehiculo}}" aria-describedby="basic-addon3">
+                        <input type="text" class="form-control mitexto" style="font-size: 18px;" id="id_personaEncargadaVehiculo" name="personaEncargadaVehiculo" value="{{vehiculo.personaEncargadaVehiculo}}" aria-describedby="basic-addon3">
                     </div>
                 </div>
 
                 <div class="d-inline-block width-20 ms-1 me-5">
                     <label for="basic-url" class="form-label w-75 p-2">Condición al ingresar</label>
                     <div class="input-group mb-3 w-100">
-                        <input disabled type="text" class="form-control" id="id_condicionVehiculo" name="condicionVehiculo" value="{{vehiculo.condicionVehiculo}}" aria-describedby="basic-addon3">
+                        <input disabled type="text" class="form-control mitexto" style="font-size: 18px;" id="id_condicionVehiculo" name="condicionVehiculo" value="{{vehiculo.condicionVehiculo}}" aria-describedby="basic-addon3">
                     </div>
                 </div>
 
                 <div class="d-inline-block width-20 ms-1 me-5">
                     <label for="basic-url" class="form-label w-75 p-2">Fecha de Ingreso</label>
                     <div class="input-group mb-3 w-100">
-                        <input disabled type="date" class="form-control" id="id_fechaIngresoVehiculo" name="fechaIngresoVehiculo" value="{{vehiculo.fechaIngresoVehiculo | date:'Y-m-d'}}" aria-describedby="basic-addon3">
+                        <input disabled type="date" class="form-control mitexto" style="font-size: 18px;" id="id_fechaIngresoVehiculo" name="fechaIngresoVehiculo" value="{{vehiculo.fechaIngresoVehiculo | date:'Y-m-d'}}" aria-describedby="basic-addon3">
                     </div>
                 </div>
 
                 <div class="d-inline-block width-20 ms-1 me-5">
                     <label for="basic-url" class="form-label w-75 p-2">Fecha Inicio Soat</label>
                     <div class="input-group mb-3 w-100">
-                        <input type="date" class="form-control" id="id_fechaInicioSoat" name="fechaInicioSoat" value="{{vehiculo.fechaInicioSoat | date:'Y-m-d'}}" aria-describedby="basic-addon3">
+                        <input type="date" class="form-control mitexto" style="font-size: 18px;" id="id_fechaInicioSoat" name="fechaInicioSoat" value="{{vehiculo.fechaInicioSoat | date:'Y-m-d'}}" aria-describedby="basic-addon3">
                     </div>
                 </div>
 
                 <div class="d-inline-block width-20 ms-1 me-5">
                     <label for="basic-url" class="form-label w-75 p-2">Fecha Vencimiento Soat</label>
                     <div class="input-group mb-3 w-100">
-                        <input type="date" class="form-control" id="id_fechaFinSoat" name="fechaFinSoat" value="{{vehiculo.fechaFinSoat | date:'Y-m-d'}}" aria-describedby="basic-addon3">
+                        <input type="date" class="form-control mitexto" style="font-size: 18px;" id="id_fechaFinSoat" name="fechaFinSoat" value="{{vehiculo.fechaFinSoat | date:'Y-m-d'}}" aria-describedby="basic-addon3">
                     </div>
                 </div>
 
                 <div class="d-inline-block width-20 ms-1 me-5">
                     <label for="basic-url" class="form-label w-75 p-2">Fecha Inicio técnico mecánica</label>
                     <div class="input-group mb-3 w-100">
-                        <input type="date" class="form-control" id="id_fechaInicioTecnicomecanica" name="fechaInicioTecnicomecanica" value="{{vehiculo.fechaInicioTecnicomecanica | date:'Y-m-d'}}" aria-describedby="basic-addon3">
+                        <input type="date" class="form-control mitexto" style="font-size: 18px;" id="id_fechaInicioTecnicomecanica" name="fechaInicioTecnicomecanica" value="{{vehiculo.fechaInicioTecnicomecanica | date:'Y-m-d'}}" aria-describedby="basic-addon3">
                     </div>
                 </div>
 
                 <div class="d-inline-block width-20 ms-1 me-5">
                     <label for="basic-url" class="form-label w-75 p-2">Fecha Vencimiento técnico mecánica</label>
                     <div class="input-group mb-3 w-100">
-                        <input type="date" class="form-control" id="id_fechaVencimientoTecnicomecanica" name="fechaVencimientoTecnicomecanica" value="{{vehiculo.fechaVencimientoTecnicomecanica | date:'Y-m-d'}}" aria-describedby="basic-addon3">
+                        <input type="date" class="form-control mitexto" style="font-size: 18px;" id="id_fechaVencimientoTecnicomecanica" name="fechaVencimientoTecnicomecanica" value="{{vehiculo.fechaVencimientoTecnicomecanica | date:'Y-m-d'}}" aria-describedby="basic-addon3">
                     </div>
                 </div>
 
                 <div class="d-inline-block width-20 ms-1 me-5">
                     <label for="basic-url" class="form-label w-75 p-2">Fecha ultimo Mantenimiento</label>
                     <div class="input-group mb-3 w-100">
-                        <input disabled type="date" class="form-control" id="id_fechaMantenimiento" name="fechaMantenimiento" value="{{ultimoMantenimientoVehiculo.fkRegistrarMantenimiento.fechaMantenimiento | date:'Y-m-d'}}" aria-describedby="basic-addon3">
+                        <input disabled type="date" class="form-control mitexto" style="font-size: 18px;" id="id_fechaMantenimiento" name="fechaMantenimiento" value="{{ultimoMantenimientoVehiculo.fkRegistrarMantenimiento.fechaMantenimiento | date:'Y-m-d'}}" aria-describedby="basic-addon3">
                     </div>
                 </div>
 
                 <div class="d-inline-block width-20 ms-1 me-5">
                     <label for="basic-url" class="form-label w-75 p-2">Kilometraje del Vehículo</label>
                     <div class="input-group mb-3 w-100">
-                        <input disabled type="number" class="form-control" id="" name="" value="{{kilometraje.kilometrajeFinalVehiculo}}" aria-describedby="basic-addon3">
+                        <input disabled type="number" class="form-control mitexto" style="font-size: 18px;" id="" name="" value="{{kilometraje.kilometrajeFinalVehiculo}}" aria-describedby="basic-addon3">
                     </div>
                 </div>
             </div>
@@ -602,13 +602,13 @@
             {% if perms.activos.change_activovehiculo %}
             
             <div class="w-100 ps-2 pe-2">
-            <button type="button" class="btn btn-success fs-5 boton-secundario mb-2" data-bs-toggle="modal" data-bs-target="#modal-guardar-vehiculo">
+            <button type="button" class="btn btn-success boton-secundario mb-2 mitexto" style="font-size: 18px;" data-bs-toggle="modal" data-bs-target="#modal-guardar-vehiculo">
                 Editar
             </button>
 
             <!-- Este botÓn o link cuando se oprime deberá redireccionar a un archivo en pdf o excel donde mostrar el reporte del activo -->
-            <a href="{% url 'reporte-vehiculo' vehiculo.id %}" class="btn btn-secondary fs-5
-            boton-secundario mb-2">GENERAR
+            <a href="{% url 'reporte-vehiculo' vehiculo.id %}" class="btn btn-secondary
+            boton-secundario mb-2 mitexto" style="font-size: 18px;">GENERAR
             REPORTE</a>
             </div>
             {% endif %}
@@ -657,14 +657,14 @@
                     <label for="basic-url" class="form-label w-75 p-2">Id Activo</label>
                     <div class="input-group mb-3 w-100">
                         <input type="hidden" name="pk_extintor" value="{{extintor.id}}">
-                        <input type="text" class="form-control" disabled id="" name="" value="{{extintor.id}}" aria-describedby="basic-addon3">
+                        <input type="text" class="form-control mitexto" style="font-size: 18px;" disabled id="" name="" value="{{extintor.id}}" aria-describedby="basic-addon3">
                     </div>
                 </div>
 
                 <div class="d-inline-block width-20 ms-1 me-5">
                     <label for="basic-url" class="form-label w-75 ps-2">Foto del Extintor</label>
                     <div class="input-group mb-3 w-100">
-                        <input  type="file" class="form-control" name="fotoExtintor" value="{{ MEDIA_URL }}{{extintor.fotoExtintor.url}}"
+                        <input  type="file" class="form-control mitexto" style="font-size: 18px;" name="fotoExtintor" value="{{ MEDIA_URL }}{{extintor.fotoExtintor.url}}"
                             id="id_fotoExtintor"
                             aria-describedby="basic-addon3">
                     </div>
@@ -673,79 +673,79 @@
                 <div class="d-inline-block width-20 ms-1 me-5">
                     <label for="basic-url" class="form-label w-75 p-2">Serial del Extintor</label>
                     <div class="input-group mb-3 w-100">
-                        <input type="text" class="form-control" id="id_serialExtintor" name="serialExtintor" value="{{extintor.serialExtintor}}" aria-describedby="basic-addon3">
+                        <input type="text" class="form-control mitexto" style="font-size: 18px;" id="id_serialExtintor" name="serialExtintor" value="{{extintor.serialExtintor}}" aria-describedby="basic-addon3">
                     </div>
                 </div>
 
                 <div class="d-inline-block width-20 ms-1 me-5">
                     <label for="basic-url" class="form-label w-75 p-2">Color del Extintor</label>
                     <div class="input-group mb-3 w-100">
-                        <input type="text" class="form-control" id="id_colorExtintor" name="colorExtintor" value="{{extintor.colorExtintor}}" aria-describedby="basic-addon3">
+                        <input type="text" class="form-control mitexto" style="font-size: 18px;" id="id_colorExtintor" name="colorExtintor" value="{{extintor.colorExtintor}}" aria-describedby="basic-addon3">
                     </div>
                 </div>
 
                 <div class="d-inline-block width-20 ms-1 me-5">
                     <label for="basic-url" class="form-label w-75 p-2">Ubicación del Extintor</label>
                     <div class="input-group mb-3 w-100">
-                        <input type="text" class="form-control" id="id_ubicacionExtintor" name="ubicacionExtintor" value="{{extintor.ubicacionExtintor}}" aria-describedby="basic-addon3">
+                        <input type="text" class="form-control mitexto" style="font-size: 18px;" id="id_ubicacionExtintor" name="ubicacionExtintor" value="{{extintor.ubicacionExtintor}}" aria-describedby="basic-addon3">
                     </div>
                 </div>
 
                 <div class="d-inline-block width-20 ms-1 me-5">
                     <label for="basic-url" class="form-label w-75 p-2">Tipo de Extintor</label>
                     <div class="input-group mb-3 w-100">
-                        <input type="text" class="form-control" id="id_tipoExtintor" name="tipoExtintor" value="{{extintor.tipoExtintor}}" aria-describedby="basic-addon3">
+                        <input type="text" class="form-control mitexto" style="font-size: 18px;" id="id_tipoExtintor" name="tipoExtintor" value="{{extintor.tipoExtintor}}" aria-describedby="basic-addon3">
                     </div>
                 </div>
 
                 <div class="d-inline-block width-20 ms-1 me-5">
                     <label for="basic-url" class="form-label w-75 p-2">Peso del Extintor</label>
                     <div class="input-group mb-3 w-100">
-                        <input type="text" class="form-control" id="id_pesoExtintor" name="pesoExtintor" value="{{extintor.pesoExtintor}}" aria-describedby="basic-addon3">
+                        <input type="text" class="form-control mitexto" style="font-size: 18px;" id="id_pesoExtintor" name="pesoExtintor" value="{{extintor.pesoExtintor}}" aria-describedby="basic-addon3">
                     </div>
                 </div>
 
                 <div class="d-inline-block width-20 ms-1 me-5">
                     <label for="basic-url" class="form-label w-75 p-2">Fecha de Ingreso</label>
                     <div class="input-group mb-3 w-100">
-                        <input disabled type="date" class="form-control" id="id_fechaIngresoExtintor" name="fechaIngresoExtintor" value="{{extintor.fechaIngresoExtintor | date:'Y-m-d'}}" aria-describedby="basic-addon3">
+                        <input disabled type="date" class="form-control mitexto" style="font-size: 18px;" id="id_fechaIngresoExtintor" name="fechaIngresoExtintor" value="{{extintor.fechaIngresoExtintor | date:'Y-m-d'}}" aria-describedby="basic-addon3">
                     </div>
                 </div>
 
                 <div class="d-inline-block width-20 ms-1 me-5">
                     <label for="basic-url" class="form-label w-75 p-2">Fecha Ultima Recarga</label>
                     <div class="input-group mb-3 w-100">
-                        <input type="date" class="form-control" id="id_fechaUltimaRecarga" name="fechaUltimaRecarga" value="{{extintor.fechaUltimaRecarga | date:'Y-m-d'}}" aria-describedby="basic-addon3">
+                        <input type="date" class="form-control mitexto" style="font-size: 18px;" id="id_fechaUltimaRecarga" name="fechaUltimaRecarga" value="{{extintor.fechaUltimaRecarga | date:'Y-m-d'}}" aria-describedby="basic-addon3">
                     </div>
                 </div>
 
                 <div class="d-inline-block width-20 ms-1 me-5">
                     <label for="basic-url" class="form-label w-75 p-2">Fecha ultimo Mantenimiento</label>
                     <div class="input-group mb-3 w-100">
-                        <input disabled type="date" class="form-control" id="id_fechaMantenimiento" name="fechaMantenimiento" value="{{ultimoMantenimientoExtintor.fkRegistrarMantenimiento.fechaMantenimiento | date:'Y-m-d'}}" aria-describedby="basic-addon3">
+                        <input disabled type="date" class="form-control mitexto" style="font-size: 18px;" id="id_fechaMantenimiento" name="fechaMantenimiento" value="{{ultimoMantenimientoExtintor.fkRegistrarMantenimiento.fechaMantenimiento | date:'Y-m-d'}}" aria-describedby="basic-addon3">
                     </div>
                 </div>
 
                 <!-- <div class="d-inline-block width-20 ms-1 me-5">
                     <label for="basic-url" class="form-label w-75 p-2">Fecha Próxima Recarga</label>
                     <div class="input-group mb-3 w-100">
-                        <input type="date" class="form-control" id="id_fechaProximaRecarga" name="fechaProximaRecarga" value="{{extintor.fechaProximaRecarga | date:'Y-m-d'}}" aria-describedby="basic-addon3">
+                        <input type="date" class="form-control mitexto" style="font-size: 18px;" id="id_fechaProximaRecarga" name="fechaProximaRecarga" value="{{extintor.fechaProximaRecarga | date:'Y-m-d'}}" aria-describedby="basic-addon3">
                     </div>
                 </div> -->
             </div>
 
             <!-- USO DE MODAL CON BOOTSTRAP 5 PARA EL BOTÓN GUARDAR-->
             <!-- Button trigger modal -->
-            <div>
+            <div class="w-100 ps-2 pe-2">
             {% if perms.activos.change_activoextintor %}
-            <button type="button" class="btn btn-success fs-5 m-2 ms-3 p-1" data-bs-toggle="modal" data-bs-target="#modal-guardar-extintor"
-            style="width: 20%;">
+            <button type="button" class="btn btn-success boton-secundario mb-2 mitexto" data-bs-toggle="modal" data-bs-target="#modal-guardar-extintor"
+            style=" font-size: 20px;">
                 Editar
             </button>
 
             <!-- Este botÓn o link cuando se oprime deberá redireccionar a un archivo en pdf o excel donde mostrar el reporte del activo -->
-            <a href="{% url 'reporte-extintor' extintor.id %}" class="btn btn-secondary fs-5
-            m-2 p-1" style="width: 20%;">GENERAR
+            <a href="{% url 'reporte-extintor' extintor.id %}" class="btn btn-secondary
+            boton-secundario mb-2 mitexto" style=" font-size: 18px;">GENERAR
             REPORTE</a>
             </div>
             {% endif %}
@@ -796,14 +796,14 @@
                     <label for="basic-url" class="form-label w-75 p-2">Id Activo</label>
                     <div class="input-group mb-3 w-100">
                         <input type="hidden" name="pk_equipo" value="{{equipo.id}}">
-                        <input type="text" class="form-control" disabled id="" name="" value="{{equipo.id}}" aria-describedby="basic-addon3">
+                        <input type="text" class="form-control mitexto" style="font-size: 18px;" disabled id="" name="" value="{{equipo.id}}" aria-describedby="basic-addon3">
                     </div>
                 </div>
 
                 <div class="d-inline-block width-20 ms-1 me-5">
                     <label for="basic-url" class="form-label w-75 ps-2">Foto del Equipo</label>
                     <div class="input-group mb-3 w-100">
-                        <input  type="file" class="form-control" name="fotoEquipo" value="{{ MEDIA_URL }}{{equipo.fotoEquipo.url}}"
+                        <input  type="file" class="form-control mitexto" style="font-size: 18px;" name="fotoEquipo" value="{{ MEDIA_URL }}{{equipo.fotoEquipo.url}}"
                             id="id_fotoEquipo"
                             aria-describedby="basic-addon3">
                     </div>
@@ -812,85 +812,85 @@
                 <div class="d-inline-block width-20 ms-1 me-5">
                     <label for="basic-url" class="form-label w-75 p-2">Serial Equipo</label>
                     <div class="input-group mb-3 w-100">
-                        <input type="text" class="form-control" id="id_serialEquipo" name="serialEquipo" value="{{equipo.serialEquipo}}" aria-describedby="basic-addon3">
+                        <input type="text" class="form-control mitexto" style="font-size: 18px;" id="id_serialEquipo" name="serialEquipo" value="{{equipo.serialEquipo}}" aria-describedby="basic-addon3">
                     </div>
                 </div>
 
                 <div class="d-inline-block width-20 ms-1 me-5">
                     <label for="basic-url" class="form-label w-75 p-2">Marca Equipo</label>
                     <div class="input-group mb-3 w-100">
-                        <input type="text" class="form-control" id="id_marcaEquipo" name="marcaEquipo" value="{{equipo.marcaEquipo}}" aria-describedby="basic-addon3">
+                        <input type="text" class="form-control mitexto" style="font-size: 18px;" id="id_marcaEquipo" name="marcaEquipo" value="{{equipo.marcaEquipo}}" aria-describedby="basic-addon3">
                     </div>
                 </div>
 
                 <div class="d-inline-block width-20 ms-1 me-5">
                     <label for="basic-url" class="form-label w-75 p-2">Color Equipo</label>
                     <div class="input-group mb-3 w-100">
-                        <input type="text" class="form-control" id="id_colorEquipo" name="colorEquipo" value="{{equipo.colorEquipo}}" aria-describedby="basic-addon3">
+                        <input type="text" class="form-control mitexto" style="font-size: 18px;" id="id_colorEquipo" name="colorEquipo" value="{{equipo.colorEquipo}}" aria-describedby="basic-addon3">
                     </div>
                 </div>
 
                 <div class="d-inline-block width-20 ms-1 me-5">
                     <label for="basic-url" class="form-label w-75 p-2">Sistema Operativo</label>
                     <div class="input-group mb-3 w-100">
-                        <input type="text" class="form-control" id="id_sistemaOperativo" name="sistemaOperativo" value="{{equipo.sistemaOperativo}}" aria-describedby="basic-addon3">
+                        <input type="text" class="form-control mitexto" style="font-size: 18px;" id="id_sistemaOperativo" name="sistemaOperativo" value="{{equipo.sistemaOperativo}}" aria-describedby="basic-addon3">
                     </div>
                 </div>
 
                 <div class="d-inline-block width-20 ms-1 me-5">
                     <label for="basic-url" class="form-label w-75 p-2">RAM del Equipo</label>
                     <div class="input-group mb-3 w-100">
-                        <input type="text" class="form-control" id="id_ramEquipo" name="ramEquipo" value="{{equipo.ramEquipo}}" aria-describedby="basic-addon3">
+                        <input type="text" class="form-control mitexto" style="font-size: 18px;" id="id_ramEquipo" name="ramEquipo" value="{{equipo.ramEquipo}}" aria-describedby="basic-addon3">
                     </div>
                 </div>
 
                 <div class="d-inline-block width-20 ms-1 me-5">
                     <label for="basic-url" class="form-label w-75 p-2">Memoria del Equipo</label>
                     <div class="input-group mb-3 w-100">
-                        <input type="text" class="form-control" id="id_memoriaEquipo" name="memoriaEquipo" value="{{equipo.memoriaEquipo}}" aria-describedby="basic-addon3">
+                        <input type="text" class="form-control mitexto" style="font-size: 18px;" id="id_memoriaEquipo" name="memoriaEquipo" value="{{equipo.memoriaEquipo}}" aria-describedby="basic-addon3">
                     </div>
                 </div>
 
                 <div class="d-inline-block width-20 ms-1 me-5">
                     <label for="basic-url" class="form-label w-75 p-2">Ubicación del Equipo</label>
                     <div class="input-group mb-3 w-100">
-                        <input type="text" class="form-control" id="id_ubicacionEquipo" name="ubicacionEquipo" value="{{equipo.ubicacionEquipo}}" aria-describedby="basic-addon3">
+                        <input type="text" class="form-control mitexto" style="font-size: 18px;" id="id_ubicacionEquipo" name="ubicacionEquipo" value="{{equipo.ubicacionEquipo}}" aria-describedby="basic-addon3">
                     </div>
                 </div>
 
                 <div class="d-inline-block width-20 ms-1 me-5">
                     <label for="basic-url" class="form-label w-75 p-2">Fecha de Ingreso</label>
                     <div class="input-group mb-3 w-100">
-                        <input disabled type="date" class="form-control" id="id_fechaIngresoEquipo" name="fechaIngresoEquipo" value="{{equipo.fechaIngresoEquipo | date:'Y-m-d'}}" aria-describedby="basic-addon3">
+                        <input disabled type="date" class="form-control mitexto" style="font-size: 18px;" id="id_fechaIngresoEquipo" name="fechaIngresoEquipo" value="{{equipo.fechaIngresoEquipo | date:'Y-m-d'}}" aria-describedby="basic-addon3">
                     </div>
                 </div>
 
                 <div class="d-inline-block width-20 ms-1 me-5">
                     <label for="basic-url" class="form-label w-75 p-2">Fecha ultimo Mantenimiento</label>
                     <div class="input-group mb-3 w-100">
-                        <input disabled type="date" class="form-control" id="id_fechaMantenimiento" name="fechaMantenimiento" value="{{ultimoMantenimientoEquipo.fkRegistrarMantenimiento.fechaMantenimiento | date:'Y-m-d'}}" aria-describedby="basic-addon3">
+                        <input disabled type="date" class="form-control mitexto" style="font-size: 18px;" id="id_fechaMantenimiento" name="fechaMantenimiento" value="{{ultimoMantenimientoEquipo.fkRegistrarMantenimiento.fechaMantenimiento | date:'Y-m-d'}}" aria-describedby="basic-addon3">
                     </div>
                 </div>
 
                 <div class="d-inline-block width-20 ms-1 me-5">
                     <label for="basic-url" class="form-label w-75 p-2">Componentes del Equipo</label>
                     <div class="input-group mb-3 w-100">
-                        <textarea type="text" class="form-control" id="id_componentesAdicionales" name="componentesAdicionales" value="{{equipo.componentesAdicionales}}" aria-describedby="basic-addon3"></textarea>
+                        <textarea type="text" class="form-control mitexto" style="font-size: 18px;" id="id_componentesAdicionales" name="componentesAdicionales" value="{{equipo.componentesAdicionales}}" aria-describedby="basic-addon3"></textarea>
                     </div>
                 </div>
             </div>
 
             <!-- USO DE MODAL CON BOOTSTRAP 5 PARA EL BOTÓN GUARDAR-->
             <!-- Button trigger modal -->
-            <div>
+            <div class="w-100 ps-2 pe-2">
             {% if perms.activos.change_activoequipooficina %}
-            <button type="button" class="btn btn-success fs-5 m-2 ms-3 p-1" data-bs-toggle="modal" data-bs-target="#modal-guardar-equipo" style="width: 20%;">
+            <button type="button" class="btn btn-success boton-secundario mb-2 mitexto" data-bs-toggle="modal" data-bs-target="#modal-guardar-equipo" style="font-size: 18px;">
                 Editar
             </button>
 
             <!-- Este botÓn o link cuando se oprime deberá redireccionar a un archivo en pdf o excel donde mostrar el reporte del activo -->
-            <a href="{% url 'reporte-equipo' equipo.id %}" class="btn btn-secondary fs-5
-            m-2 p-1" style="width: 20%;">GENERAR
+            <a href="{% url 'reporte-equipo' equipo.id %}" class="btn btn-secondary
+            boton-secundario mb-2 mitexto" style="font-size: 18px;">GENERAR
             REPORTE</a>
             </div>
             {% endif %}
@@ -926,8 +926,8 @@
     <!-- Este modal se trabaja junto con el wizardForm.html para el registro de un nuevo activo -->
     <!-- Button trigger modal -->
     {% if perms.activos.add_activovehiculo %}
-    <div class="w-100 ps-2 pe-2">
-    <button type="button" class="btn btn-warning fs-5 boton-primario" data-bs-toggle="modal"
+    <div class="w-100 ps-2 pe-4">
+    <button type="button" class="btn btn-warning boton-primario mitexto" style="font-size: 18px;" data-bs-toggle="modal"
         data-bs-target="#modal-nuevo-activo">
         NUEVO
         ACTIVO
@@ -951,5 +951,7 @@
     </div>
 
 </main>
+
+{% include 'partials/tamañoLetra.html' %}
 
 {% endblock contenido %}
