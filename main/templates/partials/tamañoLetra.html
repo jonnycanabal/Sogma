@@ -32,6 +32,9 @@ $(".aumentar").on("click", function() {
 $(".restablecer").on("click", function() {
     if ((size + 2) <= 30  || (size + 2) >= 16) {
         $(".mitexto").css("font-size", "18");
+        $("img,body ").removeClass("filtro");
+        $("img,body ").removeClass("filtro_gris");
+        $("img,body ").removeClass("filtro_brillante");
         // $(".tamaño-actual").text(size += 1);
     }
 
@@ -40,4 +43,24 @@ $(".restablecer").on("click", function() {
     // size = parseInt(size, 10);
     // $( ".tamaño-actual" ).text(size);
 });
+
+$(".contraste_oscuro").on("click", function() {
+    $("img,body ").removeClass("filtro_gris");
+    $("img,body ").removeClass("filtro_brillante");
+    $("img,body ").addClass("filtro")
+});
+
+$(".contraste_gris").on("click", function() {
+    $("img,body ").removeClass("filtro");
+    $("img,body ").removeClass("filtro_brillante");
+    $("img,body ").addClass("filtro_gris")
+});
+
+$(".contraste_brillante").on("click", function() {
+    $("img,body ").removeClass("filtro");
+    $("img,body ").removeClass("filtro_gris");
+    $("img,body ").addClass("filtro_brillante")
+});
+
+
 </script>

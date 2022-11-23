@@ -1,5 +1,17 @@
 /* Inicio del archivo CSS para modificar cosas especificas de nuestro codigo que no se pudieron manejar con Bootstrap*/
 
+.filtro{ 
+    filter: invert(95%);
+}
+
+.filtro_gris{
+    filter: grayscale(100%)
+}
+
+.filtro_brillante{
+    filter: contrast(400%)
+}
+
 #bar-header{
     background-color: #ffe633;
     }

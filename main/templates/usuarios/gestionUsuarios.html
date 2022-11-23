@@ -9,9 +9,18 @@
 {% endblock menu %}
 
 {% block contenido %}
+
+<div class="text-center p-2 w-100">
+    <h1>Gestión de Usuarios</h1>
+</div>
+
 <div class="d-flex justify-content-center mb-4 m-2 w-100 p-3">
+    
     <div class="overflow-auto shadow-lg p-4
         height-config-tabla1 m-2 w-100" style="height: 300px;">
+
+
+
         <table id="example5" class="table-striped display nowrap mitexto" style="font-size: 18px;">
             <thead>
                 <th>Acciones</th>
@@ -299,7 +308,7 @@
             </div>
         </div>
 
-        <div class="d-inline-block ms-1 me-5 width-28">
+        <!-- <div class="d-inline-block ms-1 me-5 width-28">
             <label for="basic-url" class="form-label w-75 ps-2">Rol</label>
             <div class="input-group mb-3 w-100">
                 <select id="id_groups_from" class="form-select" name="groups_old" value="{{usuario.groups}}"
@@ -310,7 +319,7 @@
                     <option value="Administrador">Administrador</option>
                 </select>
             </div>
-        </div>
+        </div> -->
         <br>
         <br>
         <div class="w-100 ps-2 pe-2">
