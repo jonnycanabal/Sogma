@@ -28,13 +28,17 @@
 
     {% if ruta == None %}
 
+    <div class="text-center p-2 w-100">
+        <h1>Ruta</h1>
+    </div>
+
     <div class="m-4 rounded-bottom mt-5" style="box-shadow: 0px
         0px 5px 1px;">
 
         <!-- Enunciado o título  de la página -->
         <div class="w-100" style="box-shadow: 0px 0px 0px 1px; background-color: rgb(209,
             208, 208);">
-            <h3 style="text-align: center;">GENERAR RUTA</h3>
+            <h3 style="text-align: center;">ABRIR RUTA</h3>
         </div>
 
         <form action="" method="POST" class="">
@@ -42,11 +46,11 @@
             
             <div class="p-3 div-cajas2 w-100">
             <!-- Botones para seleccionar o diligenciar  información -->
-            <div class="d-inline-block width-20 ms-1 me-5">
+            <div class="d-inline-block width-20 ms-1 me-5 mitexto" style="font-size: 18px;">
                 <label for="basic-url" class="form-label w-75 ps-2">Placa del
                     Vehiculo</label>
                 <div class="input-group mb-3 w-100">
-                    <select class="form-control form-select" name="fkVehiculo"
+                    <select class="form-control form-select mitexto" style="font-size: 18px;" name="fkVehiculo"
                         id="id_fkVehiculo" required>
                         <option selected disabled>Seleccione el Vehículo</option>
                         {% for vehiculo in vehiculos %}
@@ -63,7 +67,7 @@
                 <label for="basic-url" class="form-label w-75 ps-2">Documento
                     Conductor</label>
                 <div class="input-group mb-3 w-100">
-                    <select class="form-control form-select" name="fkUsuario"
+                    <select class="form-control form-select mitexto" style="font-size: 18px;" name="fkUsuario"
                         id="id_fkUsuario" required>
                         <option selected disabled>Seleccione el Documento</option>
                         {% for usuario in usuarios %}
@@ -85,7 +89,7 @@
                 <label for="basic-url" class="form-label w-75 ps-2">Hora de
                     Salida</label>
                 <div class="input-group mb-3 w-100">
-                    <input type="time" class="form-control horaMinimo" name="horaSalida"
+                    <input type="time" class="form-control horaMinimo mitexto" style="font-size: 18px;" name="horaSalida"
                         id="id_horaSalida" onblur="checktimeval()"
                         aria-describedby="basic-addon3" required>
                 </div>
@@ -95,7 +99,7 @@
                 <label for="basic-url" class="form-label w-75 ps-2">Fecha de
                     Salida</label>
                 <div class="input-group mb-3 w-100">
-                    <input type="date" class="form-control minimo" name="fechaSalida"
+                    <input type="date" class="form-control minimo mitexto" style="font-size: 18px;" name="fechaSalida"
                         id="id_fechaSalida"
                         aria-describedby="basic-addon3" required>
                 </div>
@@ -105,7 +109,7 @@
                 <label for="basic-url" class="form-label w-75 ps-2">Fecha de
                     Regreso</label>
                 <div class="input-group mb-3 w-100">
-                    <input type="date" class="form-control minimo" name="fechaRegreso"
+                    <input type="date" class="form-control minimo mitexto" style="font-size: 18px;" name="fechaRegreso"
                         id="id_fechaRegreso"
                         aria-describedby="basic-addon3" required>
                 </div>
@@ -115,7 +119,7 @@
                 <label for="basic-url" class="form-label w-75 ps-2">Lugar de
                     Salida</label>
                 <div class="input-group mb-3 w-100">
-                    <input type="text" class="form-control" name="lugarSalida"
+                    <input type="text" class="form-control mitexto" style="font-size: 18px;" name="lugarSalida"
                         id="id_lugarSalida"
                         aria-describedby="basic-addon3" required minlength="1" maxlength="50">
                 </div>
@@ -125,7 +129,7 @@
                 <label for="basic-url" class="form-label w-75 ps-2">Lugar de
                     Destino</label>
                 <div class="input-group mb-3 w-100">
-                    <input type="text" class="form-control" name="lugarDestino"
+                    <input type="text" class="form-control mitexto" style="font-size: 18px;" name="lugarDestino"
                         id="id_lugarDestino"
                         aria-describedby="basic-addon3" required minlength="1" maxlength="50">
                 </div>
@@ -149,7 +153,7 @@
 
             <br>
             <div class="w-100  pe-2">
-            <button class="btn btn-success fs-5 boton-primario" name="generar">Abrir Ruta</button>
+            <button class="btn btn-success boton-primario mitexto" style="font-size: 18px;" name="generar">Abrir Ruta</button>
             </div>
             </div>
         </form>
@@ -185,7 +189,7 @@
         <div class="d-inline-block width-20 ms-1 me-5 ps-2">
             <label for="basic-url" class="form-label w-75 ps-2">ID Ruta</label>
             <div class="input-group mb-3 w-100">
-                <input type="tex" class="form-control" name=""
+                <input type="tex" class="form-control mitexto" style="font-size: 18px;" name=""
                     id=""
                     aria-describedby="basic-addon3" value="{{ruta.id}}"
                     disabled>
@@ -197,7 +201,7 @@
             <label for="basic-url" class="form-label w-75 ps-2">Placa del
                 Vehículo</label>
             <div class="input-group mb-3 w-100">
-                <select class="form-control form-select" name="fkVehiculo"
+                <select class="form-control form-select mitexto" style="font-size: 18px;" name="fkVehiculo"
                     id="id_fkVehiculo" disabled>
                     <option selected disabled>{{ruta.fkVehiculo}}</option>
                     <option disabled>Seleccione el Vehiculo</option>
@@ -208,7 +212,7 @@
                     {% endfor %}
 
                 </select>
-                <!-- <input type="text" class="form-control"
+                <!-- <input type="text" class="form-control mitexto" style="font-size: 18px;"
         id="placa-vehiculo-generar-ruta"
         aria-describedby="basic-addon3"> -->
             </div>
@@ -218,7 +222,7 @@
             <label for="basic-url" class="form-label w-75 ps-2">Documento
                 Conductor</label>
             <div class="input-group mb-3 w-100">
-                <select class="form-control form-select" name="fkUsuario"
+                <select class="form-control form-select mitexto" style="font-size: 18px;" name="fkUsuario"
                     id="id_fkUsuario" disabled>
                     <option selected disabled>{{ruta.fkUsuario}}</option>
                     <option disabled>Seleccione el Documento</option>
@@ -239,7 +243,7 @@
         <div class="d-inline-block width-20 ms-1 me-5">
             <label for="basic-url" class="form-label w-75 ps-2">Hora de Salida</label>
             <div class="input-group mb-3 w-100">
-                <input type="time" class="form-control" name="horaSalida"
+                <input type="time" class="form-control mitexto" style="font-size: 18px;" name="horaSalida"
                     id="id_horaSalida"
                     aria-describedby="basic-addon3" disabled
                     value="{{ruta.horaSalida}}">
@@ -249,7 +253,7 @@
         <div class="d-inline-block width-20 ms-1 me-5 ps-2">
             <label for="basic-url" class="form-label w-75 ps-2">Fecha de Salida</label>
             <div class="input-group mb-3 w-100">
-                <input type="date" class="form-control" name="fechaSalida"
+                <input type="date" class="form-control mitexto" style="font-size: 18px;" name="fechaSalida"
                     id="id_fechaSalida"
                     aria-describedby="basic-addon3" disabled
                     value="{{ruta.fechaSalida | date:'Y-m-d'}}">
@@ -259,7 +263,7 @@
         <div class="d-inline-block width-20 ms-1 me-5">
             <label for="basic-url" class="form-label w-75 ps-2">Fecha de Regreso</label>
             <div class="input-group mb-3 w-100">
-                <input type="date" class="form-control" name="fechaRegreso"
+                <input type="date" class="form-control mitexto" style="font-size: 18px;" name="fechaRegreso"
                     id="id_fechaRegreso"
                     aria-describedby="basic-addon3" disabled
                     value="{{ruta.fechaRegreso | date:'Y-m-d'}}">
@@ -269,7 +273,7 @@
         <div class="d-inline-block width-20 ms-1 me-5">
             <label for="basic-url" class="form-label w-75 ps-2">Lugar de Salida</label>
             <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control" name="lugarSalida"
+                <input type="text" class="form-control mitexto" style="font-size: 18px;" name="lugarSalida"
                     id="id_lugarSalida"
                     aria-describedby="basic-addon3" disabled
                     value="{{ruta.horaSalida}}">
@@ -279,7 +283,7 @@
         <div class="d-inline-block width-20 ms-1 me-5">
             <label for="basic-url" class="form-label w-75 ps-2">Lugar de Destino</label>
             <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control" name="lugarDestino"
+                <input type="text" class="form-control mitexto" style="font-size: 18px;" name="lugarDestino"
                     id="id_lugarDestino"
                     aria-describedby="basic-addon3" disabled
                     value="{{ruta.lugarDestino}}">
@@ -327,7 +331,7 @@
                         <!-- <label for="basic-url" class="form-label w-75 ps-2 mt-3">DOCUMENTO</label> -->
                         <div class="input-group w-100">
                             <select id="id_tipoDocumento" class="form-select
-                                select-field" name="fkPasajero"
+                                select-field mitexto" style="font-size: 18px;" name="fkPasajero"
                                 aria-label="tipo-activo">
                                 <option selected disabled>--Seleccione al
                                     Pasajero--</option>
@@ -377,7 +381,7 @@
         </div>
 
         <div class="p-3 div-cajas2 w-100  overflow-auto">
-        <table class="table table-striped">
+        <table class="table table-striped mitexto" style="font-size: 18px;">
             <thead>
                 <tr>
                     <th class="text-center">Eliminar</th>
@@ -394,7 +398,7 @@
                     <form action="" method="POST">
                         {% csrf_token %}
                         <td class="text-center"><a href="{% url 'eliminar-pasajero' id=detalle.id %}"><i
-                                    class="bi bi-trash3-fill fs-5" style="color: red;"></i></a></td>
+                                    class="bi bi-trash3-fill mitexto" style="color: red; font-size: 18px;"></i></a></td>
                         <td>{{detalle.fkPasajero.primerNombrePasajero}}</td>
                         <td>{{detalle.fkPasajero.primerApellidoPasajero}}</td>
                         <td>{{detalle.fkPasajero.direccionPasajero}}</td>
@@ -431,7 +435,7 @@
                 <label for="basic-url" class="form-label w-75 ps-2">Hora de
                     Llegada</label>
                 <div class="input-group mb-3 w-100">
-                    <input type="time" class="form-control" name="horaRegreso"
+                    <input type="time" class="form-control mitexto" style="font-size: 18px;" name="horaRegreso"
                         id="id_horaRegreso" aria-describedby="basic-addon3"
                         value="{{ruta.horaRegreso}}" required>
                 </div>
@@ -444,7 +448,7 @@
                 <label for="basic-url" class="form-label w-75 ps-2">Kilometraje
                     Final (ultimo: {{kilometraje.kilometrajeFinalVehiculo}})</label>
                 <div class="input-group mb-3 w-100">
-                    <input type="text" class="form-control"
+                    <input type="text" class="form-control mitexto" style="font-size: 18px;"
                         name="kilometrajeFinalVehiculo"
                         id="id_kilometrajeFinalVehiculo"
                         aria-describedby="basic-addon3" required
@@ -463,8 +467,8 @@
                 <div class="form-floating mb-3 w-100
                     height-textarea">
                     <textarea class="form-control border
-                        border-dark" style="height:
-                        150px; resize: none;" name="observacionesRuta"
+                        border-dark mitexto" style="height:
+                        150px; resize: none; font-size: 18px;" name="observacionesRuta"
                         id="id_observacionesRuta" maxlength="500">{{ruta.observacionesRuta}}</textarea>
                 </div>
             </div>
@@ -473,12 +477,12 @@
             <br>
 
             <div class="w-100 ps-2 pe-2">
-            <button class="btn btn-success ps-1 pe-1 me-1 boton-secundario mb-2"
+            <button class="btn btn-success ps-1 pe-1 me-1 boton-secundario mb-2 mitexto" style="font-size: 18px;"
                 name="editar-ruta">Guardar</button>
             <!-- botón de imprimir el cual deberá enviar aun documentos en pdf para así imprimir la ruta. -->
             <!-- <button class="btn btn-warning ps-1 pe-1 me-1 boton-secundario mb-2">Imprimir</button> -->
             <!-- botón de imprimir el cual deberá enviar aun documentos en pdf para así imprimir la ruta. -->
-            <a class="btn btn-block btn-danger boton-secundario mb-2" href="{% url 'cerrar-ruta' ruta.id %}">Cerrar
+            <a class="btn btn-block btn-danger boton-secundario mb-2 mitexto" style="font-size: 18px;" href="{% url 'cerrar-ruta' ruta.id %}">Cerrar
                 Ruta</a>
             </div> 
             </div>
@@ -526,7 +530,7 @@
             <div class="d-inline-block width-20 ms-1 me-5 ps-2">
                 <label for="basic-url" class="form-label w-75 ps-2">ID Ruta</label>
                 <div class="input-group mb-3 w-100">
-                    <input type="tex" class="form-control" name=""
+                    <input type="tex" class="form-control mitexto" style="font-size: 18px;" name=""
                         id=""
                         aria-describedby="basic-addon3" value="{{ruta.id}}"
                         disabled>
@@ -538,7 +542,7 @@
                 <label for="basic-url" class="form-label w-75 ps-2">Placa del
                     Vehículo</label>
                 <div class="input-group mb-3 w-100">
-                    <select class="form-control form-select" name="fkVehiculo"
+                    <select class="form-control form-select mitexto" style="font-size: 18px;" name="fkVehiculo"
                         id="id_fkVehiculo" disabled>
                         <option selected disabled>{{ruta.fkVehiculo}}</option>
                         <option disabled>Seleccione el Vehiculo</option>
@@ -550,7 +554,7 @@
                         {% endfor %}
 
                     </select>
-                    <!-- <input type="text" class="form-control"
+                    <!-- <input type="text" class="form-control mitexto" style="font-size: 18px;"
             id="placa-vehiculo-generar-ruta"
             aria-describedby="basic-addon3"> -->
                 </div>
@@ -560,7 +564,7 @@
                 <label for="basic-url" class="form-label w-75 ps-2">Documento
                     Conductor</label>
                 <div class="input-group mb-3 w-100">
-                    <select class="form-control form-select" name="fkUsuario"
+                    <select class="form-control form-select mitexto" style="font-size: 18px;" name="fkUsuario"
                         id="id_fkUsuario" disabled>
                         <option selected disabled>{{ruta.fkUsuario}}</option>
                         <option disabled>Seleccione el Documento</option>
@@ -583,7 +587,7 @@
                 <label for="basic-url" class="form-label w-75 ps-2">Hora de
                     Salida</label>
                 <div class="input-group mb-3 w-100">
-                    <input type="time" class="form-control" name="horaSalida"
+                    <input type="time" class="form-control mitexto" style="font-size: 18px;" name="horaSalida"
                         id="id_horaSalida"
                         aria-describedby="basic-addon3" disabled
                         value="{{ruta.horaSalida}}">
@@ -594,7 +598,7 @@
                 <label for="basic-url" class="form-label w-75 ps-2">Fecha de
                     Salida</label>
                 <div class="input-group mb-3 w-100">
-                    <input type="date" class="form-control" name="fechaSalida"
+                    <input type="date" class="form-control mitexto" style="font-size: 18px;" name="fechaSalida"
                         id="id_fechaSalida"
                         aria-describedby="basic-addon3" disabled
                         value="{{ruta.fechaSalida | date:'Y-m-d'}}">
@@ -605,7 +609,7 @@
                 <label for="basic-url" class="form-label w-75 ps-2">Fecha de
                     Regreso</label>
                 <div class="input-group mb-3 w-100">
-                    <input type="date" class="form-control" name="fechaRegreso"
+                    <input type="date" class="form-control mitexto" style="font-size: 18px;" name="fechaRegreso"
                         id="id_fechaRegreso"
                         aria-describedby="basic-addon3" disabled
                         value="{{ruta.fechaRegreso | date:'Y-m-d'}}">
@@ -616,7 +620,7 @@
                 <label for="basic-url" class="form-label w-75 ps-2">Lugar de
                     Salida</label>
                 <div class="input-group mb-3 w-100">
-                    <input type="text" class="form-control" name="lugarSalida"
+                    <input type="text" class="form-control mitexto" style="font-size: 18px;" name="lugarSalida"
                         id="id_lugarSalida"
                         aria-describedby="basic-addon3" disabled
                         value="{{ruta.horaSalida}}">
@@ -627,7 +631,7 @@
                 <label for="basic-url" class="form-label w-75 ps-2">Lugar de
                     Destino</label>
                 <div class="input-group mb-3 w-100">
-                    <input type="text" class="form-control" name="lugarDestino"
+                    <input type="text" class="form-control mitexto" style="font-size: 18px;" name="lugarDestino"
                         id="id_lugarDestino"
                         aria-describedby="basic-addon3" disabled
                         value="{{ruta.lugarDestino}}">
@@ -644,8 +648,8 @@
                 <div class="form-floating mb-3 w-100
                     height-textarea ps-1">
                     <textarea class="form-control border
-                        border-dark" name="descripcionRuta" style="height:
-                        150px; resize: none;" placeholder="Leave a comment here
+                        border-dark mitexto" name="descripcionRuta" style="height:
+                        150px; resize: none; font-size: 18px;" placeholder="Leave a comment here
                         "
                         id="id_descripcionRuta" disabled>{{ruta.descripcionRuta}}</textarea>
                 </div>
@@ -666,7 +670,7 @@
             </div>
             
             <div class="p-3 div-cajas2 w-100  overflow-auto">
-            <table class="table table-striped">
+            <table class="table table-striped mitexto" style="font-size: 18px;">
                 <thead>
                     <tr>
                         <th></th>
@@ -715,7 +719,7 @@
                 <label for="basic-url" class="form-label w-75 ps-2">Hora de
                     llegada</label>
                 <div class="input-group mb-3 w-100">
-                    <input type="time" class="form-control" name="horaRegreso"
+                    <input type="time" class="form-control mitexto" style="font-size: 18px;" name="horaRegreso"
                         id="id_horaRegreso" disabled
                         value="{{ruta.horaRegreso}}"
                         aria-describedby="basic-addon3">
@@ -726,7 +730,7 @@
                 <label for="basic-url" class="form-label w-75 ps-2">Kilometraje
                     Final</label>
                 <div class="input-group mb-3 w-100">
-                    <input type="text" class="form-control"
+                    <input type="text" class="form-control mitexto" style="font-size: 18px;"
                         name="kilometrajeFinalVehiculo"
                         id="id_kilometrajeFinalVehiculo"
                         aria-describedby="basic-addon3" disabled
@@ -745,8 +749,8 @@
                 <div class="form-floating mb-3 w-100
                     height-textarea">
                     <textarea class="form-control border
-                        border-dark" style="height:
-                        150px; resize: none;" name="observacionesRuta"
+                        border-dark mitexto" style="height:
+                        150px; resize: none; font-size: 18px;" name="observacionesRuta"
                         id="id_observacionesRuta" disabled>{{ruta.observacionesRuta}}</textarea>
                 </div>
             </div>
@@ -881,6 +885,6 @@ function checktimeval(){
 </script>
 
 
-
+{% include 'partials/tamañoLetra.html' %}
 
 {% endblock contenido %}

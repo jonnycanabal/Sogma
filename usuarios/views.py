@@ -6,7 +6,7 @@ from usuarios.models import Usuario
 from django.contrib import messages
 
 
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 # Importe para logout en la funcion logout_user
 from django.contrib.auth import logout 
 
@@ -45,6 +45,10 @@ def usuarios_creados(request):
             user.first_name=request.POST['primerNombre'].capitalize()
             user.last_name=request.POST['primerApellido'].capitalize()
             user.save()
+            my_group= Group.objects.get(name=request.POST['tipoUsuario'])
+            usuario.user.groups.clear()
+            my_group.user_set.add(usuario.user)
+
             messages.success(
                 request,f"SE EDITO EL USUARIO CON ID # {usuario.id} EXITOSAMENTE"
             )
@@ -67,13 +71,9 @@ def usuarios_creados(request):
                 user.first_name=request.POST['primerNombre'].capitalize()
                 user.last_name=request.POST['primerApellido'].capitalize()
                 user.email=request.POST['correoElectronico']
-                # user.groups=request.POST['tipoUsuario']
-                user.password=make_password("@" + request.POST['primerNombre'][0] + request.POST['primerApellido'][0] + request.POST['numeroDocumento'][-4:])
+                user.password=make_password("@" + request.POST['primerNombre'][0] + request.POST['primerApellido'][0] + "." + request.POST['numeroDocumento'][-4:])
                 user.save()
                 # user_group= User
-                # my_group= Group.object.get(usuario.tipoUsuario)
-                # usuario.user.groups.clear()
-                # my_group.user_set.add(usuario.user)
             else:
                 user=User.objects.get(username=request.POST['numeroDocumento'])
             usuario= Usuario.objects.create(
@@ -95,6 +95,9 @@ def usuarios_creados(request):
                 user=user,
                 tipoUsuario=request.POST['tipoUsuario'],
             )
+            my_group= Group.objects.get(name=request.POST['tipoUsuario'])
+            usuario.user.groups.clear()
+            my_group.user_set.add(usuario.user)
 
             messages.success(
             request,f"SE REGISTRO EL USUARIO EXITOSAMENTE"
@@ -104,7 +107,7 @@ def usuarios_creados(request):
         else:
             form=UsuarioForm(request.POST, request.FILES) #, request.FILES
 
-            print('###################################### ERROR')
+            print('######################################', form.errors)
             messages.error(
             request,f"NO SE REGISTRO EL USUARIO. ASEGURECE DE DIGITAR CORRECTAMENTE LOS CAMPOS Y QUE ESTOS NO CONTENGAS SOLO ESPACIOS EN BLANCO"
             )
