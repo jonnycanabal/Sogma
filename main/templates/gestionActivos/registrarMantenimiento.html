@@ -630,7 +630,7 @@
                             w-75 ps-2">Fecha del Mantenimiento</label>
                         <div class="input-group mb-3 w-100">
                             <input type="date" name="fechaMantenimiento"
-                                class="form-control"
+                                class="form-control minimo"
                                 id="id_fechaMantenimiento"
                                 aria-describedby="basic-addon3" required>
                         </div>
@@ -1156,6 +1156,16 @@
 
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 
+<script>
+$(document).ready(function () {
+    const fecha = new Date();
+    let day = fecha.getDate();
+    let month = fecha.getMonth() +1;
+    let year = fecha.getFullYear();
+    let actual = year + '-' + month + '-' + day
+    $('.minimo').attr('min', actual )
+});
+</script>
 
 <script>
     // Bloque para no permitir espacios en blanco en el formulario de registrar un nuevo extintor, equipo y vehículo
