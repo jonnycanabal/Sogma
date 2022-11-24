@@ -48,10 +48,20 @@ INSTALLED_APPS = [
     'django_select2', # pip install django-select2
     # pip install xhtml2pdf
     # pip install celery
+    'dbbackup', # pip install django-dbbackup
+    'django_crontab',# pip install django-crontab
     'celery',
     'usuarios',
     'activos',
     'gestionActivos',
+    'records',
+]
+
+DBBACKUP_STORAGE = 'django.core.files.storage.FileSystemStorage'
+DBBACKUP_STORAGE_OPTIONS = {'location': BASE_DIR / 'backup'}
+
+CRONJOBS = [
+    ('*/1 * * * *', 'main.cron.my_backup')
 ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
