@@ -13,6 +13,16 @@
 <div class="text-center p-2 w-100">
     <h1>Gestión de Usuarios</h1>
 </div>
+{% if form.errors %}
+<div class="alert alert-danger">
+    {{form.errors}}
+</div>
+{% endif %}
+<!-- {% if form.error %}
+<div class="alert alert-danger">
+    {{form.error}}
+</div>
+{% endif %} -->
 
 <div class="d-flex justify-content-center mb-4 m-2 w-100 p-3">
     
@@ -368,6 +378,7 @@ data-bs-target="#modal-nuevo-usuario">
 REGISTRAR USUARIO
 </button>
 
+
 <!-- Modal -->
 <div class="modal fade" id="modal-nuevo-usuario" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -540,6 +551,7 @@ REGISTRAR USUARIO
                     </div>
 
                     <!-- BOTÓN PARA GUARDAR LA INFORMACIÓN DIGITADA EN EL FORMULARIO DEL ACTIVO -->
+
                     <div class="w-100 d-flex justify-content-center">
                     <button class="btn btn-success
                         fs-5 m-2" name="form-nuevo-usuario">Guardar</button>

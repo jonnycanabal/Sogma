@@ -36,6 +36,7 @@ ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'whitenoise.runserver_nostatic',#  pip install whitenoise
+    'django_crontab',# pip install django-crontab
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -49,7 +50,6 @@ INSTALLED_APPS = [
     # pip install xhtml2pdf
     # pip install celery
     'dbbackup', # pip install django-dbbackup
-    'django_crontab',# pip install django-crontab
     'celery',
     'usuarios',
     'activos',
@@ -61,7 +61,7 @@ DBBACKUP_STORAGE = 'django.core.files.storage.FileSystemStorage'
 DBBACKUP_STORAGE_OPTIONS = {'location': BASE_DIR / 'backup'}
 
 CRONJOBS = [
-    ('*/1 * * * *', 'main.cron.my_backup')
+    ('*/5 * * * *', 'main.cron.my_backup')
 ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"

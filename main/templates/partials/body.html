@@ -83,7 +83,7 @@
     
     {% for message in messages %}
         <script type="text/java">
-            toastr.{{message.tags}}("{{message}}")
+            toastr.{{message.tags}}("{{message}}{{form.error}}")
         </script>
     {% endfor %}
 {% endif %}

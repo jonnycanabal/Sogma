@@ -109,7 +109,7 @@ def usuarios_creados(request):
 
             print('######################################', form.errors)
             messages.error(
-            request,f"NO SE REGISTRO EL USUARIO. ASEGURECE DE DIGITAR CORRECTAMENTE LOS CAMPOS Y QUE ESTOS NO CONTENGAS SOLO ESPACIOS EN BLANCO"
+            request,f"NO SE PUDO REGISTRO EL USUARIO. ASEGURECE DE DIGITAR CORRECTAMENTE LOS CAMPOS Y QUE ESTOS NO CONTENGAS SOLO ESPACIOS EN BLANCO"
             )
     else:
         form=UsuarioForm()
@@ -118,7 +118,8 @@ def usuarios_creados(request):
     context={
         'titulo':titulo,
         'usuarios': usuarios,
-        'usuario':usuario
+        'usuario':usuario,
+        'form':form,
     }
     return render (request, 'usuarios/gestionUsuarios.html', context)
 
