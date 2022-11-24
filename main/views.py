@@ -21,6 +21,8 @@ from datetime import datetime
 
 from django.views.defaults import page_not_found
 
+from django.db.models import Sum
+
 # views de la pagina de Inicio - Index
 
 
@@ -28,6 +30,7 @@ from django.views.defaults import page_not_found
 def reporte_vehiculo (request, pk):
         vehiculo = ActivoVehiculo.objects.get(id=pk)
         ultimoMantenimientoVehiculo=MantenimientoVehiculo.objects.filter(fkVehiculo=vehiculo).order_by('-fkRegistrarMantenimiento__fechaMantenimiento')
+        mantenimientos= MantenimientoVehiculo.objects.filter(fkVehiculo=vehiculo)
         if ultimoMantenimientoVehiculo:
             ultimoMantenimientoVehiculo = ultimoMantenimientoVehiculo[0]
         else:
@@ -39,6 +42,8 @@ def reporte_vehiculo (request, pk):
         else:
             kilometraje = None
 
+        total= mantenimientos.aggregate(total_precio=Sum('fkRegistrarMantenimiento__valorMantenimiento'))
+
         # template = get_template('reportes/reporte_vehiculo.html')
         context = {
             'title': 'Reporte Vehiculo',
@@ -46,38 +51,31 @@ def reporte_vehiculo (request, pk):
             'ultimoMantenimientoVehiculo':ultimoMantenimientoVehiculo,
             'kilometraje':kilometraje,
             # 'vehiculo': ActivoVehiculo.objects.get(id=pk),
-            'mantenimientos': MantenimientoVehiculo.objects.filter(fkVehiculo=vehiculo)
-            
+            'mantenimientos': mantenimientos,
+            'total':total['total_precio'],
             }
-        # response = HttpResponse(content_type='application/pdf')
-        # response['Content-Disposition'] = 'attachment; filename="report.pdf"'
-        # html = template.render(context)
-        # result = BytesIO()
-        # pdf = pisa.pisaDocument(BytesIO(html.encode('ISO-8859-1')), result)
 
-        # pisa_status = pisa.CreatePDF(
-        #     html, dest=response)
-        # if error then show some funny view
-        # if pisa_status.err:
-        #     return HttpResponse('We had some errors <pre>' + html + '</pre>')
         return render (request, 'reportes/reporte_vehiculo.html', context)
 
 
 # Bloque de código con la función para generar el reporte de los extintores por medio de una página en html
 def reporte_extintor (request, pk):
         extintor = ActivoExtintor.objects.get(id=pk)
+        mantenimientos = MantenimientoExtintor.objects.filter(fkExtintor=extintor)
         ultimoMantenimientoExtintor=MantenimientoExtintor.objects.filter(fkExtintor=extintor).order_by('-fkRegistrarMantenimiento__fechaMantenimiento')
         if ultimoMantenimientoExtintor:
             ultimoMantenimientoExtintor = ultimoMantenimientoExtintor[0]
         else:
             ultimoMantenimientoExtintor = None
-        # template = get_template('reportes/reporte_vehiculo.html')
+        
+        total = mantenimientos.aggregate(total_precio=Sum('fkRegistrarMantenimiento__valorMantenimiento'))
+
         context = {
-            'title': 'Reporte Vehiculo',
+            'title': 'Reporte Extintor',
             'extintor':extintor,
             'ultimoMantenimientoExtintor':ultimoMantenimientoExtintor,
-            'mantenimientos': MantenimientoExtintor.objects.filter(fkExtintor=extintor)
-            
+            'mantenimientos': mantenimientos,
+            'total':total['total_precio']
             }
 
         return render (request, 'reportes/reporte_extintor.html', context)
@@ -86,18 +84,20 @@ def reporte_extintor (request, pk):
 # Bloque de código con la función para generar el reporte de los equipos de oficina por medio de una página en html
 def reporte_equipo (request, pk):
         equipo = ActivoEquipoOficina.objects.get(id=pk)
+        mantenimientos = MantenimientoEquipo.objects.filter(fkEquipoOficina=equipo)
         ultimoMantenimientoEquipo=MantenimientoEquipo.objects.filter(fkEquipoOficina=equipo).order_by('-fkRegistrarMantenimiento__fechaMantenimiento')
         if ultimoMantenimientoEquipo:
             ultimoMantenimientoEquipo = ultimoMantenimientoEquipo[0]
         else:
             ultimoMantenimientoEquipo = None
-        # template = get_template('reportes/reporte_vehiculo.html')
+        
+        total= mantenimientos.aggregate(total_precio=Sum('fkRegistrarMantenimiento__valorMantenimiento'))
         context = {
-            'title': 'Reporte Vehiculo',
+            'title': 'Reporte Equipo',
             'equipo':equipo,
             'ultimoMantenimientoEquipo':ultimoMantenimientoEquipo,
-            'mantenimientos': MantenimientoEquipo.objects.filter(fkEquipoOficina=equipo)
-            
+            'mantenimientos': mantenimientos,
+            'total':total['total_precio']
             }
 
         return render (request, 'reportes/reporte_equipo.html', context)
