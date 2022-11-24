@@ -48,8 +48,9 @@
 
         <!-- Botón de aceptar para validar la información ingresada y si es correcta le da acceso a la página principal del programa -->
         <!-- <button type="submit" class="btn btn-primary"><a style="color: white; text-decoration: none;" href="{% url 'control-activos' %}">ACEPTAR</a></button> -->
-        <input type="submit" class="btn btn-primary " value="Ingresar">
+        <input type="submit" class="btn btn-primary mitexto" style="font-size: 18px;" value="Ingresar">
     </form>
 </div>
 
+{% include 'partials/tamañoLetra.html' %}
 {% endblock contenido %}

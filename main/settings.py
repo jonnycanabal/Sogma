@@ -48,12 +48,10 @@ INSTALLED_APPS = [
     'django_select2', # pip install django-select2
     # pip install xhtml2pdf
     # pip install celery
-    # pip install redis
     'celery',
     'usuarios',
     'activos',
     'gestionActivos',
-    'autenticacion',
 ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
