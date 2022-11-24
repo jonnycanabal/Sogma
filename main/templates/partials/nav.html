@@ -2,50 +2,80 @@
 
 <!-- Inicio del contenedor de la barra de navegación -->
 <div id="nav-main">
-    <ul class="nav d-flex justify-content-center nav-tabs fs-5">
+    <ul class="nav d-flex justify-content-center nav-tabs" style="font-size: 18px;">
 
         <!-- Link que redirecciona a la pagina principal (Control de Activos) -->
-        <li class="nav-item">
-            <a class="nav-link text-white"
+        <li class="nav-item" value="Inicio">
+            <a class="nav-link text-white mitexto"
                 href="{% url 'control-activos' %}">Inicio</a>
         </li>
 
         <!-- Link que redirecciona a la pagina (Generar Alarmas) -->
         <li class="nav-item">
-            <a class="nav-link text-white"
-                href="{% url 'generar-alarma' %}">Generar Alarma</a>
+            <a class="nav-link text-white mitexto"
+                href="{% url 'Alarmas' %}">Alarmas</a>
         </li>
-
+        {% if perms.gestionActivos.view_generarruta %}
         <!-- Link que redirecciona a la pagina (Generar Ruta) -->
         <li class="nav-item">
-            <a class="nav-link text-white"
+            <a class="nav-link text-white mitexto"
                 href="{% url 'generar-ruta' %}">Generar Ruta</a>
         </li>
+        {% endif %}
 
         <!-- Link que redirecciona a la pagina (Consultar Ruta) -->
         <li class="nav-item">
-            <a class="nav-link text-white"
+            <a class="nav-link text-white mitexto"
                 href="{% url 'consultar-ruta' %}">Consultar Ruta</a>
-        </li>
-
-        <!-- Link que redirecciona a la pagina (Nuevo usuario) -->
-        <li class="nav-item">
-            <a class="nav-link text-white"
-                href="{% url 'nuevo-usuario' %}">Nuevo Usuario</a>
         </li>
 
         <!-- Link que redirecciona a la pagina (Registrar Matenimiento) -->
         <li class="nav-item">
-            <a class="nav-link text-white"
+            <a class="nav-link text-white mitexto"
                 href="{% url 'registrar-mantenimiento' %}">Registrar Mantenimiento</a>
         </li>
 
-        <!-- Link que redirecciona a la pagina (Usuarios creados) ------------------------PROVISIONAL----------------------- --> 
+        <!-- Link que redirecciona a la pagina (Gestion Usuarios) -->
+        {% if perms.usuarios.view_usuario %}
         <li class="nav-item">
-            <a class="nav-link text-white"
-                href="{% url 'usuarios-creados' %}">Usuarios Creados</a>
+            <a class="nav-link text-white mitexto"
+                href="{% url 'gestion-usuarios' %}">Gestion Usuarios</a>
         </li>
+        {% endif %}
 
     </ul>
 </div>
 <!-- Fin del contenedor de la barra de navegación -->
+
+{% include 'partials/tamañoLetra.html' %}
+
+<!-- <script>
+    function tamañoLetra(){
+        size = $('.mitexto').css('font-size');
+        size = parseInt(size, 22);
+        $( ".tamaño-actual" ).text(size);
+    }
+
+    tamañoLetra();
+
+    $(".aumentar").on("click", function(){
+        if((size + 2) <= 30){
+            $(".mitexto").css("font-size", "+=2");
+            $(".tamaño-actual").text(size +=1);
+        }
+    });
+
+    $(".disminuir").on("click", function() {
+        if ((size - 2) >= 22) {
+            $(".mitexto").css("font-size", "-=2");
+            $(".tamaño-actual").text(size -= 1);
+        }
+    });
+
+    $(".restablecer").on("click", function() {
+        $(".mitexto").css("font-size", "initial");
+        size = $(".mitexto" ).css("font-size");
+        size = parseInt(size, 22);
+        $( ".tamaño-actual" ).text(size);
+    });
+</script> -->

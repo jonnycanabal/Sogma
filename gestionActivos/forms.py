@@ -1,15 +1,25 @@
 from dataclasses import field
 from django import forms
-from gestionActivos.models import GenerarAlarma, GenerarRuta, Pasajero, RegistrarMantenimiento
+from gestionActivos.models import Alarmas, GenerarRuta, Pasajero, RegistrarMantenimiento, DetalleRuta
 
-class GenerarAlarmaForm(forms.ModelForm):
+class AlarmasForm(forms.ModelForm):
     class Meta:
-        model=GenerarAlarma
+        model=Alarmas
         fields='__all__'
 
 class GenerarRutaForm(forms.ModelForm):
     class Meta:
         model=GenerarRuta
+        exclude=['horaRegreso','kilometrajeFinalVehiculo','observacionesRuta', 'estadoRuta']
+
+class EditarGenerarRutaForm(forms.ModelForm):
+    class Meta:
+        model=GenerarRuta
+        fields=['horaRegreso','kilometrajeFinalVehiculo','observacionesRuta']
+
+class DetalleRutaForm(forms.ModelForm):
+    class Meta:
+        model=DetalleRuta
         fields='__all__'
 
 class RegistrarMantenimientoForm(forms.ModelForm):
@@ -20,5 +30,5 @@ class RegistrarMantenimientoForm(forms.ModelForm):
 class PasajeroForm(forms.ModelForm):
     class Meta:
         model=Pasajero
-        fields='__all__'
+        exclude=['estadoPasajero']
 

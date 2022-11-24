@@ -1,55 +1,154 @@
 from multiprocessing import context
 from django.shortcuts import render,redirect
 from activos.models import ActivoEquipoOficina, ActivoExtintor, ActivoVehiculo
-from gestionActivos.models import GenerarRuta, MantenimientoEquipo, MantenimientoExtintor, MantenimientoVehiculo, Pasajero, RegistrarMantenimiento
-from gestionActivos.forms import GenerarAlarmaForm, GenerarRutaForm, PasajeroForm, RegistrarMantenimientoForm
+from gestionActivos.models import GenerarRuta, MantenimientoEquipo, MantenimientoExtintor, MantenimientoVehiculo, Pasajero, RegistrarMantenimiento, DetalleRuta
+from gestionActivos.forms import AlarmasForm, GenerarRutaForm, EditarGenerarRutaForm, PasajeroForm, RegistrarMantenimientoForm,DetalleRutaForm
 from usuarios.models import Usuario
 from django.contrib import messages
+from datetime import datetime
 
 # Importe con el cual habilitamos el @login_required
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
 # Importe para logout en la funcion logout_user
 from django.contrib.auth import logout 
-
 
 # Create your views here.
 
 # ##################################################################################################################################
 # FUNCION * GENERAR ALARMA *
 @login_required(login_url='login')
-def generar_alarma(request):
-    titulo='Generar-Alarma'
-    form=GenerarAlarmaForm()
+def consultar_alarma(request):
+    titulo='Alarmas'
+    form=AlarmasForm()
+
     context={
         'titulo':titulo,
         'form':form
     }
-    return render (request, 'gestionActivos/generarAlarma.html', context)
+    return render (request, 'gestionActivos/Alarmas.html', context)
 
 # ##################################################################################################################################
 # FUNCION * GENERAR RUTA *
 @login_required(login_url='login')
-def generar_ruta(request):
+@permission_required('gestionActivos.view_generarruta', 'gestionActivos.view_detalleruta')
+def generar_ruta(request,pk=None):
     titulo='Consultar-Ruta'
-    ruta=None
-    pasajeros= Pasajero.objects.all()
+    if pk==None:
+        ruta=None
+        detalles=None
+        kilometraje= None
+    else:
+        ruta= GenerarRuta.objects.get(id=pk)
+        usuario=Usuario.objects.get(user_id=request.user.id)
 
+        if ruta.fkUsuario == usuario:
+            detalles=DetalleRuta.objects.filter(fkRuta_id=pk)
+            kilometraje=GenerarRuta.objects.filter(fkVehiculo=ruta.fkVehiculo, kilometrajeFinalVehiculo__gt=0).order_by('-fechaRegreso', '-horaRegreso')
+            if kilometraje:
+                kilometraje=kilometraje[0]
+            else:
+                kilometraje = None
+        else:
+            messages.warning(
+                request,f"ESTA INTENTANDO INGRESAR A UNA RUTA NO ASOCIADA"
+            )
+            return redirect('generar-ruta')
+
+    pasajeros= Pasajero.objects.all()
+    form=None
     vehiculos=ActivoVehiculo.objects.all()
     usuarios=Usuario.objects.all()
-    # BLoque para guardar el formulario de generar ruta
-    form=GenerarRutaForm(request.POST)
-    if form.is_valid():
-        form.save()
-        messages.success(
-            request,f"SE REGISTRO LA RUTA EXITOSAMENTE"
-        )
-        return redirect('agregar-ruta')
 
-    if request.method== 'POST' and 'pasajero-buscar' in request.POST:
-        return redirect('agregar-ruta')
+    # ############################################################################################
+    # Bloque para generar el formulario de la ruta.
+    if request.method== 'POST' and 'generar' in request.POST:
+        form=GenerarRutaForm(request.POST)
+
+        if form.is_valid():
+            if int(request.POST['horaSalida'][:2]) >= datetime.now().hour:
+                aux=form.save()
+                messages.success(
+                    request,f"SE REGISTRO LA RUTA EXITOSAMENTE"
+                )
+                return redirect('generar-ruta',pk=aux.id)
+            else:
+                form=GenerarRutaForm(request.POST)
+                messages.warning(
+                    request,f"Error, La hora no debe ser menor a la actual"
+                )
+        else:
+            form=GenerarRutaForm(request.POST)
+            messages.error(
+                request,f"Error al generar la ruta"
+            )
 
 
+    # ############################################################################################
+    # Bloque para editar y terminar de registrar la ruta.
+    if request.method == 'POST' and 'editar-ruta' in request.POST:
+        ruta = GenerarRuta.objects.get(id=pk)
+        
+        form = EditarGenerarRutaForm(request.POST, instance=ruta)
+        if form.is_valid():
+            # kilometraje=GenerarRuta.objects.filter(fkVehiculo=ruta.fkVehiculo, kilometrajeFinalVehiculo__gt=0).order_by('-fechaRegreso', '-horaRegreso')[0]
+            # print("#########################################", kilometraje)
 
+            if kilometraje:
+                if kilometraje.kilometrajeFinalVehiculo < int(request.POST['kilometrajeFinalVehiculo']):
+                    form.save()
+                    messages.success(
+                        request,f"SE EDITO LA RUTA CORRECTAMENTE"
+                    )
+
+                else:
+                    form=EditarGenerarRutaForm(request.POST)
+                    messages.warning(
+                        request,f"EL KILOMETRAJE NO PUEDE SER MENOR AL ULTIMO REGISTRADO"
+                    )
+
+            else:
+                if int(request.POST['kilometrajeFinalVehiculo']) == 0:
+                    messages.warning(
+                        request,f"EL KILOMETRAJE NO PUEDE SER IGUAL A 0"
+                    )
+                else:
+                    form.save()
+                    messages.success(
+                        request,f"SE EDITO LA RUTA CORRECTAMENTE"
+                    )
+
+            return redirect('generar-ruta',pk)
+
+        else:
+            form=EditarGenerarRutaForm(request.POST)
+            messages.error(
+                request,f"ERROR!!!, NO SE PUDO EDITAR LA RUTA."
+            )
+
+    # ############################################################################################
+    # Bloque para agregar el pasajero a la ruta.
+    if request.method== 'POST' and 'pasajero' in request.POST:
+        form=DetalleRutaForm(request.POST)
+        if form.is_valid():
+            pasajero=DetalleRuta.objects.filter(fkRuta_id=pk, fkPasajero_id=int(request.POST["fkPasajero"]))
+            if pasajero:
+                messages.warning(
+                request,f"EL PASAJERO YA SE ENCUENTRA AGREGADO A LA RUTA"
+                )
+            else:
+                form.save()
+                messages.success(
+                    request,f"SE Agregó pasajero a LA RUTA EXITOSAMENTE"
+                )
+            return redirect('generar-ruta',pk)
+        else:
+            form=DetalleRutaForm(request.POST)
+            messages.error(
+                request,f"Error al agregar el pasajero a la ruta"
+            )
+
+    # ############################################################################################
+    # Bloque para registrar un nuevo pasajero.
     if request.method == "POST" and 'form-pasajero' in request.POST:
         form=PasajeroForm(request.POST)
         if form.is_valid():
@@ -65,56 +164,59 @@ def generar_ruta(request):
             request,f"ERROR. NO SE PUDO REGISTRAR AL PASAJERO. INTENTELO DE NUEVO"
         )
 
-
     context={
+        'detalles':detalles,
         'titulo':titulo,
         'vehiculos':vehiculos,
         'usuarios':usuarios,
         'form':form,
         'ruta':ruta,
         'pasajeros':pasajeros,
+        'kilometraje':kilometraje,
     }
     return render (request, 'gestionActivos/generarRuta.html', context)
 
-def registrar_pasajero(request):
+# ############################################################################################
+# Bloque para cerrar la ruta
 
-    context={
+def cerrar_ruta(request,pk):
+    rutas=GenerarRuta.objects.all()
+    GenerarRuta.objects.filter(id=pk).update(
+        estadoRuta='Cerrada'
+    )
+    messages.success(
+        request,f"SE CERRO LA RUTA"
+        )
 
+    return redirect('generar-ruta')
+
+    context ={
+        'rutas':rutas,
     }
 
     return render (request, 'gestionActivos/generarRuta.html', context)
 
-# ##################################################################################################################################
-# FUNCION * AGREGAR FUNCIONARIOS RUTA *
+# ####################################################################################################################
+# BLOQUE PARA ELIMINAR PASAJERO
 @login_required(login_url='login')
-def agregar_funcionarios_ruta(request, pk):
-    titulo='Consultar-Ruta'
-    ruta= GenerarRuta.objects.get(id=pk)
-    # pasajeros= DetalleRuta.objects.filter(fkRuta_id=pk)
+@permission_required('gestionActivos.view_pasajero')
+def eliminar_pasajero(request,id):
+    pasajero=DetalleRuta.objects.get(id=id)
+    ruta=pasajero.fkRuta
+    pasajero.delete()
 
-    context={
-        'titulo':titulo,
-        # 'vehiculos':vehiculos,
-        'ruta':ruta
-    }
-    return render (request, 'gestionActivos/generarRuta.html', context)
-
-# def eliminar_pasajero(request):
-
-#     context={
-
-#     }
-
-#     return render (request, 'gestionActivos/generarRuta.html', context)
+    return redirect('generar-ruta', ruta.id)
 
 # ##################################################################################################################################
 # FUNCION * REGISTRAR MANTENIMIENTO *
 @login_required(login_url='login')
+@permission_required('gestionActivos.view_registrarmantenimiento')
 def registrar_mantenimiento(request):
     titulo='Registrar-Mantenimiento'
     extintores= ActivoExtintor.objects.all()
     vehiculos=ActivoVehiculo.objects.all()
     equipos=ActivoEquipoOficina.objects.all()
+    
     extintor=None
     vehiculo=None
     equipo=None
@@ -213,11 +315,13 @@ def registrar_mantenimiento(request):
 # ##################################################################################################################################
 # FUNCION * CONSULTAR RUTA *
 @login_required(login_url='login')
+@permission_required('gestionActivos.view_detalleruta')
 def consultar_ruta(request):
     titulo='Consultar-Ruta'
     extintores= ActivoExtintor.objects.all()
     vehiculos=ActivoVehiculo.objects.all()
     equipos=ActivoEquipoOficina.objects.all()
+    rutas=GenerarRuta.objects.all()
     vehiculo=None
 
     # Bloque de codigo para traer informacion de la tabla a los campos de la pagina html por medio de la Primary Key
@@ -229,8 +333,8 @@ def consultar_ruta(request):
         'extintores':extintores,
         'vehiculos':vehiculos,
         'vehiculo':vehiculo,
-        'equipos':equipos
-
+        'equipos':equipos,
+        'rutas':rutas,
     }
     return render (request, 'gestionActivos/consultarRuta.html', context)
 

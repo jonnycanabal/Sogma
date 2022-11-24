@@ -5,13 +5,13 @@
 <header id="bar-header"
     class="border-bottom border-3 border-dark d-flex flex-wrap
     align-items-center justify-content-center
-    py-3 border-bottom">
+    py-3 border-bottom mitexto" style="font-size: 18px;">
 
     <!-- Contenedor del logo de la Contraloria Departamental del Tolima -->
     <div class="d-flex align-items-center img-contraloria">
         <a href="" class="d-flex align-items-center mb-2 mb-md-0
             text-dark text-decoration-none">
-            <img class="w-50 ms-3" src="{% static 'img/logo_contraloria.png' %}"
+            <img class="w-50 ms-3" src="{% static 'img/nuevo_logo_contraloria.png' %}"
                 alt="">
         </a>
 
@@ -23,20 +23,25 @@
 
     <!-- Icono y nombre de usuario-->
     <!-- Union de dropdown junto con el modal de cerrar sesión -->
+    {% if user.is_authenticated %}
+
     <div class="dropdown d-flex align-items-end ms-5 me-4 ps-5
         icono-login">
         <a href="#" class="d-flex align-items-center link-dark
             text-decoration-none dropdown-toggle" id="dropdownUser2"
             data-bs-toggle="dropdown" aria-expanded="false">
             <div class="image">
-                <img src="{{MEDIA_URL}}{{image_user}}" alt="user Image"
+                
+                    <img src="{{MEDIA_URL}}{{image_user}}" alt="user Image"
                     width="50"
                     height="50" class="rounded-circle me-2"> <!-- https://github.com/mdo.png -->
+                
+                    
             </div>
 
             <div class="info text-black">
                 <strong>{{usuario_actual.first_name}}
-                    {{usuario_actual.last_name}}</strong>
+                    {{usuario_actual.last_name}} | {{usuario_actual.groups.all.0}}</strong>
             </div>
 
         </a>
@@ -45,7 +50,7 @@
             <li><a class="dropdown-item" href="#"
                     data-bs-toggle="modal"
                     data-bs-target="#perfil">Perfil</a></li>
-            <li><a class="dropdown-item" href="#">Copia de Seguridad</a></li>
+            <!-- <li><a class="dropdown-item" href="#">Copia de Seguridad</a></li> -->
             <li><hr class="dropdown-divider"></li>
 
             <!-- Uso de MODAL con BOOTSTRAP 5-->
@@ -295,5 +300,6 @@
         </div>
         <!-- Fin del modal cerrar sesion con BOOTSTRAP 5-->
     </div>
+    {% endif %}
 </header>
 <!-- FIN DEL HEADER-->

@@ -1,8 +1,160 @@
 from django.shortcuts import render
 
-from gestionActivos.models import GenerarRuta # No olvidar colocar esta linea de codigo para el render.
+from gestionActivos.models import GenerarRuta, MantenimientoVehiculo, MantenimientoExtintor, MantenimientoEquipo
+from activos.models import ActivoExtintor, ActivoVehiculo, ActivoEquipoOficina
+
+import os
+from django.conf import settings
+from django.http import HttpResponse
+from django.template.loader import get_template
+from xhtml2pdf import pisa
+from django.contrib.staticfiles import finders
+from io import BytesIO
+
+
+from django.conf import settings
+from django.core.mail import send_mail
+import threading
+import time
+
+from datetime import datetime
+
+from django.views.defaults import page_not_found
+
+from django.db.models import Sum
 
 # views de la pagina de Inicio - Index
+
+
+# Bloque de código con la función para generar el reporte de los vehículos por medio de una página en html
+def reporte_vehiculo (request, pk):
+        vehiculo = ActivoVehiculo.objects.get(id=pk)
+        ultimoMantenimientoVehiculo=MantenimientoVehiculo.objects.filter(fkVehiculo=vehiculo).order_by('-fkRegistrarMantenimiento__fechaMantenimiento')
+        mantenimientos= MantenimientoVehiculo.objects.filter(fkVehiculo=vehiculo)
+        if ultimoMantenimientoVehiculo:
+            ultimoMantenimientoVehiculo = ultimoMantenimientoVehiculo[0]
+        else:
+            ultimoMantenimientoVehiculo = None
+        
+        kilometraje=GenerarRuta.objects.filter(fkVehiculo=vehiculo).order_by('-fechaRegreso', '-horaRegreso')
+        if kilometraje:
+            kilometraje=kilometraje[0]
+        else:
+            kilometraje = None
+
+        total= mantenimientos.aggregate(total_precio=Sum('fkRegistrarMantenimiento__valorMantenimiento'))
+
+        # template = get_template('reportes/reporte_vehiculo.html')
+        context = {
+            'title': 'Reporte Vehiculo',
+            'vehiculo':vehiculo,
+            'ultimoMantenimientoVehiculo':ultimoMantenimientoVehiculo,
+            'kilometraje':kilometraje,
+            # 'vehiculo': ActivoVehiculo.objects.get(id=pk),
+            'mantenimientos': mantenimientos,
+            'total':total['total_precio'],
+            }
+
+        return render (request, 'reportes/reporte_vehiculo.html', context)
+
+
+# Bloque de código con la función para generar el reporte de los extintores por medio de una página en html
+def reporte_extintor (request, pk):
+        extintor = ActivoExtintor.objects.get(id=pk)
+        mantenimientos = MantenimientoExtintor.objects.filter(fkExtintor=extintor)
+        ultimoMantenimientoExtintor=MantenimientoExtintor.objects.filter(fkExtintor=extintor).order_by('-fkRegistrarMantenimiento__fechaMantenimiento')
+        if ultimoMantenimientoExtintor:
+            ultimoMantenimientoExtintor = ultimoMantenimientoExtintor[0]
+        else:
+            ultimoMantenimientoExtintor = None
+        
+        total = mantenimientos.aggregate(total_precio=Sum('fkRegistrarMantenimiento__valorMantenimiento'))
+
+        context = {
+            'title': 'Reporte Extintor',
+            'extintor':extintor,
+            'ultimoMantenimientoExtintor':ultimoMantenimientoExtintor,
+            'mantenimientos': mantenimientos,
+            'total':total['total_precio']
+            }
+
+        return render (request, 'reportes/reporte_extintor.html', context)
+
+
+# Bloque de código con la función para generar el reporte de los equipos de oficina por medio de una página en html
+def reporte_equipo (request, pk):
+        equipo = ActivoEquipoOficina.objects.get(id=pk)
+        mantenimientos = MantenimientoEquipo.objects.filter(fkEquipoOficina=equipo)
+        ultimoMantenimientoEquipo=MantenimientoEquipo.objects.filter(fkEquipoOficina=equipo).order_by('-fkRegistrarMantenimiento__fechaMantenimiento')
+        if ultimoMantenimientoEquipo:
+            ultimoMantenimientoEquipo = ultimoMantenimientoEquipo[0]
+        else:
+            ultimoMantenimientoEquipo = None
+        
+        total= mantenimientos.aggregate(total_precio=Sum('fkRegistrarMantenimiento__valorMantenimiento'))
+        context = {
+            'title': 'Reporte Equipo',
+            'equipo':equipo,
+            'ultimoMantenimientoEquipo':ultimoMantenimientoEquipo,
+            'mantenimientos': mantenimientos,
+            'total':total['total_precio']
+            }
+
+        return render (request, 'reportes/reporte_equipo.html', context)
+
+
+def error_404(request, exception):
+    return page_not_found(request, '404.html')
+
+
+
+def error_500(request):
+    return render (request, '500.html')
+
+
+# send_mail(
+#     'Título del correo',
+#     'Hola, este correo es enviado desde un post en PyWombat. 🐍',
+#     settings.EMAIL_HOST_USER,
+#     ['jonny.canabal@gmail.com'],
+#     fail_silently=False
+# )
+
+
+
+# hora = str(datetime.now().hour) + ":" + str(datetime.now().minute) + ":" + str(datetime.now().second)
+# print(hora)
+# if hora == '13:25:30':
+#     print("funciona")
+#     send_mail(
+#         'Título del correo',
+#         'Hola, este correo es enviado desde un post en PyWombat. 🐍',
+#         settings.EMAIL_HOST_USER,
+#         ['jonny.canabal@gmail.com'],
+#         fail_silently=False
+#     )
+# else:
+#     print("no funciona")
+
+
+
+
+# Tarea a ejecutarse cada determinado tiempo.
+# def timer():
+#     while True:
+
+
+        # time.sleep(59)   
+        # 3 segundos.
+# Iniciar la ejecución en segundo plano.
+# t = threading.Thread(target=timer)
+# t.start()
+
+
+
+
+
+
 def inicio (request):
 
     titulo = 'Index'

@@ -3,16 +3,25 @@
 <!-- Cargar la carpeta static -->
 {% load static %}
 
-<!-- Bloque que incluira el nav.html para que lo muestre en la página -->
+<!-- Bloque que incluirá el nav.html para que lo muestre en la página -->
 {% block menu %}
 {% include 'partials/nav.html' %}
 {% endblock menu %}
 
 {% block contenido %}
+
+<div class="text-center p-2 w-100">
+    <h1>Gestión de Usuarios</h1>
+</div>
+
 <div class="d-flex justify-content-center mb-4 m-2 w-100 p-3">
+    
     <div class="overflow-auto shadow-lg p-4
         height-config-tabla1 m-2 w-100" style="height: 300px;">
-        <table id="example5" class="table-striped display nowrap">
+
+
+
+        <table id="example5" class="table-striped display nowrap mitexto" style="font-size: 18px;">
             <thead>
                 <th>Acciones</th>
                 <th>Id</th>
@@ -26,12 +35,13 @@
                 <th >Número de Teléfono</th>
                 <th >Ciudad de Residencia</th>
                 <th >Dirección de Residencia</th>
-                <th >Correo Electronico</th>
+                <th >Correo Electrónico</th>
                 <th >Genero</th>
                 <th >Cargo</th>
                 <th >Fecha de Registro</th>
                 <th >Tipo de Usuario</th>
                 <th >Estado</th>
+                <th>rol</th>
             </thead>
             <tbody>
 
@@ -45,13 +55,16 @@
 
                             <!-- Botón del ojo para editar la información -->
                             <input type="hidden" name="pk_usuario" value="{{usuario.id}}">
-                            <button class="btn btn-block fs-5 pe-1 ps-1" onClick="editarusuario()" name="editar-usuario">
+                            <button class="btn btn-block pe-1 ps-1 mitexto" style="font-size: 18px;" onClick="editarusuario()" name="editar-usuario">
                                 <i class="bi bi-eye-fill"></i>
                             </button>
 
-                            <!-- Boton de eliminar integrado con un modal y un toastr de mensaje despues de aceptar -->
-                            <button type="button" class="btn fs-5 pe-1 ps-1" data-bs-toggle="modal" data-bs-target="#modal-eliminar-usuario-{{usuario.id}}"><i class="bi bi-trash3-fill"></i></a>
+                            <!-- Botón de eliminar integrado con un modal y un toastr de mensaje despues de aceptar -->
+                            {% if perms.usuarios.delete_usuario %}
+                            <button type="button" class="btn pe-1 ps-1 mitexto" style="font-size: 18px;" data-bs-toggle="modal" data-bs-target="#modal-eliminar-usuario-{{usuario.id}}"><i class="bi bi-trash3-fill"></i></a>
                             </button>
+                            {% endif %}
+
                             <!-- Modal -->
                             <div class="modal fade" id="modal-eliminar-usuario-{{usuario.id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
                                 aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -62,15 +75,22 @@
                                                 ELIMINACIÓN</h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
-                                        <div class="modal-body text-start">
-                                            ¿Esta seguro que desea Eliminar El
-                                            usuario Seleccionado?.
+                                        <div class="modal-body text-start fs-5" style="font-weight: normal;">
+                                            ¿Está seguro que desea Eliminar El
+                                            usuario con ID # {{usuario.id}}?
+                                            <br>
+                                            <br>
+                                            Número de documento: {{usuario.numeroDocumento}}
+                                            <br>
+                                            Primer nombre: {{usuario.primerNombre}}
+                                            <br>
+                                            Primer Apellido: {{usuario.primerApellido}}
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn
-                                                btn-secondary" data-bs-dismiss="modal">CANCELAR</button>
+                                                btn-danger" data-bs-dismiss="modal">Cancelar</button>
                                             <input type="hidden" name="pk_usuario" value="{{usuario.id}}">
-                                            <a class="btn btn-block btn-success" onClick="eliminarUsuario()" name="eliminar-usuario" href="{% url 'eliminar-usuario' usuario.id %}">ACEPTAR</a>
+                                            <a class="btn btn-block btn-success" onClick="eliminarUsuario()" name="eliminar-usuario" href="{% url 'eliminar-usuario' usuario.id %}">Aceptar</a>
                                         </div>
                                     </div>
                                 </div>
@@ -78,7 +98,7 @@
                         </form>
                     </th>
                     <th class="text-center">{{usuario.id}}</th>
-                    <th><img src="{{image_user}}" alt="" width="50"
+                    <th><img src="{{ MEDIA_URL }}{{usuario.foto.url}}" alt="" width="50"
                         height="50" class="rounded-circle me-2 "></th>
                     <th>{{usuario.primerNombre}}</th>
                     <th>{{usuario.segundoNombre}}</th>
@@ -99,6 +119,7 @@
                             Activo
                         {% endif %}
                     </th>
+                    <th>{{usuario.user.groups.all.0}}</th>
                 </tr>
                 {% endfor %}
 
@@ -108,51 +129,51 @@
     </div>
 </div>
 
+<br>
+
 {% if usuario %}
-<h3 style="text-align: center;">Editando Usuario</h3>
 
-<div id="edit-usuario">
-
-<div id="editar-usuario" class="d-flex justify-content-center m-2 w-100 p-3 ps-5">
-    <!-- Botones para seleccionar o digiligenciar información -->
+<div id="edit-usuario" class="m-3 rounded-bottom" style="box-shadow: 0px 0px 5px 1px;">
+    
+    <div style="box-shadow: 0px 0px 0px 1px; background-color: rgb(209, 208, 208);">
+        <h3 style="text-align: center;">Editando al Usuario "{{usuario.primerNombre}} {{usuario.primerApellido}}"</h3>
+    </div>
+<div id="editar-usuario" class="d-flex justify-content-center m-2 w-100 p-3 ">
+    <!-- Botones para seleccionar o diligenciar información -->
     <form action="" method="POST" enctype="multipart/form-data" class="p-left pe-3 ps-3">
 
     {% csrf_token %}
-
-        <div class="d-inline-block ms-1 me-5 width-28 ">
-            <label for="basic-url" class="form-label w-75 ps-2">ID USUARIO</label>
+    <div class="p-3 div-cajas2">
+        <div class="d-inline-block width-28 ms-1 me-5">
+            <label for="basic-url" class="form-label w-75 ps-2">ID Usuario</label>
             <div class="input-group mb-3 w-100">
                 <input type="hidden" name="pk_usuario" value="{{usuario.id}}">
-                <input type="text" class="form-control" disabled id="" name="" value="{{usuario.id}}" aria-describedby="basic-addon3">
-
+                <input type="text" class="form-control mitexto" style="font-size: 18px;" disabled id="" name="" value="{{usuario.id}}" aria-describedby="basic-addon3">
             </div>
         </div>
 
         <div class="d-inline-block ms-1 me-5 width-28 ">
-            <label for="basic-url" class="form-label w-75 ps-2">PRIMER
-                NOMBRE</label>
+            <label for="basic-url" class="form-label w-75 ps-2">Primer Nombre</label>
             <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control"
+                <input type="text" class="form-control mitexto" style="font-size: 18px;"
                     name="primerNombre" id="id_primerNombre" value="{{usuario.primerNombre}}"
                     aria-describedby="basic-addon3">
             </div>
         </div>
 
         <div class="d-inline-block ms-1 me-5 width-28">
-            <label for="basic-url" class="form-label w-75 ps-2">SEGUNDO
-                NOMBRE</label>
+            <label for="basic-url" class="form-label w-75 ps-2">Segundo Nombre</label>
             <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control"
+                <input type="text" class="form-control mitexto" style="font-size: 18px;"
                     name="segundoNombre" id="id_segundoNombre" value="{{usuario.segundoNombre}}"
                     aria-describedby="basic-addon3">
             </div>
         </div>
 
         <div class="d-inline-block ms-1 me-5 width-28">
-            <label for="basic-url" class="form-label w-75 ps-2">PRIMER
-                APELLIDO</label>
+            <label for="basic-url" class="form-label w-75 ps-2">Primer Apellido</label>
             <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control"
+                <input type="text" class="form-control mitexto" style="font-size: 18px;"
                     name="primerApellido" id="id_primerApellido" value="{{usuario.primerApellido}}"
                     aria-describedby="basic-addon3"
                     placeholder="">
@@ -160,10 +181,9 @@
         </div>
 
         <div class="d-inline-block ms-1 me-5 width-28">
-            <label for="basic-url" class="form-label w-75 ps-2">SEGUNDO
-                APELLIDO</label>
+            <label for="basic-url" class="form-label w-75 ps-2">Segundo Apellido</label>
             <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control" name="segundoApellido" value="{{usuario.segundoApellido}}"
+                <input type="text" class="form-control mitexto" style="font-size: 18px;" name="segundoApellido" value="{{usuario.segundoApellido}}"
                     id="id_segundoApellido"
                     aria-describedby="basic-addon3"
                     placeholder="">
@@ -171,19 +191,18 @@
         </div>
 
         <div class="d-inline-block ms-1 me-5 width-28">
-            <label for="basic-url" class="form-label w-75 ps-2">FOTO</label>
+            <label for="basic-url" class="form-label w-75 ps-2">Foto</label>
             <div class="input-group mb-3 w-100">
-                <input  type="file" class="form-control" name="foto" value="{{image_user}}" 
+                <input  type="file" class="form-control mitexto" style="font-size: 18px;" name="foto" value="{{image_user}}" 
                     id="id_foto"
                     aria-describedby="basic-addon3">
             </div>
         </div>
 
         <div class="d-inline-block ms-1 me-5 width-28">
-            <label for="basic-url" class="form-label w-75 ps-2">TIPO
-                DE DOCUMENTO</label>
+            <label for="basic-url" class="form-label w-75 ps-2">Tipo de Documento</label>
             <div class="input-group mb-3 w-100">
-                <select id="id_tipoDocumento" class="form-select" name="tipoDocumento" value="{{usuario.tipoDocumento}}"
+                <select id="id_tipoDocumento" class="form-select mitexto" style="font-size: 18px;" name="tipoDocumento" value="{{usuario.tipoDocumento}}"
                     aria-label="tipo-activo">
                     <option selected>{{usuario.tipoDocumento}}</option>
                     <option value="C.C.">Cédula de Ciudadania</option>
@@ -194,10 +213,9 @@
         </div>
 
         <div class="d-inline-block ms-1 me-5 width-28">
-            <label for="basic-url" class="form-label w-75 ps-2">NÚMERO
-                DE IDENTIFICACIÓN</label>
+            <label for="basic-url" class="form-label w-75 ps-2">Número de Identificación</label>
             <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control" name="numeroDocumento" value="{{usuario.numeroDocumento}}"
+                <input type="text" class="form-control mitexto" style="font-size: 18px;" name="numeroDocumento" value="{{usuario.numeroDocumento}}"
                     id="id_numeroDocumento"
                     aria-describedby="basic-addon3"
                     placeholder="">
@@ -205,10 +223,9 @@
         </div>
 
         <div class="d-inline-block ms-1 me-5 width-28">
-            <label for="basic-url" class="form-label w-75 ps-2">NÚMERO DE
-                TELEFONO</label>
+            <label for="basic-url" class="form-label w-75 ps-2">Número de Telefono</label>
             <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control" name="numeroTelefono" value="{{usuario.numeroTelefono}}"
+                <input type="text" class="form-control mitexto" style="font-size: 18px;" name="numeroTelefono" value="{{usuario.numeroTelefono}}"
                     id="id_numeroTelefono"
                     aria-describedby="basic-addon3"
                     placeholder="">
@@ -216,10 +233,9 @@
         </div>
 
         <div class="d-inline-block ms-1 me-5 width-28">
-            <label for="basic-url" class="form-label w-75 ps-2">CIUDAD DE
-                RESIDENCIA</label>
+            <label for="basic-url" class="form-label w-75 ps-2">Ciudad de Residencia</label>
             <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control" name="ciudadResidencia" value="{{usuario.ciudadResidencia}}"
+                <input type="text" class="form-control mitexto" style="font-size: 18px;" name="ciudadResidencia" value="{{usuario.ciudadResidencia}}"
                     id="id_ciudadResidencia"
                     aria-describedby="basic-addon3"
                     placeholder="">
@@ -227,10 +243,9 @@
         </div>
 
         <div class="d-inline-block ms-1 me-5 width-28">
-            <label for="basic-url" class="form-label w-75 ps-2">DIRECCIÓN DE
-                RESIDENCIA</label>
+            <label for="basic-url" class="form-label w-75 ps-2">Dirección de Residencia</label>
             <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control" name="direccionResidencia" value="{{usuario.direccionResidencia}}"
+                <input type="text" class="form-control mitexto" style="font-size: 18px;" name="direccionResidencia" value="{{usuario.direccionResidencia}}"
                     id="id_direccionResidencia"
                     aria-describedby="basic-addon3"
                     placeholder="">
@@ -238,10 +253,9 @@
         </div>
 
         <div class="d-inline-block ms-1 me-5 width-28">
-            <label for="basic-url" class="form-label w-75 ps-2">CORRE
-                ELECTRONICO</label>
+            <label for="basic-url" class="form-label w-75 ps-2">Correo Electrónico</label>
             <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control" name="correoElectronico" value="{{usuario.correoElectronico}}"
+                <input type="text" class="form-control mitexto" style="font-size: 18px;" name="correoElectronico" value="{{usuario.correoElectronico}}"
                     id="id_correoElectronico"
                     aria-describedby="basic-addon3"
                     placeholder="">
@@ -249,9 +263,9 @@
         </div>
 
         <div class="d-inline-block ms-1 me-5 width-28">
-            <label for="basic-url" class="form-label w-75 ps-2">GENERO</label>
+            <label for="basic-url" class="form-label w-75 ps-2">Genero</label>
             <div class="input-group mb-3 w-100">
-                <select id="id_genero" class="form-select" name="genero" value="{{usuario.genero}}"
+                <select id="id_genero" class="form-select mitexto" style="font-size: 18px;" name="genero" value="{{usuario.genero}}"
                     aria-label="tipo-activo">
                     <option selected>{{usuario.genero}}</option>
                     <option value="Masculino">Masculino</option>
@@ -263,9 +277,9 @@
         </div>
 
         <div class="d-inline-block ms-1 me-5 width-28">
-            <label for="basic-url" class="form-label w-75 ps-2">CARGO</label>
+            <label for="basic-url" class="form-label w-75 ps-2">Cargo</label>
             <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control" name="cargo" value="{{usuario.cargo}}"
+                <input type="text" class="form-control mitexto" style="font-size: 18px;" name="cargo" value="{{usuario.cargo}}"
                     id="id_cargo"
                     aria-describedby="basic-addon3"
                     placeholder="">
@@ -273,19 +287,18 @@
         </div>
 
         <div class="d-inline-block ms-1 me-5 width-28">
-            <label for="basic-url" class="form-label w-75 ps-2">FECHA
-                DE REGISTRO</label>
+            <label for="basic-url" class="form-label w-75 ps-2">Fecha de registro</label>
             <div class="input-group mb-3 w-100">
-                <input id="id_fechaRegistro" type="date" class="form-control" name="fechaRegistro" value="{{usuario.fechaRegistro | date:'Y-m-d'}}"
+                <input disabled id="id_fechaRegistro" type="date" class="form-control mitexto" style="font-size: 18px;" name="fechaRegistro" value="{{usuario.fechaRegistro | date:'Y-m-d'}}"
                     aria-describedby="basic-addon3"
                     placeholder="">
             </div>
         </div>
 
         <div class="d-inline-block ms-1 me-5 width-28">
-            <label for="basic-url" class="form-label w-75 ps-2">TIPO DE USUARIO</label>
+            <label for="basic-url" class="form-label w-75 ps-2">Tipo de Usuario</label>
             <div class="input-group mb-3 w-100">
-                <select id="id_tipoUsuario" class="form-select" name="tipoUsuario" value="{{usuario.tipoUsuario}}"
+                <select id="id_tipoUsuario" class="form-select mitexto" style="font-size: 18px;" name="tipoUsuario" value="{{usuario.tipoUsuario}}"
                     aria-label="tipo-activo">
                     <option selected >{{usuario.tipoUsuario}}</option>
                     <option value="Funcionario">Funcionario</option>
@@ -294,40 +307,65 @@
                 </select>
             </div>
         </div>
+
+        <!-- <div class="d-inline-block ms-1 me-5 width-28">
+            <label for="basic-url" class="form-label w-75 ps-2">Rol</label>
+            <div class="input-group mb-3 w-100">
+                <select id="id_groups_from" class="form-select" name="groups_old" value="{{usuario.groups}}"
+                    aria-label="tipo-activo">
+                    <option selected >{{usuario.groups}}</option>
+                    <option value="Funcionario">Funcionario</option>
+                    <option value="Conductor">Conductor</option>
+                    <option value="Administrador">Administrador</option>
+                </select>
+            </div>
+        </div> -->
         <br>
-        <button type="button" class="btn btn-success fs-5 m-2 ms-2" data-bs-toggle="modal" data-bs-target="#modal-guardar-usuario">
-            EDITAR
+        <br>
+        <div class="w-100 ps-2 pe-2">
+        <button type="button" class="btn btn-success boton-secundario mitexto" style="font-size: 18px;" data-bs-toggle="modal" data-bs-target="#modal-guardar-usuario">
+            Editar
         </button>
+        </div>
         <!-- Modal -->
         <div class="modal fade" id="modal-guardar-usuario" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="staticBackdropLabel">VERIFICAR</h5>
+                        <h5 class="modal-title" id="staticBackdropLabel">CONFIRMAR CAMBIOS</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-body text-start">
-                        Esta seguro que desea guardar los
-                        cambios.
+                    <div class="modal-body text-start fs-5 text-wrap">
+                        ¿Está seguro que desea guardar los
+                        cambios realizados al usuario?
+                        <br>
+                        <br>
+                        Nombres: {{usuario.primerNombre}} {{usuario.segundoNombre}} 
+                        <br>
+                        Apellidos: {{usuario.primerApellido}} {{usuario.segundoApellido}}
+                        <br>
+                        Número de Identificación: {{usuario.numeroDocumento}}
+
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn
-                            btn-secondary" data-bs-dismiss="modal">CANCELAR</button>
+                            btn-danger" data-bs-dismiss="modal">Cancelar</button>
                         <button data-bs-toggle="modal" data-bs-target=""
                             data-bs-dismiss="modal" class="btn
-                            btn-primary" name="c-editar-usuario">ACEPTAR </button>
+                            btn-success" name="c-editar-usuario">Aceptar </button>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     </form>
 </div>
 </div>
 
 {% endif %}
-<div class="w-100" style="padding-left: 3%;">
-<button type="button" class="btn btn-secondary fs-5 m-2" data-bs-toggle="modal"
+<div class="w-100 ps-2 pe-3">
+<button type="button" class="btn btn-warning boton-primario mitexto" style="font-size: 18px;" data-bs-toggle="modal"
 data-bs-target="#modal-nuevo-usuario">
 REGISTRAR USUARIO
 </button>
@@ -338,62 +376,56 @@ REGISTRAR USUARIO
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">REGISTRAR USUARIO</h5>
+                <h5 class="modal-title" id="staticBackdropLabel">REGISTRAR NUEVO USUARIO</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
-            <form action="" method="POST">
+            <form id="f_usuario" action="" method="POST" enctype="multipart/form-data">
 
                 <div class="modal-body text-start" id="form-nuevo-usuario">
 
                     {% csrf_token %}
 
                     <div class="d-inline-block w-100">
-                        <label for="basic-url" class="form-label ps-2">PRIMER
-                            NOMBRE</label>
+                        <label for="basic-url" class="form-label ps-2">Primer Nombre</label>
                         <div class="input-group mb-3 w-100">
                             <input type="text" class="form-control"
                                 name="primerNombre" id="id_primerNombre"
-                                aria-describedby="basic-addon3"
-                                placeholder="">
+                                aria-describedby="basic-addon3" required minlength="1"
+                                maxlength="50">
                         </div>
                     </div>
             
                     <div class="d-inline-block w-100">
-                        <label for="basic-url" class="form-label ps-2">SEGUNDO
-                            NOMBRE</label>
+                        <label for="basic-url" class="form-label ps-2">Segundo Nombre</label>
                         <div class="input-group mb-3 w-100">
                             <input type="text" class="form-control"
                                 name="segundoNombre" id="id_segundoNombre"
-                                aria-describedby="basic-addon3"
-                                placeholder="">
+                                aria-describedby="basic-addon3">
                         </div>
                     </div>
             
                     <div class="d-inline-block w-100">
-                        <label for="basic-url" class="form-label ps-2">PRIMER
-                            APELLIDO</label>
+                        <label for="basic-url" class="form-label ps-2">Primer Apellido</label>
                         <div class="input-group mb-3 w-100">
                             <input type="text" class="form-control"
                                 name="primerApellido" id="id_primerApellido"
-                                aria-describedby="basic-addon3"
-                                placeholder="">
+                                aria-describedby="basic-addon3" required minlength="1"
+                                maxlength="50">
                         </div>
                     </div>
             
                     <div class="d-inline-block w-100">
-                        <label for="basic-url" class="form-label ps-2">SEGUNDO
-                            APELLIDO</label>
+                        <label for="basic-url" class="form-label ps-2">Segundo Apellido</label>
                         <div class="input-group mb-3 w-100">
                             <input type="text" class="form-control" name="segundoApellido"
                                 id="id_segundoApellido"
-                                aria-describedby="basic-addon3"
-                                placeholder="">
+                                aria-describedby="basic-addon3">
                         </div>
                     </div>
             
                     <div class="d-inline-block w-100">
-                        <label for="basic-url" class="form-label ps-2">FOTO</label>
+                        <label for="basic-url" class="form-label ps-2">Foto</label>
                         <div class="input-group mb-3 w-100">
                             <input type="file" class="form-control" name="foto"
                                 id="id_foto"
@@ -402,12 +434,11 @@ REGISTRAR USUARIO
                     </div>
             
                     <div class="d-inline-block w-100">
-                        <label for="basic-url" class="form-label ps-2">TIPO
-                            DE DOCUMENTO</label>
+                        <label for="basic-url" class="form-label ps-2">Tipo de Documento</label>
                         <div class="input-group mb-3 w-100">
                             <select id="id_tipoDocumento" class="form-select" name="tipoDocumento"
-                                aria-label="tipo-activo">
-                                <option selected>--TIPO DOCUMENTO--</option>
+                                aria-label="tipo-activo" required>
+                                <option selected disabled>------</option>
                                 <option value="C.C.">Cédula de Ciudadania</option>
                                 <option value="C.E.">Cédula de Extranjería</option>
                                 <option value="PASS">Pasaporte</option>
@@ -416,66 +447,61 @@ REGISTRAR USUARIO
                     </div>
             
                     <div class="d-inline-block w-100">
-                        <label for="basic-url" class="form-label ps-2">NÚMERO
-                            DE IDENTIFICACIÓN</label>
+                        <label for="basic-url" class="form-label ps-2">Número de Identificación</label>
                         <div class="input-group mb-3 w-100">
                             <input type="text" class="form-control" name="numeroDocumento"
                                 id="id_numeroDocumento"
-                                aria-describedby="basic-addon3"
-                                placeholder="">
+                                aria-describedby="basic-addon3" required minlength="1"
+                                maxlength="50">
                         </div>
                     </div>
             
                     <div class="d-inline-block w-100">
-                        <label for="basic-url" class="form-label ps-2">NÚMERO DE
-                            TELEFONO</label>
+                        <label for="basic-url" class="form-label ps-2">Número de Telefono</label>
                         <div class="input-group mb-3 w-100">
                             <input type="text" class="form-control" name="numeroTelefono"
                                 id="id_numeroTelefono"
-                                aria-describedby="basic-addon3"
-                                placeholder="">
+                                aria-describedby="basic-addon3" required minlength="1"
+                                maxlength="20">
                         </div>
                     </div>
             
                     <div class="d-inline-block w-100">
-                        <label for="basic-url" class="form-label ps-2">CIUDAD DE
-                            RESIDENCIA</label>
+                        <label for="basic-url" class="form-label ps-2">Ciudad de Residencia</label>
                         <div class="input-group mb-3 w-100">
                             <input type="text" class="form-control" name="ciudadResidencia"
                                 id="id_ciudadResidencia"
-                                aria-describedby="basic-addon3"
-                                placeholder="">
+                                aria-describedby="basic-addon3" required minlength="1"
+                                maxlength="50">
                         </div>
                     </div>
             
                     <div class="d-inline-block w-100">
-                        <label for="basic-url" class="form-label ps-2">DIRECCIÓN DE
-                            RESIDENCIA</label>
+                        <label for="basic-url" class="form-label ps-2">Dirección de Residencia</label>
                         <div class="input-group mb-3 w-100">
                             <input type="text" class="form-control" name="direccionResidencia"
                                 id="id_direccionResidencia"
-                                aria-describedby="basic-addon3"
-                                placeholder="">
+                                aria-describedby="basic-addon3" required minlength="1"
+                                maxlength="100">
                         </div>
                     </div>
             
                     <div class="d-inline-block w-100">
-                        <label for="basic-url" class="form-label ps-2">CORRE
-                            ELECTRONICO</label>
+                        <label for="basic-url" class="form-label ps-2">Correo Electrónico</label>
                         <div class="input-group mb-3 w-100">
-                            <input type="text" class="form-control" name="correoElectronico"
+                            <input type="email" class="form-control" name="correoElectronico"
                                 id="id_correoElectronico"
-                                aria-describedby="basic-addon3"
-                                placeholder="">
+                                aria-describedby="basic-addon3" required minlength="1"
+                                maxlength="100">
                         </div>
                     </div>
             
                     <div class="d-inline-block w-100">
-                        <label for="basic-url" class="form-label ps-2">GENERO</label>
+                        <label for="basic-url" class="form-label ps-2">Genero</label>
                         <div class="input-group mb-3 w-100">
                             <select id="id_genero" class="form-select" name="genero"
                                 aria-label="tipo-activo">
-                                <option selected>--GENERO--</option>
+                                <option selected disabled>------</option>
                                 <option value="Masculino">Masculino</option>
                                 <option value="Femenino">Femenino</option>
                                 <option value="Otro">Otro</option>
@@ -485,31 +511,29 @@ REGISTRAR USUARIO
                     </div>
             
                     <div class="d-inline-block w-100">
-                        <label for="basic-url" class="form-label ps-2">CARGO</label>
+                        <label for="basic-url" class="form-label ps-2">Cargo</label>
                         <div class="input-group mb-3 w-100">
                             <input type="text" class="form-control" name="cargo"
                                 id="id_cargo"
-                                aria-describedby="basic-addon3"
-                                placeholder="">
+                                aria-describedby="basic-addon3" required minlength="1"
+                                maxlength="30">
                         </div>
                     </div>
             
                     <div class="d-inline-block w-100">
-                        <label for="basic-url" class="form-label ps-2">FECHA
-                            DE REGISTRO</label>
+                        <label for="basic-url" class="form-label ps-2">Fecha de Registro</label>
                         <div class="input-group mb-3 w-100">
                             <input id="id_fechaRegistro" type="date" class="form-control" name="fechaRegistro"
-                                aria-describedby="basic-addon3"
-                                placeholder="">
+                                aria-describedby="basic-addon3" required>
                         </div>
                     </div>
             
                     <div class="d-inline-block w-100">
-                        <label for="basic-url" class="form-label ps-2">TIPO DE USUARIO</label>
+                        <label for="basic-url" class="form-label ps-2">Tipo de Usuario</label>
                         <div class="input-group mb-3 w-100">
-                            <select id="id_tipoUsuario" class="form-select" name="tipoUsuario"
-                                aria-label="tipo-activo">
-                                <option selected>--TIPO DE USUARIO--</option>
+                            <select required id="id_tipoUsuario" class="form-select" name="tipoUsuario"
+                                aria-label="tipo-activo" required>
+                                <option selected disabled>------</option>
                                 <option value="Funcionario">Funcionario</option>
                                 <option value="Conductor">Conductor</option>
                                 <option value="Administrador">Administrador</option>
@@ -517,14 +541,14 @@ REGISTRAR USUARIO
                         </div>
                     </div>
 
-                    <!-- BOTON PARA GUARDAR LA INFORMACIÓN DIGITADA EN EL FORMULARIO DEL ACTIVO -->
+                    <!-- BOTÓN PARA GUARDAR LA INFORMACIÓN DIGITADA EN EL FORMULARIO DEL ACTIVO -->
                     <div class="w-100 d-flex justify-content-center">
                     <button class="btn btn-success
-                        fs-5 m-2" name="form-nuevo-usuario">GUARDAR</button>
+                        fs-5 m-2" name="form-nuevo-usuario">Guardar</button>
                     </div> 
                     <div class="w-100 d-flex justify-content-center">
                         <button type="button" class="btn
-                            btn-secondary" data-bs-dismiss="modal">CANCELAR</button>
+                            btn-danger" data-bs-dismiss="modal">Cancelar</button>
                     </div>
                 </div>
             </form>
@@ -532,4 +556,25 @@ REGISTRAR USUARIO
     </div>
 </div>
 </div>
+<!-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+<script>
+    const $f_usuario = document.getElementById('f_usuario');
+    const $id_primerNombre = document.getElementById('id_primerNombre');
+    const $id_primerApellido = document.getElementById('id_primerApellido');
+    
+    (function(){
+        $f_usuario.addEventListener('submit', function(a){
+            let primerNombre=String($id_primerNombre.value).trim();
+            let primerApellido=String($id_primerApellido.value).trim();
+            if (primerNombre === "" || primerApellido === ""){
+                alert("El dato no puede ir vacio o solo con espacios en blanco");
+                a.preventDefault();
+            }
+        });
+    })();
+</script> -->
+
+{% include 'partials/tamañoLetra.html' %}
+
 {% endblock contenido %}
