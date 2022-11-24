@@ -41,7 +41,6 @@
                 <th >Fecha de Registro</th>
                 <th >Tipo de Usuario</th>
                 <th >Estado</th>
-                <th>rol</th>
             </thead>
             <tbody>
 
@@ -119,7 +118,6 @@
                             Activo
                         {% endif %}
                     </th>
-                    <th>{{usuario.user.groups.all.0}}</th>
                 </tr>
                 {% endfor %}
 
@@ -215,7 +213,7 @@
         <div class="d-inline-block ms-1 me-5 width-28">
             <label for="basic-url" class="form-label w-75 ps-2">Número de Identificación</label>
             <div class="input-group mb-3 w-100">
-                <input type="text" class="form-control mitexto" style="font-size: 18px;" name="numeroDocumento" value="{{usuario.numeroDocumento}}"
+                <input disabled type="text" class="form-control mitexto" style="font-size: 18px;" name="numeroDocumento" value="{{usuario.numeroDocumento}}"
                     id="id_numeroDocumento"
                     aria-describedby="basic-addon3"
                     placeholder="">
