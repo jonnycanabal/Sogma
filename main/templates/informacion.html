@@ -1,0 +1,90 @@
+<!-- Consultar activos se extiende de body.html siendo este la clase hija. -->
+{% extends 'partials/body.html' %}
+
+<!-- Cargar la carpeta static -->
+{% load static %}
+
+<!-- Bloque que incluirá el nav.html para que lo muestre en la página -->
+{% block menu %}
+{% include 'partials/nav.html' %}
+{% endblock menu %}
+
+{% block contenido %}
+
+<main class="bg-light">
+
+    <div id="div-cajas" class="container p-3 my-4 pt-0">
+
+        <div class="text-center p-2 w-100">
+            <h1>SOGMA</h1>
+        </div>
+
+        <br>
+
+        <div class="text-center p-2 w-100">
+            <h2>información del Sistema</h2>
+        </div>
+        <p class="text-break text-center">Sistema desarrollado para la gestión y
+            mantenimiento de activos de la Contraloría Departamental de Tolima</p>
+        <div class="container w-100 p-3">
+
+            <div class="text-center p-2 w-100">
+                <h2>Diseñado por</h2>
+            </div>
+
+            <br>
+
+            <div class="text-center w-100 mb-3 text-break">
+                <h3>Jonny Mauricio Canabal Ospina</h3>
+
+                <div class="mb-4 w-100">
+                    <img class="radio-img-reporte foto_w"
+                        src="{% static 'img/742760.jpg' %}"
+                        alt="Imagen-reporte">
+                </div>
+
+                <h4 style="font-size: 18px;">Ciudad de Residencia: <strong>Bogota
+                        D.C.</strong></h4>
+
+                <h4 style="font-size: 18px;">Telefono: <strong>3183865656</strong></h4>
+                <h4 style="font-size: 18px;">Email: <strong>jonny.canabal@gmail.com</strong></h4>
+            </div>
+
+            <br>
+
+            <div class="text-center w-100 mb-3 text-break">
+                <h3>Jose Nicolás Molina Valera</h3>
+
+                <div class="mb-4 w-100">
+                    <img class="radio-img-reporte foto_w"
+                        src="{% static 'img/742760.jpg' %}"
+                        alt="Imagen-reporte">
+                </div>
+
+                <h4 style="font-size: 18px;">Ciudad de Residencia: <strong></strong></h4>
+                <h4 style="font-size: 18px;">Telefono: <strong></strong></h4>
+                <h4 style="font-size: 18px;">Email: <strong></strong></h4>
+            </div>
+
+            <br>
+
+            <div class="text-center w-100 mb-3 text-break">
+                <h3>Silverio Pedroza Vargas</h3>
+
+                <div class="mb-4 w-100">
+                    <img class="radio-img-reporte foto_w"
+                        src="{% static 'img/742760.jpg' %}"
+                        alt="Imagen-reporte">
+                </div>
+
+                <h4 style="font-size: 18px;">Ciudad de Residencia: <strong></strong></h4>
+                <h4 style="font-size: 18px;">Telefono: <strong></strong></h4>
+                <h4 style="font-size: 18px;">Email: <strong></strong></h4>
+            </div>
+
+            <br>
+
+        </div>
+    </div>
+</main>
+{% endblock contenido %}

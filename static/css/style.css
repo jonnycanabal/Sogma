@@ -1,5 +1,9 @@
 /* Inicio del archivo CSS para modificar cosas especificas de nuestro codigo que no se pudieron manejar con Bootstrap*/
 
+.foto_w{
+    width: 100%;
+}
+
 .filtro{ 
     filter: invert(95%);
 }
@@ -114,6 +118,11 @@
         width: 20%;
         margin-left: 1%;
     }
+
+    .foto_w{
+        width: 30%;
+    }
+    
 }
 
 @media (max-width:1500px){
@@ -130,6 +139,11 @@
     .tabla-historial{
         width: 50%;
     }
+
+    .foto_w{
+        width: 30%;
+    }
+    
 }
 
 @media (max-width: 1200px) { 
@@ -173,6 +187,11 @@
     .tabla-historial{
         width: 75%;
     }
+
+    .foto_w{
+        width: 30%;
+    }
+    
 }
 
 /* -------------------------------------------------- */
@@ -228,6 +247,10 @@
         width: 75%;
     }
 
+    .foto_w{
+        width: 50%;
+    }
+
 }
 
 /* -------------------------------------------------- */
@@ -272,6 +295,11 @@
         width: 100%;
     }
 
+    .foto_w{
+        width: 75%;
+    }
+    
+    
 }
 
 
@@ -317,6 +345,11 @@
     .tabla-historial{
         width: 100%;
     }
+
+    .foto_w{
+        width: 75%;
+    }
+    
 
 }
 
@@ -366,6 +399,11 @@
     .tabla-historial{
         width: 100%;
     }
+
+    .foto_w{
+        width: 100%;
+    }
+    
 }
 
 /*------------- fin MODIFICACION DEL RESPONSIVE @MEDIA QUERY (No servia algunos responsive de Bootstrap 5) -------------*/
