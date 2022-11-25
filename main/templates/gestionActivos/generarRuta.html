@@ -54,9 +54,13 @@
                         id="id_fkVehiculo" required>
                         <option selected disabled>Seleccione el Vehículo</option>
                         {% for vehiculo in vehiculos %}
+                        
+                        {% if vehiculo.estadoVehiculo == 'Activo' %}
                         <option value='{{vehiculo.id}}'>{{vehiculo.placaVehiculo}}
                             -
                             {{vehiculo.marcaVehiculo}}</option>
+                        {% endif %}
+                            
                         {% endfor %}
 
                     </select>
@@ -73,10 +77,16 @@
                         {% for usuario in usuarios %}
 
                         {% if usuario.tipoUsuario == 'Conductor' %}
-                        <option value='{{usuario.id}}'>{{usuario.numeroDocumento}}
+
+                        
+                        {% if usuario.estado == '1' %}
+                            <option value='{{usuario.id}}'>{{usuario.numeroDocumento}}
                             -
                             {{usuario.primerNombre}}
                             {{usuario.primerApellido}}</option>
+                        {% endif %}
+                            
+
                         {% endif %}
 
                         {% endfor %}
