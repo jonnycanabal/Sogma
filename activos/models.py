@@ -56,7 +56,7 @@ class ActivoVehiculo(models.Model):
     modeloVehiculo=models.CharField(max_length=10, verbose_name="Modelo del Vehículo")
     placaVehiculo=models.CharField(max_length=10, unique=True, verbose_name="Placa del Vehículo") #Tiene campo Único
     colorVehiculo=models.CharField(max_length=20, verbose_name="Color del Vehículo")
-    serialVehiculo=models.CharField(max_length=50, verbose_name="Serial del Vehiculo")
+    serialVehiculo=models.CharField(max_length=50, unique=True, verbose_name="Serial del Vehiculo")
     tipoCombustible=models.CharField(max_length=20, verbose_name="Tipo de Combustible")
     cantidadPasajeros=models.CharField(max_length=5, verbose_name="Cantidad de Pasajeros")
     personaEncargadaVehiculo=models.CharField(max_length=50, verbose_name="Persona a Cargo")

@@ -135,14 +135,14 @@ def generar_ruta(request,pk=None):
                 messages.warning(
                 request,f"EL PASAJERO YA SE ENCUENTRA AGREGADO A LA RUTA"
                 )
-            if DetalleRuta.objects.filter(fkRuta_id=pk).count()== 4:
+            elif DetalleRuta.objects.filter(fkRuta_id=pk).count()== 4:
                 messages.warning(
                 request,f"SE HA SUPERADO EL NÚMERO DE PASAJEROS (4)"
                 )
             else:
                 form.save()
                 messages.success(
-                    request,f"SE Agregó pasajero a LA RUTA EXITOSAMENTE"
+                    request,f"SE AGREGÓ EL PASAJERO A LA RUTA EXITOSAMENTE"
                 )
             return redirect('generar-ruta',pk)
         else:

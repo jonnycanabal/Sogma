@@ -346,10 +346,14 @@
                                 <option selected disabled>--Seleccione al
                                     Pasajero--</option>
                                 {% for pasajero in pasajeros %}
+                                
+                                {% if pasajero.estadoPasajero == '1' %}
                                 <option value="{{pasajero.id}}">{{pasajero.numeroDocumentoPasajero}}
                                     -
                                     {{pasajero.primerNombrePasajero}}
                                     {{pasajero.primerApellidoPasajero}}</option>
+                                {% endif %}
+
                                 {% endfor %}
 
                             </select>

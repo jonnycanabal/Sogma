@@ -185,6 +185,11 @@
                         <td colspan="6" class="text-break">{{mantenimiento.fkRegistrarMantenimiento.descripcionMantenimiento}}</td>
                     </tr>
                 </tbody>
+                <tbody>
+                    <tr>
+                        <td colspan="8" class="text-break"><a href="/media/{{mantenimiento.fkRegistrarMantenimiento.adjuntarArchivoMantenimiento}}">Factura {{mantenimiento.fkRegistrarMantenimiento.numeroFactura}}</a></td>
+                    </tr>
+                </tbody>
 
             </table>
             {% endfor %}
@@ -226,7 +231,14 @@
     // }
 
     // });
-    window.print()
+    const fecha = new Date();
+    let day = fecha.getDate();
+    let month = fecha.getMonth() +1;
+    let year = fecha.getFullYear();
+    let actual = year + '-' + month + '-' + day;
+
+    document.title='Reporte ' + actual;
+    window.print();
     });
 </script>
 <!-- <script>

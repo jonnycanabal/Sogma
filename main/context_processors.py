@@ -21,8 +21,8 @@ def sesion(request):
 
 # Bloque de código con la función para dar aviso de activos que esten proximos a un mantenimiento.
 def alarma (request):
-    start_date_vehiculo= datetime.today() - timedelta(days=392)
-    end_date_vehiculo= datetime.today() + timedelta(days=3) - timedelta(days=30)
+    start_date_vehiculo= datetime.today() - timedelta(days=365)
+    end_date_vehiculo= datetime.today() + timedelta(days=3) - timedelta(days=300)
 
     start_date_extintor= datetime.today() - timedelta(days=395)
     end_date_extintor= datetime.today() + timedelta(days=30) - timedelta(days=365)

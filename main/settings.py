@@ -54,7 +54,6 @@ INSTALLED_APPS = [
     'usuarios',
     'activos',
     'gestionActivos',
-    'records',
 ]
 
 DBBACKUP_STORAGE = 'django.core.files.storage.FileSystemStorage'
