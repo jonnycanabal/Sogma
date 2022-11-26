@@ -35,6 +35,7 @@
             <thead>
                 <th>Acciones</th>
                 <th>Id</th>
+                <th >Estado</th>
                 <th>Foto</th>
                 <th >Primer Nombre</th>
                 <th >Segundo Nombre</th>
@@ -50,7 +51,6 @@
                 <th >Cargo</th>
                 <th >Fecha de Registro</th>
                 <th >Tipo de Usuario</th>
-                <th >Estado</th>
             </thead>
             <tbody>
 
@@ -107,6 +107,13 @@
                         </form>
                     </th>
                     <th class="text-center">{{usuario.id}}</th>
+                    <th>
+                        {% if usuario.estado == '1' %}
+                            Activo
+                        {% else %}
+                            Inactivo
+                        {% endif %}
+                    </th>
                     <th><img src="{{ MEDIA_URL }}{{usuario.foto.url}}" alt="" width="50"
                         height="50" class="rounded-circle me-2 "></th>
                     <th>{{usuario.primerNombre}}</th>
@@ -123,11 +130,6 @@
                     <th>{{usuario.cargo}}</th>
                     <th>{{usuario.fechaRegistro}}</th>
                     <th>{{usuario.tipoUsuario}}</th>
-                    <th>
-                        {% if usuario.estado == '1' %}
-                            Activo
-                        {% endif %}
-                    </th>
                 </tr>
                 {% endfor %}
 
@@ -139,7 +141,7 @@
 
 <br>
 
-{% if usuario %}
+{% if usuario.estado == '1' %}
 
 <div id="edit-usuario" class="m-3 rounded-bottom" style="box-shadow: 0px 0px 5px 1px;">
     
@@ -366,6 +368,192 @@
                 </div>
             </div>
         </div>
+    </div>
+    </form>
+</div>
+</div>
+
+{% endif %}
+
+{% if usuario.estado == '0' %}
+
+<div id="edit-usuario" class="m-3 rounded-bottom" style="box-shadow: 0px 0px 5px 1px;">
+    
+    <div style="box-shadow: 0px 0px 0px 1px; background-color: rgb(209, 208, 208);">
+        <h3 style="text-align: center;">Usuario inactivo: "{{usuario.primerNombre}} {{usuario.primerApellido}}"</h3>
+    </div>
+<div id="editar-usuario" class="d-flex justify-content-center m-2 w-100 p-3 ">
+    <!-- Botones para seleccionar o diligenciar información -->
+    <form action="" method="POST" enctype="multipart/form-data" class="p-left pe-3 ps-3">
+
+    {% csrf_token %}
+    <div class="p-3 div-cajas2">
+        <div class="d-inline-block width-28 ms-1 me-5">
+            <label for="basic-url" class="form-label w-75 ps-2">ID Usuario</label>
+            <div class="input-group mb-3 w-100">
+                <input type="hidden" name="pk_usuario" value="{{usuario.id}}">
+                <input type="text" class="form-control mitexto" style="font-size: 18px;" disabled id="" name="" value="{{usuario.id}}" aria-describedby="basic-addon3">
+            </div>
+        </div>
+
+        <div class="d-inline-block ms-1 me-5 width-28 ">
+            <label for="basic-url" class="form-label w-75 ps-2">Primer Nombre</label>
+            <div class="input-group mb-3 w-100">
+                <input disabled type="text" class="form-control mitexto" style="font-size: 18px;"
+                    name="primerNombre" id="id_primerNombre" value="{{usuario.primerNombre}}"
+                    aria-describedby="basic-addon3">
+            </div>
+        </div>
+
+        <div class="d-inline-block ms-1 me-5 width-28">
+            <label for="basic-url" class="form-label w-75 ps-2">Segundo Nombre</label>
+            <div class="input-group mb-3 w-100">
+                <input disabled type="text" class="form-control mitexto" style="font-size: 18px;"
+                    name="segundoNombre" id="id_segundoNombre" value="{{usuario.segundoNombre}}"
+                    aria-describedby="basic-addon3">
+            </div>
+        </div>
+
+        <div class="d-inline-block ms-1 me-5 width-28">
+            <label for="basic-url" class="form-label w-75 ps-2">Primer Apellido</label>
+            <div class="input-group mb-3 w-100">
+                <input disabled type="text" class="form-control mitexto" style="font-size: 18px;"
+                    name="primerApellido" id="id_primerApellido" value="{{usuario.primerApellido}}"
+                    aria-describedby="basic-addon3"
+                    placeholder="">
+            </div>
+        </div>
+
+        <div class="d-inline-block ms-1 me-5 width-28">
+            <label for="basic-url" class="form-label w-75 ps-2">Segundo Apellido</label>
+            <div class="input-group mb-3 w-100">
+                <input disabled type="text" class="form-control mitexto" style="font-size: 18px;" name="segundoApellido" value="{{usuario.segundoApellido}}"
+                    id="id_segundoApellido"
+                    aria-describedby="basic-addon3"
+                    placeholder="">
+            </div>
+        </div>
+
+        <div class="d-inline-block ms-1 me-5 width-28">
+            <label for="basic-url" class="form-label w-75 ps-2">Foto</label>
+            <div class="input-group mb-3 w-100">
+                <input disabled  type="file" class="form-control mitexto" style="font-size: 18px;" name="foto" value="{{image_user}}" 
+                    id="id_foto"
+                    aria-describedby="basic-addon3">
+            </div>
+        </div>
+
+        <div class="d-inline-block ms-1 me-5 width-28">
+            <label for="basic-url" class="form-label w-75 ps-2">Tipo de Documento</label>
+            <div class="input-group mb-3 w-100">
+                <select disabled id="id_tipoDocumento" class="form-select mitexto" style="font-size: 18px;" name="tipoDocumento" value="{{usuario.tipoDocumento}}"
+                    aria-label="tipo-activo">
+                    <option selected>{{usuario.tipoDocumento}}</option>
+                    <option value="C.C.">Cédula de Ciudadania</option>
+                    <option value="C.E.">Cédula de Extranjería</option>
+                    <option value="PASS">Pasaporte</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="d-inline-block ms-1 me-5 width-28">
+            <label for="basic-url" class="form-label w-75 ps-2">Número de Identificación</label>
+            <div class="input-group mb-3 w-100">
+                <input disabled disabled type="text" class="form-control mitexto" style="font-size: 18px;" name="numeroDocumento" value="{{usuario.numeroDocumento}}"
+                    id="id_numeroDocumento"
+                    aria-describedby="basic-addon3"
+                    placeholder="">
+            </div>
+        </div>
+
+        <div class="d-inline-block ms-1 me-5 width-28">
+            <label for="basic-url" class="form-label w-75 ps-2">Número de Telefono</label>
+            <div class="input-group mb-3 w-100">
+                <input disabled type="text" class="form-control mitexto" style="font-size: 18px;" name="numeroTelefono" value="{{usuario.numeroTelefono}}"
+                    id="id_numeroTelefono"
+                    aria-describedby="basic-addon3"
+                    placeholder="">
+            </div>
+        </div>
+
+        <div class="d-inline-block ms-1 me-5 width-28">
+            <label for="basic-url" class="form-label w-75 ps-2">Ciudad de Residencia</label>
+            <div class="input-group mb-3 w-100">
+                <input disabled type="text" class="form-control mitexto" style="font-size: 18px;" name="ciudadResidencia" value="{{usuario.ciudadResidencia}}"
+                    id="id_ciudadResidencia"
+                    aria-describedby="basic-addon3"
+                    placeholder="">
+            </div>
+        </div>
+
+        <div class="d-inline-block ms-1 me-5 width-28">
+            <label for="basic-url" class="form-label w-75 ps-2">Dirección de Residencia</label>
+            <div class="input-group mb-3 w-100">
+                <input disabled type="text" class="form-control mitexto" style="font-size: 18px;" name="direccionResidencia" value="{{usuario.direccionResidencia}}"
+                    id="id_direccionResidencia"
+                    aria-describedby="basic-addon3"
+                    placeholder="">
+            </div>
+        </div>
+
+        <div class="d-inline-block ms-1 me-5 width-28">
+            <label for="basic-url" class="form-label w-75 ps-2">Correo Electrónico</label>
+            <div class="input-group mb-3 w-100">
+                <input disabled type="text" class="form-control mitexto" style="font-size: 18px;" name="correoElectronico" value="{{usuario.correoElectronico}}"
+                    id="id_correoElectronico"
+                    aria-describedby="basic-addon3"
+                    placeholder="">
+            </div>
+        </div>
+
+        <div class="d-inline-block ms-1 me-5 width-28">
+            <label for="basic-url" class="form-label w-75 ps-2">Genero</label>
+            <div class="input-group mb-3 w-100">
+                <select disabled id="id_genero" class="form-select mitexto" style="font-size: 18px;" name="genero" value="{{usuario.genero}}"
+                    aria-label="tipo-activo">
+                    <option selected>{{usuario.genero}}</option>
+                    <option value="Masculino">Masculino</option>
+                    <option value="Femenino">Femenino</option>
+                    <option value="Otro">Otro</option>
+                    <option value="Prefiero No Decir">Prefiero No Decir</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="d-inline-block ms-1 me-5 width-28">
+            <label for="basic-url" class="form-label w-75 ps-2">Cargo</label>
+            <div class="input-group mb-3 w-100">
+                <input disabled type="text" class="form-control mitexto" style="font-size: 18px;" name="cargo" value="{{usuario.cargo}}"
+                    id="id_cargo"
+                    aria-describedby="basic-addon3"
+                    placeholder="">
+            </div>
+        </div>
+
+        <div class="d-inline-block ms-1 me-5 width-28">
+            <label for="basic-url" class="form-label w-75 ps-2">Fecha de registro</label>
+            <div class="input-group mb-3 w-100">
+                <input disabled id="id_fechaRegistro" type="date" class="form-control mitexto" style="font-size: 18px;" name="fechaRegistro" value="{{usuario.fechaRegistro | date:'Y-m-d'}}"
+                    aria-describedby="basic-addon3"
+                    placeholder="">
+            </div>
+        </div>
+
+        <div class="d-inline-block ms-1 me-5 width-28">
+            <label for="basic-url" class="form-label w-75 ps-2">Tipo de Usuario</label>
+            <div class="input-group mb-3 w-100">
+                <select disabled id="id_tipoUsuario" class="form-select mitexto" style="font-size: 18px;" name="tipoUsuario" value="{{usuario.tipoUsuario}}"
+                    aria-label="tipo-activo">
+                    <option selected >{{usuario.tipoUsuario}}</option>
+                    <option value="Funcionario">Funcionario</option>
+                    <option value="Conductor">Conductor</option>
+                    <option value="Administrador">Administrador</option>
+                </select>
+            </div>
+        </div>
+        <br>
+        <br>
+        
     </div>
     </form>
 </div>

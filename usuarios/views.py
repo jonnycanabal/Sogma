@@ -23,7 +23,7 @@ from django.contrib.auth.decorators import login_required, permission_required
 def usuarios_creados(request):
     titulo='Usuarios - Creados'
     usuarios = Usuario.objects.all()
-    usuarios= Usuario.objects.filter(estado="1")
+    usuarios= Usuario.objects.filter()
     usuario=None
 
     # ###################################################################################################################################
