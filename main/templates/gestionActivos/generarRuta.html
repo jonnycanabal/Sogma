@@ -15,6 +15,12 @@
 <!-- Bloque de contenido el cual estará declarado en el body.html y será lo que se vera dependiente de la página  -->
 {% block contenido %}
 
+{% if form.errors %}
+<div class="alert alert-danger">
+    {{form.errors}}
+</div>
+{% endif %}
+
 <!-- Bloque de codigo del formulario o tabla
 <div class="container">
     <form action="" method="POST">

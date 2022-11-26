@@ -162,10 +162,11 @@ def generar_ruta(request,pk=None):
             request,f"SE REGISTRO EL PASAJERO EXITOSAMENTE"
         )
         else:
+            print('######################################', form.errors)
             form=PasajeroForm(request.POST)
             print('###################################### ERROR PASAJERO NO REGISTRADO')
-            messages.error(
-            request,f"ERROR. NO SE PUDO REGISTRAR AL PASAJERO. INTENTELO DE NUEVO"
+            messages.warning(
+            request,f"ERROR. NO SE PUDO REGISTRAR EL PASAJERO. INTENTELO DE NUEVO"
         )
 
     context={

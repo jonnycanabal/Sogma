@@ -7,6 +7,11 @@
 <link rel="stylesheet" href="{% static 'css/wizardForm.css' %}">
 {% endblock estilos %}
 
+{% if form.errors %}
+<div class="alert alert-danger">
+    {{form.errors}}
+</div>
+{% endif %}
 <!-- CÓDIGO RELACIONADO AL FORM WIZARD -->
 <div class="container-wizard mt-5">
     <div class="row d-flex justify-content-center align-items-center">
@@ -91,7 +96,7 @@
                                     id="id_cantidadPasajeros"
                                     class="input-wizard"
                                     name="cantidadPasajeros"
-                                    min="1" max="2" required></p>
+                                    min="1" max="4" required></p>
                             <p><label class="w-75 mb-0 fs-5">Persona a Cargo</label><input
                                     id="id_personaEncargadaVehiculo"
                                     class="input-wizard"
