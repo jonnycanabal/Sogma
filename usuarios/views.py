@@ -136,7 +136,7 @@ def eliminar_usuario(request,pk):
         estado='0'
     )
     messages.success(
-            request,f"SE ELIMINO EL USUARIO EXITOSAMENTE"
+            request,f"SE INACTIVO EL USUARIO EXITOSAMENTE"
         )
 
     return redirect('gestion-usuarios')

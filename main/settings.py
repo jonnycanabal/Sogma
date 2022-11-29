@@ -181,8 +181,8 @@ EMAIL_BACKEND= "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST= 'smtp.googlemail.com'
 EMAIL_USE_TLS= True
 EMAIL_PORT= 587
-EMAIL_HOST_USER= "jmcanabal7@misena.edu.co"
-EMAIL_HOST_PASSWORD= "hshwdhivhhojjebq"
+EMAIL_HOST_USER= "sogmacontraloria@gmail.com"
+EMAIL_HOST_PASSWORD= "azqzjuwpzqougnus"
 
 # CONFIGURACIÓN PARA CERRAR SESIÓN DE FORMA AUTOMATICA DESPUES DE NO USAR EL SISTEMA DURANTE 
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
