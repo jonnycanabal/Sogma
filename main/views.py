@@ -111,6 +111,13 @@ def error_404(request, exception):
 def error_500(request):
     return render (request, '500.html')
 
+def informacion(request):
+    title='información'
+
+    context ={
+        'title':title
+    }
+    return render (request, 'informacion.html', context)
 
 # send_mail(
 #     'Título del correo',

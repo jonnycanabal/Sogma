@@ -127,8 +127,12 @@ def control_activos(request):
             request,f"SE REGISTRO EL EXTINTOR EXITOSAMENTE"
         )
         else:
+            print('######################################', form.errors)
             form=ActivoExtintorForm(request.POST)
             print('###################################### EXTINTOR ERROR')
+            messages.error(
+            request,f"ERROR, YA EXISTE UN EXTINTOR CON ESE NÚMERO DE SERIAL"
+        )
 
     if request.method == "POST" and 'form-oficina' in request.POST:
         form=ActivoEquipoOficinaForm(request.POST, request.FILES)
@@ -139,8 +143,12 @@ def control_activos(request):
             request,f"SE REGISTRO EL EQUIPO DE OFICINA EXITOSAMENTE"
         )
         else:
+            print('######################################', form.errors)
             form=ActivoEquipoOficinaForm(request.POST)
             print('###################################### EQUIPO ERROR')
+            messages.error(
+            request,f"ERROR, YA EXISTE UN EQUIPO DE OFICINA CON ESE NÚMERO DE SERIAL"
+        )
 
     if request.method == "POST" and 'form-vehiculo' in request.POST:
         form=ActivoVehiculoForm(request.POST, request.FILES)
@@ -151,9 +159,12 @@ def control_activos(request):
             request,f"SE REGISTRO EL VEHÍCULO EXITOSAMENTE"
         )
         else:
+            print('######################################', form.errors)
             form=ActivoVehiculoForm(request.POST)
             print('###################################### VEHICULO ERROR')
-
+            messages.error(
+            request,f"ERROR, YA EXISTE UN VEHÍCULO CON ESE NÚMERO DE PLACA Y/O SERIAL"
+        )
     context={
         'titulo':titulo,
         'extintores':extintores,

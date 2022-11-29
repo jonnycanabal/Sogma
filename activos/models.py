@@ -8,7 +8,7 @@ from datetime import date
 # CREACIÓN DE LA TABLA (activoExtintor) DE NUESTRA MER DISEÑADO EN MYSQL WORKBENCH
 class ActivoExtintor(models.Model):
     fotoExtintor=models.ImageField(upload_to='extintores', blank=True, default='extintores/extintores_default.jpg') # pip install pillow
-    serialExtintor=models.CharField(max_length=50, verbose_name="Serial Extintor")
+    serialExtintor=models.CharField(max_length=50, unique=True, verbose_name="Serial Extintor")
     colorExtintor=models.CharField(max_length=20, verbose_name="Color Extintor")
     ubicacionExtintor=models.CharField(max_length=50, verbose_name="Ubicación del Extintor")
     class TipoExtintor(models.TextChoices):
@@ -31,7 +31,7 @@ class ActivoExtintor(models.Model):
 # CREACIÓN DE LA TABLA (activoEquipoOficina) DE NUESTRA MER DISEÑADO EN MYSQL WORKBENCH
 class ActivoEquipoOficina(models.Model):
     fotoEquipo=models.ImageField(upload_to='equipos', blank=True, default='equipos/equipo_default.jpg') # pip install pillow
-    serialEquipo=models.CharField(max_length=50, verbose_name="Serial Equipo")
+    serialEquipo=models.CharField(max_length=50, unique=True, verbose_name="Serial Equipo")
     marcaEquipo=models.CharField(max_length=20, verbose_name="Marca Equipo")
     colorEquipo=models.CharField(max_length=20, verbose_name="Color Equipo")
     sistemaOperativo=models.CharField(max_length=20, verbose_name="Sistema Operativo", blank=True, default='No Aplica')
@@ -56,7 +56,7 @@ class ActivoVehiculo(models.Model):
     modeloVehiculo=models.CharField(max_length=10, verbose_name="Modelo del Vehículo")
     placaVehiculo=models.CharField(max_length=10, unique=True, verbose_name="Placa del Vehículo") #Tiene campo Único
     colorVehiculo=models.CharField(max_length=20, verbose_name="Color del Vehículo")
-    serialVehiculo=models.CharField(max_length=50, verbose_name="Serial del Vehiculo")
+    serialVehiculo=models.CharField(max_length=50, unique=True, verbose_name="Serial del Vehiculo")
     tipoCombustible=models.CharField(max_length=20, verbose_name="Tipo de Combustible")
     cantidadPasajeros=models.CharField(max_length=5, verbose_name="Cantidad de Pasajeros")
     personaEncargadaVehiculo=models.CharField(max_length=50, verbose_name="Persona a Cargo")
