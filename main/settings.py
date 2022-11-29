@@ -36,6 +36,7 @@ ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'whitenoise.runserver_nostatic',#  pip install whitenoise
+    'django_crontab',# pip install django-crontab
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -48,10 +49,18 @@ INSTALLED_APPS = [
     'django_select2', # pip install django-select2
     # pip install xhtml2pdf
     # pip install celery
+    'dbbackup', # pip install django-dbbackup
     'celery',
     'usuarios',
     'activos',
     'gestionActivos',
+]
+
+DBBACKUP_STORAGE = 'django.core.files.storage.FileSystemStorage'
+DBBACKUP_STORAGE_OPTIONS = {'location': BASE_DIR / 'backup'}
+
+CRONJOBS = [
+    ('*/5 * * * *', 'main.cron.my_backup')
 ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
@@ -172,8 +181,8 @@ EMAIL_BACKEND= "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST= 'smtp.googlemail.com'
 EMAIL_USE_TLS= True
 EMAIL_PORT= 587
-EMAIL_HOST_USER= "jmcanabal7@misena.edu.co"
-EMAIL_HOST_PASSWORD= "hshwdhivhhojjebq"
+EMAIL_HOST_USER= "sogmacontraloria@gmail.com"
+EMAIL_HOST_PASSWORD= "azqzjuwpzqougnus"
 
 # CONFIGURACIÓN PARA CERRAR SESIÓN DE FORMA AUTOMATICA DESPUES DE NO USAR EL SISTEMA DURANTE 
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True

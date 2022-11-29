@@ -46,7 +46,7 @@
     <link rel="stylesheet" href="{% static 'toastr/toastr.css' %}">
 
     <!-- Link con el que cargamos un Icono a nuestra pestaña de la Página -->
-    <link rel="shortcut icon" href="{% static 'img/logo_contraloria.png' %}">
+    <link rel="shortcut icon" href="{% static 'img/nuevo_logo_contraloria.png' %}">
 
     <!-- Titulo de la pestaña en el navegador -->
     <title>{{titulo}}</title> 
@@ -83,7 +83,7 @@
     
     {% for message in messages %}
         <script type="text/java">
-            toastr.{{message.tags}}("{{message}}")
+            toastr.{{message.tags}}("{{message}}{{form.error}}")
         </script>
     {% endfor %}
 {% endif %}

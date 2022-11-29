@@ -144,7 +144,7 @@
                         <textarea disabled type="text" class="form-control text-break"
                         id="id_componentesAdicionales" name="componentesAdicionales"
                         value="{{equipo.componentesAdicionales}}"
-                        aria-describedby="basic-addon3"></textarea>
+                        aria-describedby="basic-addon3">{{equipo.componentesAdicionales}}</textarea>
                 </div>
 
 
@@ -183,6 +183,11 @@
                     <tr>
                         <td colspan="2" style="font-size: 15px;" class="text-black"><b>Descripción</b></td>
                         <td colspan="6" class="text-break">{{mantenimiento.fkRegistrarMantenimiento.descripcionMantenimiento}}</td>
+                    </tr>
+                </tbody>
+                <tbody>
+                    <tr>
+                        <td colspan="8" class="text-break"><a href="/media/{{mantenimiento.fkRegistrarMantenimiento.adjuntarArchivoMantenimiento}}">Factura {{mantenimiento.fkRegistrarMantenimiento.numeroFactura}}</a></td>
                     </tr>
                 </tbody>
 
@@ -226,7 +231,14 @@
     // }
 
     // });
-    window.print()
+    const fecha = new Date();
+    let day = fecha.getDate();
+    let month = fecha.getMonth() +1;
+    let year = fecha.getFullYear();
+    let actual = year + '-' + month + '-' + day;
+
+    document.title='Reporte ' + actual;
+    window.print();
     });
 </script>
 <!-- <script>

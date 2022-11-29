@@ -23,7 +23,7 @@ from django.contrib.auth.decorators import login_required, permission_required
 def usuarios_creados(request):
     titulo='Usuarios - Creados'
     usuarios = Usuario.objects.all()
-    usuarios= Usuario.objects.filter(estado="1")
+    usuarios= Usuario.objects.filter()
     usuario=None
 
     # ###################################################################################################################################
@@ -109,7 +109,7 @@ def usuarios_creados(request):
 
             print('######################################', form.errors)
             messages.error(
-            request,f"NO SE REGISTRO EL USUARIO. ASEGURECE DE DIGITAR CORRECTAMENTE LOS CAMPOS Y QUE ESTOS NO CONTENGAS SOLO ESPACIOS EN BLANCO"
+            request,f"NO SE PUDO REGISTRO EL USUARIO. ASEGURECE DE DIGITAR CORRECTAMENTE LOS CAMPOS Y QUE ESTOS NO CONTENGAS SOLO ESPACIOS EN BLANCO"
             )
     else:
         form=UsuarioForm()
@@ -118,7 +118,8 @@ def usuarios_creados(request):
     context={
         'titulo':titulo,
         'usuarios': usuarios,
-        'usuario':usuario
+        'usuario':usuario,
+        'form':form,
     }
     return render (request, 'usuarios/gestionUsuarios.html', context)
 
@@ -135,7 +136,7 @@ def eliminar_usuario(request,pk):
         estado='0'
     )
     messages.success(
-            request,f"SE ELIMINO EL USUARIO EXITOSAMENTE"
+            request,f"SE INACTIVO EL USUARIO EXITOSAMENTE"
         )
 
     return redirect('gestion-usuarios')

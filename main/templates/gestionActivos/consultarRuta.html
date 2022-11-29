@@ -75,6 +75,11 @@
                             <tbody>
 
                                 {% for vehiculo in vehiculos %}
+                                
+                                {% if vehiculo.estadoVehiculo == 'Activo' %}
+                                    
+                                
+                                    
                                 <tr>
                                     <!-- Imagen de un ojo con el cual seleccionara el activo y mostrara en la parte de abajo toda la información
                                     para editar, guardar o eliminar/desabilitar la información -->
@@ -108,6 +113,7 @@
                                     <td>{{vehiculo.fechaInicioTecnicomecanica}}</td>
                                     <td>{{vehiculo.fechaVencimientoTecnicomecanica}}</td>
                                 </tr>
+                                {% endif %}
                                 {% endfor %}
 
                             </tbody>
