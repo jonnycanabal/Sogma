@@ -96,7 +96,7 @@
                                     id="id_cantidadPasajeros"
                                     class="input-wizard"
                                     name="cantidadPasajeros"
-                                    min="1" max="4" required></p>
+                                    min="1" pattern="^[0-9]+" onkeyup="validarNumero(this)" required></p>
                             <p><label class="w-75 mb-0 fs-5">Persona a Cargo</label><input
                                     id="id_personaEncargadaVehiculo"
                                     class="input-wizard"
@@ -502,4 +502,16 @@
         x[n].className += " active";
     }
 </script>
+
+<script>
+    function validarNumero(value) {
+        var valor = $(value).val();
+        if (!isNaN(valor) && valor >= 1){
+            $(value).val(valor);
+        }else{
+            $(value).val("");
+        }
+    }
+    </script>
+    
 {% endblock javascriptwizard %}
