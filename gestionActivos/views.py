@@ -135,9 +135,9 @@ def generar_ruta(request,pk=None):
                 messages.warning(
                 request,f"EL PASAJERO YA SE ENCUENTRA AGREGADO A LA RUTA"
                 )
-            elif DetalleRuta.objects.filter(fkRuta_id=pk).count()== 4:
+            elif DetalleRuta.objects.filter(fkRuta_id=pk).count() == int(GenerarRuta.objects.get(id=pk).fkVehiculo.cantidadPasajeros):
                 messages.warning(
-                request,f"SE HA SUPERADO EL NÚMERO DE PASAJEROS (4)"
+                request,f"SE HA SUPERADO EL NÚMERO DE PASAJEROS ({GenerarRuta.objects.get(id=pk).fkVehiculo.cantidadPasajeros})"
                 )
             else:
                 form.save()
