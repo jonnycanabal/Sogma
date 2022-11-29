@@ -468,8 +468,8 @@
                 <label for="basic-url" class="form-label w-75 ps-2">Kilometraje
                     Final (ultimo: {{kilometraje.kilometrajeFinalVehiculo}})</label>
                 <div class="input-group mb-3 w-100">
-                    <input type="text" class="form-control mitexto" style="font-size: 18px;"
-                        name="kilometrajeFinalVehiculo"
+                    <input type="number" class="form-control mitexto" style="font-size: 18px;"
+                        name="kilometrajeFinalVehiculo" min="1" pattern="^[0-9]+" onkeyup="validarNumero(this)"
                         id="id_kilometrajeFinalVehiculo"
                         aria-describedby="basic-addon3" required
                         value="{{ruta.kilometrajeFinalVehiculo}}">
@@ -904,6 +904,16 @@ function checktimeval(){
     })();
 </script>
 
+<script>
+    function validarNumero(value) {
+        var valor = $(value).val();
+        if (!isNaN(valor) && valor >= 1){
+            $(value).val(valor);
+        }else{
+            $(value).val("");
+        }
+    }
+</script>
 
 {% include 'partials/tamañoLetra.html' %}
 
