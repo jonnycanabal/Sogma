@@ -17,7 +17,7 @@ from django.core.mail import send_mail
 import threading
 import time
 
-from datetime import datetime
+from datetime import datetime, date
 
 from django.views.defaults import page_not_found
 
@@ -118,6 +118,17 @@ def informacion(request):
         'title':title
     }
     return render (request, 'informacion.html', context)
+
+# def exportar_datos():
+#     fecha=date.today()
+#     os.system(f"python manage.py dbbackup> backup/BK_{fecha}")
+
+# def backup_sogma(request):
+#     if request.method == 'POST' and 'crear_backup' in request.POST:
+#         exportar_datos()
+#         return render(request, 'bakcup')
+
+
 
 # send_mail(
 #     'Título del correo',
