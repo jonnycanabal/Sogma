@@ -21,7 +21,7 @@ from django.urls import path, include
 
 
 # Importar la funcion de cada path creado.
-from main.views import error_404, error_500, consultar_ruta, reporte_vehiculo, reporte_extintor, reporte_equipo, informacion,  control_activos, generar_alarma, generar_ruta, inicio, nuevo_usuario, registrar_mantenimiento
+from main.views import  error_404, error_500, consultar_ruta, reporte_vehiculo, reporte_extintor, reporte_equipo, informacion,  control_activos, generar_alarma, generar_ruta, inicio, nuevo_usuario, registrar_mantenimiento
 from usuarios.views import logout_user
 
 ####### Importes para subir imágenes #######
@@ -65,6 +65,8 @@ urlpatterns = [
     path('reporte/extintor/<int:pk>/', reporte_extintor , name='reporte-extintor'),
     path('reporte/equipo/<int:pk>/', reporte_equipo , name='reporte-equipo'),
     # ------------------------------------------------------------------------
-    path('informacion/', informacion, name='informacion')
+    path('informacion/', informacion, name='informacion'),
+    # path('backup/', backup_sogma, name='backup'),
+
 
 ]+ static(settings.MEDIA_URL, document_root= settings.MEDIA_ROOT)

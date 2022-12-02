@@ -53,6 +53,11 @@
             <!-- <li><a class="dropdown-item" href="#">Copia de Seguridad</a></li> -->
             <li><hr class="dropdown-divider"></li>
 
+            <!-- <li><a class="dropdown-item" href="#"
+                data-bs-toggle="modal"
+                data-bs-target="#backup">Copia de Seguridad</a></li> -->
+            <!-- <li><a class="dropdown-item" href="#">Copia de Seguridad</a></li> -->
+
             <!-- Uso de MODAL con BOOTSTRAP 5-->
             <!-- Button trigger modal (se le dan las caracteristicas del button a la etiquea [a]) -->
             <li><a class="dropdown-item" href="#"
@@ -299,6 +304,70 @@
             </div>
         </div>
         <!-- Fin del modal cerrar sesion con BOOTSTRAP 5-->
+
+<!-- Modal cerrar sesión -->
+        <div class="modal fade" id="cerrar-sesion"
+            data-bs-backdrop="static" data-bs-keyboard="false"
+            tabindex="-1" aria-labelledby="staticBackdropLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title"
+                            id="staticBackdropLabel">CERRAR SESIÓN Y
+                            SALIR</h5>
+                        <button type="button" class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body text-start">
+                        Esta seguro que desea cerrar sesion de
+                        ususario y Salir de la pestaña principal.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn
+                            btn-secondary" data-bs-dismiss="modal">CANCELAR</button>
+                        <button type="submit" class="btn
+                            btn-primary"><a style="color: white;
+                                text-decoration: none;" href="{% url 'logout' %}">ACEPTAR</a></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Fin del modal cerrar sesion con BOOTSTRAP 5-->
+
+        <!-- Modal cerrar sesión -->
+        <!-- <div class="modal fade" id="backup"
+            data-bs-backdrop="static" data-bs-keyboard="false"
+            tabindex="-1" aria-labelledby="staticBackdropLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title"
+                            id="staticBackdropLabel">COPIA DE SEGURIDAD</h5>
+                        <button type="button" class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body text-start">
+                        ¿Esta seguro que desea generar una copia de seguridad?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn
+                            btn-secondary" data-bs-dismiss="modal">CANCELAR</button>
+                            <button data-bs-toggle="modal" data-bs-target=""
+                            data-bs-dismiss="modal" class="btn
+                            btn-success" name="crear_backup">Aceptar </button>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+        <!-- Fin del modal cerrar sesion con BOOTSTRAP 5-->
+
+
+
+
     </div>
     {% endif %}
 </header>

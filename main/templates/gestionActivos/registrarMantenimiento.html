@@ -32,7 +32,7 @@
         <!-- Inicio del primer contenedor de la página-->
 
             <div class="text-center p-2 w-100">
-                <h1>Regitrar Mantenimiento</h1>
+                <h1>Registrar Mantenimiento</h1>
             </div>
 
             <!-- Salto de línea -->
@@ -665,7 +665,7 @@
                         <label for="basic-url" class="form-label
                             w-75 ps-2">Kilometraje del Vehículo</label>
                         <div class="input-group mb-3 w-100">
-                            <input type="number"
+                            <input type="number" min="1" pattern="^[0-9]+" onkeyup="validarNumero(this)"
                                 class="form-control"
                                 name="kilometrajeMantenimiento"
                                 id="id_kilometrajeMantenimiento"
@@ -690,7 +690,7 @@
                         <label for="basic-url" class="form-label
                             w-75 ps-2">Valor del Mantenimiento</label>
                         <div class="input-group mb-3 w-100">
-                            <input type="number"
+                            <input type="number" min="1" pattern="^[0-9]+" onkeyup="validarNumero(this)"
                                 class="form-control" name="valorMantenimiento"
                                 id="id_valorMantenimiento"
                                 aria-describedby="basic-addon3" required>
@@ -877,7 +877,7 @@
                         <label for="basic-url" class="form-label
                             w-75 ps-2">Valor del Mantenimiento</label>
                         <div class="input-group mb-3 w-100">
-                            <input type="number"
+                            <input type="number" min="1" pattern="^[0-9]+" onkeyup="validarNumero(this)"
                                 class="form-control" name="valorMantenimiento"
                                 id="id_valorMantenimiento"
                                 aria-describedby="basic-addon3" required>
@@ -1047,7 +1047,7 @@
                         <label for="basic-url" class="form-label
                             w-75 ps-2">Valor del Mantenimiento</label>
                         <div class="input-group mb-3 w-100">
-                            <input type="number"
+                            <input type="number" min="1" pattern="^[0-9]+" onkeyup="validarNumero(this)"
                                 class="form-control" name="valorMantenimiento"
                                 id="id_valorMantenimiento"
                                 aria-describedby="basic-addon3" required>
@@ -1225,6 +1225,17 @@ $(document).ready(function () {
             }
         });
     })();
+</script>
+
+<script>
+function validarNumero(value) {
+    var valor = $(value).val();
+    if (!isNaN(valor) && valor >= 1){
+        $(value).val(valor);
+    }else{
+        $(value).val("");
+    }
+}
 </script>
 
 {% endblock contenido %}
