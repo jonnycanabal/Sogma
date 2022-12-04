@@ -127,6 +127,11 @@
                             <tbody>
 
                                 {% for vehiculo in vehiculos %}
+                                
+                                {% if vehiculo.estadoVehiculo == 'Activo' %}
+                                    
+                                
+                                    
                                 <tr>
                                     <!-- Imagen de un ojo con el cual seleccionara el activo y mostrara en la parte de abajo 
                                         toda la información para editar, guardar o eliminar/deshabilitar la información -->
@@ -159,6 +164,8 @@
                                     <td>{{vehiculo.fechaInicioTecnicomecanica}}</td>
                                     <td>{{vehiculo.fechaVencimientoTecnicomecanica}}</td>
                                 </tr>
+                                {% endif %}
+
                                 {% endfor %}
                             </tbody>
 
@@ -217,6 +224,12 @@
                             <tbody>
 
                                 {% for extintor in extintores %}
+                                
+                                
+                                {% if extintor.estadoExtintor == 'Activo' %}
+                                    
+                                
+                                    
                                 <tr>
                                     <!-- Imagen de un ojo con el cual seleccionara el activo y mostrara en la parte de abajo 
                                         toda la información para editar, guardar o eliminar/deshabilitar la información -->
@@ -241,6 +254,9 @@
                                     <td>{{extintor.tipoExtintor}}</td>
                                     <td>{{extintor.pesoExtintor}}</td>
                                 </tr>
+
+                                {% endif %}
+
                                 {% endfor %}
 
                             </tbody>
@@ -295,6 +311,12 @@
                             <tbody>
 
                                 {% for equipo in equipos %}
+
+                                
+                                {% if equipo.estadoEquipo == 'Activo' %}
+                                    
+                                
+                                    
                                 <tr>
                                     <!-- Imagen de un ojo con el cual seleccionara el activo y mostrara en la parte de abajo toda la informacion
                     para editar, guardar o eliminar/desabilitar la información -->
@@ -321,6 +343,9 @@
                                     <td>{{equipo.ubicacionEquipo}}</td>
                                     <td>{{equipo.componentesAdicionales}}</td>
                                 </tr>
+                                
+                                {% endif %}
+
                                 {% endfor %}
 
 
@@ -769,7 +794,7 @@
                                     text-start text-wrap">
                                     El mantenimiento se
                                     registrará con los datos
-                                    Ingresados con Anterioridad.
+                                    ingresados con anterioridad.
                                     ¿Está seguro de hacer el
                                     registro?
                                 </div>
@@ -955,7 +980,7 @@
                                     text-start">
                                     El mantenimiento se
                                     registrará con los datos
-                                    Ingresados con Anterioridad.
+                                    ingresados con anterioridad.
                                     ¿Está seguro de hacer el
                                     registro?
                                 </div>
@@ -1125,7 +1150,7 @@
                                     text-start">
                                     El mantenimiento se
                                     registrará con los datos
-                                    Ingresados con Anterioridad.
+                                    ingresados con anterioridad.
                                     ¿Está seguro de hacer el
                                     registro?
                                 </div>
@@ -1160,6 +1185,11 @@
 $(document).ready(function () {
     const fecha = new Date();
     let day = fecha.getDate();
+    if (day <= 9){
+        day = "0" + fecha.getDate();
+    }else{
+        day = fecha.getDate();
+    }
     let month = fecha.getMonth() +1;
     let year = fecha.getFullYear();
     let actual = year + '-' + month + '-' + day
@@ -1190,7 +1220,7 @@ $(document).ready(function () {
             let descripcionMantenimientoE=String($id_descripcionMantenimiento.value).trim();
 
             if (lugarMantenimientoE.length === 0 || ciudadMantenimientoE === "" || numeroFacturaE === "" || descripcionMantenimientoE === ""){
-                alert("El dato no puede ir vacio o solo con espacios en blanco");
+                alert("El dato no puede ir vacío o solo con espacios en blanco");
                 m.preventDefault();
             }
         });
@@ -1205,7 +1235,7 @@ $(document).ready(function () {
             let descripcionMantenimientoE=String($id_descripcionMantenimiento.value).trim();
 
             if (lugarMantenimientoE.length === 0 || ciudadMantenimientoE === "" || numeroFacturaE === "" || descripcionMantenimientoE === ""){
-                alert("El dato no puede ir vacio o solo con espacios en blanco");
+                alert("El dato no puede ir vacío o solo con espacios en blanco");
                 m.preventDefault();
             }
         });
@@ -1220,7 +1250,7 @@ $(document).ready(function () {
             let descripcionMantenimientoE=String($id_descripcionMantenimiento.value).trim();
 
             if (lugarMantenimientoE.length === "" || ciudadMantenimientoE === "" || numeroFacturaE === "" || descripcionMantenimientoE === ""){
-                alert("El dato no puede ir vacio o solo con espacios en blanco");
+                alert("El dato no puede ir vacío o solo con espacios en blanco");
                 m.preventDefault();
             }
         });

@@ -74,13 +74,13 @@ def control_activos(request):
         if form.is_valid():
             form.save()
             messages.success(
-                request,f"SE EDITO EL VEHÍCULO CON ID # {vehiculo.id} EXITOSAMENTE"
+                request,f"SE EDITÓ EL VEHÍCULO CON ID # {vehiculo.id} EXITOSAMENTE"
             )
         else:
             # form=ActivoVehiculoEditarForm(request.POST, request.FILES, instance=vehiculo)
             # print (form.errors)
             messages.error(
-                request,f"ERROR NO SE EDITO EL VEHÍCULO CON ID # {vehiculo.id} "
+                request,f"ERROR NO SE EDITÓ EL VEHÍCULO CON ID # {vehiculo.id} "
             )
 
     # EDITAR EXTINTOR
@@ -91,11 +91,11 @@ def control_activos(request):
         if form.is_valid():
             form.save()
             messages.success(
-                request,f"SE EDITO EL EXTINTOR CON ID # {extintor.id} EXITOSAMENTE"
+                request,f"SE EDITÓ EL EXTINTOR CON ID # {extintor.id} EXITOSAMENTE"
             )
         else:
             messages.error(
-                request,f"ERROR NO SE EDITO EL EXTINTOR CON ID # {extintor.id} "
+                request,f"ERROR NO SE EDITÓ EL EXTINTOR CON ID # {extintor.id} "
             )
             print("error editar extintor")
 
@@ -107,11 +107,11 @@ def control_activos(request):
         if form.is_valid():
             form.save()
             messages.success(
-                request,f"SE EDITO EL EQUIPO DE OFICINA CON ID # {equipo.id} EXITOSAMENTE"
+                request,f"SE EDITÓ EL EQUIPO DE OFICINA CON ID # {equipo.id} EXITOSAMENTE"
             )
         else:
             messages.error(
-                request,f"ERROR NO SE EDITO EL EQUIPO DE OFICINA CON ID # {equipo.id} "
+                request,f"ERROR NO SE EDITÓ EL EQUIPO DE OFICINA CON ID # {equipo.id} "
             )
             print("error editar equipo de oficina")
 
@@ -124,7 +124,7 @@ def control_activos(request):
             form.save()
             print('###################################### EXTINTOR CREADO')
             messages.success(
-            request,f"SE REGISTRO EL EXTINTOR EXITOSAMENTE"
+            request,f"SE REGISTRÓ EL EXTINTOR EXITOSAMENTE"
         )
         else:
             print('######################################', form.errors)
@@ -140,7 +140,7 @@ def control_activos(request):
             form.save()
             print('###################################### EQUIPO CREADO')
             messages.success(
-            request,f"SE REGISTRO EL EQUIPO DE OFICINA EXITOSAMENTE"
+            request,f"SE REGISTRÓ EL EQUIPO DE OFICINA EXITOSAMENTE"
         )
         else:
             print('######################################', form.errors)
@@ -156,7 +156,7 @@ def control_activos(request):
             form.save()
             print('###################################### VEHICULO CREADO')
             messages.success(
-            request,f"SE REGISTRO EL VEHÍCULO EXITOSAMENTE"
+            request,f"SE REGISTRÓ EL VEHÍCULO EXITOSAMENTE"
         )
         else:
             print('######################################', form.errors)
@@ -194,7 +194,7 @@ def control_activos_eliminar_vehiculo(request,pk):
         estadoVehiculo='Inactivo'
     )
     messages.success(
-            request,f"SE ELIMINO EL VEHICULO EXITOSAMENTE"
+            request,f"SE ELIMINÓ EL VEHÍCULO EXITOSAMENTE"
         )
 
     return redirect('control-activos')
@@ -215,7 +215,7 @@ def control_activos_eliminar_extintor(request,pk):
         estadoExtintor='Inactivo'       
     )
     messages.success(
-            request,f"SE ELIMINO EL EXTINTOR EXITOSAMENTE"
+            request,f"SE ELIMINÓ EL EXTINTOR EXITOSAMENTE"
         )
 
     return redirect('control-activos')
@@ -239,7 +239,7 @@ def control_activos_eliminar_equipo(request,pk):
         estadoEquipo='Inactivo'
     )
     messages.success(
-            request,f"SE ELIMINO EL EQUIPO DE OFICINA EXITOSAMENTE"
+            request,f"SE ELIMINÓ EL EQUIPO DE OFICINA EXITOSAMENTE"
         )
 
     return redirect('control-activos')
