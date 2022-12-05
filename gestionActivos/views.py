@@ -41,7 +41,7 @@ def generar_ruta(request,pk=None):
         ruta= GenerarRuta.objects.get(id=pk)
         usuario=Usuario.objects.get(user_id=request.user.id)
 
-        if ruta.fkUsuario == usuario:
+        if ruta.fkUsuario == usuario or usuario.tipoUsuario == "Administrador" or usuario.tipoUsuario == "Funcionario":
             detalles=DetalleRuta.objects.filter(fkRuta_id=pk)
             kilometraje=GenerarRuta.objects.filter(fkVehiculo=ruta.fkVehiculo, kilometrajeFinalVehiculo__gt=0).order_by('-fechaRegreso', '-horaRegreso')
             if kilometraje:
