@@ -50,11 +50,11 @@ def usuarios_creados(request):
             my_group.user_set.add(usuario.user)
 
             messages.success(
-                request,f"SE EDITO EL USUARIO CON ID # {usuario.id} EXITOSAMENTE"
+                request,f"SE EDITÓ EL USUARIO CON ID # {usuario.id} EXITOSAMENTE"
             )
         else:
             messages.error(
-                request,f"ERROR NO SE EDITO EL USUARIO CON ID # {usuario.id} "
+                request,f"ERROR NO SE EDITÓ EL USUARIO CON ID # {usuario.id} "
             )
 
     # ###################################################################################################################################
@@ -100,7 +100,7 @@ def usuarios_creados(request):
             my_group.user_set.add(usuario.user)
 
             messages.success(
-            request,f"SE REGISTRO EL USUARIO EXITOSAMENTE"
+            request,f"SE REGISTRÓ EL USUARIO EXITOSAMENTE"
             )
             return redirect ('gestion-usuarios')
 
@@ -109,7 +109,7 @@ def usuarios_creados(request):
 
             print('######################################', form.errors)
             messages.error(
-            request,f"NO SE PUDO REGISTRO EL USUARIO. ASEGURECE DE DIGITAR CORRECTAMENTE LOS CAMPOS Y QUE ESTOS NO CONTENGAS SOLO ESPACIOS EN BLANCO"
+            request,f"NO SE PUDO REGISTRAR EL USUARIO. ASEGURECE DE DIGITAR CORRECTAMENTE LOS CAMPOS Y QUE ESTOS NO CONTENGAN SOLO ESPACIOS EN BLANCO"
             )
     else:
         form=UsuarioForm()
@@ -136,7 +136,7 @@ def eliminar_usuario(request,pk):
         estado='0'
     )
     messages.success(
-            request,f"SE INACTIVO EL USUARIO EXITOSAMENTE"
+            request,f"SE INACTIVÓ EL USUARIO EXITOSAMENTE"
         )
 
     return redirect('gestion-usuarios')

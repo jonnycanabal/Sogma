@@ -54,7 +54,7 @@
             <!-- Botones para seleccionar o diligenciar  información -->
             <div class="d-inline-block width-20 ms-1 me-5 mitexto" style="font-size: 18px;">
                 <label for="basic-url" class="form-label w-75 ps-2">Placa del
-                    Vehiculo</label>
+                    Vehículo</label>
                 <div class="input-group mb-3 w-100">
                     <select class="form-control form-select mitexto" style="font-size: 18px;" name="fkVehiculo"
                         id="id_fkVehiculo" required>
@@ -408,7 +408,7 @@
                     <th>Primer Nombre</th>
                     <th>Primer Apellido</th>
                     <th>Dirección</th>
-                    <th>Telefono</th>
+                    <th>Teléfono</th>
                 </tr>
             </thead>
 
@@ -466,7 +466,7 @@
 
             <div class="d-inline-block width-20 me-5">
                 <label for="basic-url" class="form-label w-75 ps-2">Kilometraje
-                    Final (ultimo: {{kilometraje.kilometrajeFinalVehiculo}})</label>
+                    Final (Último: {{kilometraje.kilometrajeFinalVehiculo}})</label>
                 <div class="input-group mb-3 w-100">
                     <input type="number" class="form-control mitexto" style="font-size: 18px;"
                         name="kilometrajeFinalVehiculo" min="1" pattern="^[0-9]+" onkeyup="validarNumero(this)"
@@ -697,7 +697,7 @@
                         <th>Primer Nombre</th>
                         <th>Primer Apellido</th>
                         <th>Dirección</th>
-                        <th>Telefono</th>
+                        <th>Teléfono</th>
                     </tr>
                 </thead>
 
@@ -832,7 +832,7 @@
                             type="text" id="id_direccionPasajero"
                             class="form-control"
                             name="direccionPasajero" required minlength="1" maxlength="100"></p>
-                    <p><label class="w-75 mb-0 fs-5">Telefono</label><input
+                    <p><label class="w-75 mb-0 fs-5">Teléfono</label><input
                             type="text" id="id_telefonoPasajero"
                             class="form-control"
                             name="telefonoPasajero" required minlength="1" maxlength="20"></p>
@@ -853,10 +853,16 @@
 </div>
 <!-- Fin del contenedor para la página generar ruta -->
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
 <script>
 $(document).ready(function () {
     const fecha = new Date();
     let day = fecha.getDate();
+    if (day <= 9){
+        day = "0" + fecha.getDate();
+    }else{
+        day = fecha.getDate();
+    }
     let month = fecha.getMonth() +1;
     let year = fecha.getFullYear();
     let actual = year + '-' + month + '-' + day
@@ -897,7 +903,7 @@ function checktimeval(){
             let direccionPasajero=String($id_direccionPasajero.value).trim();
             let telefonoPasajero=String($id_telefonoPasajero.value).trim();
             if (primerNombrePasajero === "" || primerApellidoPasajero === "" || numeroDocumentoPasajero === "" || direccionPasajero === "" || telefonoPasajero === ""){
-                alert("El dato no puede ir vacio o solo con espacios en blanco");
+                alert("El dato no puede ir vacío o solo con espacios en blanco");
                 p.preventDefault();
             }
         });

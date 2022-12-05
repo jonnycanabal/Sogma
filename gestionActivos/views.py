@@ -41,7 +41,7 @@ def generar_ruta(request,pk=None):
         ruta= GenerarRuta.objects.get(id=pk)
         usuario=Usuario.objects.get(user_id=request.user.id)
 
-        if ruta.fkUsuario == usuario:
+        if ruta.fkUsuario == usuario or usuario.tipoUsuario == "Administrador" or usuario.tipoUsuario == "Funcionario":
             detalles=DetalleRuta.objects.filter(fkRuta_id=pk)
             kilometraje=GenerarRuta.objects.filter(fkVehiculo=ruta.fkVehiculo, kilometrajeFinalVehiculo__gt=0).order_by('-fechaRegreso', '-horaRegreso')
             if kilometraje:
@@ -68,18 +68,18 @@ def generar_ruta(request,pk=None):
             if int(request.POST['horaSalida'][:2]) >= datetime.now().hour:
                 aux=form.save()
                 messages.success(
-                    request,f"SE REGISTRO LA RUTA EXITOSAMENTE"
+                    request,f"SE REGISTRÓ LA RUTA EXITOSAMENTE"
                 )
                 return redirect('generar-ruta',pk=aux.id)
             else:
                 form=GenerarRutaForm(request.POST)
                 messages.warning(
-                    request,f"Error, La hora no debe ser menor a la actual"
+                    request,f"ERROR, LA HORA NO DEBE SER MENOR A LA ACTUAL"
                 )
         else:
             form=GenerarRutaForm(request.POST)
             messages.error(
-                request,f"Error al generar la ruta"
+                request,f"ERROR AL GENERAR LA RUTA"
             )
 
 
@@ -97,13 +97,13 @@ def generar_ruta(request,pk=None):
                 if kilometraje.kilometrajeFinalVehiculo < int(request.POST['kilometrajeFinalVehiculo']):
                     form.save()
                     messages.success(
-                        request,f"SE EDITO LA RUTA CORRECTAMENTE"
+                        request,f"SE EDITÓ LA RUTA CORRECTAMENTE"
                     )
 
                 else:
                     form=EditarGenerarRutaForm(request.POST)
                     messages.warning(
-                        request,f"EL KILOMETRAJE NO PUEDE SER MENOR AL ULTIMO REGISTRADO"
+                        request,f"EL KILOMETRAJE NO PUEDE SER MENOR AL ÚLTIMO REGISTRADO"
                     )
 
             else:
@@ -114,7 +114,7 @@ def generar_ruta(request,pk=None):
                 else:
                     form.save()
                     messages.success(
-                        request,f"SE EDITO LA RUTA CORRECTAMENTE"
+                        request,f"SE EDITÓ LA RUTA CORRECTAMENTE"
                     )
 
             return redirect('generar-ruta',pk)
@@ -148,7 +148,7 @@ def generar_ruta(request,pk=None):
         else:
             form=DetalleRutaForm(request.POST)
             messages.error(
-                request,f"Error al agregar el pasajero a la ruta"
+                request,f"ERROR AL AGREGAR EL PASAJERO A LA RUTA"
             )
 
     # ############################################################################################
@@ -159,14 +159,14 @@ def generar_ruta(request,pk=None):
             form.save()
             print('###################################### PASAJERO REGISTRADO')
             messages.success(
-            request,f"SE REGISTRO EL PASAJERO EXITOSAMENTE"
+            request,f"SE REGISTRÓ EL PASAJERO EXITOSAMENTE"
         )
         else:
             print('######################################', form.errors)
             form=PasajeroForm(request.POST)
-            print('###################################### ERROR PASAJERO NO REGISTRADO')
+            print('###################################### ERROR, PASAJERO NO REGISTRADO')
             messages.warning(
-            request,f"ERROR. NO SE PUDO REGISTRAR EL PASAJERO. INTENTELO DE NUEVO"
+            request,f"ERROR. NO SE PUDO REGISTRAR EL PASAJERO. INTÉNTELO DE NUEVO"
         )
 
     context={
@@ -190,7 +190,7 @@ def cerrar_ruta(request,pk):
         estadoRuta='Cerrada'
     )
     messages.success(
-        request,f"SE CERRO LA RUTA"
+        request,f"SE CERRÓ LA RUTA EXITOSAMENTE"
         )
 
     return redirect('generar-ruta')
@@ -252,11 +252,11 @@ def registrar_mantenimiento(request):
                 fkRegistrarMantenimiento=RegistrarMantenimiento.objects.get(id=registro.id)
             )
             messages.success(
-                request, f"SE REGISTRO EL MANTENIMIENTO DEL VEHICULO EXITOSAMENTE"
+                request, f"SE REGISTRÓ EL MANTENIMIENTO DEL VEHÍCULO EXITOSAMENTE"
             )
         else:
             messages.error(
-                request, f"ERROR!!!, NO SE PUDO REGISTRAR EL MANTENIMIENTO DEL VEHICULO"
+                request, f"ERROR!!!, NO SE PUDO REGISTRAR EL MANTENIMIENTO DEL VEHÍCULO"
             )
 
     # ############################################################################################################################
@@ -273,7 +273,7 @@ def registrar_mantenimiento(request):
                 fkRegistrarMantenimiento=RegistrarMantenimiento.objects.get(id=registro.id)
             )
             messages.success(
-                request, f"SE REGISTRO EL MANTENIMIENTO DEL EXTINTOR EXITOSAMENTE"
+                request, f"SE REGISTRÓ EL MANTENIMIENTO DEL EXTINTOR EXITOSAMENTE"
             )
         else:
             messages.error(
@@ -293,7 +293,7 @@ def registrar_mantenimiento(request):
                 fkRegistrarMantenimiento=RegistrarMantenimiento.objects.get(id=registro.id)
             )
             messages.success(
-                request, f"SE REGISTRO EL MANTENIMIENTO DEL EQUIPO DE OFICINA EXITOSAMENTE"
+                request, f"SE REGISTRÓ EL MANTENIMIENTO DEL EQUIPO DE OFICINA EXITOSAMENTE"
             )
         else:
             messages.error(

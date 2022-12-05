@@ -23,11 +23,13 @@
         </li>
         {% endif %}
 
+        {% if perms.gestionActivos.view_generarruta %}
         <!-- Link que redirecciona a la pagina (Consultar Ruta) -->
         <li class="nav-item">
             <a class="nav-link text-white mitexto"
                 href="{% url 'consultar-ruta' %}">Consultar Ruta</a>
         </li>
+        {% endif %}
 
         <!-- Link que redirecciona a la pagina (Registrar Matenimiento) -->
         <li class="nav-item">
@@ -39,7 +41,7 @@
         {% if perms.usuarios.view_usuario %}
         <li class="nav-item">
             <a class="nav-link text-white mitexto"
-                href="{% url 'gestion-usuarios' %}">Gestion Usuarios</a>
+                href="{% url 'gestion-usuarios' %}">Gestión Usuarios</a>
         </li>
         {% endif %}
 
