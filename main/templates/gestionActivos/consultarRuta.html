@@ -233,7 +233,7 @@
 
                                     {% if vehiculo.id == ruta.fkVehiculo.id %}
 
-                                    {% if usuario.id == ruta.fkUsuario.id or usuario.tipoUsuario == 'Administrador'%}
+                                    {% if usuario.id == ruta.fkUsuario.id or usuario.tipoUsuario == 'Administrador' or usuario.tipoUsuario == 'Funcionario'%}
                                     <tr>
                                         <td class="text-center">{{ruta.id}}</td>
                                         <td>{{ruta.fechaSalida}}</td>
