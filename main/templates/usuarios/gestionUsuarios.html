@@ -65,12 +65,12 @@
                             <!-- Botón del ojo para editar la información -->
                             <input type="hidden" name="pk_usuario" value="{{usuario.id}}">
                             <button class="btn btn-block pe-1 ps-1 mitexto" style="font-size: 18px;" onClick="editarusuario()" name="editar-usuario">
-                                <i class="bi bi-eye-fill"></i>
+                                <i class="bi bi-eye-fill" data-toggle="tooltip" title="Ver Usuario"></i>
                             </button>
 
                             <!-- Botón de eliminar integrado con un modal y un toastr de mensaje despues de aceptar -->
                             {% if perms.usuarios.delete_usuario %}
-                            <button type="button" class="btn pe-1 ps-1 mitexto" style="font-size: 18px;" data-bs-toggle="modal" data-bs-target="#modal-eliminar-usuario-{{usuario.id}}"><i class="bi bi-trash3-fill"></i></a>
+                            <button type="button" class="btn pe-1 ps-1 mitexto" style="font-size: 18px;" data-bs-toggle="modal" data-bs-target="#modal-eliminar-usuario-{{usuario.id}}"><i class="bi bi-trash3-fill" data-toggle="tooltip" title="Eliminar Usuario"></i></a>
                             </button>
                             {% endif %}
 
@@ -115,7 +115,7 @@
                         {% endif %}
                     </th>
                     <th><img src="{{ MEDIA_URL }}{{usuario.foto.url}}" alt="" width="50"
-                        height="50" class="rounded-circle me-2 "></th>
+                        height="50" class="rounded-circle me-2 " data-toggle="tooltip" title="Foto de Perfil"></th>
                     <th>{{usuario.primerNombre}}</th>
                     <th>{{usuario.segundoNombre}}</th>
                     <th>{{usuario.primerApellido}}</th>

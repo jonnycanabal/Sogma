@@ -47,7 +47,7 @@
                         form-control
                         width-20 m-2 border border-dark
                         bg-white
-                        text-dark mitexto" style="cursor: pointer; font-weight: 700; font-size: 18px;">VEHÍCULO</button>
+                        text-dark mitexto" style="cursor: pointer; font-weight: 700; font-size: 18px;" data-toggle="tooltip" title="Clic">VEHÍCULO</button>
                 </div>
             </div>
             {% endif %}
@@ -60,7 +60,7 @@
                         form-control
                         width-20 m-2 border border-dark
                         bg-white
-                        text-dark mitexto" style="cursor: pointer; font-weight: 700; font-size: 18px;">EXTINTOR</button>
+                        text-dark mitexto" style="cursor: pointer; font-weight: 700; font-size: 18px;" data-toggle="tooltip" title="Clic">EXTINTOR</button>
                 </div>
             </div>
             {% endif %}
@@ -73,7 +73,7 @@
                         form-control
                         width-20 m-2 border border-dark
                         bg-white
-                        text-dark mitexto" style="cursor: pointer; font-weight: 700; font-size: 18px;">EQUIPO DE
+                        text-dark mitexto" style="cursor: pointer; font-weight: 700; font-size: 18px;" data-toggle="tooltip" title="Clic">EQUIPO DE
                         OFICINA</button>
                 </div>
             </div>
@@ -134,12 +134,12 @@
                                         <!-- Botón del ojo para editar la información -->
                                         <input type="hidden" name="pk_vehiculo" value="{{vehiculo.id}}">
                                         <button class="btn btn-block fs-5 pe-1 ps-1" onClick="editarVehiculo()" name="editar-vehiculo">
-                                            <i class="bi bi-eye-fill"></i>
+                                            <i class="bi bi-eye-fill" data-toggle="tooltip" title="Ver Vehículo"></i>
                                         </button>
                                         
                                         {% if perms.activos.delete_activovehiculo %}
                                         <!-- Botón de eliminar integrado con un modal y un toastr de mensaje después  de aceptar -->
-                                        <button type="button" class="btn fs-5 pe-1 ps-1" data-bs-toggle="modal" data-bs-target="#modal-eliminar-vehiculo-{{vehiculo.id}}"><i class="bi bi-trash3-fill"></i></a>
+                                        <button type="button" class="btn fs-5 pe-1 ps-1" data-bs-toggle="modal" data-bs-target="#modal-eliminar-vehiculo-{{vehiculo.id}}"><i class="bi bi-trash3-fill" data-toggle="tooltip" title="Eliminar Vehículo"></i></a>
                                         </button>
                                         {% endif %}
                                         <!-- Modal -->
@@ -174,7 +174,7 @@
                                 </td>
                                 <td class="text-center">{{vehiculo.id}}</td>
                                 <td><img src="{{ MEDIA_URL }}{{vehiculo.fotoVehiculo.url}}" alt="" width="50"
-                                    height="50" class="rounded-circle me-2 "></td>
+                                    height="50" class="rounded-circle me-2 " data-toggle="tooltip" title="Foto del Vehículo"></td>
                                 <td>{{vehiculo.marcaVehiculo}}</td>
                                 <td>{{vehiculo.modeloVehiculo}}</td>
                                 <td>{{vehiculo.placaVehiculo}}</td>
@@ -264,11 +264,11 @@
                                             <!-- Botón del ojo para editar la información -->
                                             <input type="hidden" name="pk_extintor" value="{{extintor.id}}">
                                             <button class="btn btn-block fs-5 pe-1 ps-1" onClick="editarExtintor()" name="editar-extintor">
-                                                <i class="bi bi-eye-fill"></i>
+                                                <i class="bi bi-eye-fill" data-toggle="tooltip" title="Ver Extintor"></i>
                                             </button>
                                             {% if perms.activos.delete_activoextintor %}
                                             <!-- Botón de eliminar integrado con un modal y un toastr de mensaje después de aceptar -->
-                                            <button type="button" class="btn fs-5 pe-1 ps-1" data-bs-toggle="modal" data-bs-target="#modal-eliminar-extintor-{{extintor.id}}"><i class="bi bi-trash3-fill"></i></a>
+                                            <button type="button" class="btn fs-5 pe-1 ps-1" data-bs-toggle="modal" data-bs-target="#modal-eliminar-extintor-{{extintor.id}}"><i class="bi bi-trash3-fill" data-toggle="tooltip" title="Eliminar Extintor"></i></a>
                                             </button>
                                             {% endif %}
                                             <!-- Modal -->
@@ -301,7 +301,7 @@
                                     </td>
                                     <td class="text-center">{{extintor.id}}</td>
                                     <td><img src="{{ MEDIA_URL }}{{extintor.fotoExtintor.url}}" alt="" width="50"
-                                        height="50" class="rounded-circle me-2 "></td>
+                                        height="50" class="rounded-circle me-2 " data-toggle="tooltip" title="Foto del Extintor"></td>
                                     <td>{{extintor.serialExtintor}}</td>
                                     <td>{{extintor.colorExtintor}}</td>
                                     <td>{{extintor.ubicacionExtintor}}</td>
@@ -378,12 +378,12 @@
                                             <!-- Botón del ojo para editar la información -->
                                             <input type="hidden" name="pk_equipo" value="{{equipo.id}}">
                                             <button class="btn btn-block fs-5 pe-1 ps-1" onClick="editarEquipo()" name="editar-equipo-oficina">
-                                                <i class="bi bi-eye-fill"></i>
+                                                <i class="bi bi-eye-fill" data-toggle="tooltip" title="Ver Equipo"></i>
                                             </button>
 
                                             {% if perms.activos.delete_activoequipooficina %}
                                             <!-- Botón de eliminar integrado con un modal y un toastr de mensaje después  de aceptar -->
-                                            <button type="button" class="btn fs-5 pe-1 ps-1" data-bs-toggle="modal" data-bs-target="#modal-eliminar-equipo-{{equipo.id}}"><i class="bi bi-trash3-fill"></i></a>
+                                            <button type="button" class="btn fs-5 pe-1 ps-1" data-bs-toggle="modal" data-bs-target="#modal-eliminar-equipo-{{equipo.id}}"><i class="bi bi-trash3-fill" data-toggle="tooltip" title="Eliminar Equipo"></i></a>
                                             </button>
                                             {% endif %}
                                                 
@@ -419,7 +419,7 @@
                                     </td>
                                     <td class="text-center">{{equipo.id}}</td>
                                     <td><img src="{{ MEDIA_URL }}{{equipo.fotoEquipo.url}}" alt="" width="50"
-                                        height="50" class="rounded-circle me-2 "></td>    
+                                        height="50" class="rounded-circle me-2" data-toggle="tooltip" title="Foto del Equipo"></td>    
                                     <td>{{equipo.serialEquipo}}</td>
                                     <td>{{equipo.marcaEquipo}}</td>
                                     <td>{{equipo.colorEquipo}}</td>

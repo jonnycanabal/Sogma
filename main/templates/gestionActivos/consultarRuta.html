@@ -93,7 +93,7 @@
                                             <button class="btn btn-block"
                                                 onClick="editarVehiculo()"
                                                 name="editar-vehiculo">
-                                                <i class="bi bi-eye-fill"></i>
+                                                <i class="bi bi-eye-fill" data-toggle="tooltip" title="Ver Vehículo"></i>
                                             </button>
                                         </form>
                                     </td>
@@ -247,7 +247,7 @@
                                                 class="col-4">
                                                 {% csrf_token %}
                                                 <a class="bi bi-search btn fs-4"
-                                                    href="{% url 'generar-ruta' ruta.id %}"></a>
+                                                    href="{% url 'generar-ruta' ruta.id %}" data-toggle="tooltip" title="Consultar Ruta"></a>
                                             </button>
                                             </form>
                                         </td>
