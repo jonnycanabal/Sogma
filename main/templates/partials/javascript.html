@@ -8,15 +8,24 @@
 <!-- Link o referencias sacadas de la pagina https://datatables.net/ dependiente el estilo seleccionado -->
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script
-    src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 <script
     src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+    <script
+    src="https://cdn.datatables.net/fixedcolumns/4.2.1/js/dataTables.fixedColumns.min.js"></script>
 <!-- ¡IMPORTANTE! -  este script para el funcionamiento de la datatables-->
 <script type="text/javascript" charset="utf8"
     src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+
+<!-- Comente este script para evitar que apareceria el boton de responsive de datos pero funciona
+para hacer responsive la tabla para dispositivos pequeños y no se salga de la pantalla mas que todo el botón 
+de buscar -->
+<!-- <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.4.0/js/dataTables.responsive.min.js"></script> -->
+
 <!-- importante del TOASTR-->
 <script type="application/json" src="{% static 'toastr/toast.js.map' %}"></script>
 <script type="text/javascript" src="{% static 'toastr/toast.min.js' %}"></script>
+
 
 <!-- Script para iniciar o arrancar las DataTable-->
 <script>
@@ -28,7 +37,12 @@
         $('#example').DataTable({
             "language": {
                 "url": "//cdn.datatables.net/plug-ins/1.12.1/i18n/es-MX.json",
-            }
+            },
+            "lengthMenu": [[5, 10, 25, 50, 100], [5, 10, 25, 50, 100]],
+            responsive: true,
+            scrollY: "200px",
+            scrollX: true,
+            
         })
 
         // TABLA - extintores (Consultar Activos)
@@ -39,7 +53,11 @@
         $('#example2').DataTable({
             "language": {
                 "url": "//cdn.datatables.net/plug-ins/1.12.1/i18n/es-MX.json",
-            }
+            },
+            "lengthMenu": [[5, 10, 25, 50, 100], [5, 10, 25, 50, 100]],
+            responsive: true,
+            scrollY: "200px",
+            scrollX: true,
         })
 
         // TABLA - equipos de oficina (Consultar Activos)
@@ -50,7 +68,11 @@
         $('#example3').DataTable({
             "language": {
                 "url": "//cdn.datatables.net/plug-ins/1.12.1/i18n/es-MX.json",
-            }
+            },
+            "lengthMenu": [[5, 10, 25, 50, 100], [5, 10, 25, 50, 100]],
+            responsive: true,
+            scrollY: "200px",
+            scrollX: true,
         })
 
         // TABLA (Historial de Rutas)
@@ -61,7 +83,11 @@
         $('#example4').DataTable({
         "language": {
             "url": "//cdn.datatables.net/plug-ins/1.12.1/i18n/es-MX.json",
-        }
+            },
+            "lengthMenu": [[5, 10, 25, 50, 100], [5, 10, 25, 50, 100]],
+            responsive: true,
+            scrollY: "200px",
+            scrollX: true,
         })
 
         // TABLA (Usuarios creados)
@@ -72,7 +98,11 @@
         $('#example5').DataTable({
         "language": {
             "url": "//cdn.datatables.net/plug-ins/1.12.1/i18n/es-MX.json",
-        }
+            },
+            "lengthMenu": [[5, 10, 25, 50, 100], [5, 10, 25, 50, 100]],
+            responsive: true,
+            scrollY: "200px",
+            scrollX: true,
         })
 
     </script>

@@ -1,4 +1,12 @@
 /* Inicio del archivo CSS para modificar cosas especificas de nuestro codigo que no se pudieron manejar con Bootstrap*/
+/* trabajardo en este h_datatable para- falta ajustar los demas tamaños de la tabla para diferentes pantallas */
+.h_datatable{
+    height: 420px;
+}
+
+.h_datatable_alarma{
+    height: 420px;
+}
 
 .foto_w{
     width: 100%;
@@ -299,7 +307,9 @@
         width: 40%;
     }
     
-    
+    .h_datatable{
+        height: 650px;
+    }
 }
 
 
@@ -402,6 +412,10 @@
 
     .foto_w{
         width: 100%;
+    }
+
+    .h_datatable{
+        height: 700px;
     }
     
 }
