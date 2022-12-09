@@ -9,7 +9,7 @@ class ActivoExtintorForm(forms.ModelForm):
 class ActivoExtintorEditarForm(forms.ModelForm):
     class Meta:
         model=ActivoExtintor
-        exclude=["estadoExtintor", "fechaIngresoExtintor"]
+        exclude=["estadoExtintor", "fechaIngresoExtintor", "serialExtintor"]
 
 class ActivoEquipoOficinaForm(forms.ModelForm):
     class Meta:
@@ -19,7 +19,7 @@ class ActivoEquipoOficinaForm(forms.ModelForm):
 class ActivoEquipoOficinaEditarForm(forms.ModelForm):
     class Meta:
         model=ActivoEquipoOficina
-        exclude=["estadoEquipo", "fechaIngresoEquipo"]
+        exclude=["estadoEquipo", "fechaIngresoEquipo", "serialEquipo"]
 
 class ActivoVehiculoForm(forms.ModelForm):
     class Meta:
@@ -29,5 +29,5 @@ class ActivoVehiculoForm(forms.ModelForm):
 class ActivoVehiculoEditarForm(forms.ModelForm):
     class Meta:
         model=ActivoVehiculo
-        exclude=["condicionVehiculo", "estadoVehiculo", "fechaIngresoVehiculo"]
+        exclude=["condicionVehiculo", "estadoVehiculo", "fechaIngresoVehiculo", "serialVehiculo"]
 

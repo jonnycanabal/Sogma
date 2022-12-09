@@ -47,7 +47,7 @@
                         form-control
                         width-20 m-2 border border-dark
                         bg-white
-                        text-dark mitexto" style="cursor: pointer; font-weight: 700; font-size: 18px;">VEHÍCULO</button>
+                        text-dark mitexto" style="cursor: pointer; font-weight: 700; font-size: 18px;" data-toggle="tooltip" title="Clic">VEHÍCULO</button>
                 </div>
             </div>
             {% endif %}
@@ -60,7 +60,7 @@
                         form-control
                         width-20 m-2 border border-dark
                         bg-white
-                        text-dark mitexto" style="cursor: pointer; font-weight: 700; font-size: 18px;">EXTINTOR</button>
+                        text-dark mitexto" style="cursor: pointer; font-weight: 700; font-size: 18px;" data-toggle="tooltip" title="Clic">EXTINTOR</button>
                 </div>
             </div>
             {% endif %}
@@ -73,7 +73,7 @@
                         form-control
                         width-20 m-2 border border-dark
                         bg-white
-                        text-dark mitexto" style="cursor: pointer; font-weight: 700; font-size: 18px;">EQUIPO DE
+                        text-dark mitexto" style="cursor: pointer; font-weight: 700; font-size: 18px;" data-toggle="tooltip" title="Clic">EQUIPO DE
                         OFICINA</button>
                 </div>
             </div>
@@ -85,14 +85,13 @@
     <!-- TABLA VEHÍCULOS. La tabla tiene un id="example", la cual se relaciona un javascript de DATATABLE -->
     <!-- También en el partials/javascript.html se encuentran los script y links de referencias de CSS para su funcionamiento -->
     <div style="display: none;" id="table-vehiculo">
-        <div class="d-flex flex-column" style="text-align: center;">
+        <div class="d-flex flex-column text" style="text-align: center;">
 
-            <div class="d-flex justify-content-center pb-4 mb-4 m-2 w-100 p-3">
-                <div class="overflow-auto shadow-lg p-4
-                    height-config-tabla1 m-2 w-100" style="height: 300px;">
+            <div class="d-flex justify-content-center pb-4 mb-4 m-3">
+                <div class="shadow-lg p-3 table-responsive
+                    w-100 h_datatable" >
                     
-                    <table id="example" class="table-striped display nowrap mitexto" style="font-size: 18px;">
-
+                    <table id="example" class="table-striped display responsive nowrap mitexto" style="font-size: 18px;" >
                         <!-- Cabecera de la tabla (Donde estarán los enunciados principales)-->
                         <thead>
                             <tr>
@@ -134,12 +133,12 @@
                                         <!-- Botón del ojo para editar la información -->
                                         <input type="hidden" name="pk_vehiculo" value="{{vehiculo.id}}">
                                         <button class="btn btn-block fs-5 pe-1 ps-1" onClick="editarVehiculo()" name="editar-vehiculo">
-                                            <i class="bi bi-eye-fill"></i>
+                                            <i class="bi bi-eye-fill" data-toggle="tooltip" title="Ver Vehículo"></i>
                                         </button>
                                         
                                         {% if perms.activos.delete_activovehiculo %}
                                         <!-- Botón de eliminar integrado con un modal y un toastr de mensaje después  de aceptar -->
-                                        <button type="button" class="btn fs-5 pe-1 ps-1" data-bs-toggle="modal" data-bs-target="#modal-eliminar-vehiculo-{{vehiculo.id}}"><i class="bi bi-trash3-fill"></i></a>
+                                        <button type="button" class="btn fs-5 pe-1 ps-1" data-bs-toggle="modal" data-bs-target="#modal-eliminar-vehiculo-{{vehiculo.id}}"><i class="bi bi-trash3-fill" data-toggle="tooltip" title="Eliminar Vehículo"></i></a>
                                         </button>
                                         {% endif %}
                                         <!-- Modal -->
@@ -174,7 +173,7 @@
                                 </td>
                                 <td class="text-center">{{vehiculo.id}}</td>
                                 <td><img src="{{ MEDIA_URL }}{{vehiculo.fotoVehiculo.url}}" alt="" width="50"
-                                    height="50" class="rounded-circle me-2 "></td>
+                                    height="50" class="rounded-circle me-2 " data-toggle="tooltip" title="Foto del Vehículo"></td>
                                 <td>{{vehiculo.marcaVehiculo}}</td>
                                 <td>{{vehiculo.modeloVehiculo}}</td>
                                 <td>{{vehiculo.placaVehiculo}}</td>
@@ -227,10 +226,11 @@
     <div style="display: none;" id="table-extintor">
         <div class="d-flex flex-column" style="text-align: center;">
             
-            <div class="d-flex justify-content-center pb-4 mb-4 m-2 w-100 p-3">
-                <div class="overflow-auto shadow-lg p-4
-                    height-config-tabla1 m-2 w-100" style="height: 300px;">
-                    <table id="example2" class="table-striped display nowrap mitexto" style="font-size: 18px;">
+            <div class="d-flex justify-content-center pb-4 mb-4 m-3">
+                <div class="shadow-lg p-3 table-responsive
+                    w-100 h_datatable">
+
+                    <table id="example2" class="table-striped display responsive nowrap mitexto" style="font-size: 18px;">
 
                         <!-- Cabecera de la tabla (Donde estarán los enunciados principales)-->
                         <thead>
@@ -264,11 +264,11 @@
                                             <!-- Botón del ojo para editar la información -->
                                             <input type="hidden" name="pk_extintor" value="{{extintor.id}}">
                                             <button class="btn btn-block fs-5 pe-1 ps-1" onClick="editarExtintor()" name="editar-extintor">
-                                                <i class="bi bi-eye-fill"></i>
+                                                <i class="bi bi-eye-fill" data-toggle="tooltip" title="Ver Extintor"></i>
                                             </button>
                                             {% if perms.activos.delete_activoextintor %}
                                             <!-- Botón de eliminar integrado con un modal y un toastr de mensaje después de aceptar -->
-                                            <button type="button" class="btn fs-5 pe-1 ps-1" data-bs-toggle="modal" data-bs-target="#modal-eliminar-extintor-{{extintor.id}}"><i class="bi bi-trash3-fill"></i></a>
+                                            <button type="button" class="btn fs-5 pe-1 ps-1" data-bs-toggle="modal" data-bs-target="#modal-eliminar-extintor-{{extintor.id}}"><i class="bi bi-trash3-fill" data-toggle="tooltip" title="Eliminar Extintor"></i></a>
                                             </button>
                                             {% endif %}
                                             <!-- Modal -->
@@ -301,7 +301,7 @@
                                     </td>
                                     <td class="text-center">{{extintor.id}}</td>
                                     <td><img src="{{ MEDIA_URL }}{{extintor.fotoExtintor.url}}" alt="" width="50"
-                                        height="50" class="rounded-circle me-2 "></td>
+                                        height="50" class="rounded-circle me-2 " data-toggle="tooltip" title="Foto del Extintor"></td>
                                     <td>{{extintor.serialExtintor}}</td>
                                     <td>{{extintor.colorExtintor}}</td>
                                     <td>{{extintor.ubicacionExtintor}}</td>
@@ -338,10 +338,11 @@
     <div style="display: none;" id="table-oficina">
         <div class="d-flex flex-column">
             
-            <div class="d-flex justify-content-center pb-4 mb-4 m-2 w-100 p-3">
-                <div class="overflow-auto shadow-lg p-4
-                    height-config-tabla1 m-2 w-100" style="height: 300px;">
-                    <table id="example3" class="table-striped display nowrap mitexto" style="font-size: 18px;">
+            <div class="d-flex justify-content-center pb-4 mb-4 m-3">
+                <div class="shadow-lg p-3 table-responsive
+                    w-100 h_datatable">
+                    
+                    <table id="example3" class="table-striped display responsive nowrap mitexto" style="font-size: 18px;">
 
                         <!-- Cabecera de la tabla (Donde estarán los enunciados principales)-->
                         <thead>
@@ -378,12 +379,12 @@
                                             <!-- Botón del ojo para editar la información -->
                                             <input type="hidden" name="pk_equipo" value="{{equipo.id}}">
                                             <button class="btn btn-block fs-5 pe-1 ps-1" onClick="editarEquipo()" name="editar-equipo-oficina">
-                                                <i class="bi bi-eye-fill"></i>
+                                                <i class="bi bi-eye-fill" data-toggle="tooltip" title="Ver Equipo"></i>
                                             </button>
 
                                             {% if perms.activos.delete_activoequipooficina %}
                                             <!-- Botón de eliminar integrado con un modal y un toastr de mensaje después  de aceptar -->
-                                            <button type="button" class="btn fs-5 pe-1 ps-1" data-bs-toggle="modal" data-bs-target="#modal-eliminar-equipo-{{equipo.id}}"><i class="bi bi-trash3-fill"></i></a>
+                                            <button type="button" class="btn fs-5 pe-1 ps-1" data-bs-toggle="modal" data-bs-target="#modal-eliminar-equipo-{{equipo.id}}"><i class="bi bi-trash3-fill" data-toggle="tooltip" title="Eliminar Equipo"></i></a>
                                             </button>
                                             {% endif %}
                                                 
@@ -419,7 +420,7 @@
                                     </td>
                                     <td class="text-center">{{equipo.id}}</td>
                                     <td><img src="{{ MEDIA_URL }}{{equipo.fotoEquipo.url}}" alt="" width="50"
-                                        height="50" class="rounded-circle me-2 "></td>    
+                                        height="50" class="rounded-circle me-2" data-toggle="tooltip" title="Foto del Equipo"></td>    
                                     <td>{{equipo.serialEquipo}}</td>
                                     <td>{{equipo.marcaEquipo}}</td>
                                     <td>{{equipo.colorEquipo}}</td>
@@ -520,7 +521,7 @@
                 <div class="d-inline-block width-20 ms-1 me-5">
                     <label for="basic-url" class="form-label w-75 p-2">Serial del Vehiculo</label>
                     <div class="input-group mb-3 w-100">
-                        <input type="text" class="form-control mitexto" style="font-size: 18px;" id="id_serialVehiculo" name="serialVehiculo" value="{{vehiculo.serialVehiculo}}" aria-describedby="basic-addon3">
+                        <input disabled type="text" class="form-control mitexto" style="font-size: 18px;" id="id_serialVehiculo" name="serialVehiculo" value="{{vehiculo.serialVehiculo}}" aria-describedby="basic-addon3">
                     </div>
                 </div>
 
@@ -682,7 +683,7 @@
                 <div class="d-inline-block width-20 ms-1 me-5">
                     <label for="basic-url" class="form-label w-75 p-2">Serial del Extintor</label>
                     <div class="input-group mb-3 w-100">
-                        <input type="text" class="form-control mitexto" style="font-size: 18px;" id="id_serialExtintor" name="serialExtintor" value="{{extintor.serialExtintor}}" aria-describedby="basic-addon3">
+                        <input disabled type="text" class="form-control mitexto" style="font-size: 18px;" id="id_serialExtintor" name="serialExtintor" value="{{extintor.serialExtintor}}" aria-describedby="basic-addon3">
                     </div>
                 </div>
 
@@ -821,7 +822,7 @@
                 <div class="d-inline-block width-20 ms-1 me-5">
                     <label for="basic-url" class="form-label w-75 p-2">Serial Equipo</label>
                     <div class="input-group mb-3 w-100">
-                        <input type="text" class="form-control mitexto" style="font-size: 18px;" id="id_serialEquipo" name="serialEquipo" value="{{equipo.serialEquipo}}" aria-describedby="basic-addon3">
+                        <input disabled type="text" class="form-control mitexto" style="font-size: 18px;" id="id_serialEquipo" name="serialEquipo" value="{{equipo.serialEquipo}}" aria-describedby="basic-addon3">
                     </div>
                 </div>
 
