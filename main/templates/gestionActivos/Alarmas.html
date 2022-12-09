@@ -24,303 +24,266 @@
     </form>
 </div>  -->
 <!-- Inicio del contenedor para la página generar alarma -->
-<div id="div-caja3" class="container p-3 my-4 pb-4 pe-4 pt-0 mt-0">
+
+<div class="text-center w-100">
+    <h1>Mantenimientos Pendientes</h1>
+</div>
+
+<div class="w-100 p-4">
 
     {% if perms.activos.view_activovehiculo %}
-    <div id="div-cajas" class="container my-4 mt-0
-        pb-4 w-100">
 
-        <div class="text-center w-100">
-            <h1>Mantenimientos Pendientes</h1>
-        </div>
-        <!-- ############################################################################################################### -->
-        <div class=" rounded-bottom w-100" style="box-shadow:
-            0px 0px 5px 1px;">
+    <div class="rounded-bottom w-100" style="box-shadow: 0px 0px 5px 1px;">
+    <div class="w-100" style="box-shadow: 0px 0px 0px 1px; background-color:
+    rgb(209, 208, 208);">
+        <h3 style="text-align: center;">MANTENIMIENTO PENDIENTE VEHÍCULOS</h3>
+    </div>
+    <h5 class="ps-5 mitexto mt-3" style="font-size: 18px;">Se recomienda un mantenimiento: <strong>Anual</strong></h5>
 
+    <div class="d-flex flex-column w-100 pe-3">
+        <div class="d-flex justify-content-center pb-4 mb-4 m-2 w-100
+            p-3">
+    
+            <!-- INICIO DE LAS TABLAS USANDO (DataTable) ---------------------------------------------------------------------------- -->
+            <div class="shadow-lg p-3 table-responsive 
+            tabla-historial h_datatable_alarmas w-100">
+    
+            <table id="example" class="table-striped display responsive nowrap mitexto" style="font-size: 18px;">
 
+                <!-- Cabecera de la tabla (Donde estarán  los enunciados principales)-->
+                <thead>
+                    <tr>
+                        <th>Último Mantenimiento</th>
+                        <th>Id Activo</th>
+                        <th>Marca del Vehículo</th>
+                        <th>Modelo del Vehículo</th>
+                        <th>Placa del Vehículo</th>
+                        <th>Color del Vehículo</th>
+                        <th>Serial del Vehículo</th>
+                        <th>Tipo de Combustible</th>
+                        <th>Cantidad de Pasajeros</th>
+                        <th>Persona a Cargo</th>
+                        <th>Condición del Vehículo</th>
+                        <th>Fecha de Ingreso</th>
+                        <th>Fecha Inicio Soat</th>
+                        <th>Fecha Vencimiento Soat</th>
+                        <th>Fecha Inicio Técnico Mecánica</th>
+                        <th>Fecha Vencimiento Técnico Mecánica</th>
+                    </tr>
+                </thead>
 
-            <!-- Enunciado o titulo de la página -->
-            <div class="w-100" style="box-shadow: 0px 0px 0px 1px;
-                background-color:
-                rgb(209,
-                208, 208);">
-                <h3 style="text-align: center;">MANTENIMIENTO PENDIENTE VEHÍCULOS</h3>
-            </div>
+                <!-- Cuerpo de la tabla (donde estará la información que se mostrara de los activos) -->
+                <tbody>
 
-            <!-- Salto de línea -->
-            <br>
+                    {% for vehiculo in vehiculos %}
+                    <tr>
+                        <td>{{vehiculo.fkRegistrarMantenimiento.fechaMantenimiento | date:'Y-m-d'}}</td>
+                        <td class="text-center">{{vehiculo.fkVehiculo.id}}</td>
+                        <td>{{vehiculo.fkVehiculo.marcaVehiculo}}</td>
+                        <td>{{vehiculo.fkVehiculo.modeloVehiculo}}</td>
+                        <td>{{vehiculo.fkVehiculo.placaVehiculo}}</td>
+                        <td>{{vehiculo.fkVehiculo.colorVehiculo}}</td>
+                        <td>{{vehiculo.fkVehiculo.serialVehiculo}}</td>
+                        <td>{{vehiculo.fkVehiculo.tipoCombustible}}</td>
+                        <td>{{vehiculo.fkVehiculo.cantidadPasajeros}}</td>
+                        <td>{{vehiculo.fkVehiculo.personaEncargadaVehiculo}}</td>
+                        <td>{{vehiculo.fkVehiculo.condicionVehiculo}}</td>
+                        <td class="text-center">{{vehiculo.fkVehiculo.fechaIngresoVehiculo | date:"d/m/Y"}}</td>
+                        <td class="text-center">{{vehiculo.fkVehiculo.fechaInicioSoat | date:"d/m/Y"}}</td>
+                        <td class="text-center">{{vehiculo.fkVehiculo.fechaFinSoat | date:"d/m/Y"}}</td>
+                        <td class="text-center">{{vehiculo.fkVehiculo.fechaInicioTecnicomecanica | date:"d/m/Y"}}</td>
+                        <td class="text-center">{{vehiculo.fkVehiculo.fechaVencimientoTecnicomecanica | date:"d/m/Y"}}</td>
+                    </tr>
+                    {% endfor %}
 
-            <div class="d-flex flex-column w-100 pe-3">
+                </tbody>
 
-                <h5 class="ps-5 mitexto" style="font-size: 18px;">Se recomienda un mantenimiento: <strong>Anual</strong></h5>
-                
-                <div class="d-flex justify-content-center pb-4 mb-4 m-2 w-100
-                    p-2">
-
-                    <!-- INICIO DE LAS TABLAS USANDO (DataTable) ---------------------------------------------------------------------------- -->
-                    <div class="shadow-lg p-3 table-responsive
-                    w-100 h_datatable">
-
-                        <table id="example" class="table-striped display responsive
-                            nowrap mitexto" style="font-size: 18px;">
-
-                            <!-- Cabecera de la tabla (Donde estarán  los enunciados principales)-->
-                            <thead>
-                                <tr>
-                                    <th>Último Mantenimiento</th>
-                                    <th>Id Activo</th>
-                                    <th>Marca del Vehículo</th>
-                                    <th>Modelo del Vehículo</th>
-                                    <th>Placa del Vehículo</th>
-                                    <th>Color del Vehículo</th>
-                                    <th>Serial del Vehículo</th>
-                                    <th>Tipo de Combustible</th>
-                                    <th>Cantidad de Pasajeros</th>
-                                    <th>Persona a Cargo</th>
-                                    <th>Condición del Vehículo</th>
-                                    <th>Fecha de Ingreso</th>
-                                    <th>Fecha Inicio Soat</th>
-                                    <th>Fecha Vencimiento Soat</th>
-                                    <th>Fecha Inicio Técnico Mecánica</th>
-                                    <th>Fecha Vencimiento Técnico Mecánica</th>
-                                </tr>
-                            </thead>
-
-                            <!-- Cuerpo de la tabla (donde estará la información que se mostrara de los activos) -->
-                            <tbody>
-
-                                {% for vehiculo in vehiculos %}
-                                <tr>
-                                    <td>{{vehiculo.fkRegistrarMantenimiento.fechaMantenimiento | date:'Y-m-d'}}</td>
-                                    <td class="text-center">{{vehiculo.fkVehiculo.id}}</td>
-                                    <td>{{vehiculo.fkVehiculo.marcaVehiculo}}</td>
-                                    <td>{{vehiculo.fkVehiculo.modeloVehiculo}}</td>
-                                    <td>{{vehiculo.fkVehiculo.placaVehiculo}}</td>
-                                    <td>{{vehiculo.fkVehiculo.colorVehiculo}}</td>
-                                    <td>{{vehiculo.fkVehiculo.serialVehiculo}}</td>
-                                    <td>{{vehiculo.fkVehiculo.tipoCombustible}}</td>
-                                    <td>{{vehiculo.fkVehiculo.cantidadPasajeros}}</td>
-                                    <td>{{vehiculo.fkVehiculo.personaEncargadaVehiculo}}</td>
-                                    <td>{{vehiculo.fkVehiculo.condicionVehiculo}}</td>
-                                    <td class="text-center">{{vehiculo.fkVehiculo.fechaIngresoVehiculo | date:"d/m/Y"}}</td>
-                                    <td class="text-center">{{vehiculo.fkVehiculo.fechaInicioSoat | date:"d/m/Y"}}</td>
-                                    <td class="text-center">{{vehiculo.fkVehiculo.fechaFinSoat | date:"d/m/Y"}}</td>
-                                    <td class="text-center">{{vehiculo.fkVehiculo.fechaInicioTecnicomecanica | date:"d/m/Y"}}</td>
-                                    <td class="text-center">{{vehiculo.fkVehiculo.fechaVencimientoTecnicomecanica | date:"d/m/Y"}}</td>
-                                </tr>
-                                {% endfor %}
-
-                            </tbody>
-
-                            <!-- Footer de la tabla (Donde estarán los enunciados principales pero en la parte inferior) -->
-                            <tfoot>
-                                <tr>
-                                    <th>Último Mantenimiento</th>
-                                    <th>Id Activo</th>
-                                    <th>Marca del Vehículo</th>
-                                    <th>Modelo del Vehículo</th>
-                                    <th>Placa del Vehículo</th>
-                                    <th>Color del Vehículo</th>
-                                    <th>Serial del Vehículo</th>
-                                    <th>Tipo de Combustible</th>
-                                    <th>Cantidad de Pasajeros</th>
-                                    <th>Persona a Cargo</th>
-                                    <th>Condición del Vehículo</th>
-                                    <th>Fecha de Ingreso</th>
-                                    <th>Fecha Inicio Soat</th>
-                                    <th>Fecha Vencimiento Soat</th>
-                                    <th>Fecha Inicio Técnico Mecánica</th>
-                                    <th>Fecha Vencimiento Técnico Mecánica</th>
-                                </tr>
-                            </tfoot>
-                        </table>
-                    </div>
-                </div>
+                <!-- Footer de la tabla (Donde estarán los enunciados principales pero en la parte inferior) -->
+                <tfoot>
+                    <tr>
+                        <th>Último Mantenimiento</th>
+                        <th>Id Activo</th>
+                        <th>Marca del Vehículo</th>
+                        <th>Modelo del Vehículo</th>
+                        <th>Placa del Vehículo</th>
+                        <th>Color del Vehículo</th>
+                        <th>Serial del Vehículo</th>
+                        <th>Tipo de Combustible</th>
+                        <th>Cantidad de Pasajeros</th>
+                        <th>Persona a Cargo</th>
+                        <th>Condición del Vehículo</th>
+                        <th>Fecha de Ingreso</th>
+                        <th>Fecha Inicio Soat</th>
+                        <th>Fecha Vencimiento Soat</th>
+                        <th>Fecha Inicio Técnico Mecánica</th>
+                        <th>Fecha Vencimiento Técnico Mecánica</th>
+                    </tr>
+                </tfoot>
+            </table>
             </div>
         </div>
     </div>
+    </div>
     {% endif %}
+</div>
 
-    <br>
+<br>
+
+<div class="w-100 p-4">
 
     {% if perms.activos.view_activoextintor %}
-    <div id="div-cajas" class="container p-3 my-4 mt-0
-        pb-4 w-100">
 
-        <!-- ############################################################################################################### -->
-        <div class="m-3 rounded-bottom w-100" style="box-shadow:
-            0px 0px 5px 1px;">
+    <div class="rounded-bottom w-100" style="box-shadow: 0px 0px 5px 1px;">
+    <div class="w-100" style="box-shadow: 0px 0px 0px 1px; background-color:
+    rgb(209, 208, 208);">
+        <h3 style="text-align: center;">MANTENIMIENTO PENDIENTE EXTINTORES</h3>
+    </div>
+    <h5 class="ps-5 mitexto mt-3" style="font-size: 18px;">Se recomienda un mantenimiento: <strong>Anual</strong></h5>
 
-            <!-- Enunciado o titulo de la página -->
-            <div class="w-100" style="box-shadow: 0px 0px 0px 1px;
-                background-color:
-                rgb(209,
-                208, 208);">
-                <h3 style="text-align: center;">MANTENIMIENTO PENDIENTE EXTINTORES</h3>
-            </div>
+    <div class="d-flex flex-column w-100 pe-3">
+        <div class="d-flex justify-content-center pb-4 mb-4 m-2 w-100
+            p-3">
+    
+            <!-- INICIO DE LAS TABLAS USANDO (DataTable) ---------------------------------------------------------------------------- -->
+            <div class="shadow-lg p-3 table-responsive 
+            tabla-historial h_datatable_alarmas w-100">
+    
+            <table id="example2" class="table-striped display responsive
+            nowrap mitexto" style="font-size: 18px;">
 
-            <!-- Salto de línea -->
-            <br>
+            <!-- Cabecera de la tabla (Donde estarán  los enunciados principales)-->
+            <thead>
+                <tr>
+                    <th>Último Mantenimiento</th>
+                    <th>Id Activo</th>
+                    <th>Serial Extintor</th>
+                    <th>Color Extintor</th>
+                    <th>Ubicación del Extintor</th>
+                    <th>Tipo de Extintor</th>
+                    <th>Peso del Extintor (kg)</th>
+                </tr>
+            </thead>
 
-            <div class="d-flex flex-column w-100 pe-3">
+            <!-- Cuerpo de la tabla (donde estará la información que se mostrara de los activos) -->
+            <tbody>
 
-                <h5 class="ps-5 mitexto" style="font-size: 18px;">Se recomienda un mantenimiento: <strong>Anual</strong></h5>
+                {% for extintor in extintores %}
+                <tr>
+                    <td>{{extintor.fkRegistrarMantenimiento.fechaMantenimiento | date:'Y-m-d'}}</td>
+                    <td class="text-center">{{extintor.fkExtintor.id}}</td>
+                    <td>{{extintor.fkExtintor.serialExtintor}}</td>
+                    <td>{{extintor.fkExtintor.colorExtintor}}</td>
+                    <td>{{extintor.fkExtintor.ubicacionExtintor}}</td>
+                    <td>{{extintor.fkExtintor.tipoExtintor}}</td>
+                    <td>{{extintor.fkExtintor.pesoExtintor}}</td>
+                </tr>
+                {% endfor %}
 
-                <div class="d-flex justify-content-center pb-4 mb-4 m-2 w-100
-                    p-2">
+            </tbody>
 
-                    <!-- INICIO DE LAS TABLAS USANDO (DataTable) ---------------------------------------------------------------------------- -->
-                    <div class="hadow-lg p-3 table-responsive
-                    w-100 h_datatable">
-                        
-                        <table id="example2" class="table-striped display responsive
-                            nowrap mitexto" style="font-size: 18px;">
-
-                            <!-- Cabecera de la tabla (Donde estarán  los enunciados principales)-->
-                            <thead>
-                                <tr>
-                                    <th>Último Mantenimiento</th>
-                                    <th>Id Activo</th>
-                                    <th>Serial Extintor</th>
-                                    <th>Color Extintor</th>
-                                    <th>Ubicación del Extintor</th>
-                                    <th>Tipo de Extintor</th>
-                                    <th>Peso del Extintor (kg)</th>
-                                </tr>
-                            </thead>
-
-                            <!-- Cuerpo de la tabla (donde estará la información que se mostrara de los activos) -->
-                            <tbody>
-
-                                {% for extintor in extintores %}
-                                <tr>
-                                    <td>{{extintor.fkRegistrarMantenimiento.fechaMantenimiento | date:'Y-m-d'}}</td>
-                                    <td class="text-center">{{extintor.fkExtintor.id}}</td>
-                                    <td>{{extintor.fkExtintor.serialExtintor}}</td>
-                                    <td>{{extintor.fkExtintor.colorExtintor}}</td>
-                                    <td>{{extintor.fkExtintor.ubicacionExtintor}}</td>
-                                    <td>{{extintor.fkExtintor.tipoExtintor}}</td>
-                                    <td>{{extintor.fkExtintor.pesoExtintor}}</td>
-                                </tr>
-                                {% endfor %}
-
-                            </tbody>
-
-                            <!-- Footer de la tabla (Donde estarán los enunciados principales pero en la parte inferior) -->
-                            <tfoot>
-                                <tr>
-                                    <th>Último Mantenimiento</th>
-                                    <th>Id Activo</th>
-                                    <th>Serial Extintor</th>
-                                    <th>Color Extintor</th>
-                                    <th>Ubicación del Extintor</th>
-                                    <th>Tipo de Extintor</th>
-                                    <th>Peso del Extintor (kg)</th>
-                                </tr>
-                            </tfoot>
-                        </table>
-                    </div>
-                </div>
+            <!-- Footer de la tabla (Donde estarán los enunciados principales pero en la parte inferior) -->
+            <tfoot>
+                <tr>
+                    <th>Último Mantenimiento</th>
+                    <th>Id Activo</th>
+                    <th>Serial Extintor</th>
+                    <th>Color Extintor</th>
+                    <th>Ubicación del Extintor</th>
+                    <th>Tipo de Extintor</th>
+                    <th>Peso del Extintor (kg)</th>
+                </tr>
+            </tfoot>
+        </table>
             </div>
         </div>
     </div>
-    {% endif %}
-
-
-    <br>
-    {% if perms.activos.view_activoequipooficina %}
-    <div id="div-cajas" class="container p-3 my-4 mt-0
-        pb-4 w-100">
-
-        <!-- ############################################################################################################### -->
-        <div class="m-3 rounded-bottom w-100" style="box-shadow:
-            0px 0px 5px 1px;">
-
-            <!-- Enunciado o titulo de la página -->
-            <div class="w-100" style="box-shadow: 0px 0px 0px 1px;
-                background-color:
-                rgb(209,
-                208, 208);">
-                <h3 style="text-align: center;">MANTENIMIENTO PENDIENTE EQUIPOS DE OFICINA</h3>
-            </div>
-
-            <!-- Salto de línea -->
-            <br>
-
-            <div class="d-flex flex-column w-100 pe-3">
-                
-                <h5 class="ps-5 mitexto" style="font-size: 18px;">Se recomienda un mantenimiento: <strong>Anual</strong></h5>
-                
-                <div class="d-flex justify-content-center pb-4 mb-4 m-2 w-100
-                    p-2">
-
-                    <!-- INICIO DE LAS TABLAS USANDO (DataTable) ---------------------------------------------------------------------------- -->
-                    <div class="hadow-lg p-3 table-responsive
-                    w-100 h_datatable">
-                        
-                        <table id="example3" class="table-striped display responsive
-                            nowrap mitexto" style="font-size: 18px;">
-
-                            <!-- Cabecera de la tabla (Donde estarán  los enunciados principales)-->
-                            <thead>
-                                <tr>
-                                    <th>Último Mantenimiento</th>
-                                    <th>Id Activo</th>
-                                    <th>Serial Equipo</th>
-                                    <th>Marca Equipo</th>
-                                    <th>Color Equipo</th>
-                                    <th>Sistema Operativo</th>
-                                    <th>RAM del Equipo</th>
-                                    <th>Memoria del Equipo</th>
-                                    <th>Ubicación del Equipo</th>
-                                    <th>Componentes del Equipo</th>
-                                </tr>
-                            </thead>
-
-                            <!-- Cuerpo de la tabla (donde estará la información que se mostrara de los activos) -->
-                            <tbody>
-
-                                {% for equipo in equipos %}
-                                <tr>
-                                    <td>{{equipo.fkRegistrarMantenimiento.fechaMantenimiento | date:'Y-m-d'}}</td>
-                                    <td class="text-center">{{equipo.fkEquipoOficina.id}}</td>
-                                    <td>{{equipo.fkEquipoOficina.serialEquipo}}</td>
-                                    <td>{{equipo.fkEquipoOficina.marcaEquipo}}</td>
-                                    <td>{{equipo.fkEquipoOficina.colorEquipo}}</td>
-                                    <td>{{equipo.fkEquipoOficina.sistemaOperativo}}</td>
-                                    <td>{{equipo.fkEquipoOficina.ramEquipo}}</td>
-                                    <td>{{equipo.fkEquipoOficina.memoriaEquipo}}</td>
-                                    <td>{{equipo.fkEquipoOficina.ubicacionEquipo}}</td>
-                                    <td>{{equipo.fkEquipoOficina.componentesAdicionales}}</td>
-                                </tr>
-                                {% endfor %}
-
-                            </tbody>
-
-                            <!-- Footer de la tabla (Donde estarán los enunciados principales pero en la parte inferior) -->
-                            <tfoot>
-                                <tr>
-                                    <th>Último Mantenimiento</th>
-                                    <th>Id Activo</th>
-                                    <th>Serial Equipo</th>
-                                    <th>Marca Equipo</th>
-                                    <th>Color Equipo</th>
-                                    <th>Sistema Operativo</th>
-                                    <th>RAM del Equipo</th>
-                                    <th>Memoria del Equipo</th>
-                                    <th>Ubicación del Equipo</th>
-                                    <th>Componentes del Equipo</th>
-                                </tr>
-                            </tfoot>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
     {% endif %}
-
 </div>
+
+<br>
+
+<div class="w-100 p-4">
+
+    {% if perms.activos.view_activoequipooficina %}
+
+    <div class="rounded-bottom w-100" style="box-shadow: 0px 0px 5px 1px;">
+    <div class="w-100" style="box-shadow: 0px 0px 0px 1px; background-color:
+    rgb(209, 208, 208);">
+        <h3 style="text-align: center;">MANTENIMIENTO PENDIENTE EQUIPOS DE OFICINA</h3>
+    </div>
+    <h5 class="ps-5 mitexto mt-3" style="font-size: 18px;">Se recomienda un mantenimiento: <strong>Anual</strong></h5>
+
+    <div class="d-flex flex-column w-100 pe-3">
+        <div class="d-flex justify-content-center pb-4 mb-4 m-2 w-100
+            p-3">
+    
+            <!-- INICIO DE LAS TABLAS USANDO (DataTable) ---------------------------------------------------------------------------- -->
+            <div class="shadow-lg p-3 table-responsive 
+            tabla-historial h_datatable_alarmas w-100">
+    
+            <table id="example3" class="table-striped display responsive
+            nowrap mitexto" style="font-size: 18px;">
+
+            <!-- Cabecera de la tabla (Donde estarán  los enunciados principales)-->
+            <thead>
+                <tr>
+                    <th>Último Mantenimiento</th>
+                    <th>Id Activo</th>
+                    <th>Serial Equipo</th>
+                    <th>Marca Equipo</th>
+                    <th>Color Equipo</th>
+                    <th>Sistema Operativo</th>
+                    <th>RAM del Equipo</th>
+                    <th>Memoria del Equipo</th>
+                    <th>Ubicación del Equipo</th>
+                    <th>Componentes del Equipo</th>
+                </tr>
+            </thead>
+
+            <!-- Cuerpo de la tabla (donde estará la información que se mostrara de los activos) -->
+            <tbody>
+
+                {% for equipo in equipos %}
+                <tr>
+                    <td>{{equipo.fkRegistrarMantenimiento.fechaMantenimiento | date:'Y-m-d'}}</td>
+                    <td class="text-center">{{equipo.fkEquipoOficina.id}}</td>
+                    <td>{{equipo.fkEquipoOficina.serialEquipo}}</td>
+                    <td>{{equipo.fkEquipoOficina.marcaEquipo}}</td>
+                    <td>{{equipo.fkEquipoOficina.colorEquipo}}</td>
+                    <td>{{equipo.fkEquipoOficina.sistemaOperativo}}</td>
+                    <td>{{equipo.fkEquipoOficina.ramEquipo}}</td>
+                    <td>{{equipo.fkEquipoOficina.memoriaEquipo}}</td>
+                    <td>{{equipo.fkEquipoOficina.ubicacionEquipo}}</td>
+                    <td>{{equipo.fkEquipoOficina.componentesAdicionales}}</td>
+                </tr>
+                {% endfor %}
+
+            </tbody>
+
+            <!-- Footer de la tabla (Donde estarán los enunciados principales pero en la parte inferior) -->
+            <tfoot>
+                <tr>
+                    <th>Último Mantenimiento</th>
+                    <th>Id Activo</th>
+                    <th>Serial Equipo</th>
+                    <th>Marca Equipo</th>
+                    <th>Color Equipo</th>
+                    <th>Sistema Operativo</th>
+                    <th>RAM del Equipo</th>
+                    <th>Memoria del Equipo</th>
+                    <th>Ubicación del Equipo</th>
+                    <th>Componentes del Equipo</th>
+                </tr>
+            </tfoot>
+        </table>
+            </div>
+        </div>
+    </div>
+    </div>
+    {% endif %}
+</div>
+
 
 {% include 'partials/tamañoLetra.html' %}
 

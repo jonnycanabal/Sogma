@@ -59,9 +59,9 @@ INSTALLED_APPS = [
 DBBACKUP_STORAGE = 'django.core.files.storage.FileSystemStorage'
 DBBACKUP_STORAGE_OPTIONS = {'location': BASE_DIR / 'backup'}
 
-CRONJOBS = [
-    ('*/5 * * * *', 'main.cron.my_backup')
-]
+# CRONJOBS = [
+#     ('*/5 * * * *', 'main.cron.my_backup')
+# ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
