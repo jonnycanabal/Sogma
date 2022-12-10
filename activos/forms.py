@@ -29,5 +29,5 @@ class ActivoVehiculoForm(forms.ModelForm):
 class ActivoVehiculoEditarForm(forms.ModelForm):
     class Meta:
         model=ActivoVehiculo
-        exclude=["condicionVehiculo", "estadoVehiculo", "fechaIngresoVehiculo", "serialVehiculo"]
+        exclude=["condicionVehiculo", "estadoVehiculo", "fechaIngresoVehiculo", "serialVehiculo", "placaVehiculo"]
 
