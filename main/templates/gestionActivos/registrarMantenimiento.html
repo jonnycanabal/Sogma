@@ -50,7 +50,7 @@
                             width-20 m-2 border border-dark
                             bg-white
                             text-dark" style="cursor: pointer; font-weight:
-                            700;">VEHÍCULO</button>
+                            700;" data-toggle="tooltip" title="Clic">VEHÍCULO</button>
                     </div>
                 </div>
                 {% endif %}
@@ -64,7 +64,7 @@
                             width-20 m-2 border border-dark
                             bg-white
                             text-dark" style="cursor: pointer; font-weight:
-                            700;">EXTINTOR</button>
+                            700;" data-toggle="tooltip" title="Clic">EXTINTOR</button>
                     </div>
                 </div>
                 {% endif %}
@@ -78,7 +78,7 @@
                             width-20 m-2 border border-dark
                             bg-white
                             text-dark" style="cursor: pointer; font-weight:
-                            700;">EQUIPO DE
+                            700;" data-toggle="tooltip" title="Clic">EQUIPO DE
                             OFICINA</button>
                     </div>
                 </div>
@@ -145,7 +145,7 @@
                                             <button class="btn btn-block"
                                                 onClick="editarVehiculo()"
                                                 name="editar-vehiculo">
-                                                <i class="bi bi-eye-fill"></i></button>
+                                                <i class="bi bi-eye-fill" data-toggle="tooltip" title="Ver Vehículo"></i></button>
                                         </form>
                                     </td>
                                     <td class="text-center">{{vehiculo.id}}</td>
@@ -243,7 +243,7 @@
                                             <button class="btn btn-block"
                                                 onClick="editarExtintor()"
                                                 name="editar-extintor">
-                                                <i class="bi bi-eye-fill"></i>
+                                                <i class="bi bi-eye-fill" data-toggle="tooltip" title="Ver Extintor"></i>
                                             </button>
                                         </form>
                                     </td>
@@ -330,7 +330,7 @@
                                             <button class="btn btn-block"
                                                 onClick="editarEquipo()"
                                                 name="editar-equipo-oficina">
-                                                <i class="bi bi-eye-fill"></i></button>
+                                                <i class="bi bi-eye-fill" data-toggle="tooltip" title="Ver Equipo"></i></button>
                                         </form>
                                     </td>
                                     <td class="text-center">{{equipo.id}}</td>

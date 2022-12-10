@@ -119,57 +119,6 @@ def informacion(request):
     }
     return render (request, 'informacion.html', context)
 
-# def exportar_datos():
-#     fecha=date.today()
-#     os.system(f"python manage.py dbbackup> backup/BK_{fecha}")
-
-# def backup_sogma(request):
-#     if request.method == 'POST' and 'crear_backup' in request.POST:
-#         exportar_datos()
-#         return render(request, 'bakcup')
-
-
-
-# send_mail(
-#     'Título del correo',
-#     'Hola, este correo es enviado desde un post en PyWombat. 🐍',
-#     settings.EMAIL_HOST_USER,
-#     ['jonny.canabal@gmail.com'],
-#     fail_silently=False
-# )
-
-
-
-# hora = str(datetime.now().hour) + ":" + str(datetime.now().minute) + ":" + str(datetime.now().second)
-# print(hora)
-# if hora == '13:25:30':
-#     print("funciona")
-#     send_mail(
-#         'Título del correo',
-#         'Hola, este correo es enviado desde un post en PyWombat. 🐍',
-#         settings.EMAIL_HOST_USER,
-#         ['jonny.canabal@gmail.com'],
-#         fail_silently=False
-#     )
-# else:
-#     print("no funciona")
-
-
-
-
-# Tarea a ejecutarse cada determinado tiempo.
-# def timer():
-#     while True:
-
-
-        # time.sleep(59)   
-        # 3 segundos.
-# Iniciar la ejecución en segundo plano.
-# t = threading.Thread(target=timer)
-# t.start()
-
-
-
 
 
 
